@@ -209,8 +209,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -1597.3782,
-            "Passed": 1597.3782,
+            "Relative": -18.226536,
+            "Passed": 18.226536,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -456,7 +456,6 @@
           "__guid": "3ade498f-d659-4aa9-9bb4-16725f37c71f",
           "Flags": 0,
           "Name": "PitchGenerator",
-          "Position": "13.8972,-0.00005581681,-79.52197",
           "Enabled": true,
           "Components": [
             {

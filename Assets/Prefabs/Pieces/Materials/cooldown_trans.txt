@@ -1,5 +1,0 @@
-"settings"
-{
-	"clampu"		"1"
-	"clampv"		"1"
-}

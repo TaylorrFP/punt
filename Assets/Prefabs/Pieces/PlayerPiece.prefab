@@ -38,17 +38,17 @@
           "component_type": "HighlightOutline"
         },
         "pieceID": 0,
+        "puntPlayerModel": {
+          "_type": "component",
+          "component_id": "8d3921d5-7df6-4985-9126-751b11794952",
+          "go": "d72fd439-05ac-4afa-b5a0-e93154264c83",
+          "component_type": "ModelRenderer"
+        },
         "rigidBody": {
           "_type": "component",
           "component_id": "b2e8c182-1fee-4861-99b3-58983ed2ef9c",
           "go": "cb2901cd-7385-48b3-9c35-210aaf6c5b8c",
           "component_type": "Rigidbody"
-        },
-        "socceteoPlayerModel": {
-          "_type": "component",
-          "component_id": "8d3921d5-7df6-4985-9126-751b11794952",
-          "go": "d72fd439-05ac-4afa-b5a0-e93154264c83",
-          "component_type": "ModelRenderer"
         },
         "teamSide": "Red"
       },
@@ -141,7 +141,7 @@
             ],
             "squashDuration": 0.5,
             "squashTimeSince": {
-              "Relative": 90327144
+              "Relative": 90328970
             }
           },
           {
@@ -149,7 +149,7 @@
             "__guid": "8d3921d5-7df6-4985-9126-751b11794952",
             "BodyGroups": 18446744073709551615,
             "CreateAttachments": false,
-            "Model": "prefabs/pieces/socceteoplayer.vmdl",
+            "Model": "prefabs/pieces/puntbase.vmdl",
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,

@@ -5,7 +5,7 @@ using System.Linq;
 
 public sealed class GameMode : Component
 {
-	[Property] public GameObject socceteoPiece { get; set; }
+	[Property] public GameObject puntPiece { get; set; }
 
 	[Property] public int TeamBlueScore { get; set; }
 
@@ -14,7 +14,7 @@ public sealed class GameMode : Component
 	[Property] public int TeamRedScore { get; set; }
 
 	[Property] public PuntGoal[] goals { get; set; }
-	[Property] public GameObject socceteoBall { get; set; }
+	[Property] public GameObject puntBall { get; set; }
 
 	[Property] public float ballSpawnHeight { get; set; } = 35;
 
@@ -207,7 +207,7 @@ public sealed class GameMode : Component
 		{
 			for ( int i = 0; i < redSideDefend.Count(); i++ )
 			{
-				var spawnedPiece = socceteoPiece.Clone( redSideDefend[i] );
+				var spawnedPiece = puntPiece.Clone( redSideDefend[i] );
 				spawnedPiece.NetworkSpawn();
 				redPieceList[i] = spawnedPiece.Components.Get<PuntPiece>();
 				redPieceList[i].Initialize( i, TeamSide.Red );
@@ -227,7 +227,7 @@ public sealed class GameMode : Component
 			for ( int i = 0; i < blueSideDefend.Count(); i++ )
 			{
 
-				var spawnedPiece = socceteoPiece.Clone( blueSideDefend[i] );
+				var spawnedPiece = puntPiece.Clone( blueSideDefend[i] );
 				spawnedPiece.NetworkSpawn();
 				bluePieceList[i] = spawnedPiece.Components.Get<PuntPiece>();
 				bluePieceList[i].Initialize( i + 5, TeamSide.Blue );
@@ -249,10 +249,10 @@ public sealed class GameMode : Component
 	public void ResetBall()
 	{
 
-		if ( socceteoBall != null )
+		if ( puntBall != null )
 
 		{
-			var ball = socceteoBall.Clone( Vector3.Up * ballSpawnHeight );
+			var ball = puntBall.Clone( Vector3.Up * ballSpawnHeight );
 			ball.NetworkSpawn();
 		}
 

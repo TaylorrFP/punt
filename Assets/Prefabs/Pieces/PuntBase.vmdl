@@ -53,12 +53,8 @@
 						remaps = 
 						[
 							{
-								from = "models/player/materials/socceteobasecolour.vmat"
+								from = "prefabs/pieces/materials/socceteobasecolour.vmat"
 								to = "prefabs/pieces/materials/socceteobasecolourblue.vmat"
-							},
-							{
-								from = "models/player/materials/socceteobaseinner.vmat"
-								to = "prefabs/pieces/materials/socceteobaseinner.vmat"
 							},
 						]
 					},
@@ -68,14 +64,25 @@
 						remaps = 
 						[
 							{
-								from = "models/player/materials/socceteobasecolour.vmat"
+								from = "prefabs/pieces/materials/socceteobasecolour.vmat"
 								to = "prefabs/pieces/materials/socceteobasecolourred.vmat"
 							},
-							{
-								from = "models/player/materials/socceteobaseinner.vmat"
-								to = "prefabs/pieces/materials/socceteobaseinner.vmat"
-							},
 						]
+					},
+				]
+			},
+			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "GenericGameData"
+						game_class = "prop_data"
+						game_keys = 
+						{
+							bakelighting = false
+							health = 0.0
+						}
 					},
 				]
 			},

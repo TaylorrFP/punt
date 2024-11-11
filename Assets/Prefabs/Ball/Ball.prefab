@@ -8,6 +8,44 @@
     "NetworkMode": 1,
     "Components": [
       {
+        "__type": "PuntBall",
+        "__guid": "d50c1373-0c8c-4760-881d-b3b1c86c5dee",
+        "ballGuide": {
+          "_type": "component",
+          "component_id": "fea40044-3a8f-4c17-a766-d20d65fe74f7",
+          "go": "7b555b9f-5180-4292-9f27-30bb71481193",
+          "component_type": "WorldPanel"
+        },
+        "ballModel": {
+          "_type": "gameobject",
+          "go": "540cbab2-07c3-48e6-88ef-452c7cbdc011"
+        },
+        "ballRB": {
+          "_type": "component",
+          "component_id": "ce1ad518-cf33-46d2-8ae7-f82dc0f266dd",
+          "go": "760f2ed7-7378-43bf-a993-370e83a60977",
+          "component_type": "Rigidbody"
+        },
+        "bounceNormal": "0,0,0",
+        "bouncePosition": "0,0,0",
+        "bounceReflection": "0,0,0",
+        "bounceSpeed": "0,0,0",
+        "decalLerpCurve": [
+          {},
+          {
+            "x": 1,
+            "y": 1
+          }
+        ],
+        "maxBounce": 500,
+        "maxPitchbounceImpulse": 500,
+        "pitchBounceThreshold": 1000,
+        "pitchBounciness": 0.8,
+        "wallBounceThreshold": 2,
+        "wallBounciness": 0.8,
+        "wallMaxBounceImpulse": 500
+      },
+      {
         "__type": "Sandbox.HighlightOutline",
         "__guid": "2ef57919-1c77-43a1-949c-e96829274213",
         "__enabled": false,
@@ -71,7 +109,7 @@
           "AfterUILayer": false
         },
         "Texturing": {
-          "Texture": "materials/trailtest.vtex",
+          "Texture": "prefabs/ball/materials/trailtest.vtex",
           "WorldSpace": true,
           "UnitsPerTexture": 10,
           "Scale": 1
@@ -90,48 +128,6 @@
           ]
         },
         "Wireframe": false
-      },
-      {
-        "__type": "SocceteoBall",
-        "__guid": "68e64b29-a6b5-492d-93cc-ff8baef0cb57",
-        "ballGuide": {
-          "_type": "component",
-          "component_id": "fea40044-3a8f-4c17-a766-d20d65fe74f7",
-          "go": "7b555b9f-5180-4292-9f27-30bb71481193",
-          "component_type": "WorldPanel"
-        },
-        "ballModel": {
-          "_type": "gameobject",
-          "go": "540cbab2-07c3-48e6-88ef-452c7cbdc011"
-        },
-        "ballBounceSound": "sounds/ball/ball01.sound",
-        "ballKickSound": "sounds/ball/ballkick.sound",
-        "ballRB": {
-          "_type": "component",
-          "component_id": "ce1ad518-cf33-46d2-8ae7-f82dc0f266dd",
-          "go": "760f2ed7-7378-43bf-a993-370e83a60977",
-          "component_type": "Rigidbody"
-        },
-        "bounceNormal": "0,0,0",
-        "bouncePosition": "0,0,0",
-        "bounceReflection": "0,0,0",
-        "bounceSpeed": "0,0,0",
-        "decalLerpCurve": [
-          {
-            "mode": "Flat"
-          },
-          {
-            "x": 1,
-            "y": 1
-          }
-        ],
-        "maxBounce": 500,
-        "maxPitchbounceImpulse": 500,
-        "pitchBounceThreshold": 1000,
-        "pitchBounciness": 0.8,
-        "wallBounceThreshold": 2,
-        "wallBounciness": 0.8,
-        "wallMaxBounceImpulse": 500
       },
       {
         "__type": "Sandbox.SoundPointComponent",

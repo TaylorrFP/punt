@@ -263,6 +263,9 @@ public sealed class TestGameMode : Component
 				spawnedPiece.NetworkSpawn();
 				RedPieceList.Add( spawnedPiece.Components.Get<PuntPiece>() );
 				RedPieceList[i].Initialize( i, TeamSide.Red );
+
+				Log.Info( "Init red piece" );
+
 			}
 
 			// Spawn Blue Team players
@@ -272,6 +275,8 @@ public sealed class TestGameMode : Component
 				spawnedPiece.NetworkSpawn();
 				BluePieceList.Add( spawnedPiece.Components.Get<PuntPiece>() );
 				BluePieceList[i].Initialize( i, TeamSide.Blue );
+				Log.Info( "Init blue piece" );
+
 			}
 
 
@@ -287,7 +292,7 @@ public sealed class TestGameMode : Component
 		piece.WorldRotation = spawn.WorldRotation;
 		piece.GetComponent<Rigidbody>().Velocity = Vector3.Zero;
 		piece.GetComponent<Rigidbody>().AngularVelocity = Vector3.Zero;
-		piece.socceteoPlayerModel.LocalRotation = Rotation.From( Angles.Zero );
+		piece.puntPlayerModel.LocalRotation = Rotation.From( Angles.Zero );
 		piece.Network.EnableInterpolation();
 	}
 

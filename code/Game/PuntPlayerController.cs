@@ -127,9 +127,9 @@ public sealed class PuntPlayerController : Component
 
 		if ( tr.Hit && hoveredPiece == null && selectedPiece == null)
 		{
-			var socceteoPiece = tr.GameObject.Components.Get<PuntPiece>();
+			var puntPiece = tr.GameObject.Components.Get<PuntPiece>();
 
-			if( socceteoPiece.teamSide == teamSide )//if the piece we're hovering is the same team as us
+			if( puntPiece.teamSide == teamSide )//if the piece we're hovering is the same team as us
 			{
 				hoveredPiece = tr.GameObject.Components.Get<PuntPiece>();
 				hoveredPiece?.ToggleHover();
@@ -171,7 +171,7 @@ public sealed class PuntPlayerController : Component
 
 			Quaternion targetRotation = Rotation.LookAt( projectedTargetDir, axisVector );
 
-			selectedPiece.socceteoPlayerModel.WorldRotation = targetRotation;
+			selectedPiece.puntPlayerModel.WorldRotation = targetRotation;
 
 		}
 	}
