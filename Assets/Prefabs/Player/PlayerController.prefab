@@ -30,10 +30,12 @@
         "cameraHolderInitialPos": "0,0,0",
         "clampedFlickStrength": 1000,
         "cursorState": "Pointer",
-        "flickCurve": {
-          "rangex": "0,0",
-          "rangey": "0,0"
-        },
+        "flickCurve": [
+          {
+            "x": 0.5,
+            "y": 0.5
+          }
+        ],
         "flickStrength": 3,
         "flickVector": "0,0,0",
         "isReady": false,
@@ -49,7 +51,7 @@
         "__guid": "b61fb3fe-f888-4870-aa9f-c260b249dd42",
         "Flags": 0,
         "Name": "Arrow",
-        "Position": "-142.9072,-182.541,4.200928",
+        "Position": "0,0,-123.745",
         "Rotation": "-0.5,-0.5,-0.4999998,0.5",
         "Enabled": true,
         "Components": [

@@ -69,13 +69,13 @@ public sealed class PuntPiece : Component
 			outline.Color = new Color( 0, 1, 0, 1 );
 			playerSquashStretch.StartSquash( 0.4f );
 			Sound.Play( "sounds/pieceselect.sound" );
-			Scene.TimeScale = 0.3f;
+			//Scene.TimeScale = 0.3f;
 			
 		}
 		else
 		{
 			outline.Enabled = false;
-			Scene.TimeScale = 1f;
+			//Scene.TimeScale = 1f;
 		}
 	}
 
@@ -94,6 +94,9 @@ public sealed class PuntPiece : Component
 			puntPlayerModel.MaterialGroup = "blue";
 		}
 
+
+		playerStatusRenderer.SceneObject.Attributes.Set( "Progress", 0f );
+		cooldownTimeSince = cooldownDuration;
 	}
 
 	protected override void OnUpdate()

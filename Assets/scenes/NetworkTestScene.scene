@@ -155,7 +155,13 @@
             }
           ],
           "BlueTeam": [],
-          "DebugServer": true,
+          "DebugServer": false,
+          "musicSoundPoint": {
+            "_type": "component",
+            "component_id": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
+            "go": "ab541497-7e01-4c6b-9fb6-1bf2c23f6686",
+            "component_type": "SoundPointComponent"
+          },
           "PiecePrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/pieces/playerpiece.prefab"
@@ -209,8 +215,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -5142.5635,
-            "Passed": 5142.5635,
+            "Relative": -16471.604,
+            "Passed": 16471.604,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -895,6 +901,50 @@
               "UseCameraDirection": true
             }
           ]
+        }
+      ]
+    },
+    {
+      "__guid": "ab541497-7e01-4c6b-9fb6-1bf2c23f6686",
+      "Flags": 0,
+      "Name": "Music",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SoundPointComponent",
+          "__guid": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
+          "Distance": 512,
+          "DistanceAttenuation": false,
+          "DistanceAttenuationOverride": false,
+          "Falloff": [
+            {
+              "y": 1,
+              "in": 3.1415927,
+              "out": -3.1415927
+            },
+            {
+              "x": 1
+            }
+          ],
+          "Force2d": false,
+          "MaxRepeatTime": 1,
+          "MinRepeatTime": 1,
+          "Occlusion": false,
+          "OcclusionOverride": false,
+          "OcclusionRadius": 32,
+          "Pitch": 1,
+          "PlayOnStart": false,
+          "ReflectionOverride": false,
+          "Reflections": false,
+          "Repeat": false,
+          "SoundEvent": "sounds/music/puntost.sound",
+          "SoundOverride": false,
+          "StopOnNew": false,
+          "TargetMixer": {
+            "Name": "ui",
+            "Id": "1b004eb1-2458-44cd-ae65-823e82f8d4e2"
+          },
+          "Volume": 1
         }
       ]
     }

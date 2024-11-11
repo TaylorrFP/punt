@@ -283,6 +283,8 @@ public sealed class PuntPlayerController : Component
 	{
 
 
+
+		
 		//scaledFlickVector = flickVector.Length / clampedFlickStrength;
 		//var finalflickVector = flickVector.Normal * flickCurve.Evaluate( scaledFlickVector ) * clampedFlickStrength;
 
@@ -292,12 +294,21 @@ public sealed class PuntPlayerController : Component
 
 		scaledFlickVector = flickVector.Length / clampedFlickStrength;
 
-		Log.Info( scaledFlickVector );
+		//Log.Info( scaledFlickVector );
 
 
-		piece.rigidBody.PhysicsBody.Velocity = flickVector;
+
+			piece.rigidBody.PhysicsBody.Velocity = flickVector;
+
+			Log.Info( "flick" );
+			Log.Info( flickVector );
+		
+
+
 
 		piece.StartCooldown();
+
+
 		//selectedPiece = null;
 	}
 

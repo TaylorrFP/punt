@@ -46,6 +46,11 @@ public sealed class TestGameMode : Component
 	[Group( "Spawn Points" )][Property] public List<GameObject> BlueSpawns { get; set; } = new List<GameObject>();
 	[Group( "Spawn Points" )][Property] public List<GameObject> BlueSpawnsKickoff { get; set; } = new List<GameObject>();
 
+
+
+	//Spawn Points
+	[Group( "Music" )][Property] public SoundPointComponent musicSoundPoint { get; set; }
+
 	[HostSync] public TimeSince TimeSinceCountdown { get; set; }
 
 
@@ -135,7 +140,8 @@ public sealed class TestGameMode : Component
 	{
 
 
-
+		musicSoundPoint.StartSound();
+		musicSoundPoint.Repeat = true;
 		ResetTeamPieces( kickoffSide );
 		ResetBall();
 
