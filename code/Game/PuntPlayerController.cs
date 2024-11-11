@@ -63,6 +63,7 @@ public sealed class PuntPlayerController : Component
 
 			CalculateArrow();
 			RotatePiece();
+			SetCursor();
 
 		}
 
@@ -75,6 +76,39 @@ public sealed class PuntPlayerController : Component
 
 
 
+	}
+
+	private void SetCursor()
+	{
+
+
+
+
+		if (!selectedPiece.IsValid() && !hoveredPiece.IsValid() )
+		{
+			Mouse.CursorType = "pointer";
+		}
+
+		if ( hoveredPiece != null )
+		{
+
+			if ( hoveredPiece.isOnCooldown )
+			{
+				Mouse.CursorType = "not-allowed";
+			}
+			else
+			{
+				Mouse.CursorType = "grab";
+			}
+
+	
+		}
+
+		if ( selectedPiece != null )
+		{
+			Mouse.CursorType = "grabbing";
+		}
+		
 	}
 
 	private void SelectionInputs()

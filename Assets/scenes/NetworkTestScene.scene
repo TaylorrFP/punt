@@ -209,8 +209,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -18.226536,
-            "Passed": 18.226536,
+            "Relative": -5142.5635,
+            "Passed": 5142.5635,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -886,7 +886,7 @@
           "__guid": "57bdf56e-78a7-4750-9e0d-a75c96cbf222",
           "Flags": 0,
           "Name": "Listener",
-          "Position": "-125.5509,11.91625,0.00002288818",
+          "Position": "-144.6685,11.9163,22.78352",
           "Enabled": true,
           "Components": [
             {
