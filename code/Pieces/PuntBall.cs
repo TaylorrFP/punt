@@ -32,6 +32,15 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 	[Property] public Vector3 bouncePosition { get; set; }
 
+	protected override void OnAwake()
+	{
+		//if ( IsProxy )
+		//{
+		//	ballRB.PhysicsBody.MotionEnabled = false;
+
+		//}
+	}
+
 	protected override void OnUpdate()
 	{
 

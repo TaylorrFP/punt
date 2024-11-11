@@ -51,6 +51,10 @@ public sealed class TestGameMode : Component
 	//Spawn Points
 	[Group( "Music" )][Property] public SoundPointComponent musicSoundPoint { get; set; }
 
+
+	//GameState
+	[Group( "Timescale" )][Property, HostSync] public float timescaleMult { get; set; } = 0.1f;
+
 	[HostSync] public TimeSince TimeSinceCountdown { get; set; }
 
 
@@ -90,9 +94,34 @@ public sealed class TestGameMode : Component
 
 		}
 
+		CalculateTimescale();
+		//Log.Info( "Timescale: " + Scene.TimeScale );
 	}
 
+	private void CalculateTimescale()
+	{
+		var targetTimescale = 1f;
 
+		for ( int i = 0; i < PlayerList.Count; i++ )
+		{
+			//foreach player controller
+
+			if ( PlayerList[i].selectedPiece != null )
+			{
+				Scene.TimeScale = timescaleMult;
+				break;
+			}
+
+				Scene.TimeScale = 1.0f;
+
+
+		}
+
+		Log.Info( Scene.TimeScale );
+
+
+
+	}
 
 	private void UpdateTimeLeft()
 	{

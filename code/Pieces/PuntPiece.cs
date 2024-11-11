@@ -69,8 +69,8 @@ public sealed class PuntPiece : Component
 			outline.Color = new Color( 0, 1, 0, 1 );
 			playerSquashStretch.StartSquash( 0.4f );
 			Sound.Play( "sounds/pieceselect.sound" );
-			//Scene.TimeScale = 0.3f;
-			
+			//Scene.TimeScale = 0.1f;
+
 		}
 		else
 		{
@@ -97,6 +97,13 @@ public sealed class PuntPiece : Component
 
 		playerStatusRenderer.SceneObject.Attributes.Set( "Progress", 0f );
 		cooldownTimeSince = cooldownDuration;
+
+
+		if ( IsProxy )
+		{
+			rigidBody.PhysicsBody.MotionEnabled = false;
+
+		}
 	}
 
 	protected override void OnUpdate()

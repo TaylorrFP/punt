@@ -215,14 +215,15 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -16471.604,
-            "Passed": 16471.604,
+            "Relative": -37489.92,
+            "Passed": 37489.92,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
           "RoundLength": 300,
           "RoundTimeLeft": 0,
-          "State": "Waiting"
+          "State": "Waiting",
+          "timescaleMult": 0.1
         }
       ]
     },
@@ -908,11 +909,11 @@
       "__guid": "ab541497-7e01-4c6b-9fb6-1bf2c23f6686",
       "Flags": 0,
       "Name": "Music",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.SoundPointComponent",
           "__guid": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
+          "__enabled": false,
           "Distance": 512,
           "DistanceAttenuation": false,
           "DistanceAttenuationOverride": false,
