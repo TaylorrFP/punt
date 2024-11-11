@@ -1,0 +1,28 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/grass.shader"
+
+	g_flGassAOSaturation "1.000"
+	g_flGrassAOAmount "0.530"
+	g_flGrassAOLightness "0.562"
+	g_flGrassTiling "8.000"
+	g_flGrassWarpAmount "0.026"
+	g_flMetalness "0.100"
+	g_flMinClipFudge "0.094"
+	g_flRoughness "0.453"
+	g_vGrassColourDark "[0.435294 0.043137 0.035294 1.000000]"
+	g_vGrassColourLight "[0.568627 0.062745 0.047059 1.000000]"
+	g_vLineColour "[0.607843 0.607843 0.607843 1.000000]"
+	GrassNoise "prefabs/pitch/materials/socceteopitch_grassnoise.png"
+	Normal "prefabs/pitch/materials/socceteopitch_grassnoisenormal.png"
+	PitchBlend "prefabs/pitch/materials/socceteopitch_pitchpattern_fp.png"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Translucent ----
+	g_flAlphaTestReference "0.500"
+	g_flAntiAliasedEdgeStrength "1.000"
+}

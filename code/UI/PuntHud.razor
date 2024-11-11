@@ -1,0 +1,95 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+@*     <div class="CursorPassthrough" *@
+    @* style="cursor:@cursorString;" *@
+
+    <div class="CenterInfo">
+        <!-- Gradient side panels -->
+
+        <div class="SidePanel LeftPanelBlack">
+            <div class="LeftNumber">
+
+                
+                <div class="Number">@gameMode.TeamBlueScore</div>   <!-- Number on the left -->
+
+
+            </div>   <!-- Number on the left -->
+        </div>  <!-- Left side panel with gradient -->
+        <!-- Flex container to control alignment -->
+        <div class="CenterContent">
+
+            <div class="MiddlePanel">
+                <div class="Timer">@GetTimeString()</div>  <!-- Timer text -->
+            </div>
+             <!-- Number on the right -->
+        </div>
+
+        <div class="SidePanel RightPanelBlack">
+            <div class="Number RightNumber">
+
+                <div class="Number">@gameMode.TeamRedScore</div>   <!-- Number on the left -->
+
+            </div>
+        </div> <!-- Right side panel with gradient -->
+    </div>
+
+    <div class="CenterInfoUnderline">
+        <div class="Underline RightPanelBlue"></div>
+        <div class="Underline BlueSide"></div>
+        <div class="Underline Redside"></div>
+        <div class="Underline LeftPanelRed"></div>
+    </div>
+</root>
+
+@code
+{
+    [Property] GameMode gameMode { get; set; }
+    [Property] string cursorString { get; set; }
+
+    string GetTimeString()
+    {
+        var time = gameMode.roundTimeLeft;
+        var minutes = (int)time / 60;
+        var seconds = (int)time % 60;
+        return $"{minutes:00}:{seconds:00}";
+
+    }
+
+    // string GetPlayerCursor()
+    // {
+
+    //     var cursor = gameMode.playerList[0]?.cursorState;
+    //     switch (cursor){
+
+    //         case CustomCursor.Pointer:
+    //             cursorString = "pointer";
+    //             break;
+
+    //         case CustomCursor.Grabbing:
+    //             cursorString = "grabbing";
+    //             break;
+
+    //         case CustomCursor.Grab:
+    //             cursorString = "grab";
+    //             break;
+
+    //         case CustomCursor.NotAllowed:
+    //             cursorString = "not-allowed";
+    //             break;
+    //     }
+     
+    //     return cursorString;
+
+    // }
+
+
+     
+
+    /// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(gameMode.TeamBlueScore, gameMode.TeamRedScore, GetTimeString() /* ,GetPlayerCursor() */);
+}

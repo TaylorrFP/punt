@@ -1,0 +1,26 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+    <div class="arrow-container">
+        <div class="arrow-body" style="width: @(playerController.arrowUIScale)px;"></div>
+        <div class="arrow-cover"></div> <!-- New cover div -->
+        <div class="arrow-head"></div>
+    </div>
+</root>
+
+@code
+{
+    [Property] PuntPlayerController playerController { get; set; }
+
+    /// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine
+
+    (
+        playerController.arrowUIScale
+
+    );
+}

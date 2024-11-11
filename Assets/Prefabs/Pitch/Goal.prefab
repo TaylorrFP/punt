@@ -1,0 +1,57 @@
+{
+  "RootObject": {
+    "__guid": "5777b156-872f-4feb-ae1d-eebce85ca832",
+    "Flags": 0,
+    "Name": "goal",
+    "Scale": "0.5,0.5,0.5",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "2dbd6d97-df94-4cc4-89d4-bb8770446ca1",
+        "BodyGroups": 18446744073709551615,
+        "Model": "models/pitch/goal.vmdl",
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "e423d69d-efb4-480f-b233-c0fe57f8fad2",
+        "Center": "210,0,150",
+        "IsTrigger": true,
+        "Scale": "300,550,300",
+        "Static": false
+      },
+      {
+        "__type": "SocceteoGoal",
+        "__guid": "f4c45c9a-d7f3-438c-980a-26fb08fb8562",
+        "teamSide": "Red"
+      }
+    ],
+    "Children": [],
+    "__variables": [
+      {
+        "Id": "Team Side",
+        "Title": "Team Side",
+        "Targets": [
+          {
+            "Id": "f4c45c9a-d7f3-438c-980a-26fb08fb8562",
+            "Property": "teamSide"
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

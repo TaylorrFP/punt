@@ -1,0 +1,117 @@
+{
+  "RootObject": {
+    "__guid": "76446c15-d055-4557-8f52-0cc3deee8997",
+    "Flags": 0,
+    "Name": "playercontroller",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "Components": [
+      {
+        "__type": "PuntPlayerController",
+        "__guid": "06fa746e-3f17-4b1f-b9f0-2cbfe65e8a4c",
+        "teamSide": "Red",
+        "arrow": {
+          "_type": "component",
+          "component_id": "864797cd-16a7-4974-8075-96eebe455e46",
+          "go": "b61fb3fe-f888-4870-aa9f-c260b249dd42",
+          "component_type": "WorldPanel"
+        },
+        "arrowCurve": [
+          {
+            "mode": "Linear"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "mode": "Linear"
+          }
+        ],
+        "arrowUIScale": 0,
+        "cameraHolderInitialPos": "0,0,0",
+        "clampedFlickStrength": 1000,
+        "cursorState": "Pointer",
+        "flickCurve": {
+          "rangex": "0,0",
+          "rangey": "0,0"
+        },
+        "flickStrength": 3,
+        "flickVector": "0,0,0",
+        "isReady": false,
+        "mouseOffset": "0,0",
+        "scaledFlickVector": 0,
+        "SceneCursorPosition": "0,0,0",
+        "targetArrowPos": "0,0,0",
+        "targetmouseOffset": "0,0"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "b61fb3fe-f888-4870-aa9f-c260b249dd42",
+        "Flags": 0,
+        "Name": "Arrow",
+        "Position": "-142.9072,-182.541,4.200928",
+        "Rotation": "-0.5,-0.5,-0.4999998,0.5",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "864797cd-16a7-4974-8075-96eebe455e46",
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": false,
+            "PanelSize": "20000,1000",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "AimArrow",
+            "__guid": "94f4d489-a516-455c-8ed1-ad0f46015494",
+            "playerController": {
+              "_type": "component",
+              "component_id": "06fa746e-3f17-4b1f-b9f0-2cbfe65e8a4c",
+              "go": "76446c15-d055-4557-8f52-0cc3deee8997",
+              "component_type": "PuntPlayerController"
+            }
+          }
+        ]
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

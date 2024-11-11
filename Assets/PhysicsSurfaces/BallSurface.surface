@@ -1,0 +1,31 @@
+{
+  "BaseSurface": null,
+  "AudioSurface": "Generic",
+  "Description": "",
+  "Friction": 0.05,
+  "Elasticity": 0.75,
+  "Density": 503.88,
+  "Thickness": -1,
+  "RollingResistance": 0,
+  "BounceThreshold": 0.01,
+  "ImpactEffects": {
+    "Regular": [],
+    "Bullet": [],
+    "BulletDecal": [],
+    "SoftParticles": [],
+    "SoftDecal": [],
+    "HardParticles": [],
+    "HardDecal": []
+  },
+  "ScrapeEffects": {
+    "RoughnessFactor": 0.25,
+    "RoughThreshold": 0.5
+  },
+  "Sounds": {
+    "ImpactHard": "sounds/ball/ball.sound"
+  },
+  "Breakables": {},
+  "Tags": null,
+  "__references": [],
+  "__version": 0
+}

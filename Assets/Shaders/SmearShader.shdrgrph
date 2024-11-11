@@ -1,0 +1,397 @@
+{
+  "Model": null,
+  "Description": "",
+  "BlendMode": "Opaque",
+  "nodes": [
+    {
+      "_class": "Result",
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "1152,352",
+      "Albedo": {
+        "Identifier": "30",
+        "Output": "Result"
+      },
+      "Roughness": {
+        "Identifier": "31",
+        "Output": "Result"
+      },
+      "PositionOffset": {
+        "Identifier": "14",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float3",
+      "Min": "-100,-100,-100",
+      "Max": "100,100,100",
+      "Value": "0,0,0",
+      "Name": "Position",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "1",
+      "Position": "-1488,16"
+    },
+    {
+      "_class": "Float3",
+      "Min": "-100,-100,-100",
+      "Max": "100,100,100",
+      "Value": "0,0,0",
+      "Name": "PrevPosition",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "2",
+      "Position": "-1504,240"
+    },
+    {
+      "_class": "Subtract",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "3",
+      "Position": "-912,48",
+      "A": {
+        "Identifier": "1",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "2",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Subtract",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "4",
+      "Position": "-912,192",
+      "A": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "1",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "WorldPosition",
+      "Identifier": "5",
+      "Position": "-1184,288"
+    },
+    {
+      "_class": "Normalize",
+      "Identifier": "6",
+      "Position": "-624,-16",
+      "Input": {
+        "Identifier": "3",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Normalize",
+      "Identifier": "7",
+      "Position": "-624,112",
+      "Input": {
+        "Identifier": "4",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Length",
+      "Identifier": "8",
+      "Position": "-624,256",
+      "Input": {
+        "Identifier": "3",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "RemapValue",
+      "In": -1,
+      "InMin": -100,
+      "InMax": 100,
+      "OutMin": -100,
+      "OutMax": 100,
+      "Clamp": true,
+      "Identifier": "9",
+      "Position": "-496,672",
+      "A": {
+        "Identifier": "3",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "DotProduct",
+      "Identifier": "10",
+      "Position": "-384,-32",
+      "InputA": {
+        "Identifier": "6",
+        "Output": "Result"
+      },
+      "InputB": {
+        "Identifier": "7",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Step",
+      "DefaultInput": 0,
+      "DefaultEdge": 0,
+      "Identifier": "11",
+      "Position": "-384,336",
+      "Input": {
+        "Identifier": "8",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "RemapValue",
+      "In": 0.5,
+      "InMin": -1,
+      "InMax": 0,
+      "OutMin": -1,
+      "OutMax": 0,
+      "Clamp": true,
+      "Identifier": "12",
+      "Position": "-112,-32",
+      "A": {
+        "Identifier": "10",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Subtract",
+      "DefaultA": 1,
+      "DefaultB": 1,
+      "Identifier": "13",
+      "Position": "128,-64",
+      "B": {
+        "Identifier": "12",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "14",
+      "Position": "416,240",
+      "A": {
+        "Identifier": "13",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "15",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "15",
+      "Position": "-112,272",
+      "A": {
+        "Identifier": "16",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "17",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "11",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 1,
+      "Name": "",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "16",
+      "Position": "-384,160"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "17",
+      "Position": "-384,240"
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "18",
+      "Position": "688,624",
+      "A": {
+        "Identifier": "14",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "9",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Subtract",
+      "DefaultA": 1,
+      "DefaultB": 1,
+      "Identifier": "19",
+      "Position": "880,624",
+      "B": {
+        "Identifier": "18",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "WorldPosition",
+      "Identifier": "20",
+      "Position": "208,-288"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 30,
+      "Value": 5,
+      "Name": "NoiseTiling",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "21",
+      "Position": "208,-208"
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "22",
+      "Position": "480,-288",
+      "A": {
+        "Identifier": "20",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "21",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "SimplexNoise",
+      "Identifier": "23",
+      "Position": "720,-272",
+      "Coords": {
+        "Identifier": "22",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "24",
+      "Position": "960,-224",
+      "A": {
+        "Identifier": "23",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "25",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 20,
+      "Value": 0,
+      "Name": "NoiseHeightScale",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "25",
+      "Position": "704,-128"
+    },
+    {
+      "_class": "Lerp",
+      "Fraction": 1,
+      "Identifier": "26",
+      "Position": "1264,-256",
+      "A": {
+        "Identifier": "27",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "24",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "28",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 1,
+      "Name": "",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "27",
+      "Position": "960,-304"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0.5,
+      "Name": "NoiseInfluence",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "28",
+      "Position": "976,-64"
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "29",
+      "Position": "1536,96",
+      "A": {
+        "Identifier": "26",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float4",
+      "Value": "1,1,1,1",
+      "Name": "Colour",
+      "IsAttribute": false,
+      "UI": {
+        "Type": "Color"
+      },
+      "Identifier": "30",
+      "Position": "1792,-656"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "Roughness",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "31",
+      "Position": "1808,-304"
+    }
+  ]
+}

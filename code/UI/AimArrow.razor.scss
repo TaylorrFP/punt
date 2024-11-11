@@ -1,0 +1,31 @@
+AimArrow {
+
+	.arrow-container {
+		display: flex;
+		align-items: center;
+		position: relative; /* Allow positioning of elements */
+	}
+	/* Arrow body */
+	.arrow-body {
+		height: 500px; /* Adjust this for the body length */
+		width: 8000px;
+		background: linear-gradient(to right, #ffffff00, #ffffff); /* Gradient: transparent to white */
+	}
+	/* Arrow cover (to hide overlap) */
+	.arrow-cover {
+		width: 400px;
+		height: 500px;
+		margin-left: -10px;
+		background-color: white;
+		z-index: 1; /* Ensure it appears above the gradient */
+	}
+	/* Arrow head */
+	.arrow-head {
+		width: 500px;
+		height: 500px;
+		background-color: white;
+		transform: rotate(45deg); /* Rotate to form a triangle shape */
+		margin-left: -300px; /* Slight overlap with the body */
+		z-index: 2; /* Ensure it appears on top of the cover */
+	}
+}

@@ -1,0 +1,25 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/radialprogress.shader"
+
+	//---- Rendering ----
+	F_DO_NOT_CAST_SHADOWS 1
+
+	g_flProgress "0.789"
+	g_flRadius "0.317"
+	g_flWidth "0.059"
+	g_vColor "[1.000000 1.000000 1.000000 1.000000]"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Translucent ----
+	g_flOpacityScale "0.228"
+
+	DynamicParams
+	{
+		g_flProgress "progress"
+	}
+}

@@ -1,0 +1,23 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+    <div class="circle">
+        <div class="mask full" style="transform: rotate(@(progress * 3.6f)deg);"></div>
+        <div class="mask half">
+            <div class="fill" style="transform: rotate(@(progress > 50 ? 180 : progress * 3.6f)deg);"></div>
+        </div>
+        <div class="inside-circle">@progress%</div>
+    </div>
+</root>
+
+@code
+{
+    [Property] public float progress { get; set; }
+
+    public PlayerStatus()
+    {
+        progress = 50f; // Default value
+    }
+}

@@ -1,0 +1,127 @@
+@using Sandbox
+@using Sandbox.UI
+@using System.Collections.Generic
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+    <!-- Draw this first so it's under the other panels -->
+    @if (TestGameMode.Instance.State == GameState.Waiting)
+    {
+        <div class="ready-panel">Press E to ready up</div>
+    }
+    <div class="team-container">
+        <!-- Blue Team Panel -->
+        <div class="blue-team">
+            @for (int i = 0; i < 2; i++)
+            {
+                if (i < TestGameMode.Instance.BlueTeam?.Count)
+                {
+                    var player = TestGameMode.Instance.BlueTeam[i];
+                    <div class="player-wrapper">
+                        <div class="player-panel">
+                            <img class="image" src="avatar:@player.GameObject.Network.Owner.SteamId" />
+                            <span class="player-name">@player.GameObject.Network.Owner.DisplayName</span>
+                        </div>
+                        @if (player.isReady &&
+                       (TestGameMode.Instance.State == GameState.Waiting || TestGameMode.Instance.State == GameState.Countdown))
+                        {
+                            <div class="ready-indicator">Ready</div>
+                        }
+                    </div>
+                }
+                else if (TestGameMode.Instance.State == GameState.Waiting)
+                {
+                    <div class="player-panel waiting">waiting for player...</div>
+                }
+            }
+        </div>
+
+        <!-- Red Team Panel -->
+        <div class="red-team">
+            @for (int i = 0; i < 2; i++)
+            {
+                if (i < TestGameMode.Instance.RedTeam?.Count)
+                {
+                    var player = TestGameMode.Instance.RedTeam[i];
+                    <div class="player-wrapper">
+                        @if (player.isReady &&
+                       (TestGameMode.Instance.State == GameState.Waiting || TestGameMode.Instance.State == GameState.Countdown))
+                        {
+                            <div class="ready-indicator">Ready</div>
+                        }
+                        <div class="player-panel">
+                            <span class="player-name">@player.GameObject.Network.Owner.DisplayName</span>
+                            <img class="image" src="avatar:@player.GameObject.Network.Owner.SteamId" />
+                        </div>
+                    </div>
+                }
+                else if (TestGameMode.Instance.State == GameState.Waiting)
+                {
+                    <div class="player-panel waiting">waiting for player...</div>
+                }
+            }
+        </div>
+    </div>
+
+    <!-- Scoreboard Panel -->
+    <div class="scoreboard">
+        <div class="blue-score">@TestGameMode.Instance.BlueScore</div>
+        <div class="time-panel">@GetRoundTimerString()</div>
+        <div class="red-score">@TestGameMode.Instance.RedScore</div>
+    </div>
+
+    <!-- Countdown Panel -->
+    @if (TestGameMode.Instance.State == GameState.Countdown)
+    {
+        <div class="countdown-panel">
+            <div class="countdown-text">Starting Game</div>
+            <div class="countdown-number">@GetCountdownTimeString()</div>
+        </div>
+    }
+</root>
+
+@code
+{
+    [Property] public bool refreshUI { get; set; }
+    string GetRoundTimerString()
+    {
+        var time = MathX.Clamp(TestGameMode.Instance.RoundTimeLeft, 0f, 1000f);
+        var minutes = (int)time / 60;
+        var seconds = (int)time % 60;
+        return $"{minutes:00}:{seconds:00}";
+    }
+
+    string GetCountdownTimeString()
+    {
+        var time = 4f-TestGameMode.Instance.TimeSinceCountdown;
+        var seconds = (int)time % 60;
+        return $"{seconds:0}";
+    }
+
+    protected override int BuildHash()
+    {
+        // Start by combining the count of players and refreshUI
+        int hash = System.HashCode.Combine(
+
+            TestGameMode.Instance.PlayerList?.Count ?? 0,
+            refreshUI,//This is just for debug, to force the UI to refresh
+            TestGameMode.Instance.State,
+            GetCountdownTimeString(),
+            GetRoundTimerString(),
+            TestGameMode.Instance.BlueScore,
+            TestGameMode.Instance.RedScore
+    );
+
+        // Add the isReady states to the hash
+        if (TestGameMode.Instance.PlayerList != null)
+        {
+            foreach (var player in TestGameMode.Instance.PlayerList)
+            {
+                hash = System.HashCode.Combine(hash, player.isReady ? 1 : 0);
+            }
+        }
+
+        return hash;
+    }
+}

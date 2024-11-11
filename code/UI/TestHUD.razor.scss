@@ -1,0 +1,183 @@
+TestHUD {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: transparent;
+	font-weight: bold;
+	font-family: Poppins;
+}
+
+.team-container {
+	position: absolute;
+	top: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 40px;
+}
+
+.blue-team {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.red-team {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 10px;
+}
+
+.player-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 10px; /* Gap between player-panel and ready-indicator */
+}
+
+.player-panel {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	border-radius: 30%;
+	color: #fff;
+	font-size: 20px;
+	gap: 10px;
+}
+
+.blue-team .player-panel {
+	background-color: rgba(0, 115, 212, 0.69); /* Blue team color */
+	backdrop-filter: blur(10px);
+	flex-direction: row; /* Avatar on the left, name on the right */
+}
+
+.red-team .player-panel {
+	background-color: rgba(232, 37, 87, 0.67); /* Red team color */
+	backdrop-filter: blur(10px);
+
+}
+
+.player-panel.waiting {
+	background-color: #000; /* Black color for waiting panel */
+	opacity: 0.7;
+}
+
+.image {
+	width: 50px; /* Set a fixed width for the avatar image */
+	height: 50px; /* Set a fixed height for the avatar image */
+	border-radius: 50%; /* Make it circular */
+}
+
+.player-name {
+}
+
+/* Ready Indicator Panel */
+.ready-indicator {
+	width: 100px; /* Same width as the player panel for uniformity */
+	height: 70px; /* Match height with player panel */
+	background-color: #28a745; /* Green color for ready state */
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 30%;
+	font-size: 20px;
+	text-align: center;
+}
+
+.ready-panel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	backdrop-filter: blur(10px);
+	background-color: #161616e2; 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-size: 30px;
+	text-align: center;
+}
+
+/* Countdown Panel Styling */
+.countdown-panel {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px 40px;
+	backdrop-filter: blur(10px);
+	background-color: #000000d2;
+	color: #fff;
+	border-radius: 15%;
+	text-align: center;
+	font-weight: bold;
+	display: flex;
+	flex-direction: column; /* Arrange elements vertically */
+	align-items: center; /* Center align elements horizontally */
+	gap: 10px; /* Space between the text and the number */
+}
+
+.countdown-text {
+	font-size: 30px; /* Smaller font size for the label text */
+}
+
+.countdown-number {
+	font-size: 120px; /* Larger font size for the countdown number */
+}
+
+/* Scoreboard Styling */
+.scoreboard {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	align-items: center;
+}
+
+.blue-score {
+	background-color: rgba(0, 115, 212, 0.69); /* Blue team color */
+	backdrop-filter: blur(10px);
+	padding: 0px 20px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	color: #fff;
+	font-size: 70px;
+	font-weight: bold;
+	text-align: center;
+	min-width: 80px;
+}
+
+.time-panel {
+	background-color: #000000e9;
+	backdrop-filter: blur(10px);
+	min-width: 200px; /* Fixed width to keep the panel consistent */
+	height: 105px; /* Set a height to ensure consistency */
+	color: #fff;
+	font-size: 50px;
+	font-weight: bold;
+	text-align: center;
+	display: flex;
+	align-items: center; /* Centers the text vertically */
+	justify-content: center; /* Centers the text horizontally */
+}
+
+.red-score {
+	background-color: rgba(232, 37, 87, 0.67); /* Red team color */
+	backdrop-filter: blur(10px);
+	padding: 0px 20px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	color: #fff;
+	font-size: 70px;
+	font-weight: bold;
+	text-align: center;
+	min-width: 80px;
+}
+

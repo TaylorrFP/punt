@@ -1,0 +1,46 @@
+{
+  "RootObject": {
+    "__guid": "e33fb9d7-98be-45ad-b902-6ac7a07e8511",
+    "Flags": 0,
+    "Name": "GameMode",
+    "Position": "0.6013978,0,0",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "Components": [
+      {
+        "__type": "GameMode",
+        "__guid": "bdd6808c-7857-4193-9b7f-549af9c8662d",
+        "ballSpawnHeight": 35,
+        "bluePieceList": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "playerList": [],
+        "redPieceList": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "socceteoBall": {
+          "_type": "gameobject",
+          "prefab": "prefabs/pieces/ball.prefab"
+        },
+        "socceteoPiece": {
+          "_type": "gameobject",
+          "prefab": "prefabs/pieces/playerpiece.prefab"
+        }
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

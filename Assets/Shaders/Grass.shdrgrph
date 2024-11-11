@@ -1,0 +1,617 @@
+{
+  "Model": null,
+  "Description": null,
+  "BlendMode": "Masked",
+  "nodes": [
+    {
+      "_class": "Result",
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "2100,-528",
+      "Albedo": {
+        "Identifier": "25",
+        "Output": "Result"
+      },
+      "Opacity": {
+        "Identifier": "33",
+        "Output": "Result"
+      },
+      "Roughness": {
+        "Identifier": "29",
+        "Output": "Result"
+      },
+      "Metalness": {
+        "Identifier": "44",
+        "Output": "Result"
+      },
+      "AmbientOcclusion": {
+        "Identifier": "17",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "RGBtoHSV",
+      "Identifier": "1",
+      "Position": "768,-1692",
+      "In": {
+        "Identifier": "26",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "GrassAOAmount",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "2",
+      "Position": "480,204"
+    },
+    {
+      "_class": "TileAndOffset",
+      "DefaultTile": "20,20",
+      "DefaultOffset": "0,0",
+      "WrapTo01": false,
+      "Identifier": "3",
+      "Position": "-1476,-1104",
+      "Tile": {
+        "Identifier": "11",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "SplitVector",
+      "Identifier": "4",
+      "Position": "1044,-1692",
+      "Input": {
+        "Identifier": "1",
+        "Output": "Out"
+      }
+    },
+    {
+      "_class": "HSVtoRGB",
+      "Identifier": "5",
+      "Position": "1740,-1716",
+      "In": {
+        "Identifier": "21",
+        "Output": "XYZW"
+      }
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "materials/pitchblend.png",
+      "Sampler": {
+        "AddressU": "Clamp",
+        "AddressV": "Clamp"
+      },
+      "UI": {
+        "Name": "PitchBlend",
+        "Default": "1,1,1,1",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "6",
+      "Position": "132,-1428",
+      "Coords": {
+        "Identifier": "42",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "VertexColor",
+      "Identifier": "7",
+      "Position": "-768,-156"
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "materials/guassinnoise.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "GrassNoise",
+        "Default": "1,1,1,1",
+        "ShowExtension": true,
+        "ColorSpace": "Linear"
+      },
+      "Identifier": "8",
+      "Position": "-1200,-1008",
+      "Coords": {
+        "Identifier": "3",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "9",
+      "Position": "420,-1836",
+      "A": {
+        "Identifier": "16",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "14",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "6",
+        "Output": "R"
+      }
+    },
+    {
+      "_class": "SplitVector",
+      "Identifier": "10",
+      "Position": "-540,-156",
+      "Input": {
+        "Identifier": "7",
+        "Output": "RGB"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 64,
+      "Value": 1,
+      "Name": "GrassTiling",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "11",
+      "Position": "-1680,-1068"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 1,
+      "Name": "",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "12",
+      "Position": "480,132"
+    },
+    {
+      "_class": "Power",
+      "DefaultA": 1,
+      "DefaultB": 1,
+      "Identifier": "13",
+      "Position": "-288,-60",
+      "A": {
+        "Identifier": "10",
+        "Output": "X"
+      },
+      "B": {
+        "Identifier": "19",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float4",
+      "Value": "1,1,1,1",
+      "Name": "GrassColourDark",
+      "IsAttribute": false,
+      "UI": {
+        "Type": "Color"
+      },
+      "Identifier": "14",
+      "Position": "48,-1824"
+    },
+    {
+      "_class": "Reroute",
+      "Comment": null,
+      "Identifier": "15",
+      "Position": "-36,-684",
+      "Input": {
+        "Identifier": "31",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float4",
+      "Value": "1,1,1,1",
+      "Name": "GrassColourLight",
+      "IsAttribute": false,
+      "UI": {
+        "Type": "Color"
+      },
+      "Identifier": "16",
+      "Position": "48,-2028"
+    },
+    {
+      "_class": "Lerp",
+      "Fraction": 1,
+      "Identifier": "17",
+      "Position": "780,84",
+      "A": {
+        "Identifier": "12",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "31",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "2",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0.45454547,
+      "Name": "",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "18",
+      "Position": "-708,60"
+    },
+    {
+      "_class": "Divide",
+      "DefaultA": 1,
+      "DefaultB": 1,
+      "Identifier": "19",
+      "Position": "-468,36",
+      "B": {
+        "Identifier": "18",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 2,
+      "Identifier": "20",
+      "Position": "1344,-1548",
+      "A": {
+        "Identifier": "4",
+        "Output": "Y"
+      },
+      "B": {
+        "Identifier": "22",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "CombineVector",
+      "DefaultX": 0,
+      "DefaultY": 0,
+      "DefaultZ": 0,
+      "DefaultW": 0,
+      "Identifier": "21",
+      "Position": "1524,-1716",
+      "X": {
+        "Identifier": "4",
+        "Output": "X"
+      },
+      "Y": {
+        "Identifier": "20",
+        "Output": "Result"
+      },
+      "Z": {
+        "Identifier": "23",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 3,
+      "Value": 1,
+      "Name": "GassAOSaturation",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "22",
+      "Position": "1092,-1476"
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 2,
+      "Identifier": "23",
+      "Position": "1344,-1392",
+      "A": {
+        "Identifier": "4",
+        "Output": "Z"
+      },
+      "B": {
+        "Identifier": "24",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 1,
+      "Name": "GrassAOLightness",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "24",
+      "Position": "1092,-1344"
+    },
+    {
+      "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "25",
+      "Position": "1776,-876",
+      "A": {
+        "Identifier": "5",
+        "Output": "Out"
+      },
+      "B": {
+        "Identifier": "26",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "31",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "26",
+      "Position": "732,-1404",
+      "A": {
+        "Identifier": "9",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "27",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "6",
+        "Output": "B"
+      }
+    },
+    {
+      "_class": "Float4",
+      "Value": "1,1,1,1",
+      "Name": "LineColour",
+      "IsAttribute": false,
+      "UI": {
+        "Type": "Color"
+      },
+      "Identifier": "27",
+      "Position": "444,-1500"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0.01,
+      "Name": "GrassWarpAmount",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "28",
+      "Position": "-900,-1104"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "Roughness",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "29",
+      "Position": "1044,-288"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "Metalness",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "30",
+      "Position": "1488,-672"
+    },
+    {
+      "_class": "Reroute",
+      "Comment": null,
+      "Identifier": "31",
+      "Position": "-732,-924",
+      "Input": {
+        "Identifier": "8",
+        "Output": "R"
+      }
+    },
+    {
+      "_class": "Subtract",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "32",
+      "Position": "468,-660",
+      "A": {
+        "Identifier": "34",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "13",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Add",
+      "DefaultA": 0,
+      "DefaultB": 0.5,
+      "Identifier": "33",
+      "Position": "612,-660",
+      "A": {
+        "Identifier": "32",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "RemapValue",
+      "In": 0.5,
+      "InMin": 0,
+      "InMax": 1,
+      "OutMin": 0,
+      "OutMax": 1,
+      "Clamp": true,
+      "Identifier": "34",
+      "Position": "192,-732",
+      "A": {
+        "Identifier": "15",
+        "Output": "Result"
+      },
+      "D": {
+        "Identifier": "35",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0.01,
+      "Name": "MinClipFudge",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "35",
+      "Position": "0,-612"
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "materials/dev/white_color.tga",
+      "Sampler": {},
+      "UI": {
+        "Name": "Normal",
+        "Default": "0.49804,0.49804,1,1",
+        "Extension": "Normal",
+        "ShowExtension": true,
+        "ColorSpace": "Linear",
+        "SrgbRead": true
+      },
+      "Identifier": "36",
+      "Position": "-1200,-1260",
+      "Coords": {
+        "Identifier": "3",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "37",
+      "Position": "-612,-1236",
+      "A": {
+        "Identifier": "41",
+        "Output": "Output"
+      },
+      "B": {
+        "Identifier": "28",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 0.5,
+      "Identifier": "38",
+      "Position": "-444,-1104",
+      "A": {
+        "Identifier": "28",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "TextureCoord",
+      "UseSecondaryCoord": false,
+      "Tiling": "1,1",
+      "Identifier": "39",
+      "Position": "-636,-1620"
+    },
+    {
+      "_class": "Add",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "40",
+      "Position": "-288,-1452",
+      "A": {
+        "Identifier": "39",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "37",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "AppendVector",
+      "Identifier": "41",
+      "Position": "-900,-1236",
+      "A": {
+        "Identifier": "36",
+        "Output": "R"
+      },
+      "B": {
+        "Identifier": "36",
+        "Output": "G"
+      }
+    },
+    {
+      "_class": "Subtract",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "42",
+      "Position": "-96,-1284",
+      "A": {
+        "Identifier": "40",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "38",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "43",
+      "Position": "1476,-756"
+    },
+    {
+      "_class": "Lerp",
+      "Fraction": 0.5,
+      "Identifier": "44",
+      "Position": "1740,-672",
+      "A": {
+        "Identifier": "30",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "43",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "6",
+        "Output": "B"
+      }
+    },
+    {
+      "_class": "CommentNode",
+      "Size": "704,496",
+      "Color": "Green",
+      "Title": "Vertex Colour linear\u003Esrgb",
+      "Description": "",
+      "Layer": 1,
+      "Identifier": "45",
+      "Position": "-816,-276"
+    }
+  ]
+}

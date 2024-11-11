@@ -1,0 +1,17 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/vertexmat.shader"
+
+	g_flLightness "0.564"
+	g_flMetalness "0.100"
+	g_flRimAmount "0.000"
+	g_flRimPower "2.376"
+	g_flRoughness "0.545"
+	g_flSaturation "1.200"
+	g_vRimColour "[1.000000 1.000000 1.000000 1.000000]"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+}

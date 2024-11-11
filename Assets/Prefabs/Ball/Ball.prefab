@@ -1,0 +1,284 @@
+{
+  "RootObject": {
+    "__guid": "760f2ed7-7378-43bf-a993-370e83a60977",
+    "Flags": 0,
+    "Name": "ball",
+    "Tags": "ball",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "Components": [
+      {
+        "__type": "Sandbox.HighlightOutline",
+        "__guid": "2ef57919-1c77-43a1-949c-e96829274213",
+        "__enabled": false,
+        "Color": "1,1,1,1",
+        "InsideColor": "0,0,0,0",
+        "InsideObscuredColor": "1,1,1,0.33",
+        "ObscuredColor": "0,0,0,0.4",
+        "Width": 0.25
+      },
+      {
+        "__type": "Sandbox.SphereCollider",
+        "__guid": "6a1ef6cd-c3ed-4296-aa88-9456a93abf5b",
+        "Center": "0,0,0",
+        "IsTrigger": false,
+        "Radius": 30,
+        "Static": false,
+        "Surface": "physicssurfaces/ballsurface.surface",
+        "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "ce1ad518-cf33-46d2-8ae7-f82dc0f266dd",
+        "AngularDamping": 1,
+        "Gravity": true,
+        "LinearDamping": 0.2,
+        "Locking": {},
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": 0,
+        "StartAsleep": false
+      },
+      {
+        "__type": "Sandbox.TrailRenderer",
+        "__guid": "23141c7d-fad2-4443-bee6-6cd9685943c2",
+        "BlendMode": "Normal",
+        "CastShadows": false,
+        "Color": {
+          "color": [
+            {
+              "c": "1,1,1,1"
+            },
+            {
+              "t": 1,
+              "c": "1,1,1,0"
+            }
+          ],
+          "alpha": []
+        },
+        "Emitting": true,
+        "Face": "Camera",
+        "LifeTime": 2,
+        "MaxPoints": 64,
+        "Opaque": false,
+        "PointDistance": 2,
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "Texturing": {
+          "Texture": "materials/trailtest.vtex",
+          "WorldSpace": true,
+          "UnitsPerTexture": 10,
+          "Scale": 1
+        },
+        "Width": {
+          "rangey": "0,15",
+          "frames": [
+            {
+              "y": 1,
+              "mode": "Linear"
+            },
+            {
+              "x": 1,
+              "mode": "Linear"
+            }
+          ]
+        },
+        "Wireframe": false
+      },
+      {
+        "__type": "SocceteoBall",
+        "__guid": "68e64b29-a6b5-492d-93cc-ff8baef0cb57",
+        "ballGuide": {
+          "_type": "component",
+          "component_id": "fea40044-3a8f-4c17-a766-d20d65fe74f7",
+          "go": "7b555b9f-5180-4292-9f27-30bb71481193",
+          "component_type": "WorldPanel"
+        },
+        "ballModel": {
+          "_type": "gameobject",
+          "go": "540cbab2-07c3-48e6-88ef-452c7cbdc011"
+        },
+        "ballBounceSound": "sounds/ball/ball01.sound",
+        "ballKickSound": "sounds/ball/ballkick.sound",
+        "ballRB": {
+          "_type": "component",
+          "component_id": "ce1ad518-cf33-46d2-8ae7-f82dc0f266dd",
+          "go": "760f2ed7-7378-43bf-a993-370e83a60977",
+          "component_type": "Rigidbody"
+        },
+        "bounceNormal": "0,0,0",
+        "bouncePosition": "0,0,0",
+        "bounceReflection": "0,0,0",
+        "bounceSpeed": "0,0,0",
+        "decalLerpCurve": [
+          {
+            "mode": "Flat"
+          },
+          {
+            "x": 1,
+            "y": 1
+          }
+        ],
+        "maxBounce": 500,
+        "maxPitchbounceImpulse": 500,
+        "pitchBounceThreshold": 1000,
+        "pitchBounciness": 0.8,
+        "wallBounceThreshold": 2,
+        "wallBounciness": 0.8,
+        "wallMaxBounceImpulse": 500
+      },
+      {
+        "__type": "Sandbox.SoundPointComponent",
+        "__guid": "4e40d234-cc51-4ac7-b2f3-dcba88ee1b6d",
+        "Distance": 512,
+        "DistanceAttenuation": false,
+        "DistanceAttenuationOverride": false,
+        "Falloff": [
+          {
+            "y": 1,
+            "in": 3.1415927,
+            "out": -3.1415927
+          },
+          {
+            "x": 1
+          }
+        ],
+        "Force2d": false,
+        "MaxRepeatTime": 1,
+        "MinRepeatTime": 1,
+        "Occlusion": false,
+        "OcclusionOverride": false,
+        "OcclusionRadius": 32,
+        "Pitch": 1,
+        "PlayOnStart": false,
+        "ReflectionOverride": false,
+        "Reflections": false,
+        "Repeat": false,
+        "SoundEvent": "sounds/ball/ball.sound",
+        "SoundOverride": false,
+        "StopOnNew": false,
+        "TargetMixer": {
+          "Name": "game",
+          "Id": "6de2a0dd-5bba-405c-9177-a07af3bcfb8e"
+        },
+        "Volume": 1
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "bb9974fe-e208-42b6-94ec-4bfdca61d446",
+        "Flags": 0,
+        "Name": "Decal",
+        "Rotation": "0,0.7071067,0,0.7071068",
+        "Components": [
+          {
+            "__type": "Sandbox.DecalRenderer",
+            "__guid": "8e3414c1-29a3-4784-a206-0caab088ba2d",
+            "CutoffAngle": 60,
+            "CutoffAngleSoftness": 5,
+            "Material": "materials/decals/default.vmat",
+            "Mod2XBlending": false,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "Size": "64,64,512",
+            "TintColor": "1,1,1,1",
+            "TriPlanar": false
+          }
+        ]
+      },
+      {
+        "__guid": "7b555b9f-5180-4292-9f27-30bb71481193",
+        "Flags": 0,
+        "Name": "BallCircle",
+        "Rotation": "0,-0.7071068,0,0.7071068",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "fea40044-3a8f-4c17-a766-d20d65fe74f7",
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": false,
+            "PanelSize": "1500,1500",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "BallGuide",
+            "__guid": "d3e10fe9-7fb4-4e13-8b69-e455a7f2ac1e"
+          }
+        ]
+      },
+      {
+        "__guid": "540cbab2-07c3-48e6-88ef-452c7cbdc011",
+        "Flags": 0,
+        "Name": "BallModel",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "718f57a4-13c3-488c-8ba7-8df472bdd137",
+            "BodyGroups": 18446744073709551615,
+            "CreateAttachments": false,
+            "Model": "prefabs/ball/socceteoball.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

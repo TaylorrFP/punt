@@ -1,0 +1,20 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Ballsurface",
+      "Type": "surface",
+      "Org": "local",
+      "Ident": "ballsurface",
+      "Schema": 0,
+      "IncludeSourceFiles": true,
+      "Resources": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "physicssurfaces/ballsurface.surface"
+      }
+    }
+  }
+}

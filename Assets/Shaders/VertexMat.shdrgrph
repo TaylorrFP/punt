@@ -1,0 +1,345 @@
+{
+  "Model": null,
+  "Description": "",
+  "BlendMode": "Opaque",
+  "nodes": [
+    {
+      "_class": "Result",
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "1632,-480",
+      "Albedo": {
+        "Identifier": "22",
+        "Output": "Result"
+      },
+      "Roughness": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "Metalness": {
+        "Identifier": "3",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "VertexColor",
+      "Identifier": "1",
+      "Position": "-848,-112"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "Roughness",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "2",
+      "Position": "496,-48"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "Metalness",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "3",
+      "Position": "496,48"
+    },
+    {
+      "_class": "Power",
+      "DefaultA": 1,
+      "DefaultB": 1,
+      "Identifier": "4",
+      "Position": "-496,-64",
+      "A": {
+        "Identifier": "1",
+        "Output": "RGB"
+      },
+      "B": {
+        "Identifier": "5",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Divide",
+      "DefaultA": 1,
+      "DefaultB": 1,
+      "Identifier": "5",
+      "Position": "-672,32",
+      "B": {
+        "Identifier": "6",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0.45454547,
+      "Name": "",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "6",
+      "Position": "-912,64"
+    },
+    {
+      "_class": "SplitVector",
+      "Identifier": "7",
+      "Position": "-32,-320",
+      "Input": {
+        "Identifier": "8",
+        "Output": "Out"
+      }
+    },
+    {
+      "_class": "RGBtoHSV",
+      "Identifier": "8",
+      "Position": "-272,-320",
+      "In": {
+        "Identifier": "4",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "CommentNode",
+      "Size": "704,496",
+      "Color": "Green",
+      "Title": "Vertex Colour linear\u003Esrgb",
+      "Description": "",
+      "Layer": 1,
+      "Identifier": "9",
+      "Position": "-1024,-272"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 3,
+      "Value": 1,
+      "Name": "Saturation",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "10",
+      "Position": "-48,-112"
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "11",
+      "Position": "256,-208",
+      "A": {
+        "Identifier": "7",
+        "Output": "Y"
+      },
+      "B": {
+        "Identifier": "10",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "12",
+      "Position": "256,-80",
+      "A": {
+        "Identifier": "7",
+        "Output": "Z"
+      },
+      "B": {
+        "Identifier": "13",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 3,
+      "Value": 1,
+      "Name": "Lightness",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "13",
+      "Position": "-32,0"
+    },
+    {
+      "_class": "CombineVector",
+      "DefaultX": 0,
+      "DefaultY": 0,
+      "DefaultZ": 0,
+      "DefaultW": 0,
+      "Identifier": "14",
+      "Position": "400,-304",
+      "X": {
+        "Identifier": "7",
+        "Output": "X"
+      },
+      "Y": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
+      "Z": {
+        "Identifier": "12",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 1,
+      "Name": "Hue",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "15",
+      "Position": "-32,-416"
+    },
+    {
+      "_class": "Fresnel",
+      "DefaultPower": 10,
+      "Identifier": "16",
+      "Position": "352,-800",
+      "Normal": {
+        "Identifier": "24",
+        "Output": "Result"
+      },
+      "Direction": {
+        "Identifier": "25",
+        "Output": "Result"
+      },
+      "Power": {
+        "Identifier": "20",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "HSVtoRGB",
+      "Identifier": "17",
+      "Position": "784,-272",
+      "In": {
+        "Identifier": "14",
+        "Output": "XYZ"
+      }
+    },
+    {
+      "_class": "Float4",
+      "Value": "1,1,1,1",
+      "Name": "RimColour",
+      "IsAttribute": false,
+      "UI": {
+        "Type": "Color"
+      },
+      "Identifier": "18",
+      "Position": "592,-1040"
+    },
+    {
+      "_class": "Step",
+      "DefaultInput": 0,
+      "DefaultEdge": 0.8,
+      "Identifier": "19",
+      "Position": "576,-656",
+      "Input": {
+        "Identifier": "16",
+        "Output": "Result"
+      },
+      "Edge": {
+        "Identifier": "27",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 10,
+      "Value": 0.26939595,
+      "Name": "RimPower",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "20",
+      "Position": "96,-656"
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "21",
+      "Position": "1040,-704",
+      "A": {
+        "Identifier": "23",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "26",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Add",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "22",
+      "Position": "1232,-480",
+      "A": {
+        "Identifier": "21",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "17",
+        "Output": "Out"
+      }
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "23",
+      "Position": "880,-896",
+      "A": {
+        "Identifier": "18",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "16",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "WorldNormal",
+      "Identifier": "24",
+      "Position": "80,-832"
+    },
+    {
+      "_class": "ViewDirection",
+      "Identifier": "25",
+      "Position": "80,-752"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "RimAmount",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "26",
+      "Position": "800,-640"
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "Edge",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "27",
+      "Position": "368,-608"
+    }
+  ]
+}

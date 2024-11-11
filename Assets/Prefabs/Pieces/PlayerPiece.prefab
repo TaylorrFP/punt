@@ -1,0 +1,255 @@
+{
+  "RootObject": {
+    "__guid": "cb2901cd-7385-48b3-9c35-210aaf6c5b8c",
+    "Flags": 0,
+    "Name": "playerpiece",
+    "Tags": "piece",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "Components": [
+      {
+        "__type": "PuntPiece",
+        "__guid": "a4e5bbe3-f335-455a-a51e-01336be25b2b",
+        "cooldownDuration": 1,
+        "playerSquashStretch": {
+          "_type": "component",
+          "component_id": "d5cb658a-3a3d-4d88-9383-accfe05bb483",
+          "go": "d72fd439-05ac-4afa-b5a0-e93154264c83",
+          "component_type": "SquashAndStretch"
+        },
+        "playerStatus": {
+          "_type": "gameobject",
+          "go": "36079f2e-9620-450a-aaa5-36a7930a9997"
+        },
+        "playerStatusRenderer": {
+          "_type": "component",
+          "component_id": "d1871549-e33b-4069-ad30-5e876dc2c85d",
+          "go": "36079f2e-9620-450a-aaa5-36a7930a9997",
+          "component_type": "ModelRenderer"
+        },
+        "highlightWidth": 0.25,
+        "isHovered": false,
+        "isOnCooldown": false,
+        "isSelected": false,
+        "outline": {
+          "_type": "component",
+          "component_id": "da381471-801c-4f5f-982e-196e76af22f8",
+          "go": "d72fd439-05ac-4afa-b5a0-e93154264c83",
+          "component_type": "HighlightOutline"
+        },
+        "pieceID": 0,
+        "rigidBody": {
+          "_type": "component",
+          "component_id": "b2e8c182-1fee-4861-99b3-58983ed2ef9c",
+          "go": "cb2901cd-7385-48b3-9c35-210aaf6c5b8c",
+          "component_type": "Rigidbody"
+        },
+        "socceteoPlayerModel": {
+          "_type": "component",
+          "component_id": "8d3921d5-7df6-4985-9126-751b11794952",
+          "go": "d72fd439-05ac-4afa-b5a0-e93154264c83",
+          "component_type": "ModelRenderer"
+        },
+        "teamSide": "Red"
+      },
+      {
+        "__type": "Sandbox.ModelCollider",
+        "__guid": "68aab748-7131-4148-995a-a088f9804da7",
+        "IsTrigger": false,
+        "Model": "prefabs/pieces/socceteobasecol.vmdl",
+        "Static": false,
+        "Surface": "physicssurfaces/socettoplayersurface.surface",
+        "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "b2e8c182-1fee-4861-99b3-58983ed2ef9c",
+        "AngularDamping": 0,
+        "Gravity": true,
+        "LinearDamping": 0,
+        "Locking": {},
+        "MassCenterOverride": "0,0,-5",
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "OverrideMassCenter": true,
+        "RigidbodyFlags": 0,
+        "StartAsleep": false
+      },
+      {
+        "__type": "Sandbox.CapsuleCollider",
+        "__guid": "17b985bc-1106-4697-82ae-7041b77a16f1",
+        "End": "0,0,94.79977",
+        "IsTrigger": false,
+        "Radius": 13.93333,
+        "Start": "0,0,18.06664",
+        "Static": false,
+        "Surface": "physicssurfaces/socettoplayersurface.surface",
+        "SurfaceVelocity": "0,0,0"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "d72fd439-05ac-4afa-b5a0-e93154264c83",
+        "Flags": 0,
+        "Name": "PlayerModel",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.HighlightOutline",
+            "__guid": "da381471-801c-4f5f-982e-196e76af22f8",
+            "__enabled": false,
+            "Color": "1,1,1,1",
+            "InsideColor": "0,0,0,0",
+            "InsideObscuredColor": "0,0,0,0",
+            "ObscuredColor": "0,0,0,0.4",
+            "Width": 0.2
+          },
+          {
+            "__type": "SquashAndStretch",
+            "__guid": "d5cb658a-3a3d-4d88-9383-accfe05bb483",
+            "currentScale": "0,0,0",
+            "squashCurve": [
+              {
+                "y": 0.3936311,
+                "in": -5.5294113,
+                "out": 5.5294113
+              },
+              {
+                "x": 0.1292918,
+                "y": 0.88093835
+              },
+              {
+                "x": 0.37300998,
+                "y": 0.312163
+              },
+              {
+                "x": 0.5,
+                "y": 0.5,
+                "in": -1.6363633,
+                "out": 1.6363633
+              },
+              {
+                "x": 0.8335809,
+                "y": 0.4508214,
+                "in": -0.06487802,
+                "out": 0.06487802
+              },
+              {
+                "x": 1,
+                "y": 0.5
+              }
+            ],
+            "squashDuration": 0.5,
+            "squashTimeSince": {
+              "Relative": 90327144
+            }
+          },
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "8d3921d5-7df6-4985-9126-751b11794952",
+            "BodyGroups": 18446744073709551615,
+            "CreateAttachments": false,
+            "Model": "prefabs/pieces/socceteoplayer.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "91f1ab5c-966d-4ff0-ad12-11f627911c75",
+            "Flags": 0,
+            "Name": "puntchartest",
+            "Position": "0,0,45.07966",
+            "Scale": "10,10,10",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "Sandbox.ModelRenderer",
+                "__guid": "dfff27cc-7c1f-496b-9364-29a934258ed1",
+                "BodyGroups": 18446744073709551615,
+                "CreateAttachments": false,
+                "Model": "prefabs/pieces/puntchartest.vmdl",
+                "RenderOptions": {
+                  "GameLayer": true,
+                  "OverlayLayer": false,
+                  "BloomLayer": false,
+                  "AfterUILayer": false
+                },
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              }
+            ]
+          },
+          {
+            "__guid": "057a4de3-acd2-4127-b7eb-a82ed82e5aea",
+            "Flags": 0,
+            "Name": "Object",
+            "Scale": "1.2,1.2,0.9474331"
+          }
+        ]
+      },
+      {
+        "__guid": "36079f2e-9620-450a-aaa5-36a7930a9997",
+        "Flags": 0,
+        "Name": "PlayerStatus",
+        "Scale": "1.5,1.5,1",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "d1871549-e33b-4069-ad30-5e876dc2c85d",
+            "BodyGroups": 18446744073709551615,
+            "CreateAttachments": false,
+            "MaterialOverride": "prefabs/pieces/materials/radialtest.vmat",
+            "Model": "models/dev/plane.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

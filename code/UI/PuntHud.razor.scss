@@ -1,0 +1,130 @@
+PuntHud {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	>.CursorPassthrough {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+
+
+	> .CenterInfo {
+		position: absolute; // Make CenterInfo the reference point
+		top: 20px; // Adjusted distance from the top
+		display: flex; // Flexbox layout to center content
+		justify-content: center;
+		align-items: center;
+		pointer-events: all;
+	}
+	// Wrapper to control the alignment of numbers and the timer
+	.CenterContent {
+		display: flex;
+		align-items: center;
+		z-index: 2; // Ensure the content is above the gradient panels
+	}
+
+	.Number {
+		color: white; // Text color
+		font-size: 200px; // Adjust size as needed
+		font-family: 'Lemon Days';
+		font-weight: bold;
+		display: flex; // Make sure the Number uses flexbox
+		justify-content: center;
+		align-items: center;
+		filter: drop-shadow( -5px 10px 10px rgba( black, 0.5 ) );
+	}
+
+	.LeftNumber {
+		display: flex;
+		justify-content: flex-end; // Align number to the right of the left panel
+		align-items: center; // Center vertically
+		width: 100%; // Take full width of the parent (SidePanel)
+		height: 100%; // Take full height of the parent (SidePanel)
+		position: relative; // Make it possible to use left/right/top/bottom
+		right: 50px; // Adjust this value for custom offset from the right
+		top: 20px;
+	}
+
+	.RightNumber {
+		display: flex;
+		justify-content: flex-start; // Align number to the left of the right panel
+		align-items: center; // Center vertically
+		width: 100%; // Take full width of the parent (SidePanel)
+		height: 100%; // Take full height of the parent (SidePanel)
+		position: relative; // Make it possible to use left/right/top/bottom
+		left: 50px; // Adjust this value for custom offset from the left
+		top: 20px;
+	}
+
+	.MiddlePanel {
+		width: 500px;
+		height: 170px;
+		background-color: rgba(0, 0, 0, 0.95); // Black square
+		display: flex; // Use flexbox to center the timer
+		justify-content: center; // Center horizontally
+		align-items: center; // Center vertically
+
+		.Timer {
+			color: white; // Text color
+			text-align: center; // Center text horizontally
+			font-size: 120px;
+			font-family: 'Lemon Days';
+			font-weight: bold;
+		}
+	}
+
+	.SidePanel {
+		width: 250px; // Width of the side panels
+		height: 170px;
+		display: flex; // Make the side panels use flexbox
+		align-items: center; // Center vertically
+	}
+
+	.LeftPanelBlack {
+		background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.95)); // Inverted gradient: transparent to black
+	}
+
+	.RightPanelBlack {
+		background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.95)); // Inverted gradient: transparent to black
+	}
+
+	.CenterInfoUnderline {
+		position: absolute;
+		top: 190px; // Adjusted position to be directly below CenterInfo
+		left: 0;
+		right: 0;
+		display: flex; // Flexbox layout to align the underline sections horizontally
+		justify-content: center;
+		align-items: center;
+	}
+
+	.Underline {
+		width: 250px;
+		height: 30px;
+		justify-content: center; // Center horizontally
+		align-items: center; // Center vertically
+	}
+
+	.LeftPanelRed {
+		background: linear-gradient(to left, rgba(0, 0, 0, 0), #C04555F3); // Inverted gradient: transparent to black
+	}
+
+	.RightPanelBlue {
+		background: linear-gradient(to right, rgba(0, 0, 0, 0), #348FFEF3); // Inverted gradient: transparent to black
+	}
+
+	.Redside {
+		background-color: #C04555F3; // Red background
+	}
+
+	.Blueside {
+		background-color: #348FFEF3; // Blue background
+	}
+}

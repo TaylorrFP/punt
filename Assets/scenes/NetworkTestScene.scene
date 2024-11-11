@@ -1,0 +1,933 @@
+{
+  "__guid": "86fb33e9-11cc-4255-a418-312dfd3f71bb",
+  "GameObjects": [
+    {
+      "__guid": "95d20f75-bbd2-4a57-885d-f8558f1b1f26",
+      "Flags": 0,
+      "Name": "Scene Information",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SceneInformation",
+          "__guid": "ab48c7c7-f8bd-4277-83b0-96530be57997",
+          "Description": "",
+          "SceneTags": "",
+          "Title": "networktestscene"
+        }
+      ]
+    },
+    {
+      "__guid": "550bdf2a-cc82-4002-93ae-203c70112f80",
+      "Flags": 0,
+      "Name": "Sun",
+      "Position": "-449.0107,-872.9659,-748.8005",
+      "Rotation": "0.3984556,0.7796111,-0.3483649,0.3347856",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.DirectionalLight",
+          "__guid": "f0275471-970e-49b4-b68f-c30ea39bef12",
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.94419,0.97767,1,1",
+          "Shadows": true,
+          "SkyColor": "0.2532,0.32006,0.35349,1"
+        }
+      ]
+    },
+    {
+      "__guid": "b904ab45-7ad4-4885-b62a-44d1a0d21a4f",
+      "Flags": 0,
+      "Name": "2D Skybox",
+      "Position": "-385.0942,-864.5977,-871.3605",
+      "Tags": "skybox",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SkyBox2D",
+          "__guid": "c26e2e94-7cda-4155-a78f-1891498806d5",
+          "SkyIndirectLighting": true,
+          "SkyMaterial": "materials/skybox/skybox_overcast_01.vmat",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.EnvmapProbe",
+          "__guid": "b6a7cba7-7f9d-4075-8468-c0f453f9a2f6",
+          "Bounds": {
+            "Mins": "-512,-512,-512",
+            "Maxs": "512,512,512"
+          },
+          "DelayBetweenUpdates": 0.1,
+          "Feathering": 0,
+          "FrameInterval": 5,
+          "MaxDistance": 512,
+          "MultiBounce": false,
+          "Projection": "Sphere",
+          "RenderDynamically": true,
+          "TintColor": "1,1,1,1",
+          "UpdateStrategy": "OnEnabled",
+          "ZFar": 4096,
+          "ZNear": 16
+        }
+      ]
+    },
+    {
+      "__guid": "10f70e73-4219-480d-b790-07699176c7a7",
+      "Flags": 0,
+      "Name": "NetworkManager",
+      "Position": "-170.7771,-186.1668,453.3876",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.NetworkManager",
+          "__guid": "1a87a0f8-cbb2-407f-a814-e5478a752797",
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player/playercontroller.prefab"
+          },
+          "StartServer": true
+        }
+      ]
+    },
+    {
+      "__guid": "a1cba878-3eae-4223-a533-7208f7e1e1a7",
+      "Flags": 0,
+      "Name": "TestGameMode",
+      "Position": "-170.7771,-186.1668,453.3876",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "Components": [
+        {
+          "__type": "TestGameMode",
+          "__guid": "49a325ce-8634-4fcb-8517-513f7f63fcf5",
+          "BallPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/ball/ball.prefab"
+          },
+          "BluePieceList": [],
+          "BlueScore": 0,
+          "BlueSpawns": [
+            {
+              "_type": "gameobject",
+              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b"
+            },
+            {
+              "_type": "gameobject",
+              "go": "2cc0bca1-a376-4dba-bae2-578b9e48c658"
+            },
+            {
+              "_type": "gameobject",
+              "go": "01666fae-e491-41bb-b7b4-2eac17e6c0bd"
+            },
+            {
+              "_type": "gameobject",
+              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f"
+            },
+            {
+              "_type": "gameobject",
+              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
+            }
+          ],
+          "BlueSpawnsKickoff": [
+            {
+              "_type": "gameobject",
+              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b"
+            },
+            {
+              "_type": "gameobject",
+              "go": "a24bc367-2115-4069-af40-ce99479ca167"
+            },
+            {
+              "_type": "gameobject",
+              "go": "f836d634-7088-46d6-83f5-f3535898e664"
+            },
+            {
+              "_type": "gameobject",
+              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f"
+            },
+            {
+              "_type": "gameobject",
+              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
+            }
+          ],
+          "BlueTeam": [],
+          "DebugServer": true,
+          "PiecePrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/pieces/playerpiece.prefab"
+          },
+          "PlayerList": [],
+          "RedPieceList": [],
+          "RedScore": 0,
+          "RedSpawns": [
+            {
+              "_type": "gameobject",
+              "go": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542"
+            },
+            {
+              "_type": "gameobject",
+              "go": "1b200075-73e0-4218-9421-a91a8037e7b1"
+            },
+            {
+              "_type": "gameobject",
+              "go": "a196c05e-f4ae-460c-a64e-8fc03e7aff0e"
+            },
+            {
+              "_type": "gameobject",
+              "go": "863d25c5-71dd-4583-8cba-9491616243c9"
+            },
+            {
+              "_type": "gameobject",
+              "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3"
+            }
+          ],
+          "RedSpawnsKickoff": [
+            {
+              "_type": "gameobject",
+              "go": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542"
+            },
+            {
+              "_type": "gameobject",
+              "go": "15e5e32c-87f4-4e24-8fb2-bfa3d89aae28"
+            },
+            {
+              "_type": "gameobject",
+              "go": "de4ff50c-c9c1-4550-994b-49ef77752fbd"
+            },
+            {
+              "_type": "gameobject",
+              "go": "863d25c5-71dd-4583-8cba-9491616243c9"
+            },
+            {
+              "_type": "gameobject",
+              "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3"
+            }
+          ],
+          "RedTeam": [],
+          "ResetTimer": {
+            "Relative": -1597.3782,
+            "Passed": 1597.3782,
+            "Fraction": 1
+          },
+          "ResetTimerLength": 4,
+          "RoundLength": 300,
+          "RoundTimeLeft": 0,
+          "State": "Waiting"
+        }
+      ]
+    },
+    {
+      "__guid": "134c7b58-49bf-416c-a33c-4072ffd58904",
+      "Flags": 0,
+      "Name": "HUD",
+      "Position": "-306.7854,-280.8864,394.4401",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "c8ed4c32-e34a-450c-bf5c-9ab92e3dfc3d",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "ZIndex": 100
+        },
+        {
+          "__type": "CursorPassthroughComponent",
+          "__guid": "39fcaadc-4f4f-4444-ac6e-c102e0c2e3c6"
+        },
+        {
+          "__type": "Sandbox.TestHUD",
+          "__guid": "ce87ced8-6b63-4957-84b9-874889cc3cad",
+          "refreshUI": false
+        }
+      ]
+    },
+    {
+      "__guid": "b74e012f-d5b4-4bcc-a0d1-9f7fd571304d",
+      "Flags": 0,
+      "Name": "Pitch",
+      "Enabled": true,
+      "Children": [
+        {
+          "__guid": "e9475e78-cdce-4e6d-b7b0-40fc19756b89",
+          "Flags": 0,
+          "Name": "PitchGrass_Red",
+          "Scale": "0.5,0.5,0.5",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "38ee44a0-6d7b-4f92-9495-8936317c9c31",
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "MaterialOverride": "prefabs/pitch/materials/pitchgrass_fp.vmat",
+              "Model": "prefabs/pitch/models/pitchgrass.vmdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "Off",
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "__guid": "be5cf64d-bb0f-41f9-8af1-5f9576ff1886",
+          "Flags": 0,
+          "Name": "PitchGrass_Blue",
+          "Rotation": "0,0,1,0.0000001947072",
+          "Scale": "0.5,0.5,0.5",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "b180f9c8-8c78-4ecf-9617-c7876191f12d",
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "MaterialOverride": "prefabs/pitch/materials/pitchgrass_sbox.vmat",
+              "Model": "prefabs/pitch/models/pitchgrass.vmdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "Off",
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "__guid": "0759f6f2-295d-4f64-8e6c-745e76fb022c",
+          "Flags": 0,
+          "Name": "PitchSides",
+          "Scale": "0.5,0.5,0.5",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "2882fcc2-2b08-4de0-a140-20bda1796079",
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "Model": "prefabs/pitch/models/pitchsides.vmdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "__guid": "0b92a5ff-9f30-4aed-9214-98b26c126459",
+          "Flags": 0,
+          "Name": "Pitch_Collider",
+          "Position": "0,0,-1",
+          "Scale": "100,100,1",
+          "Tags": "pitch",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "e0fcc1f2-2d6d-43f0-a7d8-000b79fd11f4",
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "MaterialOverride": "materials/default.vmat",
+              "Model": "models/dev/plane.vmdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "0.19264,0.45581,0.17385,1"
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "1de69319-5330-488f-ae4f-dee52bb4b745",
+              "Center": "0,0,-20",
+              "IsTrigger": false,
+              "Scale": "100,100,40",
+              "Static": false,
+              "Surface": "physicssurfaces/floorsurface.surface",
+              "SurfaceVelocity": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "d4a47070-398b-496f-afca-3e7b3019e285",
+          "Flags": 0,
+          "Name": "Goals",
+          "Enabled": true,
+          "Children": [
+            {
+              "__guid": "1b73ac2c-e88e-4664-b8e6-9be8fc6e8b89",
+              "Flags": 0,
+              "Name": "Goal_Red",
+              "Position": "605,0,0.000002759884",
+              "Scale": "0.5,0.5,0.5",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "41e5ad47-e450-42e8-8b5f-c0561d376d4d",
+                  "BodyGroups": 18446744073709551615,
+                  "CreateAttachments": false,
+                  "Model": "prefabs/pitch/models/goal.vmdl",
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "BloomLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "On",
+                  "Tint": "1,1,1,1"
+                },
+                {
+                  "__type": "Sandbox.BoxCollider",
+                  "__guid": "245a0fde-68ff-43e9-b3fb-304309c545e9",
+                  "Center": "210,0,150",
+                  "IsTrigger": true,
+                  "Scale": "300,550,300",
+                  "Static": false,
+                  "SurfaceVelocity": "0,0,0"
+                },
+                {
+                  "__type": "PuntGoal",
+                  "__guid": "3b267858-61d3-41a1-a822-9e9ff13446b4",
+                  "GoalTeamSide": "Red"
+                }
+              ]
+            },
+            {
+              "__guid": "321d00d1-bd4a-4f52-b423-8127e9c1c212",
+              "Flags": 0,
+              "Name": "Goal_Blue",
+              "Position": "-605,0,0.000002759884",
+              "Rotation": "0,0,-1,0.0000001947072",
+              "Scale": "0.5,0.5,0.5",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "1f47213e-c75d-4c90-bb23-99f99a5263f9",
+                  "BodyGroups": 18446744073709551615,
+                  "CreateAttachments": false,
+                  "Model": "prefabs/pitch/models/goal.vmdl",
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "BloomLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "On",
+                  "Tint": "1,1,1,1"
+                },
+                {
+                  "__type": "Sandbox.BoxCollider",
+                  "__guid": "c000b779-68d4-4a45-a911-796ec62624bf",
+                  "Center": "210,0,150",
+                  "IsTrigger": true,
+                  "Scale": "300,550,300",
+                  "Static": false,
+                  "SurfaceVelocity": "0,0,0"
+                },
+                {
+                  "__type": "PuntGoal",
+                  "__guid": "fe6b142f-826a-47e5-883e-171df2938fc2",
+                  "GoalTeamSide": "Blue"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "__guid": "3ade498f-d659-4aa9-9bb4-16725f37c71f",
+          "Flags": 0,
+          "Name": "PitchGenerator",
+          "Position": "13.8972,-0.00005581681,-79.52197",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PitchGenerator",
+              "__guid": "99a3561b-0262-451f-8de4-cf2b4a09e79e",
+              "cornerAngle": 0,
+              "cornerRadius": 200,
+              "cornerResolution": 32,
+              "cornerSegmentWidth": 0,
+              "goalHeight": 150,
+              "goalWidth": 270,
+              "height": 500,
+              "pitchX": 1200,
+              "pitchY": 900,
+              "thickness": 100,
+              "wallSurface": "physicssurfaces/wallsurface.surface"
+            }
+          ]
+        },
+        {
+          "__guid": "7f193962-ac93-4e17-9cf5-48f696026fcc",
+          "Flags": 0,
+          "Name": "SpawnPoints",
+          "Enabled": true,
+          "Children": [
+            {
+              "__guid": "7d27f4d8-0af1-41c2-9f5f-bfb022795d1d",
+              "Flags": 0,
+              "Name": "Red",
+              "Enabled": true,
+              "Children": [
+                {
+                  "__guid": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542",
+                  "Flags": 0,
+                  "Name": "Goalkeeper",
+                  "Position": "575,0,1",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "83479210-1a3e-4539-b6d1-e561f725e2ea",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "1b200075-73e0-4218-9421-a91a8037e7b1",
+                  "Flags": 0,
+                  "Name": "Attacker_L",
+                  "Position": "115,-250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "96d0fc8b-955c-407f-a9f3-a9bb6afbfc38",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "15e5e32c-87f4-4e24-8fb2-bfa3d89aae28",
+                  "Flags": 0,
+                  "Name": "Attacker_L_Kickoff",
+                  "Position": "155.6404,-0.000003552899,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "46bc75af-7418-4f89-aa19-f8d0920469f8",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "a196c05e-f4ae-460c-a64e-8fc03e7aff0e",
+                  "Flags": 0,
+                  "Name": "Attacker_R",
+                  "Position": "115,250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "26bf76e6-efdc-4fb9-84df-d3142a5a6b15",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "de4ff50c-c9c1-4550-994b-49ef77752fbd",
+                  "Flags": 0,
+                  "Name": "Attacker_R_Kickoff",
+                  "Position": "-89.88309,74.82692,1.000027",
+                  "Rotation": "0,0,-0.4712663,0.8819908",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "be341a78-f89c-4e9c-adc0-db5e0f59edcf",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "863d25c5-71dd-4583-8cba-9491616243c9",
+                  "Flags": 0,
+                  "Name": "Defender_L",
+                  "Position": "375,-250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "18034256-44fd-49bc-8ac1-cce6966e0fa8",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3",
+                  "Flags": 0,
+                  "Name": "Defender_R",
+                  "Position": "375,250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "2bf325a1-e1a3-464c-8340-09a9e138df84",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__guid": "7c91a43c-6854-4668-9699-1692096dcc28",
+              "Flags": 0,
+              "Name": "Blue",
+              "Rotation": "0,0,1,-0.00000004371139",
+              "Enabled": true,
+              "Children": [
+                {
+                  "__guid": "2ab70c95-3217-4b95-b9db-188345ecb29b",
+                  "Flags": 0,
+                  "Name": "Goalkeeper",
+                  "Position": "575,0,1",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "258468db-7a2f-46b7-b2c3-c5f584c7f00a",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "2cc0bca1-a376-4dba-bae2-578b9e48c658",
+                  "Flags": 0,
+                  "Name": "Attacker_L",
+                  "Position": "115,-250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "c780c9aa-ee98-4458-968c-27090dfec143",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "a24bc367-2115-4069-af40-ce99479ca167",
+                  "Flags": 0,
+                  "Name": "Attacker_L_Kickoff",
+                  "Position": "155.6404,-0.000003552899,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "0b96d606-cbff-43c0-a474-6248f2cd749b",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "01666fae-e491-41bb-b7b4-2eac17e6c0bd",
+                  "Flags": 0,
+                  "Name": "Attacker_R",
+                  "Position": "115,250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "ac981ee5-e4f5-49c6-b301-78e221eb2013",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "f836d634-7088-46d6-83f5-f3535898e664",
+                  "Flags": 0,
+                  "Name": "Attacker_R_Kickoff",
+                  "Position": "-89.88309,74.82692,1.000027",
+                  "Rotation": "0,0,-0.4712663,0.8819908",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "a0ee8045-7ce1-4d7e-b861-31ab1cf18504",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "c5de7628-ffb7-45a1-9e4b-55d13afe060f",
+                  "Flags": 0,
+                  "Name": "Defender_L",
+                  "Position": "375,-250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "98d55c6d-a9ea-448d-b237-19b485d2d6ab",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95",
+                  "Flags": 0,
+                  "Name": "Defender_R",
+                  "Position": "375,250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "0785f6f8-9cdf-4a65-bd39-b0ebf32815f3",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "adbb2eab-d687-4528-9998-7b38a6df22e3",
+      "Flags": 0,
+      "Name": "CameraHolder",
+      "Position": "0,16.61024,0",
+      "Rotation": "-0.2418446,0.2418448,0.6644629,0.6644632",
+      "Scale": "1,-0.4241381,1",
+      "Enabled": true,
+      "Children": [
+        {
+          "__guid": "1be91d04-469f-48f5-9333-18f5e5d6ca8c",
+          "Flags": 0,
+          "Name": "Camera",
+          "Position": "-2468.052,0.002171511,0.0001220703",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.CameraComponent",
+              "__guid": "c0c53c19-8684-412f-895e-3efa87fa5cd7",
+              "BackgroundColor": "0.33333,0.46275,0.52157,1",
+              "ClearFlags": "All",
+              "FieldOfView": 32.39,
+              "IsMainCamera": true,
+              "Orthographic": false,
+              "OrthographicHeight": 1204,
+              "Priority": 1,
+              "RenderExcludeTags": "",
+              "RenderTags": "",
+              "TargetEye": "None",
+              "Viewport": "0,0,1,1",
+              "ZFar": 10000,
+              "ZNear": 10
+            },
+            {
+              "__type": "Sandbox.Bloom",
+              "__guid": "0cd27493-ff1b-43f8-9af9-bba1a15c3af7",
+              "BloomColor": {
+                "color": [
+                  {
+                    "c": "1,1,1,1"
+                  },
+                  {
+                    "t": 1,
+                    "c": "1,1,1,1"
+                  }
+                ],
+                "alpha": []
+              },
+              "BloomCurve": [
+                {
+                  "y": 0.5
+                },
+                {
+                  "x": 1,
+                  "y": 1
+                }
+              ],
+              "Mode": "Additive",
+              "Strength": 0.5,
+              "Threshold": 0.5,
+              "ThresholdWidth": 0.5
+            },
+            {
+              "__type": "Sandbox.Tonemapping",
+              "__guid": "b0b26d37-6969-4b5e-984d-b704b596e06e",
+              "__version": 1,
+              "AutoExposureEnabled": false,
+              "ExposureBias": 2,
+              "ExposureCompensation": 0,
+              "ExposureMethod": "RGB",
+              "MaximumExposure": 2,
+              "MinimumExposure": 1,
+              "Mode": "ACES",
+              "Rate": 1
+            },
+            {
+              "__type": "Sandbox.Sharpen",
+              "__guid": "e96eb26a-a8df-4d7e-8538-2b12788ec3f6",
+              "Scale": 0.2
+            },
+            {
+              "__type": "Sandbox.ChromaticAberration",
+              "__guid": "5cd48e3b-2093-4cdd-96b3-a43e65324a93",
+              "Offset": "4,6,0",
+              "Scale": 0.02
+            },
+            {
+              "__type": "Sandbox.ColorAdjustments",
+              "__guid": "406aff36-9647-42ae-a991-3e97d8c644a9",
+              "Brightness": 1.79,
+              "Contrast": 1,
+              "HueRotate": 0,
+              "Saturation": 1
+            },
+            {
+              "__type": "Sandbox.Highlight",
+              "__guid": "1e58aece-d3a1-4f8c-8b1d-478ee2068904"
+            }
+          ]
+        },
+        {
+          "__guid": "57bdf56e-78a7-4750-9e0d-a75c96cbf222",
+          "Flags": 0,
+          "Name": "Listener",
+          "Position": "-125.5509,11.91625,0.00002288818",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.AudioListener",
+              "__guid": "cd30dc65-bc12-44d1-b8f4-6eb0be6a2bc3",
+              "UseCameraDirection": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "NetworkInterpolation": true,
+    "PhysicsSubSteps": 1,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "Metadata": {
+      "Title": "networktestscene"
+    },
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "ResourceVersion": 2,
+  "Title": "networktestscene",
+  "Description": null,
+  "__references": [],
+  "__version": 2
+}
