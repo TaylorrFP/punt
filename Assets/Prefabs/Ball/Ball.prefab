@@ -20,30 +20,30 @@
           "_type": "gameobject",
           "go": "540cbab2-07c3-48e6-88ef-452c7cbdc011"
         },
+        "angleAcuteness": 0,
         "ballRB": {
           "_type": "component",
           "component_id": "ce1ad518-cf33-46d2-8ae7-f82dc0f266dd",
           "go": "760f2ed7-7378-43bf-a993-370e83a60977",
           "component_type": "Rigidbody"
         },
-        "bounceNormal": "0,0,0",
-        "bouncePosition": "0,0,0",
-        "bounceReflection": "0,0,0",
-        "bounceSpeed": "0,0,0",
-        "decalLerpCurve": [
-          {},
+        "ballReflectionCurve": [
+          {
+            "in": -0.09230787,
+            "out": 0.09230787
+          },
           {
             "x": 1,
-            "y": 1
+            "y": 1,
+            "in": -2.9374993,
+            "out": 2.9374993
           }
         ],
-        "maxBounce": 500,
-        "maxPitchbounceImpulse": 500,
-        "pitchBounceThreshold": 1000,
-        "pitchBounciness": 0.8,
-        "wallBounceThreshold": 2,
-        "wallBounciness": 0.8,
-        "wallMaxBounceImpulse": 500
+        "bounceReflection": "0,0,0",
+        "collisionNormal": "0,0,0",
+        "collisionPosition": "0,0,0",
+        "exitZVelocity": 0,
+        "preCollisionVelocity": "0,0,0"
       },
       {
         "__type": "Sandbox.HighlightOutline",

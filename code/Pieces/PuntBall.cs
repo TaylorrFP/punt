@@ -11,41 +11,30 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 	[Property] public GameMode gameMode { get; set; }
 
-	[Property] public SoundEvent ballBounceSound { get; set; }
-	[Property] public SoundEvent ballKickSound { get; set; }
-	[Property] public Curve decalLerpCurve { get; set; }
+	[Property] public Curve ballReflectionCurve { get; set; }
 
-	[Property] public float wallBounciness { get; set; } = 2f;
-
-	[Property] public Vector3 dotProduct { get; set; }
+	[Property] public float cornerRollMult { get; set; } = 0.05f;
 
 	[Property] public Vector3 preCollisionVelocity { get; set; }
 
-	[Property] public Vector3 entryVelocity { get; set; }
-	[Property] public Vector3 exitVelocity { get; set; }
-	[Property] public float wallBounceThreshold { get; set; } = 2f;
+	private Vector3 entryVelocity;
+	private Vector3 exitVelocity;
+	private Vector3 newExitVelocity;
 
-	[Property] public float wallMaxBounceImpulse { get; set; } = 500f;
-
-	[Property] public float pitchBounciness { get; set; } = 2f;
-	[Property] public float pitchBounceThreshold { get; set; } = 2f;
-	[Property] public float maxPitchbounceImpulse { get; set; } = 500f;
-	[Property] public float maxBounce { get; set; } = 500f;
-
-	[Property] public Vector3 bounceSpeedXY { get; set; }
-	[Property] public Vector3 bounceNormal { get; set; }
+	[Property] public Vector3 collisionNormal { get; set; }
 
 	[Property] public Vector3 bounceReflection { get; set; }
 
-	[Property] public Vector3 bouncePosition { get; set; }
+	[Property] public float angleAcuteness { get; set; }
+
+	[Property] public float exitZVelocity { get; set; }
+
+	[Property] public Vector3 collisionPosition { get; set; }
+
+	
 
 	protected override void OnAwake()
 	{
-		//if ( IsProxy )
-		//{
-		//	ballRB.PhysicsBody.MotionEnabled = false;
-
-		//}
 	}
 	public void OnCollisionStart( Collision collision )
 	{
@@ -53,36 +42,40 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 		if ( collision.Other.GameObject.Tags.HasAny( "wall" ) )
 		{
-			entryVelocity = preCollisionVelocity;//store the velocity of the frame before the collision
+			entryVelocity = preCollisionVelocity.Normal;//store the velocity of the frame before the collision
 			exitVelocity = ballRB.Velocity;//the exit velocity
-			bouncePosition = collision.Contact.Point;//the collision point
-			bounceSpeedXY = new Vector3( collision.Contact.Speed.x, collision.Contact.Speed.y, 0 );
-			bounceNormal = -collision.Contact.Normal;
-
-
-			bounceReflection = Vector3.Reflect( -bounceSpeedXY.Normal, bounceNormal );
-			bounceReflection = new Vector3( bounceReflection.x, bounceReflection.y, 0f ).Normal;
+			collisionPosition = collision.Contact.Point;//the collision point
+			collisionNormal = -collision.Contact.Normal;
 
 
 
+			entryVelocity = new Vector3( entryVelocity.x, entryVelocity.y, 0 );
 
-			//Gizmo.Draw.Arrow( bouncePosition + bounceNormal * 1000f, bouncePosition,12f,100f );
+			exitZVelocity = exitVelocity.z;
+
+			exitVelocity = new Vector3( exitVelocity.x, exitVelocity.y, 0 );
+
+			angleAcuteness = Vector3.GetAngle( -entryVelocity, collisionNormal );
+			angleAcuteness = angleAcuteness.Remap( 0f, 90f );
+			angleAcuteness = ballReflectionCurve.Evaluate( angleAcuteness );
+			Log.Info( angleAcuteness );
+			newExitVelocity = Vector3.Lerp( exitVelocity.Normal, entryVelocity.Normal, angleAcuteness );
+
+			newExitVelocity = newExitVelocity * exitVelocity.Length*(1 + (angleAcuteness * cornerRollMult));
+			newExitVelocity = new Vector3(newExitVelocity.x, newExitVelocity.y, exitZVelocity );
 
 
-			//if ( bounceImpulse > wallMaxBounceImpulse )
-			//{
-			//	bounceImpulse = wallMaxBounceImpulse;
 
-			//}
 
-			//ballRB.Velocity = Vector3.Lerp( ballRB.Velocity, bounceReflection * bounceImpulse, MathF.Pow( dotProduct, 10f ) );
+			ballRB.Velocity = newExitVelocity;
+
 
 		}
 
 	}
 	protected override void OnFixedUpdate()
 	{
-		preCollisionVelocity = ballRB.Velocity;
+		preCollisionVelocity = ballRB.Velocity;//keep this every fixed update so we know before the collision
 	}
 	protected override void OnUpdate()
 	{
@@ -93,40 +86,21 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 		//add the z component back in
 
 
+
+		
+		//newExitVelocity = newExitVelocity * exitVelocity.Length;
+		//newExitVelocity = new Vector3( newExitVelocity.x, newExitVelocity.y, exitZVelocity );
+
+
+		Gizmo.Draw.Arrow( collisionPosition + collisionNormal * 100f, collisionPosition, 0f,0f );//bounce normal
+		Gizmo.Draw.Arrow(collisionPosition + -entryVelocity.Normal * 200f, collisionPosition, 10f, 10f ); //entry velocity
+		Gizmo.Draw.Arrow( collisionPosition, collisionPosition + newExitVelocity.Normal * 100f, 10f, 10f );//exit normal
+
+
+
 		CalculateBallGuide();
-
-	
-		//Gizmo.Draw.Arrow( bouncePosition + bounceNormal * 100f, bouncePosition,0f,0f );//bounce normal
-
-
-		Gizmo.Draw.Arrow(bouncePosition + -entryVelocity.Normal * 200f, bouncePosition, 10f, 10f ); //entry velocity
-
-		entryVelocity = new Vector3(entryVelocity.x, entryVelocity.y, 0);
-
-
-		var angle = Vector3.GetAngle(-entryVelocity, bounceNormal );
-
-		angle = angle.Remap( 0f, 90f);
-		Log.Info( angle );
-
-		var newAngle = Vector3.Lerp( exitVelocity, entryVelocity,0.5f );
-
-		Gizmo.Draw.Arrow( bouncePosition, bouncePosition + newAngle.Normal * 100f, 10f, 10f );//bounce normal
 	}
 
-
-	private void CalculateSquash()
-	{
-		//Log.Info( ballRB.Velocity.Length );
-
-		//var scaledVelocity = MathX.Remap( ballRB.Velocity.Length, 0, 700f, 1, 2 );
-
-		//ballModel.Transform.Rotation = Rotation.LookAt( Vector3.Forward, ballRB.Velocity.Normal );
-
-		//ballModel.Transform.sca
-
-
-	}
 
 	private void CalculateBallGuide()
 	{

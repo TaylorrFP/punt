@@ -215,8 +215,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -76746.91,
-            "Passed": 76746.91,
+            "Relative": -93339.08,
+            "Passed": 93339.08,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -469,7 +469,7 @@
               "__type": "PitchGenerator",
               "__guid": "99a3561b-0262-451f-8de4-cf2b4a09e79e",
               "cornerAngle": 0,
-              "cornerRadius": 200,
+              "cornerRadius": 350,
               "cornerResolution": 32,
               "cornerSegmentWidth": 0,
               "goalHeight": 150,

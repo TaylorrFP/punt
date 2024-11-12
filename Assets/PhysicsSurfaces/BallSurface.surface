@@ -2,7 +2,7 @@
   "BaseSurface": null,
   "AudioSurface": "Generic",
   "Description": "",
-  "Friction": 0.05,
+  "Friction": 0.01,
   "Elasticity": 0.75,
   "Density": 503.88,
   "Thickness": -1,
