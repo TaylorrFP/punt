@@ -141,40 +141,40 @@ public sealed class PitchGenerator : Component
 		//goalvolume.Parent = this.GameObject;
 		//goalcollider.Surface = wallSurface;
 
-		GameObject goalBack = new GameObject( true, "Goal Wall" );
-		goalBack.WorldPosition = new Vector3( position.x + thickness*side, position.y, goalHeight * 0.5f );
-		BoxCollider goalBackcollider = goalBack.Components.Create<BoxCollider>();
-		goalBackcollider.Scale = goalSize;
-		goalBack.Parent = this.GameObject;
-		goalBackcollider.Surface = goalBackSurface;
-		goalBack.Tags.Add( "Net" );
+		//GameObject goalBack = new GameObject( true, "Goal Wall a" );
+		//goalBack.WorldPosition = new Vector3( position.x + thickness * side, position.y, goalHeight * 0.5f );
+		//BoxCollider goalBackcollider = goalBack.Components.Create<BoxCollider>();
+		//goalBackcollider.Scale = goalSize;
+		//goalBack.Parent = this.GameObject;
+		//goalBackcollider.Surface = goalBackSurface;
+		//goalBack.Tags.Add( "Net" );
 
 
-		GameObject goalWall = new GameObject( true, "Goal Wall" );
-		goalWall.WorldPosition = new Vector3(position.x,position.y,position.z+(goalHeight*0.5f));
+		GameObject goalWall = new GameObject( true, "Goal Wall b" );
+		goalWall.WorldPosition = new Vector3( position.x, position.y, position.z + (goalHeight * 0.5f) );
 		BoxCollider goalwallcollider = goalWall.Components.Create<BoxCollider>();
-		goalwallcollider.Scale = new Vector3( wallSize.x, wallSize.y, wallSize.z - goalHeight);
+		goalwallcollider.Scale = new Vector3( wallSize.x, wallSize.y, wallSize.z - goalHeight );
 		goalWall.Parent = this.GameObject;
 		goalwallcollider.Surface = wallSurface;
 		goalWall.Tags.Add( "Net" );
 
 
-		GameObject goalWallR = new GameObject( true, "Goal Wall" );
-		goalWallR.WorldPosition = new Vector3( position.x,(wallSize.y*0.5f + goalSize.y*0.5f)*0.5f, goalHeight * 0.5f );
-		BoxCollider goalwallcolliderR = goalWallR.Components.Create<BoxCollider>();
-		goalwallcolliderR.Scale = new Vector3( thickness, wallSize.y * 0.5f - goalSize.y * 0.5f, goalHeight);
-		goalWallR.Parent = this.GameObject;
-		goalwallcolliderR.Surface = goalBackSurface;
-		goalWallR.Tags.Add( "Wall" );
+		//GameObject goalWallR = new GameObject( true, "Goal Wall c" );
+		//goalWallR.WorldPosition = new Vector3( position.x,(wallSize.y*0.5f + goalSize.y*0.5f)*0.5f, goalHeight * 0.5f );
+		//BoxCollider goalwallcolliderR = goalWallR.Components.Create<BoxCollider>();
+		//goalwallcolliderR.Scale = new Vector3( thickness, wallSize.y * 0.5f - goalSize.y * 0.5f, goalHeight);
+		//goalWallR.Parent = this.GameObject;
+		//goalwallcolliderR.Surface = goalBackSurface;
+		//goalWallR.Tags.Add( "Wall" );
 
 
-		GameObject goalWallL = new GameObject( true, "Goal Wall" );
-		goalWallL.WorldPosition = new Vector3( position.x, (wallSize.y * 0.5f + goalSize.y * 0.5f) * -0.5f, goalHeight * 0.5f );
-		BoxCollider goalwallcolliderL = goalWallL.Components.Create<BoxCollider>();
-		goalwallcolliderL.Scale = new Vector3( thickness, wallSize.y * 0.5f - goalSize.y * 0.5f, goalHeight );
-		goalWallL.Parent = this.GameObject;
-		goalwallcolliderL.Surface = goalBackSurface;
-		goalwallcolliderL.Tags.Add( "Net" );
+		//GameObject goalWallL = new GameObject( true, "Goal Wall d" );
+		//goalWallL.WorldPosition = new Vector3( position.x, (wallSize.y * 0.5f + goalSize.y * 0.5f) * -0.5f, goalHeight * 0.5f );
+		//BoxCollider goalwallcolliderL = goalWallL.Components.Create<BoxCollider>();
+		//goalwallcolliderL.Scale = new Vector3( thickness, wallSize.y * 0.5f - goalSize.y * 0.5f, goalHeight );
+		//goalWallL.Parent = this.GameObject;
+		//goalwallcolliderL.Surface = goalBackSurface;
+		//goalwallcolliderL.Tags.Add( "Net" );
 	}
 }
 

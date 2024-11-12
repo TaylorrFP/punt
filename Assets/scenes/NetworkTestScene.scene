@@ -215,8 +215,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -103019.69,
-            "Passed": 103019.69,
+            "Relative": -318.78696,
+            "Passed": 318.78696,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -379,83 +379,29 @@
           "Enabled": true,
           "Children": [
             {
-              "__guid": "1b73ac2c-e88e-4664-b8e6-9be8fc6e8b89",
+              "__guid": "e70deb20-e196-4bd6-a216-8c09b440f847",
               "Flags": 0,
-              "Name": "Goal_Red",
-              "Position": "605,0,0.000002759884",
+              "Name": "goal_red",
+              "Position": "605,0,0",
               "Scale": "0.5,0.5,0.5",
               "Enabled": true,
-              "Components": [
-                {
-                  "__type": "Sandbox.ModelRenderer",
-                  "__guid": "41e5ad47-e450-42e8-8b5f-c0561d376d4d",
-                  "BodyGroups": 18446744073709551615,
-                  "CreateAttachments": false,
-                  "Model": "prefabs/pitch/models/goal.vmdl",
-                  "RenderOptions": {
-                    "GameLayer": true,
-                    "OverlayLayer": false,
-                    "BloomLayer": false,
-                    "AfterUILayer": false
-                  },
-                  "RenderType": "On",
-                  "Tint": "1,1,1,1"
-                },
-                {
-                  "__type": "Sandbox.BoxCollider",
-                  "__guid": "245a0fde-68ff-43e9-b3fb-304309c545e9",
-                  "Center": "210,0,150",
-                  "IsTrigger": true,
-                  "Scale": "300,550,300",
-                  "Static": false,
-                  "SurfaceVelocity": "0,0,0"
-                },
-                {
-                  "__type": "PuntGoal",
-                  "__guid": "3b267858-61d3-41a1-a822-9e9ff13446b4",
-                  "GoalTeamSide": "Red"
-                }
-              ]
+              "__Prefab": "prefabs/pitch/goal.prefab",
+              "__PrefabVariables": {
+                "Goal Team Side": "Red"
+              }
             },
             {
-              "__guid": "321d00d1-bd4a-4f52-b423-8127e9c1c212",
+              "__guid": "2c321bb5-e4ea-40c7-bfc3-e1203e71e9c6",
               "Flags": 0,
-              "Name": "Goal_Blue",
-              "Position": "-605,0,0.000002759884",
-              "Rotation": "0,0,-1,0.0000001947072",
+              "Name": "goal_blue",
+              "Position": "-605,0,0",
+              "Rotation": "-0,0,-1,-0.00000004371139",
               "Scale": "0.5,0.5,0.5",
               "Enabled": true,
-              "Components": [
-                {
-                  "__type": "Sandbox.ModelRenderer",
-                  "__guid": "1f47213e-c75d-4c90-bb23-99f99a5263f9",
-                  "BodyGroups": 18446744073709551615,
-                  "CreateAttachments": false,
-                  "Model": "prefabs/pitch/models/goal.vmdl",
-                  "RenderOptions": {
-                    "GameLayer": true,
-                    "OverlayLayer": false,
-                    "BloomLayer": false,
-                    "AfterUILayer": false
-                  },
-                  "RenderType": "On",
-                  "Tint": "1,1,1,1"
-                },
-                {
-                  "__type": "Sandbox.BoxCollider",
-                  "__guid": "c000b779-68d4-4a45-a911-796ec62624bf",
-                  "Center": "210,0,150",
-                  "IsTrigger": true,
-                  "Scale": "300,550,300",
-                  "Static": false,
-                  "SurfaceVelocity": "0,0,0"
-                },
-                {
-                  "__type": "PuntGoal",
-                  "__guid": "fe6b142f-826a-47e5-883e-171df2938fc2",
-                  "GoalTeamSide": "Blue"
-                }
-              ]
+              "__Prefab": "prefabs/pitch/goal.prefab",
+              "__PrefabVariables": {
+                "Goal Team Side": "Red"
+              }
             }
           ]
         },

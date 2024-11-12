@@ -304,8 +304,7 @@ public sealed class PuntPlayerController : Component
 
 			piece.rigidBody.PhysicsBody.Velocity = flickVector;
 
-			Log.Info( "flick" );
-			Log.Info( flickVector );
+
 		
 
 

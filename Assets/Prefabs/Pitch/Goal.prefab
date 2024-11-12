@@ -10,7 +10,8 @@
         "__type": "Sandbox.ModelRenderer",
         "__guid": "2dbd6d97-df94-4cc4-89d4-bb8770446ca1",
         "BodyGroups": 18446744073709551615,
-        "Model": "models/pitch/goal.vmdl",
+        "CreateAttachments": false,
+        "Model": "prefabs/pitch/models/goal.vmdl",
         "RenderOptions": {
           "GameLayer": true,
           "OverlayLayer": false,
@@ -26,31 +27,132 @@
         "Center": "210,0,150",
         "IsTrigger": true,
         "Scale": "300,550,300",
-        "Static": false
+        "Static": false,
+        "SurfaceVelocity": "0,0,0"
       },
       {
-        "__type": "SocceteoGoal",
-        "__guid": "f4c45c9a-d7f3-438c-980a-26fb08fb8562",
-        "teamSide": "Red"
+        "__type": "PuntGoal",
+        "__guid": "e22fe621-9095-43db-ba2e-1c232be26216",
+        "GoalTeamSide": "Red"
       }
     ],
-    "Children": [],
-    "__variables": [
+    "Children": [
       {
-        "Id": "Team Side",
-        "Title": "Team Side",
-        "Targets": [
+        "__guid": "0e03c73f-d313-4f48-a633-7db1d3a16ed9",
+        "Flags": 0,
+        "Name": "Posts",
+        "Tags": "goalpost",
+        "Enabled": true,
+        "Components": [
           {
-            "Id": "f4c45c9a-d7f3-438c-980a-26fb08fb8562",
-            "Property": "teamSide"
+            "__type": "Sandbox.CapsuleCollider",
+            "__guid": "f953f3dd-cbe1-437b-a4dc-2acec077a082",
+            "End": "0,-275,300",
+            "IsTrigger": false,
+            "Radius": 25,
+            "Start": "0,275,300",
+            "Static": false,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.CapsuleCollider",
+            "__guid": "36c46c28-4706-4326-bcdb-4d1d93cff520",
+            "End": "0,275,0",
+            "IsTrigger": false,
+            "Radius": 25,
+            "Start": "0,275,300",
+            "Static": false,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.CapsuleCollider",
+            "__guid": "b3247be7-9d71-4650-9932-6742910cc3c1",
+            "End": "0,-275,0",
+            "IsTrigger": false,
+            "Radius": 25,
+            "Start": "0,-275,300",
+            "Static": false,
+            "SurfaceVelocity": "0,0,0"
+          }
+        ]
+      },
+      {
+        "__guid": "67e215b4-0bd7-4b23-b703-56817bf288d3",
+        "Flags": 0,
+        "Name": "Net",
+        "Tags": "net",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "c94206b2-10bf-4a01-b4d6-0333749163a0",
+            "Center": "190.3991,0,150",
+            "IsTrigger": false,
+            "Scale": "70,600,300",
+            "Static": false,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "8e592dba-6892-4f4f-a8c5-b4feabf52d07",
+            "Center": "145,300,150",
+            "IsTrigger": false,
+            "Scale": "300,40,300",
+            "Static": false,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "7c42db6c-9561-4f4d-8413-aa77a62aea65",
+            "Center": "145,-300,150",
+            "IsTrigger": false,
+            "Scale": "300,40,300",
+            "Static": false,
+            "SurfaceVelocity": "0,0,0"
           }
         ]
       }
-    ]
+    ],
+    "__variables": [
+      {
+        "Id": "Goal Team Side",
+        "Title": "Goal Team Side",
+        "Targets": [
+          {
+            "Id": "e22fe621-9095-43db-ba2e-1c232be26216",
+            "Property": "GoalTeamSide"
+          }
+        ]
+      }
+    ],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
   },
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
+  "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
   "__references": [],
   "__version": 1
