@@ -47,30 +47,57 @@
           {
             "__type": "Sandbox.CapsuleCollider",
             "__guid": "f953f3dd-cbe1-437b-a4dc-2acec077a082",
-            "End": "0,-275,300",
+            "End": "30,-300,325",
             "IsTrigger": false,
-            "Radius": 25,
-            "Start": "0,275,300",
-            "Static": false,
+            "Radius": 30,
+            "Start": "30,300,325",
+            "Static": true,
             "SurfaceVelocity": "0,0,0"
           },
           {
             "__type": "Sandbox.CapsuleCollider",
             "__guid": "36c46c28-4706-4326-bcdb-4d1d93cff520",
-            "End": "0,275,0",
+            "End": "30,300,0",
             "IsTrigger": false,
-            "Radius": 25,
-            "Start": "0,275,300",
-            "Static": false,
+            "Radius": 30,
+            "Start": "30,300,325",
+            "Static": true,
             "SurfaceVelocity": "0,0,0"
           },
           {
             "__type": "Sandbox.CapsuleCollider",
             "__guid": "b3247be7-9d71-4650-9932-6742910cc3c1",
-            "End": "0,-275,0",
+            "End": "30,-300,0",
             "IsTrigger": false,
-            "Radius": 25,
-            "Start": "0,-275,300",
+            "Radius": 30,
+            "Start": "30,-300,325",
+            "Static": true,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "6b6e215d-e680-46d6-8f4e-f4cde161788d",
+            "Center": "30,0,340",
+            "IsTrigger": false,
+            "Scale": "60,660,30",
+            "Static": false,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "aaca0256-622e-4694-9e72-ad3e1a177235",
+            "Center": "30,315,177.5",
+            "IsTrigger": false,
+            "Scale": "60,30,355",
+            "Static": false,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "a760b78f-61c1-4a85-82ae-f4e668c6b600",
+            "Center": "30,-315,177.5",
+            "IsTrigger": false,
+            "Scale": "60,30,355",
             "Static": false,
             "SurfaceVelocity": "0,0,0"
           }
@@ -86,27 +113,27 @@
           {
             "__type": "Sandbox.BoxCollider",
             "__guid": "c94206b2-10bf-4a01-b4d6-0333749163a0",
-            "Center": "190.3991,0,150",
+            "Center": "190.3991,0,177.5",
             "IsTrigger": false,
-            "Scale": "70,600,300",
+            "Scale": "70,540,355",
             "Static": false,
             "SurfaceVelocity": "0,0,0"
           },
           {
             "__type": "Sandbox.BoxCollider",
             "__guid": "8e592dba-6892-4f4f-a8c5-b4feabf52d07",
-            "Center": "145,300,150",
+            "Center": "130,300,177.5",
             "IsTrigger": false,
-            "Scale": "300,40,300",
+            "Scale": "190,60,355",
             "Static": false,
             "SurfaceVelocity": "0,0,0"
           },
           {
             "__type": "Sandbox.BoxCollider",
             "__guid": "7c42db6c-9561-4f4d-8413-aa77a62aea65",
-            "Center": "145,-300,150",
+            "Center": "130,-300,177.5",
             "IsTrigger": false,
-            "Scale": "300,40,300",
+            "Scale": "190,60,355",
             "Static": false,
             "SurfaceVelocity": "0,0,0"
           }

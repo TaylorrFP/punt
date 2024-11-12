@@ -215,8 +215,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -318.78696,
-            "Passed": 318.78696,
+            "Relative": -6035.4326,
+            "Passed": 6035.4326,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -400,7 +400,7 @@
               "Enabled": true,
               "__Prefab": "prefabs/pitch/goal.prefab",
               "__PrefabVariables": {
-                "Goal Team Side": "Red"
+                "Goal Team Side": "Blue"
               }
             }
           ]
@@ -415,12 +415,12 @@
               "__type": "PitchGenerator",
               "__guid": "99a3561b-0262-451f-8de4-cf2b4a09e79e",
               "cornerAngle": 0,
-              "cornerRadius": 300,
-              "cornerResolution": 32,
+              "cornerRadius": 200,
+              "cornerResolution": 16,
               "cornerSegmentWidth": 0,
               "goalBackSurface": "physicssurfaces/goalbacksurface.surface",
-              "goalHeight": 150,
-              "goalWidth": 270,
+              "goalHeight": 177.5,
+              "goalWidth": 330,
               "height": 500,
               "pitchX": 1200,
               "pitchY": 900,

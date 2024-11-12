@@ -1,4 +1,5 @@
 using Sandbox;
+using Sandbox.Diagnostics;
 using Sandbox.Internal;
 using System;
 
@@ -87,9 +88,17 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 		{
 			//dampen ball impact when it's the back of the net
 			ballRB.Velocity = ballRB.Velocity * MathX.Clamp(1f-goalWallDampning,0,1f);
+		}
 
+		if ( collision.Other.GameObject.Tags.HasAny( "GoalPost" ) )
+		{
+			//dampen ball impact when it's the back of the net
+			Sound.Play( "sounds/ball/post.sound" );
 		}
-		}
+
+
+
+	}
 	protected override void OnFixedUpdate()
 	{
 		preCollisionVelocity = ballRB.Velocity;//keep this every fixed update so we know before the collision
