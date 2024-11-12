@@ -59,14 +59,19 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 			angleAcuteness = angleAcuteness.Remap( 0f, 90f );
 			angleAcuteness = ballReflectionCurve.Evaluate( angleAcuteness );
 			Log.Info( angleAcuteness );
-			newExitVelocity = Vector3.Lerp( exitVelocity.Normal, entryVelocity.Normal, angleAcuteness );
+			//newExitVelocity = Vector3.Lerp( exitVelocity.Normal, entryVelocity.Normal, angleAcuteness );
 
-			newExitVelocity = newExitVelocity * exitVelocity.Length*(1 + (angleAcuteness * cornerRollMult));
-			newExitVelocity = new Vector3(newExitVelocity.x, newExitVelocity.y, exitZVelocity );
+			//newExitVelocity = newExitVelocity * exitVelocity.Length*(1 + (angleAcuteness * cornerRollMult));
+			//newExitVelocity = new Vector3(newExitVelocity.x, newExitVelocity.y, exitZVelocity );
 
+			float dotProduct = Vector3.Dot( entryVelocity.Normal, collisionNormal );
+			Vector3 perpendicularComponent = dotProduct * collisionNormal;
+			Vector3 slidingVelocity = entryVelocity - perpendicularComponent;
 
-
-
+			newExitVelocity = Vector3.Lerp( exitVelocity, slidingVelocity, angleAcuteness );
+			newExitVelocity = newExitVelocity.Normal;
+			newExitVelocity = newExitVelocity * exitVelocity.Length;
+			newExitVelocity = new Vector3( newExitVelocity.x, newExitVelocity.y, exitZVelocity );
 			ballRB.Velocity = newExitVelocity;
 
 
@@ -97,6 +102,10 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 		Gizmo.Draw.Arrow( collisionPosition, collisionPosition + newExitVelocity.Normal * 100f, 10f, 10f );//exit normal
 
 
+
+
+
+		//Gizmo.Draw.Arrow( collisionPosition, collisionPosition + slidingVelocity.Normal * 100f, 10f, 10f );//exit normal
 
 		CalculateBallGuide();
 	}

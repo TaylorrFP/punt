@@ -29,19 +29,18 @@
         },
         "ballReflectionCurve": [
           {
-            "in": -0.09230787,
-            "out": 0.09230787
+            "in": -2.8800013,
+            "out": 2.8800013
           },
           {
-            "x": 1,
-            "y": 1,
-            "in": -2.9374993,
-            "out": 2.9374993
+            "x": 0.8711438,
+            "y": 1
           }
         ],
         "bounceReflection": "0,0,0",
         "collisionNormal": "0,0,0",
         "collisionPosition": "0,0,0",
+        "cornerRollMult": 0.05,
         "exitZVelocity": 0,
         "preCollisionVelocity": "0,0,0"
       },
