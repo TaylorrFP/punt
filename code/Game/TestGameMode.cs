@@ -116,8 +116,6 @@ public sealed class TestGameMode : Component
 
 		}
 
-		Log.Info( Scene.TimeScale );
-
 
 
 	}

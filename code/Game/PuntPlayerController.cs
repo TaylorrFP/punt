@@ -296,7 +296,11 @@ public sealed class PuntPlayerController : Component
 
 		//Log.Info( scaledFlickVector );
 
+		//	if ( !Network.Owner.IsHost )
+		//{
+		//	piece.Network.TakeOwnership();
 
+		//}
 
 			piece.rigidBody.PhysicsBody.Velocity = flickVector;
 

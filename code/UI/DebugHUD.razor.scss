@@ -5,6 +5,7 @@ DebugHud {
 	right: 0;
 	bottom: 0;
 
+
 	.timescale-display {
 		position: absolute;
 		bottom: 32px;
@@ -13,5 +14,6 @@ DebugHud {
 		font-family: Poppins, sans-serif;
 		color: #fff;
 		font-weight: bold;
+		flex-direction: column;
 	}
 }

@@ -98,12 +98,13 @@ public sealed class PuntPiece : Component
 		playerStatusRenderer.SceneObject.Attributes.Set( "Progress", 0f );
 		cooldownTimeSince = cooldownDuration;
 
+		
 
-		if ( IsProxy )
-		{
-			rigidBody.PhysicsBody.MotionEnabled = false;
+		//if ( IsProxy )
+		//{
+		//	rigidBody.PhysicsBody.MotionEnabled = false;
 
-		}
+		//}
 	}
 
 	protected override void OnUpdate()

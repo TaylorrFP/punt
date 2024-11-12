@@ -12,7 +12,7 @@
       {
         "__type": "PuntPiece",
         "__guid": "a4e5bbe3-f335-455a-a51e-01336be25b2b",
-        "cooldownDuration": 3,
+        "cooldownDuration": 1,
         "playerSquashStretch": {
           "_type": "component",
           "component_id": "d5cb658a-3a3d-4d88-9383-accfe05bb483",
@@ -143,7 +143,7 @@
             ],
             "squashDuration": 0.5,
             "squashTimeSince": {
-              "Relative": 90373144
+              "Relative": 90408080
             }
           },
           {
