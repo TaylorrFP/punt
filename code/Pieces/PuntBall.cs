@@ -11,13 +11,15 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 	[Property] public GameMode gameMode { get; set; }
 
-	[Property] public Curve ballReflectionCurve { get; set; }
+	[Property] public bool cornerRollBias { get; set; } = true;
+	[Property] public bool cornerRollBiasDebug { get; set; } = false;
+	[Property] public Curve ballCornerRollBias { get; set; }
 
-	[Property] public float cornerRollMult { get; set; } = 0.05f;
+
 
 	[Property] public Vector3 preCollisionVelocity { get; set; }
 
-	private Vector3 entryVelocity;
+	private Vector3 entryNormal;
 	private Vector3 exitVelocity;
 	private Vector3 newExitVelocity;
 
@@ -40,39 +42,41 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 	{
 
 
-		if ( collision.Other.GameObject.Tags.HasAny( "wall" ) )
+		//this is all really shit, replace it or get rid maybe - it is quite nice though
+
+		if ( collision.Other.GameObject.Tags.HasAny( "wall" ) && cornerRollBias )
 		{
-			entryVelocity = preCollisionVelocity.Normal;//store the velocity of the frame before the collision
+			entryNormal = preCollisionVelocity.Normal;//store the velocity of the frame before the collision
+
 			exitVelocity = ballRB.Velocity;//the exit velocity
 			collisionPosition = collision.Contact.Point;//the collision point
-			collisionNormal = -collision.Contact.Normal;
+			collisionNormal = -collision.Contact.Normal;//collision normal
 
 
 
-			entryVelocity = new Vector3( entryVelocity.x, entryVelocity.y, 0 );
-
-			exitZVelocity = exitVelocity.z;
-
+			//remove the z components of exit and entryvelocity, we don't want to change behaviour in the z axis
+			entryNormal = new Vector3( entryNormal.x, entryNormal.y, 0 );
+			exitZVelocity = exitVelocity.z;//save this for later
 			exitVelocity = new Vector3( exitVelocity.x, exitVelocity.y, 0 );
 
-			angleAcuteness = Vector3.GetAngle( -entryVelocity, collisionNormal );
+			//work out how acute the angle is.
+			angleAcuteness = Vector3.GetAngle( -entryNormal, collisionNormal );
 			angleAcuteness = angleAcuteness.Remap( 0f, 90f );
-			angleAcuteness = ballReflectionCurve.Evaluate( angleAcuteness );
-			Log.Info( angleAcuteness );
-			//newExitVelocity = Vector3.Lerp( exitVelocity.Normal, entryVelocity.Normal, angleAcuteness );
+			angleAcuteness = ballCornerRollBias.Evaluate( angleAcuteness );//once we've worked it out, use the curve to customise it.
 
-			//newExitVelocity = newExitVelocity * exitVelocity.Length*(1 + (angleAcuteness * cornerRollMult));
-			//newExitVelocity = new Vector3(newExitVelocity.x, newExitVelocity.y, exitZVelocity );
-
-			float dotProduct = Vector3.Dot( entryVelocity.Normal, collisionNormal );
+			float dotProduct = Vector3.Dot( entryNormal, collisionNormal );
 			Vector3 perpendicularComponent = dotProduct * collisionNormal;
-			Vector3 slidingVelocity = entryVelocity - perpendicularComponent;
+			Vector3 slidingNormal = entryNormal - perpendicularComponent;
 
-			newExitVelocity = Vector3.Lerp( exitVelocity, slidingVelocity, angleAcuteness );
-			newExitVelocity = newExitVelocity.Normal;
-			newExitVelocity = newExitVelocity * exitVelocity.Length;
-			newExitVelocity = new Vector3( newExitVelocity.x, newExitVelocity.y, exitZVelocity );
+			newExitVelocity = Vector3.Lerp( exitVelocity.Normal, slidingNormal, angleAcuteness );
+			newExitVelocity = newExitVelocity.Normal * exitVelocity.Length;//get the 2D speed of the original exit velocity
+
+
+			newExitVelocity = new Vector3( newExitVelocity.x, newExitVelocity.y, exitZVelocity );//add back in the z component 
 			ballRB.Velocity = newExitVelocity;
+
+
+			exitVelocity = new Vector3( exitVelocity.x, exitVelocity.y, exitZVelocity );//re-add the z to this
 
 
 		}
@@ -98,8 +102,11 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 
 		Gizmo.Draw.Arrow( collisionPosition + collisionNormal * 100f, collisionPosition, 0f,0f );//bounce normal
-		Gizmo.Draw.Arrow(collisionPosition + -entryVelocity.Normal * 200f, collisionPosition, 10f, 10f ); //entry velocity
-		Gizmo.Draw.Arrow( collisionPosition, collisionPosition + newExitVelocity.Normal * 100f, 10f, 10f );//exit normal
+		Gizmo.Draw.Arrow(collisionPosition + -entryNormal.Normal * 200f, collisionPosition, 10f, 10f ); //entry velocity
+
+		Gizmo.Draw.Arrow( collisionPosition, collisionPosition + newExitVelocity.Normal * 110f, 10f, 10f );//newexit normal
+
+		Gizmo.Draw.Arrow( collisionPosition, collisionPosition + exitVelocity.Normal * 100f, 10f, 10f );//exit normal
 
 
 

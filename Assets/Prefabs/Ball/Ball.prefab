@@ -21,26 +21,27 @@
           "go": "540cbab2-07c3-48e6-88ef-452c7cbdc011"
         },
         "angleAcuteness": 0,
+        "ballCornerRollBias": [
+          {
+            "in": -2.8800013,
+            "out": 2.8800013
+          },
+          {
+            "x": 0.70621073,
+            "y": 1
+          }
+        ],
         "ballRB": {
           "_type": "component",
           "component_id": "ce1ad518-cf33-46d2-8ae7-f82dc0f266dd",
           "go": "760f2ed7-7378-43bf-a993-370e83a60977",
           "component_type": "Rigidbody"
         },
-        "ballReflectionCurve": [
-          {
-            "in": -2.8800013,
-            "out": 2.8800013
-          },
-          {
-            "x": 0.8711438,
-            "y": 1
-          }
-        ],
         "bounceReflection": "0,0,0",
         "collisionNormal": "0,0,0",
         "collisionPosition": "0,0,0",
-        "cornerRollMult": 0.05,
+        "cornerRollBias": true,
+        "cornerRollBiasDebug": false,
         "exitZVelocity": 0,
         "preCollisionVelocity": "0,0,0"
       },
