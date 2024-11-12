@@ -155,7 +155,7 @@
             }
           ],
           "BlueTeam": [],
-          "DebugServer": true,
+          "DebugServer": false,
           "musicSoundPoint": {
             "_type": "component",
             "component_id": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
@@ -215,8 +215,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -9446.878,
-            "Passed": 9446.878,
+            "Relative": -212.91418,
+            "Passed": 212.91418,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
