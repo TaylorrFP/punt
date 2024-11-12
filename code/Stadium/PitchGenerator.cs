@@ -23,6 +23,8 @@ public sealed class PitchGenerator : Component
 
 	[Property] public Surface wallSurface { get; set; }
 
+	[Property] public Surface goalBackSurface { get; set; }
+
 	[Property] public float cornerAngle { get; set; }
 	[Property] public float cornerSegmentWidth { get; set; }
 	protected override void OnUpdate()
@@ -144,8 +146,8 @@ public sealed class PitchGenerator : Component
 		BoxCollider goalBackcollider = goalBack.Components.Create<BoxCollider>();
 		goalBackcollider.Scale = goalSize;
 		goalBack.Parent = this.GameObject;
-		goalBackcollider.Surface = wallSurface;
-		goalBack.Tags.Add( "Wall" );
+		goalBackcollider.Surface = goalBackSurface;
+		goalBack.Tags.Add( "Net" );
 
 
 		GameObject goalWall = new GameObject( true, "Goal Wall" );
@@ -154,7 +156,7 @@ public sealed class PitchGenerator : Component
 		goalwallcollider.Scale = new Vector3( wallSize.x, wallSize.y, wallSize.z - goalHeight);
 		goalWall.Parent = this.GameObject;
 		goalwallcollider.Surface = wallSurface;
-		goalWall.Tags.Add( "Wall" );
+		goalWall.Tags.Add( "Net" );
 
 
 		GameObject goalWallR = new GameObject( true, "Goal Wall" );
@@ -162,7 +164,7 @@ public sealed class PitchGenerator : Component
 		BoxCollider goalwallcolliderR = goalWallR.Components.Create<BoxCollider>();
 		goalwallcolliderR.Scale = new Vector3( thickness, wallSize.y * 0.5f - goalSize.y * 0.5f, goalHeight);
 		goalWallR.Parent = this.GameObject;
-		goalwallcolliderR.Surface = wallSurface;
+		goalwallcolliderR.Surface = goalBackSurface;
 		goalWallR.Tags.Add( "Wall" );
 
 
@@ -171,8 +173,8 @@ public sealed class PitchGenerator : Component
 		BoxCollider goalwallcolliderL = goalWallL.Components.Create<BoxCollider>();
 		goalwallcolliderL.Scale = new Vector3( thickness, wallSize.y * 0.5f - goalSize.y * 0.5f, goalHeight );
 		goalWallL.Parent = this.GameObject;
-		goalwallcolliderL.Surface = wallSurface;
-		goalwallcolliderL.Tags.Add( "Wall" );
+		goalwallcolliderL.Surface = goalBackSurface;
+		goalwallcolliderL.Tags.Add( "Net" );
 	}
 }
 

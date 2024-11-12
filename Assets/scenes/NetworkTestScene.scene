@@ -215,8 +215,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -96002.555,
-            "Passed": 96002.555,
+            "Relative": -103019.69,
+            "Passed": 103019.69,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -472,6 +472,7 @@
               "cornerRadius": 300,
               "cornerResolution": 32,
               "cornerSegmentWidth": 0,
+              "goalBackSurface": "physicssurfaces/goalbacksurface.surface",
               "goalHeight": 150,
               "goalWidth": 270,
               "height": 500,

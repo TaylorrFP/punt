@@ -12,6 +12,8 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 	[Property] public GameMode gameMode { get; set; }
 
 	[Property] public bool cornerRollBias { get; set; } = true;
+
+	[Property] public float goalWallDampning { get; set; } = 0.9f;
 	[Property] public bool cornerRollBiasDebug { get; set; } = false;
 	[Property] public Curve ballCornerRollBias { get; set; }
 
@@ -81,7 +83,13 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 		}
 
-	}
+		if ( collision.Other.GameObject.Tags.HasAny( "Net" ))
+		{
+			//dampen ball impact when it's the back of the net
+			ballRB.Velocity = ballRB.Velocity * MathX.Clamp(1f-goalWallDampning,0,1f);
+
+		}
+		}
 	protected override void OnFixedUpdate()
 	{
 		preCollisionVelocity = ballRB.Velocity;//keep this every fixed update so we know before the collision
@@ -101,12 +109,12 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 		//newExitVelocity = new Vector3( newExitVelocity.x, newExitVelocity.y, exitZVelocity );
 
 
-		Gizmo.Draw.Arrow( collisionPosition + collisionNormal * 100f, collisionPosition, 0f,0f );//bounce normal
-		Gizmo.Draw.Arrow(collisionPosition + -entryNormal.Normal * 200f, collisionPosition, 10f, 10f ); //entry velocity
+		//Gizmo.Draw.Arrow( collisionPosition + collisionNormal * 100f, collisionPosition, 0f,0f );//bounce normal
+		//Gizmo.Draw.Arrow(collisionPosition + -entryNormal.Normal * 200f, collisionPosition, 10f, 10f ); //entry velocity
 
-		Gizmo.Draw.Arrow( collisionPosition, collisionPosition + newExitVelocity.Normal * 110f, 10f, 10f );//newexit normal
+		//Gizmo.Draw.Arrow( collisionPosition, collisionPosition + newExitVelocity.Normal * 110f, 10f, 10f );//newexit normal
 
-		Gizmo.Draw.Arrow( collisionPosition, collisionPosition + exitVelocity.Normal * 100f, 10f, 10f );//exit normal
+		//Gizmo.Draw.Arrow( collisionPosition, collisionPosition + exitVelocity.Normal * 100f, 10f, 10f );//exit normal
 
 
 
