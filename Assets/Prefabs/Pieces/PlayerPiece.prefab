@@ -6,7 +6,6 @@
     "Tags": "piece",
     "Enabled": true,
     "NetworkMode": 1,
-    "NetworkInterpolation": false,
     "OwnerTransfer": 0,
     "Components": [
       {
@@ -143,7 +142,7 @@
             ],
             "squashDuration": 0.5,
             "squashTimeSince": {
-              "Relative": 90408080
+              "Relative": 90445500
             }
           },
           {
@@ -227,7 +226,7 @@
       "FixedUpdateFrequency": 50,
       "MaxFixedUpdates": 5,
       "NetworkFrequency": 30,
-      "NetworkInterpolation": false,
+      "NetworkInterpolation": true,
       "PhysicsSubSteps": 1,
       "ThreadedAnimation": true,
       "TimeScale": 1,
