@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Sandbox.Network;
 
 public sealed class TestGameMode : Component
 {
@@ -47,7 +48,6 @@ public sealed class TestGameMode : Component
 	[Group( "Spawn Points" )][Property] public List<GameObject> BlueSpawnsKickoff { get; set; } = new List<GameObject>();
 
 
-
 	//Spawn Points
 	[Group( "Music" )][Property] public SoundPointComponent musicSoundPoint { get; set; }
 
@@ -57,6 +57,7 @@ public sealed class TestGameMode : Component
 
 	[HostSync] public TimeSince TimeSinceCountdown { get; set; }
 
+	
 
 
 	protected override void OnAwake()
@@ -100,11 +101,9 @@ public sealed class TestGameMode : Component
 
 	private void CalculateTimescale()
 	{
-		var targetTimescale = 1f;
 
 		for ( int i = 0; i < PlayerList.Count; i++ )
 		{
-			//foreach player controller
 
 			if ( PlayerList[i].selectedPiece != null )
 			{

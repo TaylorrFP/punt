@@ -215,8 +215,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -37489.92,
-            "Passed": 37489.92,
+            "Relative": -41796.867,
+            "Passed": 41796.867,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -946,6 +946,27 @@
             "Id": "1b004eb1-2458-44cd-ae65-823e82f8d4e2"
           },
           "Volume": 1
+        }
+      ]
+    },
+    {
+      "__guid": "bbbab2cd-800e-45aa-adde-1030a89d403f",
+      "Flags": 0,
+      "Name": "DebugHud",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "af25647e-4b8c-4bcb-9565-842ec0aa0f6c",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "ZIndex": 100
+        },
+        {
+          "__type": "Sandbox.DebugHUD",
+          "__guid": "6179daad-ed51-462d-be42-6ec74dbafc50"
         }
       ]
     }
