@@ -52,7 +52,14 @@ public sealed class PuntPiece : Component
 
 	private PieceState _pieceState;
 
-	[Property, Sync]
+	//if we just sync the variables, only the server can change these values
+
+	//so we have to do RPCs, but then is there a chance they get out of sync?
+
+
+
+
+	[Property] //issue here is, only the server can set these so we'll get some lag?
 	public PieceState pieceState
 	{
 		get => _pieceState;
@@ -70,6 +77,10 @@ public sealed class PuntPiece : Component
 	{
 		switch ( newState )
 		{
+			case PieceState.Ready:
+				HandleReadyState();
+				break;
+
 			case PieceState.Frozen:
 				HandleFrozenState();
 				break;
@@ -91,15 +102,25 @@ public sealed class PuntPiece : Component
 		}
 	}
 
-	private void HandleCooldownState()
+	[Broadcast]
+	private void HandleReadyState()
 	{
-		Log.Info( "Piece is now on Cooldown" );
+
 		outline.Enabled = false;
 	}
 
+	[Broadcast]
+	private void HandleCooldownState()
+	{
+
+		outline.Enabled = false;
+	}
+
+
+	[Broadcast]
 	private void HandleFrozenState()
 	{
-		Log.Info( "Piece is now Frozen" );
+
 
 		outline.Enabled = true;
 		outline.Color = frozenOutline.Color;
@@ -110,9 +131,9 @@ public sealed class PuntPiece : Component
 
 	}
 
+	[Broadcast]
 	private void HandleGrabbedState()
 	{
-		Log.Info( "Piece is now Grabbed" );
 
 		outline.Enabled = true;
 		outline.Color = grabbedOutline.Color;
@@ -122,6 +143,7 @@ public sealed class PuntPiece : Component
 		outline.Width = grabbedOutline.Width;
 	}
 
+	[Broadcast]
 	private void HandleHoveredState()
 	{
 		outline.Enabled = true;
