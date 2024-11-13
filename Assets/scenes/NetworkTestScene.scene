@@ -20,7 +20,6 @@
       "__guid": "550bdf2a-cc82-4002-93ae-203c70112f80",
       "Flags": 0,
       "Name": "Sun",
-      "Position": "-449.0107,-872.9659,-748.8005",
       "Rotation": "0.3984556,0.7796111,-0.3483649,0.3347856",
       "Tags": "light_directional,light",
       "Enabled": true,
@@ -155,7 +154,7 @@
             }
           ],
           "BlueTeam": [],
-          "DebugServer": false,
+          "DebugServer": true,
           "musicSoundPoint": {
             "_type": "component",
             "component_id": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
@@ -215,8 +214,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -212.91418,
-            "Passed": 212.91418,
+            "Relative": -281.67914,
+            "Passed": 281.67914,
             "Fraction": 1
           },
           "ResetTimerLength": 4,

@@ -165,7 +165,7 @@ public sealed class TestGameMode : Component
 	private void StartGame( TeamSide kickoffSide )
 	{
 
-
+		
 		musicSoundPoint.StartSound();
 		musicSoundPoint.Repeat = true;
 		ResetTeamPieces( kickoffSide );
