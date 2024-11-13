@@ -154,7 +154,7 @@
             }
           ],
           "BlueTeam": [],
-          "DebugServer": false,
+          "DebugServer": true,
           "musicSoundPoint": {
             "_type": "component",
             "component_id": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
@@ -214,8 +214,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -10279.41,
-            "Passed": 10279.41,
+            "Relative": -24894.424,
+            "Passed": 24894.424,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -915,18 +915,6 @@
           "__guid": "6179daad-ed51-462d-be42-6ec74dbafc50"
         }
       ]
-    },
-    {
-      "__guid": "42262233-45b0-4b7e-ab87-c0f71ca68e72",
-      "Flags": 0,
-      "Name": "playerpiece",
-      "Position": "-182.0419,-310.9347,7.70628",
-      "Tags": "piece",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "OwnerTransfer": 0,
-      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

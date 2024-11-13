@@ -28,7 +28,25 @@
           "go": "36079f2e-9620-450a-aaa5-36a7930a9997",
           "component_type": "ModelRenderer"
         },
+        "frozenOutline": {
+          "Color": "0.0902,0.0902,0.0902,1",
+          "ObscuredColor": "0,0,0,0.4",
+          "InsideColor": "0.18824,0.18824,0.18824,0.54902",
+          "Width": 0.2
+        },
+        "grabbedOutline": {
+          "Color": "0.06667,1,0,1",
+          "ObscuredColor": "0,0,0,0.4",
+          "InsideColor": "1,1,1,0",
+          "Width": 0.2
+        },
         "highlightWidth": 0.25,
+        "hoveredOutline": {
+          "Color": "1,1,1,1",
+          "ObscuredColor": "0,0,0,0.4",
+          "InsideColor": "1,1,1,0.09804",
+          "Width": 0.2
+        },
         "isHovered": false,
         "isOnCooldown": true,
         "isSelected": false,
@@ -39,6 +57,7 @@
           "component_type": "HighlightOutline"
         },
         "pieceID": 0,
+        "pieceState": "Ready",
         "playerModelHolder": {
           "_type": "gameobject",
           "go": "c67a5325-24e2-4cb5-908e-4dec26bb09fb"
@@ -91,7 +110,7 @@
         "__guid": "17b985bc-1106-4697-82ae-7041b77a16f1",
         "End": "0,0,94.79977",
         "IsTrigger": false,
-        "Radius": 13.93333,
+        "Radius": 14.13334,
         "Start": "0,0,18.06664",
         "Static": false,
         "Surface": "physicssurfaces/socettoplayersurface.surface",
@@ -183,7 +202,7 @@
                 ],
                 "squashDuration": 0.5,
                 "squashTimeSince": {
-                  "Relative": 90509860
+                  "Relative": 90531450
                 }
               }
             ],

@@ -9,18 +9,22 @@ public enum PieceState
 {
 	Ready,
 	Hovered,
-	Selected,
+	Grabbed,
 	Cooldown,
+	Frozen
 
 
 }
 
-public enum CustomCursor
+public enum ControllerState
 {
-	Pointer,
-	Grab,
-	Grabbing,
-	NotAllowed,
+	Idle,//default state
+	Hovering,//hovering a team piece
+	Grabbing,//currently grabbing a piece
+	Busy,//piece is on cooldown
+	Disabled,//piece is disabled (for kick off)
+	HoveringEnemy,//hovering enemy
+
 
 
 }
