@@ -203,9 +203,9 @@ public sealed class PuntPlayerController : Component
 
 			Vector3 projectedTargetDir = Vector3.VectorPlaneProject(target,axisVector);
 
-			Quaternion targetRotation = Rotation.LookAt( projectedTargetDir, axisVector );
+			Rotation targetRotation = Rotation.LookAt( projectedTargetDir, axisVector );
 
-			selectedPiece.puntPlayerModel.WorldRotation = targetRotation;
+			selectedPiece.playerModelHolder.WorldRotation = targetRotation;
 
 		}
 	}

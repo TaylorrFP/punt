@@ -39,10 +39,14 @@
           "component_type": "HighlightOutline"
         },
         "pieceID": 0,
+        "playerModelHolder": {
+          "_type": "gameobject",
+          "go": "c67a5325-24e2-4cb5-908e-4dec26bb09fb"
+        },
         "puntPlayerModel": {
           "_type": "component",
-          "component_id": "8d3921d5-7df6-4985-9126-751b11794952",
-          "go": "d72fd439-05ac-4afa-b5a0-e93154264c83",
+          "component_id": "044d8e2e-a3ff-4d0d-914e-d7abe6a23104",
+          "go": "057a4de3-acd2-4127-b7eb-a82ed82e5aea",
           "component_type": "ModelRenderer"
         },
         "rigidBody": {
@@ -50,6 +54,12 @@
           "component_id": "b2e8c182-1fee-4861-99b3-58983ed2ef9c",
           "go": "cb2901cd-7385-48b3-9c35-210aaf6c5b8c",
           "component_type": "Rigidbody"
+        },
+        "shakeEffect": {
+          "_type": "component",
+          "component_id": "81dbc13d-5d3c-444a-940a-325d81d63ca1",
+          "go": "b8ebd53a-a82d-4d10-854f-f1791cac22c5",
+          "component_type": "ShakeEffect"
         },
         "teamSide": "Red"
       },
@@ -90,112 +100,6 @@
     ],
     "Children": [
       {
-        "__guid": "d72fd439-05ac-4afa-b5a0-e93154264c83",
-        "Flags": 0,
-        "Name": "PlayerModel",
-        "Enabled": true,
-        "Components": [
-          {
-            "__type": "Sandbox.HighlightOutline",
-            "__guid": "da381471-801c-4f5f-982e-196e76af22f8",
-            "__enabled": false,
-            "Color": "1,1,1,1",
-            "InsideColor": "0,0,0,0",
-            "InsideObscuredColor": "0,0,0,0",
-            "ObscuredColor": "0,0,0,0.4",
-            "Width": 0.2
-          },
-          {
-            "__type": "SquashAndStretch",
-            "__guid": "d5cb658a-3a3d-4d88-9383-accfe05bb483",
-            "currentScale": "0,0,0",
-            "squashCurve": [
-              {
-                "y": 0.3936311,
-                "in": -5.5294113,
-                "out": 5.5294113
-              },
-              {
-                "x": 0.1292918,
-                "y": 0.88093835
-              },
-              {
-                "x": 0.37300998,
-                "y": 0.312163
-              },
-              {
-                "x": 0.5,
-                "y": 0.5,
-                "in": -1.6363633,
-                "out": 1.6363633
-              },
-              {
-                "x": 0.8335809,
-                "y": 0.4508214,
-                "in": -0.06487802,
-                "out": 0.06487802
-              },
-              {
-                "x": 1,
-                "y": 0.5
-              }
-            ],
-            "squashDuration": 0.5,
-            "squashTimeSince": {
-              "Relative": 90447320
-            }
-          },
-          {
-            "__type": "Sandbox.ModelRenderer",
-            "__guid": "8d3921d5-7df6-4985-9126-751b11794952",
-            "BodyGroups": 18446744073709551615,
-            "CreateAttachments": false,
-            "Model": "prefabs/pieces/puntbase.vmdl",
-            "RenderOptions": {
-              "GameLayer": true,
-              "OverlayLayer": false,
-              "BloomLayer": false,
-              "AfterUILayer": false
-            },
-            "RenderType": "On",
-            "Tint": "1,1,1,1"
-          }
-        ],
-        "Children": [
-          {
-            "__guid": "91f1ab5c-966d-4ff0-ad12-11f627911c75",
-            "Flags": 0,
-            "Name": "puntchartest",
-            "Position": "0,0,45.07966",
-            "Scale": "10,10,10",
-            "Enabled": true,
-            "Components": [
-              {
-                "__type": "Sandbox.ModelRenderer",
-                "__guid": "dfff27cc-7c1f-496b-9364-29a934258ed1",
-                "BodyGroups": 18446744073709551615,
-                "CreateAttachments": false,
-                "Model": "prefabs/pieces/puntchartest.vmdl",
-                "RenderOptions": {
-                  "GameLayer": true,
-                  "OverlayLayer": false,
-                  "BloomLayer": false,
-                  "AfterUILayer": false
-                },
-                "RenderType": "On",
-                "Tint": "1,1,1,1"
-              }
-            ]
-          },
-          {
-            "__guid": "057a4de3-acd2-4127-b7eb-a82ed82e5aea",
-            "Flags": 0,
-            "Name": "Object",
-            "Scale": "1.2,1.2,0.9474331"
-          }
-        ]
-      },
-      {
         "__guid": "36079f2e-9620-450a-aaa5-36a7930a9997",
         "Flags": 0,
         "Name": "PlayerStatus",
@@ -217,6 +121,142 @@
             },
             "RenderType": "On",
             "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "c67a5325-24e2-4cb5-908e-4dec26bb09fb",
+        "Flags": 0,
+        "Name": "Model",
+        "Enabled": true,
+        "Children": [
+          {
+            "__guid": "d72fd439-05ac-4afa-b5a0-e93154264c83",
+            "Flags": 0,
+            "Name": "PlayerModel",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "Sandbox.HighlightOutline",
+                "__guid": "da381471-801c-4f5f-982e-196e76af22f8",
+                "__enabled": false,
+                "Color": "1,1,1,1",
+                "InsideColor": "0,0,0,0",
+                "InsideObscuredColor": "0,0,0,0",
+                "ObscuredColor": "0,0,0,0.4",
+                "Width": 0.2
+              },
+              {
+                "__type": "SquashAndStretch",
+                "__guid": "d5cb658a-3a3d-4d88-9383-accfe05bb483",
+                "currentScale": "0,0,0",
+                "squashCurve": [
+                  {
+                    "y": 0.3936311,
+                    "in": -5.5294113,
+                    "out": 5.5294113
+                  },
+                  {
+                    "x": 0.1292918,
+                    "y": 0.88093835
+                  },
+                  {
+                    "x": 0.37300998,
+                    "y": 0.312163
+                  },
+                  {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "in": -1.6363633,
+                    "out": 1.6363633
+                  },
+                  {
+                    "x": 0.8335809,
+                    "y": 0.4508214,
+                    "in": -0.06487802,
+                    "out": 0.06487802
+                  },
+                  {
+                    "x": 1,
+                    "y": 0.5
+                  }
+                ],
+                "squashDuration": 0.5,
+                "squashTimeSince": {
+                  "Relative": 90506990
+                }
+              }
+            ],
+            "Children": [
+              {
+                "__guid": "b8ebd53a-a82d-4d10-854f-f1791cac22c5",
+                "Flags": 0,
+                "Name": "Model",
+                "Scale": "10,10,10",
+                "Enabled": true,
+                "Components": [
+                  {
+                    "__type": "ShakeEffect",
+                    "__guid": "81dbc13d-5d3c-444a-940a-325d81d63ca1",
+                    "positionShakeAmount": 5,
+                    "positionShakeFrequency": 300,
+                    "rotationShakeAmount": 10,
+                    "rotationShakeFrequency": 300,
+                    "Strength": 0
+                  }
+                ],
+                "Children": [
+                  {
+                    "__guid": "91f1ab5c-966d-4ff0-ad12-11f627911c75",
+                    "Flags": 0,
+                    "Name": "puntchartest",
+                    "Position": "0,0,5.170628",
+                    "Enabled": true,
+                    "Components": [
+                      {
+                        "__type": "Sandbox.ModelRenderer",
+                        "__guid": "dfff27cc-7c1f-496b-9364-29a934258ed1",
+                        "BodyGroups": 18446744073709551615,
+                        "CreateAttachments": false,
+                        "Model": "prefabs/pieces/puntchartest.vmdl",
+                        "RenderOptions": {
+                          "GameLayer": true,
+                          "OverlayLayer": false,
+                          "BloomLayer": false,
+                          "AfterUILayer": false
+                        },
+                        "RenderType": "On",
+                        "Tint": "1,1,1,1"
+                      }
+                    ]
+                  },
+                  {
+                    "__guid": "057a4de3-acd2-4127-b7eb-a82ed82e5aea",
+                    "Flags": 0,
+                    "Name": "Base",
+                    "Scale": "0.1,0.1,0.1",
+                    "Enabled": true,
+                    "Components": [
+                      {
+                        "__type": "Sandbox.ModelRenderer",
+                        "__guid": "044d8e2e-a3ff-4d0d-914e-d7abe6a23104",
+                        "BodyGroups": 18446744073709551615,
+                        "CreateAttachments": false,
+                        "Model": "prefabs/pieces/puntbase.vmdl",
+                        "RenderOptions": {
+                          "GameLayer": true,
+                          "OverlayLayer": false,
+                          "BloomLayer": false,
+                          "AfterUILayer": false
+                        },
+                        "RenderType": "On",
+                        "Tint": "1,1,1,1"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

@@ -25,11 +25,15 @@ public sealed class PuntPiece : Component
 
 	[Property] public Rigidbody rigidBody { get; set; }
 
+	[Property] public GameObject playerModelHolder { get; set; }
+
 	[Property] public ModelRenderer puntPlayerModel { get; set; }
 
 	[Property] public TeamSide teamSide { get; set; }
 	[Property] public int pieceID { get; set; }
 
+	[Property] public ShakeEffect shakeEffect { get; set; }
+ 
 
 
 	protected override void OnStart()
@@ -69,12 +73,15 @@ public sealed class PuntPiece : Component
 			outline.Color = new Color( 0, 1, 0, 1 );
 			playerSquashStretch.StartSquash( 0.4f );
 			Sound.Play( "sounds/pieceselect.sound" );
+
+			shakeEffect.Strength = 1f;
 			//Scene.TimeScale = 0.1f;
 
 		}
 		else
 		{
 			outline.Enabled = false;
+			shakeEffect.Strength = 0f;
 			//Scene.TimeScale = 1f;
 		}
 	}
