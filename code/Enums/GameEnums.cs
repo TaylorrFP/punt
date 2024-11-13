@@ -1,5 +1,6 @@
 ﻿public enum TeamSide
 {
+	None,
 	Red,
 	Blue
 }

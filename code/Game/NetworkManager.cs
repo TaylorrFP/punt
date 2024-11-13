@@ -79,14 +79,17 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 			return;
 
 
-		if ( TestGameMode.Instance.State == GameState.Waiting || TestGameMode.Instance.State == GameState.Countdown )//only add a new player if we're in the waiting state.
+		if ( TestGameMode.Instance.State == GameState.Waiting)//only add a new player if we're in the waiting state
 		{
 			var player = PlayerPrefab.Clone();
 			player.Name = $"Player - {channel.DisplayName}";
 			player.NetworkSpawn( channel );
 			var controller = player.Components.Get<PuntPlayerController>();
+
+
 			//Add player in gamemode
 			TestGameMode.Instance.AddPlayer( controller );
+			
 
 		}
 

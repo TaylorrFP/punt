@@ -30,7 +30,7 @@
         },
         "highlightWidth": 0.25,
         "isHovered": false,
-        "isOnCooldown": false,
+        "isOnCooldown": true,
         "isSelected": false,
         "outline": {
           "_type": "component",
@@ -61,7 +61,7 @@
           "go": "b8ebd53a-a82d-4d10-854f-f1791cac22c5",
           "component_type": "ShakeEffect"
         },
-        "teamSide": "Red"
+        "teamSide": "None"
       },
       {
         "__type": "Sandbox.ModelCollider",
@@ -183,7 +183,7 @@
                 ],
                 "squashDuration": 0.5,
                 "squashTimeSince": {
-                  "Relative": 90506990
+                  "Relative": 90509860
                 }
               }
             ],

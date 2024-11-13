@@ -70,8 +70,6 @@ public sealed class TestGameMode : Component
 		if ( DebugServer )
 		{
 
-
-
 			State = GameState.KickingOff;
 			StartGame(TeamSide.Red);
 		}
@@ -401,16 +399,23 @@ public sealed class TestGameMode : Component
 
 	private void FindTeam( PuntPlayerController controller )
 	{
+
+
+
+
+
 		//Trys to even out the teams
-		if ( BlueTeam.Count < 2 && BlueTeam.Count <= RedTeam.Count )
+		if ( BlueTeam.Count < 2 && BlueTeam.Count <= RedTeam.Count ) //if the blue team has 1 person, and blue team is smaller than, or equal to red team
 		{
 			BlueTeam.Add( controller );
-			controller.teamSide = TeamSide.Blue;
+			controller.AssignTeam (TeamSide.Blue);
+
+
 		}
 		else if ( RedTeam.Count < 2 )
 		{
 			RedTeam.Add( controller );
-			controller.teamSide = TeamSide.Red;
+			controller.AssignTeam(TeamSide.Red);
 		}
 		else
 		{

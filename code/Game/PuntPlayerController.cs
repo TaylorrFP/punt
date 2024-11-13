@@ -36,7 +36,7 @@ public sealed class PuntPlayerController : Component
 	[Property] public Vector2 mouseOffset { get; set; }
 
 
-	[Property] public TeamSide teamSide;
+	[Property, Sync] public TeamSide teamSide { get; set; }
 
 	[Property] public Vector3 targetArrowPos { get; set; }
 
@@ -49,10 +49,23 @@ public sealed class PuntPlayerController : Component
 
 
 	}
+
+	[Broadcast]
+	public void AssignTeam(TeamSide teamSide )
+	{
+		if ( !IsProxy )
+		{
+			this.teamSide = teamSide;
+		}
+		
+	}
 	protected override void OnUpdate()
 	{
 		if ( !IsProxy )//just do this shit locally
 		{
+
+			Log.Info("I am on team: " + teamSide.ToString() );
+
 			ReadyInputs();
 
 			PitchTrace();
