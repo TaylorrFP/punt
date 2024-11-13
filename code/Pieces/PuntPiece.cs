@@ -21,7 +21,6 @@ public sealed class PuntPiece : Component
 	[Property] public OutlinePreset grabbedOutline { get; set; }
 	[Property] public OutlinePreset frozenOutline { get; set; }
 
-	//[Property] public PieceState pieceState { get; set; }
 
 	[Property] public ModelRenderer playerStatusRenderer;
 
@@ -80,6 +79,10 @@ public sealed class PuntPiece : Component
 			case PieceState.Hovered:
 				HandleHoveredState();
 				break;
+
+			case PieceState.Cooldown:
+				HandleCooldownState();
+				break;
 			// Add additional cases as needed for other states
 			default:
 				outline.Enabled = false;
@@ -88,6 +91,11 @@ public sealed class PuntPiece : Component
 		}
 	}
 
+	private void HandleCooldownState()
+	{
+		Log.Info( "Piece is now on Cooldown" );
+		outline.Enabled = false;
+	}
 
 	private void HandleFrozenState()
 	{
@@ -104,7 +112,7 @@ public sealed class PuntPiece : Component
 
 	private void HandleGrabbedState()
 	{
-		Log.Info( "Piece is now Frozen" );
+		Log.Info( "Piece is now Grabbed" );
 
 		outline.Enabled = true;
 		outline.Color = grabbedOutline.Color;
@@ -138,18 +146,17 @@ public sealed class PuntPiece : Component
 
 	public void ToggleHover()
 	{
-		//outline.Color = Color.White;
 		isHovered = !isHovered;
 
 		if ( isHovered )
 		{
-			//outline.Enabled = true;
-			Sound.Play( "sounds/piecehover.sound" ); //weird delay on this for some reason
+
+			//Sound.Play( "sounds/piecehover.sound" ); //weird delay on this for some reason
 		}
 		else
 		{
 			
-			//outline.Enabled = false;
+	
 		}
 	}
 
@@ -214,14 +221,19 @@ public sealed class PuntPiece : Component
 	private void CalculateCooldown()
 	{
 
-		if ( cooldownTimeSince < cooldownDuration & playerStatusRenderer!=null)
+		if ( cooldownTimeSince < cooldownDuration && playerStatusRenderer!=null)
 		{
 			playerStatusRenderer.SceneObject.Attributes.Set( "Progress", cooldownTimeSince / cooldownDuration );
 		}
-		else
+		else if (pieceState == PieceState.Cooldown )
+	
 		{
 			isOnCooldown = false;
 			playerStatus.Enabled = false;
+
+			Log.Info( "cooldown finished!" );//this basically fires every frame
+
+			pieceState = PieceState.Ready;
 
 		}
 	}

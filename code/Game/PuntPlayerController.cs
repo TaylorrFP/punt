@@ -70,7 +70,7 @@ public sealed class PuntPlayerController : Component
 			PitchTrace();
 			PieceTrace();
 
-			SelectionInputs();
+			//SelectionInputs();
 			CalculateFlick();
 
 			CalculateArrow();
@@ -117,162 +117,188 @@ public sealed class PuntPlayerController : Component
 	}
 	private void PieceTrace()
 	{
-		// Trace and find a piece that is under the cursor.
-		var mousePosition = Mouse.Position;
-		var camera = Scene.Camera;
-		var ray = camera.ScreenPixelToRay( mousePosition );
-		var tr = Scene.Trace.Ray( ray, 10000f )
-			.WithAllTags( "piece" )
-			.Run();
 
-		if ( tr.Hit && controllerState == ControllerState.Idle )// if we hit something, and don't have a hovered piece or a selected piece
+		if(controllerState != ControllerState.Grabbing )//only do this stuff if we're not grabbing anything
 		{
-			var puntPiece = tr.GameObject.Components.Get<PuntPiece>();
+			// Trace and find a piece that is under the cursor.
+			var mousePosition = Mouse.Position;
+			var camera = Scene.Camera;
+			var ray = camera.ScreenPixelToRay( mousePosition );
+			var tr = Scene.Trace.Ray( ray, 10000f )
+				.WithAllTags( "piece" )
+				.Run();
 
-			if ( puntPiece.teamSide == teamSide )//if the piece we're hovering is the same team as us
+			if (tr.Hit)// if we hit a piece
 			{
+				
+				
 
-				switch ( puntPiece.pieceState ) {
+				var puntPiece = tr.GameObject.Components.Get<PuntPiece>();
 
-					case PieceState.Ready:
-						Log.Info( "Piece is Ready" );
 
-						puntPiece.pieceState = PieceState.Hovered;
-						hoveredPiece = puntPiece;
-						Mouse.CursorType = "hovering";
-
-						break;
-
-					case PieceState.Hovered:
-						Log.Info( "Piece is already Hovered" );//if the piece is already hovered
-
-						puntPiece.pieceState = PieceState.Hovered;
-						hoveredPiece = puntPiece;
-
-						break;
-
-					case PieceState.Grabbed: //if the piece is already grabbed
-						Log.Info( "Piece is already Grabbed" );
-						Mouse.CursorType = "disabled";
-
-						break;
-
-					case PieceState.Cooldown:
-						Log.Info( "Piece is on Cooldown" );
-						Mouse.CursorType = "cooldown";
-
-						break;
-
-					case PieceState.Frozen:
-						Log.Info( "Piece is Frozen" );
-						Mouse.CursorType = "disabled";
-
-						//don't do anything here, we can't unfreeze
-						//just set the controllerstate to disabled
-
-						break;
+				if ( puntPiece.teamSide != teamSide )//if it's an enemy piece
+				{
+					controllerState = ControllerState.HoveringEnemy;
+					Mouse.CursorType = "hoveringenemy";
 
 				}
+				else//if it is on our team
+				{
+					switch ( puntPiece.pieceState )
+					{
+
+						case PieceState.Ready:
+
+							controllerState = ControllerState.Hovering;
+							puntPiece.pieceState = PieceState.Hovered;
+							hoveredPiece = puntPiece;
+							Mouse.CursorType = "hovering";
+							Sound.Play( "sounds/piecehover.sound" );
+
+							break;
+
+						case PieceState.Hovered: //if the piece is already hovered
 
 
-				//hoveredPiece = tr.GameObject.Components.Get<PuntPiece>();
+							controllerState = ControllerState.Hovering;
+							puntPiece.pieceState = PieceState.Hovered;
+							hoveredPiece = puntPiece;
+							Mouse.CursorType = "hovering";
 
-				//hoveredPiece?.ToggleHover();//do this on the state change in the future
+							break;
 
-				//controllerState = ControllerState.Hovering;
+						case PieceState.Grabbed: //if the piece is already grabbed
 
-			}
-			else
+							controllerState = ControllerState.Disabled;
+							hoveredPiece = null;
+							Mouse.CursorType = "disabled";
+
+							break;
+
+						case PieceState.Cooldown:
+
+							controllerState = ControllerState.Busy;
+							hoveredPiece = null;
+							Mouse.CursorType = "cooldown";
+
+							break;
+
+						case PieceState.Frozen:
+
+							controllerState = ControllerState.Disabled;
+							hoveredPiece = null;
+							Mouse.CursorType = "disabled";
+
+							//don't do anything here, we can't unfreeze
+							//just set the controllerstate to disabled
+
+							break;
+
+					}
+
+				}
+			}else
 			{
-				controllerState = ControllerState.HoveringEnemy;//if it isn't
-				Log.Info( "Piece is Enemy" );
-				Mouse.CursorType = "hoveringenemy";
+				//if we don't hit anything, do a bit of a reset
+				controllerState = ControllerState.Idle;
+				if(hoveredPiece != null) {hoveredPiece.pieceState = PieceState.Ready;}
+				hoveredPiece = null;
+				Mouse.CursorType = "pointer";
+			}
+
+		}//we've done all the initial traces, we can check our inputs to see if we want to select, or deselect anything
+
+		if ( Input.Pressed( "attack1" ) )
+		{ 
+
+			switch ( controllerState )
+			{
+				case ControllerState.Hovering:
+					hoveredPiece.ToggleHover();
+					selectedPiece = hoveredPiece;
+					selectedPiece.ToggleSelection();
+					hoveredPiece = null;
+
+					selectedPiece.pieceState = PieceState.Grabbed;
+
+					Mouse.CursorType = "grabbing";
+					controllerState = ControllerState.Grabbing;
+					break;
+
+				case ControllerState.HoveringEnemy:
+					Sound.Play( "sounds/piecedud.sound" );
+					break;
+
+				case ControllerState.Busy:
+					Sound.Play( "sounds/piecedud.sound" );
+					break;
+
+				case ControllerState.Disabled:
+					Sound.Play( "sounds/piecedud.sound" );
+					break;
+
+			}
+			
+
+
+		}
+
+		if ( Input.Released( "attack1" ) )
+		{
+			switch ( controllerState )
+			{
+
+				case ControllerState.Grabbing:
+					selectedPiece.ToggleSelection();
+					FlickPiece( selectedPiece, flickVector );
+					controllerState = ControllerState.Idle;
+					Mouse.CursorType = "pointer";
+					break;
 			}
 
 		}
-		else if ( !tr.Hit && hoveredPiece != null )
-		{
-			// No piece hit and there's currently a hovered piece
-			hoveredPiece.ToggleHover();
-			hoveredPiece.pieceState = PieceState.Ready;
-			hoveredPiece = null;
 
-		}
-		else if ( !tr.Hit && selectedPiece == null )//no piece hit and we don't have a selected piece
-		{
-			controllerState = ControllerState.Idle;
 
-		}
+
+
 	}
-	//private void PieceTrace() //OLD
-	//{
-	//	// Trace and find a piece that is under the cursor.
-	//	var mousePosition = Mouse.Position;
-	//	var camera = Scene.Camera;
-	//	var ray = camera.ScreenPixelToRay( mousePosition );
-	//	var tr = Scene.Trace.Ray( ray, 10000f )
-	//		.WithAllTags( "piece" )
-	//		.Run();
-
-	//	if ( tr.Hit && hoveredPiece == null && selectedPiece == null)// if we hit something, and don't have a hovered piece or a selected piece
-	//	{
-	//		var puntPiece = tr.GameObject.Components.Get<PuntPiece>();
-
-	//		if( puntPiece.teamSide == teamSide )//if the piece we're hovering is the same team as us
-	//		{
-	//			hoveredPiece = tr.GameObject.Components.Get<PuntPiece>();
-	//			hoveredPiece?.ToggleHover();
-
-	//			controllerState = ControllerState.Hovering;
-
-	//		}
-	//		else
-	//		{
-	//			controllerState = ControllerState.HoveringEnemy;//if it isn't
-
-	//		}
-
-	//	}
-	//	else if ( !tr.Hit && hoveredPiece != null )
-	//	{
-	//		// No piece hit and there's currently a hovered piece
-	//		hoveredPiece.ToggleHover();
-	//		hoveredPiece = null;
-
-	//	}else if ( !tr.Hit && selectedPiece == null )//no piece hit and we don't have a selected piece
-	//	{
-	//		controllerState = ControllerState.Idle;
-
-	//	}
-	//}
 	private void SelectionInputs()
 	{
 
-		if ( Input.Pressed( "attack1" ) & hoveredPiece != null )
-		{
-			if ( hoveredPiece.isOnCooldown != true )
-			{
-				hoveredPiece.ToggleHover();
-				selectedPiece = hoveredPiece;
-				hoveredPiece = null;
-				selectedPiece.ToggleSelection();
-				controllerState = ControllerState.Grabbing;
-				Mouse.CursorType = "grabbing";
-				selectedPiece.pieceState = PieceState.Grabbed;
+		//if ( Input.Pressed( "attack1" ) && controllerState == ControllerState.Hovering && hoveredPiece.pieceState==PieceState.Hovered)//if we press input, and the piece isn't frozen or anything
+		//{
+		//	hoveredPiece.ToggleHover();
+		//	selectedPiece = hoveredPiece;
+		//	hoveredPiece = null;
 
-			}
+		//	selectedPiece.pieceState = PieceState.Grabbed;
+		//	Mouse.CursorType = "grabbing";
 
-		}
+		//	controllerState = ControllerState.Grabbing;
+		//	//if ( hoveredPiece.isOnCooldown != true )
+		//	//{
+		//	//	hoveredPiece.ToggleHover();
+		//	//	selectedPiece = hoveredPiece;
+		//	//	hoveredPiece = null;
+		//	//	selectedPiece.ToggleSelection();
+		//	//	controllerState = ControllerState.Grabbing;
+		//	//	Mouse.CursorType = "grabbing";
+		//	//	selectedPiece.pieceState = PieceState.Grabbed;
 
-		if ( Input.Released( "attack1" ) & selectedPiece != null )
-		{
+		//	//}
+
+		//}
+
+		//if ( Input.Released( "attack1" ) & selectedPiece != null )
+		//{
 
 
-			selectedPiece.ToggleSelection();
-			FlickPiece(selectedPiece, flickVector);
-			selectedPiece = null;
-			controllerState = ControllerState.Idle;
-		}
+		//	selectedPiece.ToggleSelection();
+		//	FlickPiece(selectedPiece, flickVector);
+		//	controllerState = ControllerState.Idle;
+		//	Mouse.CursorType = "pointer";
+			
+		//}
 
 
 	}
@@ -399,37 +425,15 @@ public sealed class PuntPlayerController : Component
 	public void FlickPiece(PuntPiece piece, Vector3 flickVector)
 	{
 
-
-
-		
-		//scaledFlickVector = flickVector.Length / clampedFlickStrength;
-		//var finalflickVector = flickVector.Normal * flickCurve.Evaluate( scaledFlickVector ) * clampedFlickStrength;
-
-		//piece.rigidBody.PhysicsBody.Velocity = finalflickVector;
-
-
-
 		scaledFlickVector = flickVector.Length / clampedFlickStrength;
 
-		//Log.Info( scaledFlickVector );
-
-		//	if ( !Network.Owner.IsHost )
-		//{
-		//	piece.Network.TakeOwnership();
-
-		//}
-
-			piece.rigidBody.PhysicsBody.Velocity = flickVector;
-
-
-		
-
-
+		piece.rigidBody.PhysicsBody.Velocity = flickVector;
 
 		piece.StartCooldown();
+		piece.pieceState = PieceState.Cooldown;
+		selectedPiece = null;
 
 
-		//selectedPiece = null;
 	}
 
 
