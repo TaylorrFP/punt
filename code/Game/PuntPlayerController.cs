@@ -209,7 +209,8 @@ public sealed class PuntPlayerController : Component
 		}//we've done all the initial traces, we can check our inputs to see if we want to select, or deselect anything
 
 		if ( Input.Pressed( "attack1" ) )
-		{ 
+		{
+			
 
 			switch ( controllerState )
 			{
@@ -235,6 +236,7 @@ public sealed class PuntPlayerController : Component
 
 				case ControllerState.Disabled:
 					Sound.Play( "sounds/piecedud.sound" );
+					Log.Info( "here!" );
 					break;
 
 			}

@@ -273,8 +273,32 @@ public sealed class TestGameMode : Component
 		{
 			for ( int i = 0; i < currentRedSpawns.Count; i++ )//Reset positions/rotations/velocities
 			{
-				ResetPiece( RedPieceList[i], currentRedSpawns[i] );
-				ResetPiece( BluePieceList[i], currentBlueSpawns[i] );
+				//account for the strikers who need to be unfrozen on kickoff - clean this up later it's dumb
+				if ( kickoffSide == TeamSide.Red && i == 2 )
+
+				{
+
+					Log.Info( "don't freeze " + RedPieceList[i].GameObject.Name );
+				
+					ResetPiece( RedPieceList[i], currentRedSpawns[i], false );
+					ResetPiece( BluePieceList[i], currentBlueSpawns[i], true );
+
+				}
+				else if ( kickoffSide == TeamSide.Blue && i == 2 )
+				{
+					Log.Info( "don't freeze " + BluePieceList[i].GameObject.Name );
+					ResetPiece( RedPieceList[i], currentRedSpawns[i], true );
+					ResetPiece( BluePieceList[i], currentBlueSpawns[i],false );
+
+				}
+				else
+				{
+					ResetPiece( RedPieceList[i], currentRedSpawns[i], true );
+					ResetPiece( BluePieceList[i], currentBlueSpawns[i], true );
+
+				}
+
+
 
 
 			}
@@ -319,7 +343,8 @@ public sealed class TestGameMode : Component
 		
 	}
 
-	private void ResetPiece(PuntPiece piece, GameObject spawn )
+	[Broadcast]
+	private void ResetPiece(PuntPiece piece, GameObject spawn, bool isFrozen )
 	{
 		piece.Network.DisableInterpolation();
 		piece.WorldPosition = spawn.WorldPosition;
@@ -328,6 +353,15 @@ public sealed class TestGameMode : Component
 		piece.GetComponent<Rigidbody>().AngularVelocity = Vector3.Zero;
 		piece.puntPlayerModel.LocalRotation = Rotation.From( Angles.Zero );
 		piece.Network.EnableInterpolation();
+
+		if( isFrozen )
+		{
+			piece.pieceState = PieceState.Frozen;
+		}
+		else
+		{
+			piece.pieceState = PieceState.Ready;
+		}
 	}
 
 	[Broadcast]
