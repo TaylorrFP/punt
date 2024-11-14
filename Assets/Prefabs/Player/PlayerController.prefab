@@ -91,13 +91,11 @@
         "Flags": 0,
         "Name": "debugsphere",
         "Enabled": true,
-        "NetworkMode": 1,
         "OwnerTransfer": 0,
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
             "__guid": "71fedd42-8fdd-4283-b978-84475765897d",
-            "__enabled": false,
             "BodyGroups": 18446744073709551615,
             "CreateAttachments": false,
             "Model": "models/dev/sphere.vmdl",

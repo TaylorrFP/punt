@@ -79,6 +79,14 @@
             <div class="countdown-number">@GetCountdownTimeString()</div>
         </div>
     }
+
+    <!-- Results Panel -->
+    @if (TestGameMode.Instance.State == GameState.Results)
+    {
+        <div class="results-panel">
+            <div class="results-text">@GetWinnerText()</div>
+        </div>
+    }
 </root>
 
 @code
@@ -86,6 +94,13 @@
     [Property] public bool refreshUI { get; set; }
     string GetRoundTimerString()
     {
+
+        if (TestGameMode.Instance.State == GameState.Overtime)
+        {
+            return "OVERTIME";
+
+        }
+
         var time = MathX.Clamp(TestGameMode.Instance.RoundTimeLeft, 0f, 1000f);
         var minutes = (int)time / 60;
         var seconds = (int)time % 60;
@@ -94,9 +109,29 @@
 
     string GetCountdownTimeString()
     {
+
+
         var time = 4f-TestGameMode.Instance.TimeSinceCountdown;
         var seconds = (int)time % 60;
         return $"{seconds:0}";
+    }
+
+
+    string GetWinnerText()
+    {
+        // Determine winner based on score
+        if (TestGameMode.Instance.BlueScore > TestGameMode.Instance.RedScore)
+        {
+            return "Blue Wins!";
+        }
+        else if (TestGameMode.Instance.RedScore > TestGameMode.Instance.BlueScore)
+        {
+            return "Red Wins!";
+        }
+        else
+        {
+            return "It's a Draw!";
+        }
     }
 
     protected override int BuildHash()

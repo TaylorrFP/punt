@@ -51,6 +51,11 @@
 
     string GetTimeString()
     {
+
+        if (TestGameMode.Instance.State == GameState.Overtime)
+        {
+            return "OVERTIME";
+        }
         var time = gameMode.roundTimeLeft;
         var minutes = (int)time / 60;
         var seconds = (int)time % 60;

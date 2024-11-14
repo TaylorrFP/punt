@@ -44,16 +44,34 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 	public void OnCollisionStart( Collision collision )
 	{
 
-		if(collision.Other.GameObject.Tags.Has("piece") && TestGameMode.Instance.State == GameState.KickingOff )
+		if(collision.Other.GameObject.Tags.Has("piece") )
 		{
-			if ( !IsProxy )
+
+			if( TestGameMode.Instance.State == GameState.KickingOff )
 			{
-				TestGameMode.Instance.StartGame();
-				Log.Info( "ball restarting game" );
+				if ( !IsProxy )
+				{
+					TestGameMode.Instance.StartGame();
+					Log.Info( "ball restarting game" );
+
+
+				}
 
 
 			}
 
+			if ( TestGameMode.Instance.State == GameState.Overtime )
+			{
+				if ( !IsProxy )
+				{
+					TestGameMode.Instance.StartOvertimeGame();
+					Log.Info( "ball restarting game for overtime" );
+
+
+				}
+
+
+			}
 
 		}
 

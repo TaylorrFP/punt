@@ -139,6 +139,9 @@ public sealed class TestGameMode : Component
 		{
 			//if it's a draw
 			State = GameState.Overtime;
+			Sound.Play( "sounds/overtimesting.sound" );
+			ResetTeamPieces( kickingOffSide );
+			ResetBall();
 		}
 		else
 		{
@@ -187,6 +190,28 @@ public sealed class TestGameMode : Component
 		for ( int i = 0; i < BluePieceList.Count; i++ )
 		{
 			if( BluePieceList[i].pieceState == PieceState.Frozen )
+			{
+				BluePieceList[i].pieceState = PieceState.Ready;
+
+			}
+
+			if ( RedPieceList[i].pieceState == PieceState.Frozen )
+			{
+				RedPieceList[i].pieceState = PieceState.Ready;
+
+			}
+
+		}
+
+	}
+
+
+	public void StartOvertimeGame()
+	{
+
+		for ( int i = 0; i < BluePieceList.Count; i++ )
+		{
+			if ( BluePieceList[i].pieceState == PieceState.Frozen )
 			{
 				BluePieceList[i].pieceState = PieceState.Ready;
 
