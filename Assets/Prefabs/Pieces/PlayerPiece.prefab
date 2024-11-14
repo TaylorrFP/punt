@@ -210,7 +210,7 @@
                 ],
                 "squashDuration": 0.5,
                 "squashTimeSince": {
-                  "Relative": 90626280
+                  "Relative": 90627960
                 }
               }
             ],
@@ -375,7 +375,7 @@
               ],
               "Constants": "0,100,0,0"
             },
-            "PreWarm": 0,
+            "PreWarm": 1,
             "PushStrength": {},
             "Roll": {
               "Type": "Range",
@@ -495,15 +495,14 @@
           {
             "__type": "Sandbox.ParticleBoxEmitter",
             "__guid": "fc8366aa-858c-4572-8a1c-700b80bdf4ca",
-            "__enabled": false,
             "Burst": 0,
             "Delay": 0,
             "DestroyOnEnd": false,
             "Duration": 10,
             "Loop": false,
             "OnEdge": false,
-            "Rate": 14,
-            "RateOverDistance": 0,
+            "Rate": 0,
+            "RateOverDistance": 2.5,
             "Size": "30,30,30"
           }
         ]
