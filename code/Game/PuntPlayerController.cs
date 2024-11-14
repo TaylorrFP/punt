@@ -46,6 +46,8 @@ public sealed class PuntPlayerController : Component
 
 	[Property, Sync] public float arrowUIScale { get; set; }
 
+	[Property] public SpriteRenderer cursorRenderer { get; set; }
+
 
 
 
@@ -57,7 +59,10 @@ public sealed class PuntPlayerController : Component
 		{
 			TestGameMode.Instance.mySide = teamSide;
 		}
-	
+
+
+		
+
 
 	}
 
@@ -72,16 +77,13 @@ public sealed class PuntPlayerController : Component
 	}
 	protected override void OnUpdate()
 	{
-		if ( !IsProxy )
+		if ( !IsProxy )// if you own this controller
 		{
 
 			ReadyInputs(); //lobby stuff - do this better
-
 			PitchTrace();
 			PieceTrace();
 			CalculateFlick();
-
-			
 			RotatePiece();
 
 
@@ -91,6 +93,19 @@ public sealed class PuntPlayerController : Component
 		CalculateArrow();
 
 
+
+
+
+		
+
+		if ( !IsProxy || (IsProxy && TestGameMode.Instance.mySide != teamSide) )
+		{
+			cursorRenderer.Enabled = false;
+		}
+		else
+		{
+			cursorRenderer.Enabled = true;
+		}
 
 
 
@@ -114,52 +129,45 @@ public sealed class PuntPlayerController : Component
 	{
 
 
-
-
-		if ( selectedPiece != null ) //if this controller does have a selected piece
+		if ( arrow!=null)
 		{
-			if( IsProxy && TestGameMode.Instance.mySide != teamSide )
+			if ( selectedPiece != null ) //if this controller does have a selected piece
 			{
+				if ( IsProxy && TestGameMode.Instance.mySide != teamSide )
+				{
 
-				Log.Info( "DO NOT SHOW ARROW" );
-				arrow.GameObject.Enabled = false;
+					Log.Info( "DO NOT SHOW ARROW" );
+					arrow.GameObject.Enabled = false;
+
+				}
+				else
+				{
+					Log.Info( "SHOW ARROW" );
+
+					arrow.GameObject.Enabled = true;
+
+					arrow.WorldPosition = selectedPiece.WorldPosition + Vector3.Up * 20f;
+
+					arrow.WorldRotation = Rotation.LookAt( Vector3.Up, flickVector ) * Rotation.FromAxis( Vector3.Forward, 90 );
+
+					arrowUIScale = (flickVector.Length / clampedFlickStrength) * 8000f;
+
+					arrow.WorldPosition += flickVector.Normal * arrow.PanelSize.x * 0.025f;
+
+
+
+				}
+
 
 			}
 			else
 			{
-				Log.Info( "SHOW ARROW" );
-
-				arrow.GameObject.Enabled = true;
-
-				arrow.WorldPosition = selectedPiece.WorldPosition + Vector3.Up * 20f;
-
-				arrow.WorldRotation = Rotation.LookAt( Vector3.Up, flickVector ) * Rotation.FromAxis( Vector3.Forward, 90 );
-
-				arrowUIScale = (flickVector.Length / clampedFlickStrength) * 8000f;
-
-				arrow.WorldPosition += flickVector.Normal * arrow.PanelSize.x * 0.025f;
-
-
+				arrow.GameObject.Enabled = false;
 
 			}
 
 
 		}
-		else
-		{
-			arrow.GameObject.Enabled = false;
-
-		}
-
-
-
-
-
-
-		//if it's a proxy (so someone else's controller)
-		//now we need to find wh
-
-
 
 	}
 
