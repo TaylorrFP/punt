@@ -27,6 +27,8 @@ public sealed class TestGameMode : Component
 
 	[Group( "Game State" )][Property, HostSync] public TimeUntil ResetTimer { get; set; }
 
+	[Group( "Game State" )][Property, HostSync] public TeamSide kickingOffSide { get; set; }
+
 
 	//GameSettings
 
@@ -71,7 +73,7 @@ public sealed class TestGameMode : Component
 		{
 
 			State = GameState.KickingOff;
-			StartGame(TeamSide.Blue);
+			StartGame(kickingOffSide);
 		}
 	}
 	protected override void OnUpdate()
@@ -82,13 +84,13 @@ public sealed class TestGameMode : Component
 		if ( State == GameState.Countdown & TimeSinceCountdown >3.0f)
 		{
 			State = GameState.Playing;
-			StartGame( TeamSide.Blue );
+			StartGame( kickingOffSide );
 		}
 
 		if( State == GameState.Resetting & ResetTimer < 0f)
 		{
 			ResetBall();
-			ResetTeamPieces(TeamSide.Blue); //not handling team who scored for now
+			ResetTeamPieces(kickingOffSide); //not handling team who scored for now
 			State = GameState.Playing;
 
 		}
@@ -174,7 +176,7 @@ public sealed class TestGameMode : Component
 	}
 
 	[Broadcast]
-	public void GoalScored(TeamSide goalTeam )
+	public void GoalScored(TeamSide goalTeam )// goal scored in this team's goal
 	{
 		Sound.Play( "sounds/ball/whistle.sound" );
 		if ( IsProxy )
@@ -192,10 +194,12 @@ public sealed class TestGameMode : Component
 		{
 			case TeamSide.Blue:
 				RedScore++;
+				kickingOffSide = TeamSide.Blue;
 				break;
 
 			case TeamSide.Red:
 				BlueScore++;
+				kickingOffSide = TeamSide.Red;
 				break;
 
 		}
@@ -204,6 +208,7 @@ public sealed class TestGameMode : Component
 		{
 			case GameState.Playing:
 				{
+					
 					State = GameState.Resetting;
 					ResetTimer = ResetTimerLength;
 					return;
