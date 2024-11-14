@@ -28,6 +28,10 @@
         "arrowUIScale": 0,
         "clampedFlickStrength": 1000,
         "controllerState": "Idle",
+        "debugsphere": {
+          "_type": "gameobject",
+          "go": "3d05b4c1-0d7f-4d90-91d3-9c415c03bf7f"
+        },
         "flickCurve": [
           {
             "x": 0.5,
@@ -79,6 +83,54 @@
               "go": "76446c15-d055-4557-8f52-0cc3deee8997",
               "component_type": "PuntPlayerController"
             }
+          }
+        ]
+      },
+      {
+        "__guid": "3d05b4c1-0d7f-4d90-91d3-9c415c03bf7f",
+        "Flags": 0,
+        "Name": "debugsphere",
+        "Enabled": true,
+        "NetworkMode": 1,
+        "OwnerTransfer": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "71fedd42-8fdd-4283-b978-84475765897d",
+            "__enabled": false,
+            "BodyGroups": 18446744073709551615,
+            "CreateAttachments": false,
+            "Model": "models/dev/sphere.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          },
+          {
+            "__type": "Sandbox.SpriteRenderer",
+            "__guid": "74553e1a-41fb-4dbd-9f7b-27845a91e23d",
+            "Additive": false,
+            "CastShadows": false,
+            "Color": "1,1,1,1",
+            "DepthFeather": 0,
+            "FlipHorizontal": false,
+            "FlipVertical": false,
+            "FogStrength": 1,
+            "Lighting": false,
+            "Opaque": false,
+            "Pivot": "0.5,0.5",
+            "RenderOptions": {
+              "GameLayer": false,
+              "OverlayLayer": true,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "Size": "64,64",
+            "Texture": "ui/cursors/dot_small.vtex"
           }
         ]
       }

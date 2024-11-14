@@ -43,6 +43,8 @@ public sealed class PuntPlayerController : Component
 
 	[Property] public float arrowUIScale { get; set; }
 
+	[Property] public GameObject debugsphere { get; set; }
+
 
 	protected override void OnStart()
 	{
@@ -108,12 +110,34 @@ public sealed class PuntPlayerController : Component
 	}
 	private void PitchTrace()
 	{
-		//Trace and find the position of the hit on the pitch collider
-		var mousePosition = Mouse.Position;
-		var camera = Scene.Camera;
-		var ray = camera.ScreenPixelToRay( mousePosition );
-		var tr = Scene.Trace.Ray( ray, 10000f ).WithAllTags( "pitch" ).Run();
-		SceneCursorPosition = new Vector3( tr.HitPosition.x, tr.HitPosition.y, 0f );
+
+		if ( !IsProxy )
+		{
+
+			//Trace and find the position of the hit on the pitch collider
+			var mousePosition = Mouse.Position;
+			var camera = Scene.Camera;
+			var ray = camera.ScreenPixelToRay( mousePosition );
+			var tr = Scene.Trace.Ray( ray, 10000f ).WithAllTags( "pitch" ).Run();
+			SceneCursorPosition = new Vector3( tr.HitPosition.x, tr.HitPosition.y, 0f );
+
+
+			if ( debugsphere == null )
+			{
+				Log.Info( "Debug sphere is null" );
+
+			}
+			else
+			{
+
+				debugsphere.WorldPosition = SceneCursorPosition;
+			}
+
+		}
+
+
+
+
 	}
 	private void PieceTrace()
 	{
