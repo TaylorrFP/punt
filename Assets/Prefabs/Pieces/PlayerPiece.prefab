@@ -148,6 +148,8 @@
         "Flags": 0,
         "Name": "Model",
         "Enabled": true,
+        "NetworkMode": 1,
+        "OwnerTransfer": 0,
         "Children": [
           {
             "__guid": "d72fd439-05ac-4afa-b5a0-e93154264c83",
@@ -202,7 +204,7 @@
                 ],
                 "squashDuration": 0.5,
                 "squashTimeSince": {
-                  "Relative": 90544050
+                  "Relative": 90580216
                 }
               }
             ],

@@ -59,7 +59,7 @@ public sealed class TestGameMode : Component
 
 	[HostSync] public TimeSince TimeSinceCountdown { get; set; }
 
-	
+
 
 
 	protected override void OnAwake()

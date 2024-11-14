@@ -32,6 +32,7 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 
 	protected override async Task OnLoad()
 	{
+		
 		if ( Scene.IsEditor )
 			return;
 
@@ -40,6 +41,7 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 			LoadingScreen.Title = "Creating Lobby";
 			await Task.DelayRealtimeSeconds( 0.1f );
 			Networking.CreateLobby();
+
 
 			Log.Info( "NetworkingManager: Creating Lobby" );
 		}
@@ -52,6 +54,8 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 	/// A client is fully connected to the server. This is called on the host.
 	/// </summary>
 	/// 
+
+
 	public void OnActive( Connection channel )
 	{
 		if ( TestGameMode.Instance.DebugServer )

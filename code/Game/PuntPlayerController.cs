@@ -220,6 +220,8 @@ public sealed class PuntPlayerController : Component
 					selectedPiece.ToggleSelection();
 					hoveredPiece = null;
 
+					selectedPiece.playerModelHolder.Network.TakeOwnership();//so the rotate is networked
+
 					selectedPiece.pieceState = PieceState.Grabbed;
 
 					Mouse.CursorType = "grabbing";
@@ -251,9 +253,14 @@ public sealed class PuntPlayerController : Component
 			{
 
 				case ControllerState.Grabbing:
+
+
+					selectedPiece.playerModelHolder.Network.DropOwnership();//drop ownership of the model rotation
 					selectedPiece.ToggleSelection();
 					FlickPiece( selectedPiece, flickVector );
 					controllerState = ControllerState.Idle;
+
+
 					Mouse.CursorType = "pointer";
 					break;
 			}

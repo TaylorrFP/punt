@@ -184,26 +184,26 @@ public sealed class PuntPiece : Component
 		}
 	}
 
+	[Broadcast]
 	public void ToggleSelection()
 	{
 		isSelected = !isSelected;
 
 		if ( isSelected )
 		{
-			//outline.Enabled = true;
-			//outline.Color = new Color( 0, 1, 0, 1 );
+			
 			playerSquashStretch.StartSquash( 0.4f );
 			Sound.Play( "sounds/pieceselect.sound" );
 
 			shakeEffect.Strength = 1f;
-			//Scene.TimeScale = 0.1f;
+
 
 		}
 		else
 		{
-			//outline.Enabled = false;
+
 			shakeEffect.Strength = 0f;
-			//Scene.TimeScale = 1f;
+
 		}
 	}
 
