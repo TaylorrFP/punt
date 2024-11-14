@@ -148,7 +148,6 @@
         "Flags": 0,
         "Name": "Model",
         "Enabled": true,
-        "NetworkMode": 1,
         "OwnerTransfer": 0,
         "Children": [
           {
@@ -204,7 +203,7 @@
                 ],
                 "squashDuration": 0.5,
                 "squashTimeSince": {
-                  "Relative": 90580216
+                  "Relative": 90594170
                 }
               }
             ],

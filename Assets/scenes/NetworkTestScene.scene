@@ -215,12 +215,12 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -2171.4731,
-            "Passed": 2171.4731,
+            "Relative": -7926.0137,
+            "Passed": 7926.0137,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
-          "RoundLength": 10,
+          "RoundLength": 300,
           "RoundTimeLeft": 0,
           "State": "Waiting",
           "timescaleMult": 1

@@ -28,10 +28,6 @@
         "arrowUIScale": 0,
         "clampedFlickStrength": 1000,
         "controllerState": "Idle",
-        "debugsphere": {
-          "_type": "gameobject",
-          "go": "3d05b4c1-0d7f-4d90-91d3-9c415c03bf7f"
-        },
         "flickCurve": [
           {
             "x": 0.5,
@@ -93,21 +89,6 @@
         "Enabled": true,
         "OwnerTransfer": 0,
         "Components": [
-          {
-            "__type": "Sandbox.ModelRenderer",
-            "__guid": "71fedd42-8fdd-4283-b978-84475765897d",
-            "BodyGroups": 18446744073709551615,
-            "CreateAttachments": false,
-            "Model": "models/dev/sphere.vmdl",
-            "RenderOptions": {
-              "GameLayer": true,
-              "OverlayLayer": false,
-              "BloomLayer": false,
-              "AfterUILayer": false
-            },
-            "RenderType": "On",
-            "Tint": "1,1,1,1"
-          },
           {
             "__type": "Sandbox.SpriteRenderer",
             "__guid": "74553e1a-41fb-4dbd-9f7b-27845a91e23d",
