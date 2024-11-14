@@ -28,10 +28,17 @@
           "_type": "gameobject",
           "go": "36079f2e-9620-450a-aaa5-36a7930a9997"
         },
+        "emitter": {
+          "_type": "component",
+          "component_id": "fc8366aa-858c-4572-8a1c-700b80bdf4ca",
+          "go": "5ef49142-c450-4f1c-9f78-0e3e7635b1c4",
+          "component_type": "ParticleBoxEmitter"
+        },
+        "emitterRate": 14,
         "frozenOutline": {
-          "Color": "0.0902,0.0902,0.0902,1",
+          "Color": "0.30196,0.30196,0.30196,1",
           "ObscuredColor": "0,0,0,0.4",
-          "InsideColor": "0.18824,0.18824,0.18824,0.54902",
+          "InsideColor": "0.46667,0.46667,0.46667,0.3098",
           "Width": 0.2
         },
         "grabbedOutline": {
@@ -203,7 +210,7 @@
                 ],
                 "squashDuration": 0.5,
                 "squashTimeSince": {
-                  "Relative": 90594170
+                  "Relative": 90626280
                 }
               }
             ],
@@ -277,6 +284,227 @@
                 ]
               }
             ]
+          }
+        ]
+      },
+      {
+        "__guid": "5ef49142-c450-4f1c-9f78-0e3e7635b1c4",
+        "Flags": 0,
+        "Name": "PuffVFX",
+        "Position": "0,0,23.7682",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ParticleEffect",
+            "__guid": "6802cad6-251f-4ba3-bec0-94682010c273",
+            "__version": 1,
+            "Alpha": {
+              "Constants": "1,0,0,0"
+            },
+            "ApplyAlpha": false,
+            "ApplyColor": false,
+            "ApplyRotation": true,
+            "ApplyShape": true,
+            "Bounce": {
+              "Constants": "1,0,0,0"
+            },
+            "Brightness": {
+              "Constants": "1,0,0,0"
+            },
+            "Bumpiness": {},
+            "Collision": false,
+            "CollisionRadius": 1,
+            "Damping": {},
+            "DieOnCollisionChance": {},
+            "Force": true,
+            "ForceDirection": "0,0,100",
+            "ForceScale": {
+              "Constants": "1,0,0,0"
+            },
+            "Friction": {
+              "Constants": "1,0,0,0"
+            },
+            "Gradient": {
+              "GradientA": {
+                "color": [
+                  {
+                    "t": 0.5,
+                    "c": "1,1,1,1"
+                  }
+                ],
+                "alpha": []
+              },
+              "GradientB": {
+                "color": [
+                  {
+                    "t": 0.5,
+                    "c": "1,1,1,1"
+                  }
+                ],
+                "alpha": []
+              },
+              "ConstantA": "1,1,1,1",
+              "ConstantB": "1,1,1,1"
+            },
+            "Lifetime": {
+              "Constants": "0.5,0,0,0"
+            },
+            "MaxParticles": 100,
+            "OnParticleCreated": null,
+            "OrbitalForce": {},
+            "OrbitalPull": {},
+            "PerParticleTimeScale": {
+              "Constants": "1,0,0,0"
+            },
+            "Pitch": {
+              "Type": "Range",
+              "CurveA": [
+                {
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 1
+                }
+              ],
+              "CurveB": [
+                {},
+                {
+                  "x": 1
+                }
+              ],
+              "Constants": "0,100,0,0"
+            },
+            "PreWarm": 0,
+            "PushStrength": {},
+            "Roll": {
+              "Type": "Range",
+              "CurveA": [
+                {},
+                {
+                  "x": 1
+                }
+              ],
+              "CurveB": [
+                {
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 1
+                }
+              ],
+              "Constants": "0,100,0,0"
+            },
+            "Scale": {
+              "Type": "CurveRange",
+              "CurveA": [
+                {
+                  "y": 0.7916667
+                },
+                {
+                  "x": 1,
+                  "in": 0.5490195,
+                  "out": -0.5490195
+                },
+                {
+                  "x": 1
+                }
+              ],
+              "CurveB": [
+                {
+                  "y": 0.6401515
+                },
+                {
+                  "x": 1,
+                  "in": 0.6865673,
+                  "out": -0.6865673
+                }
+              ],
+              "Constants": "0.4,0,0,0"
+            },
+            "SequenceId": {},
+            "SequenceSpeed": {
+              "Constants": "1,0,0,0"
+            },
+            "SequenceTime": {
+              "Constants": "1,0,0,0"
+            },
+            "SheetSequence": false,
+            "Space": "World",
+            "StartDelay": {},
+            "StartVelocity": {
+              "Constants": "1,0,0,0"
+            },
+            "Stretch": {},
+            "TimeScale": 1,
+            "Tint": "1,1,1,1",
+            "Yaw": {
+              "Type": "Range",
+              "CurveA": [
+                {},
+                {
+                  "x": 0.84856397
+                }
+              ],
+              "CurveB": [
+                {
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 1
+                }
+              ],
+              "Constants": "0,100,0,0"
+            }
+          },
+          {
+            "__type": "Sandbox.ParticleModelRenderer",
+            "__guid": "537fbd28-957c-4ae6-97b5-109b2ab37b3c",
+            "__version": 1,
+            "CastShadows": true,
+            "Choices": [
+              {
+                "Model": "prefabs/pieces/particles/puffparticle_01.vmdl",
+                "BodyGroups": 18446744073709551615
+              },
+              {
+                "Model": "prefabs/pieces/particles/puffparticle_02.vmdl",
+                "BodyGroups": 18446744073709551615
+              },
+              {
+                "Model": "prefabs/pieces/particles/puffparticle_03.vmdl",
+                "BodyGroups": 18446744073709551615
+              },
+              {
+                "Model": "prefabs/pieces/particles/puffparticle_04.vmdl",
+                "BodyGroups": 18446744073709551615
+              }
+            ],
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "Scale": {
+              "Constants": "1,0,0,0"
+            }
+          },
+          {
+            "__type": "Sandbox.ParticleBoxEmitter",
+            "__guid": "fc8366aa-858c-4572-8a1c-700b80bdf4ca",
+            "__enabled": false,
+            "Burst": 0,
+            "Delay": 0,
+            "DestroyOnEnd": false,
+            "Duration": 10,
+            "Loop": false,
+            "OnEdge": false,
+            "Rate": 14,
+            "RateOverDistance": 0,
+            "Size": "30,30,30"
           }
         ]
       }

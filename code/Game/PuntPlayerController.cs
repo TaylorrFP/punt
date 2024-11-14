@@ -360,46 +360,7 @@ public sealed class PuntPlayerController : Component
 
 
 	}
-	private void SelectionInputs()
-	{
 
-		//if ( Input.Pressed( "attack1" ) && controllerState == ControllerState.Hovering && hoveredPiece.pieceState==PieceState.Hovered)//if we press input, and the piece isn't frozen or anything
-		//{
-		//	hoveredPiece.ToggleHover();
-		//	selectedPiece = hoveredPiece;
-		//	hoveredPiece = null;
-
-		//	selectedPiece.pieceState = PieceState.Grabbed;
-		//	Mouse.CursorType = "grabbing";
-
-		//	controllerState = ControllerState.Grabbing;
-		//	//if ( hoveredPiece.isOnCooldown != true )
-		//	//{
-		//	//	hoveredPiece.ToggleHover();
-		//	//	selectedPiece = hoveredPiece;
-		//	//	hoveredPiece = null;
-		//	//	selectedPiece.ToggleSelection();
-		//	//	controllerState = ControllerState.Grabbing;
-		//	//	Mouse.CursorType = "grabbing";
-		//	//	selectedPiece.pieceState = PieceState.Grabbed;
-
-		//	//}
-
-		//}
-
-		//if ( Input.Released( "attack1" ) & selectedPiece != null )
-		//{
-
-
-		//	selectedPiece.ToggleSelection();
-		//	FlickPiece(selectedPiece, flickVector);
-		//	controllerState = ControllerState.Idle;
-		//	Mouse.CursorType = "pointer";
-			
-		//}
-
-
-	}
 	
 	public void CalculateFlick()
 	{
@@ -408,7 +369,6 @@ public sealed class PuntPlayerController : Component
 			var screenFudge = 1995f/ Screen.Width; //use the screen width for now, so it feels roughly the same on different resolutions
 
 			targetmouseOffset += Mouse.Delta*1f*screenFudge;
-			//mouseOffset = Vector3.Lerp( mouseOffset, targetmouseOffset, Time.Delta * 170f ); //don't bother lerping for now, just do it for the UI?
 			mouseOffset = targetmouseOffset;
 
 
@@ -419,12 +379,6 @@ public sealed class PuntPlayerController : Component
 
 
 			flickVector = flickVector.ClampLength( clampedFlickStrength );
-
-
-			//if ( (flickVector.Length > clampedFlickStrength) )//clamp it
-			//{
-			//	flickVector = flickVector.Normal * clampedFlickStrength;
-			//}
 
 
 		
@@ -496,6 +450,7 @@ public sealed class PuntPlayerController : Component
 	public void FlickPiece(PuntPiece piece, Vector3 flickVector)
 	{
 
+		piece.PieceFlicked();
 		scaledFlickVector = flickVector.Length / clampedFlickStrength;
 
 		piece.rigidBody.PhysicsBody.Velocity = flickVector;

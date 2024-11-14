@@ -2,6 +2,7 @@ using Sandbox;
 using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 public struct OutlinePreset
 {
@@ -47,6 +48,9 @@ public sealed class PuntPiece : Component
 	[Property] public int pieceID { get; set; }
 
 	[Property] public ShakeEffect shakeEffect { get; set; }
+
+	[Property] public ParticleBoxEmitter emitter { get; set; }
+	[Property] public float emitterRate { get; set; }
 
 
 
@@ -116,6 +120,22 @@ public sealed class PuntPiece : Component
 		outline.Enabled = false;
 	}
 
+
+	[Broadcast]
+	public void PieceFlicked()
+	{
+
+		// Start the ToggleEmitter task without awaiting it
+		_ = ToggleEmitter();
+	}
+	private async Task ToggleEmitter()
+	{
+		emitter.Enabled = true;
+
+		await Task.Delay( 1000 ); // Delay for 1 second (1000 ms)
+
+		emitter.Enabled = false;
+	}
 
 	[Broadcast]
 	private void HandleFrozenState()

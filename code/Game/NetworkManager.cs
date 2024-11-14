@@ -69,8 +69,8 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 
 			var playerArrow = ArrowPrefab.Clone();
 			playerArrow.Name = $"Arrow - {channel.DisplayName}";
-			player.NetworkSpawn( channel );
-			controller.arrow = ArrowPrefab.GetComponent<WorldPanel>();
+			playerArrow.NetworkSpawn( channel );
+			controller.InitArrow( playerArrow );
 
 			Log.Info( "arrow spawned" );
 
