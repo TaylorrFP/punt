@@ -169,16 +169,20 @@ public sealed class TestGameMode : Component
 		musicSoundPoint.Repeat = true;
 		ResetTeamPieces( kickoffSide );
 		ResetBall();
+		RoundTimeLeft = RoundLength;
 
-		
 
-		
+
 	}
 	[Broadcast]
 	public void StartGame()
 	{
-		State = GameState.Playing;
-		RoundTimeLeft = RoundLength;
+		if ( !IsProxy )//fixes the bug where it starts playing by itself, I guess the client was broadcasting it a second later and then the server was setting it?
+		{
+			State = GameState.Playing;
+
+		}
+		
 
 		for ( int i = 0; i < BluePieceList.Count; i++ )
 		{
@@ -301,7 +305,7 @@ public sealed class TestGameMode : Component
 
 				{
 
-					Log.Info( "don't freeze " + RedPieceList[i].GameObject.Name );
+				
 				
 					ResetPiece( RedPieceList[i], currentRedSpawns[i], false );
 					ResetPiece( BluePieceList[i], currentBlueSpawns[i], true );
@@ -309,7 +313,7 @@ public sealed class TestGameMode : Component
 				}
 				else if ( kickoffSide == TeamSide.Blue && i == 2 )
 				{
-					Log.Info( "don't freeze " + BluePieceList[i].GameObject.Name );
+					
 					ResetPiece( RedPieceList[i], currentRedSpawns[i], true );
 					ResetPiece( BluePieceList[i], currentBlueSpawns[i],false );
 

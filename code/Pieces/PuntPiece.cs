@@ -256,8 +256,6 @@ public sealed class PuntPiece : Component
 			isOnCooldown = false;
 			playerStatus.Enabled = false;
 
-			Log.Info( "cooldown finished!" );//this basically fires every frame
-
 			pieceState = PieceState.Ready;
 
 		}

@@ -46,7 +46,14 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 		if(collision.Other.GameObject.Tags.Has("piece") && TestGameMode.Instance.State == GameState.KickingOff )
 		{
-			TestGameMode.Instance.StartGame();
+			if ( !IsProxy )
+			{
+				TestGameMode.Instance.StartGame();
+				Log.Info( "ball restarting game" );
+
+
+			}
+
 
 		}
 
