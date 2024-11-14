@@ -73,7 +73,7 @@ public sealed class TestGameMode : Component
 		{
 
 			State = GameState.KickingOff;
-			StartGame(kickingOffSide);
+			SetupGame(kickingOffSide);
 		}
 	}
 	protected override void OnUpdate()
@@ -83,15 +83,15 @@ public sealed class TestGameMode : Component
 		//if we're doing a countdown and the timer is over 3 then start playing.
 		if ( State == GameState.Countdown & TimeSinceCountdown >3.0f)
 		{
-			State = GameState.Playing;
-			StartGame( kickingOffSide );
+			State = GameState.KickingOff;
+			SetupGame( kickingOffSide );
 		}
 
 		if( State == GameState.Resetting & ResetTimer < 0f)
 		{
 			ResetBall();
 			ResetTeamPieces(kickingOffSide); //not handling team who scored for now
-			State = GameState.Playing;
+			State = GameState.KickingOff;
 
 		}
 
@@ -161,7 +161,7 @@ public sealed class TestGameMode : Component
 
 	}
 
-	private void StartGame( TeamSide kickoffSide )
+	private void SetupGame( TeamSide kickoffSide )
 	{
 
 		
@@ -170,9 +170,32 @@ public sealed class TestGameMode : Component
 		ResetTeamPieces( kickoffSide );
 		ResetBall();
 
-		RoundTimeLeft = RoundLength;
+		
 
 		
+	}
+	[Broadcast]
+	public void StartGame()
+	{
+		State = GameState.Playing;
+		RoundTimeLeft = RoundLength;
+
+		for ( int i = 0; i < BluePieceList.Count; i++ )
+		{
+			if( BluePieceList[i].pieceState == PieceState.Frozen )
+			{
+				BluePieceList[i].pieceState = PieceState.Ready;
+
+			}
+
+			if ( RedPieceList[i].pieceState == PieceState.Frozen )
+			{
+				RedPieceList[i].pieceState = PieceState.Ready;
+
+			}
+
+		}
+
 	}
 
 	[Broadcast]

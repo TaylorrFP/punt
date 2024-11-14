@@ -9,7 +9,6 @@
       {
         "__type": "PuntPlayerController",
         "__guid": "06fa746e-3f17-4b1f-b9f0-2cbfe65e8a4c",
-        "teamSide": "Red",
         "arrow": {
           "_type": "component",
           "component_id": "864797cd-16a7-4974-8075-96eebe455e46",
@@ -27,9 +26,8 @@
           }
         ],
         "arrowUIScale": 0,
-        "cameraHolderInitialPos": "0,0,0",
         "clampedFlickStrength": 1000,
-        "cursorState": "Pointer",
+        "controllerState": "Idle",
         "flickCurve": [
           {
             "x": 0.5,
@@ -43,7 +41,8 @@
         "scaledFlickVector": 0,
         "SceneCursorPosition": "0,0,0",
         "targetArrowPos": "0,0,0",
-        "targetmouseOffset": "0,0"
+        "targetmouseOffset": "0,0",
+        "teamSide": "Red"
       }
     ],
     "Children": [

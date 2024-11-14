@@ -44,6 +44,12 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 	public void OnCollisionStart( Collision collision )
 	{
 
+		if(collision.Other.GameObject.Tags.Has("piece") && TestGameMode.Instance.State == GameState.KickingOff )
+		{
+			TestGameMode.Instance.StartGame();
+
+		}
+
 
 		//this is all really shit, replace it or get rid maybe - it is quite nice though
 
