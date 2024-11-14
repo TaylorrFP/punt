@@ -11,6 +11,8 @@ public sealed class TestGameMode : Component
 
 	//Player List
 
+	[Property] public TeamSide mySide { get; set; }
+
 	[Group( "Debug" )][Property, HostSync] public Boolean DebugServer { get; set; }
 	[Group( "Player List" )][Property, HostSync] public List<PuntPlayerController> PlayerList { get; set; } = new List<PuntPlayerController>();
 

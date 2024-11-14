@@ -1,4 +1,5 @@
 using Sandbox;
+using Sandbox.ModelEditor.Nodes;
 using System;
 using System.Diagnostics;
 using System.Numerics;
@@ -52,13 +53,11 @@ public sealed class PuntPlayerController : Component
 	{
 		base.OnStart();
 
-
-
-
-		//var player = PlayerPrefab.Clone();
-		//player.Name = $"Player - {channel.DisplayName}";
-		//player.NetworkSpawn( channel );
-		//PuntPlayerController controller = player.Components.Get<PuntPlayerController>();
+		if ( !IsProxy ) //if we control this - set tell the game mode our local side.
+		{
+			TestGameMode.Instance.mySide = teamSide;
+		}
+	
 
 	}
 
@@ -73,25 +72,23 @@ public sealed class PuntPlayerController : Component
 	}
 	protected override void OnUpdate()
 	{
-		if ( !IsProxy )//just do this shit locally
+		if ( !IsProxy )
 		{
 
 			ReadyInputs(); //lobby stuff - do this better
 
 			PitchTrace();
 			PieceTrace();
-
-			//SelectionInputs();
 			CalculateFlick();
 
-			CalculateArrow();
+			
 			RotatePiece();
-			//SetCursor();
+
 
 		}
 
 
-
+		CalculateArrow();
 
 
 
@@ -104,43 +101,35 @@ public sealed class PuntPlayerController : Component
 	[Broadcast]
 	public void InitArrow(GameObject arrowGO)
 	{
+
+		//As soon as we spawn in the arrow, initialise the values here
+		//they can't be set in the prefab for some reason
 		arrow = arrowGO.GetComponent<WorldPanel>();
-
 		var arrowComponent = arrowGO.GetComponent<AimArrow>();
-
 		arrowComponent.playerController = this;
 
 	}
 
 	private void CalculateArrow()
 	{
-		//var myTeamSide = TeamSide.None;
-
-		//for ( int i = 0; i < TestGameMode.Instance.PlayerList.Count; i++ )
-		//{
-		//	//go through all the player controllers
-
-		//	if ( TestGameMode.Instance.PlayerList[i].IsProxy != true )
-		//	{//if it's the one we own
-		//		myTeamSide = TestGameMode.Instance.PlayerList[i].teamSide;
-
-		//		Log.Info (myTeamSide.ToString ());
-		//	}
-
-
-		//}
 
 
 
-		//if( teamSide != myTeamSide )
-		//{
-		//	arrow.GameObject.Enabled = false;
 
-		//}
-		if ( selectedPiece != null )
+		if ( selectedPiece != null ) //if this controller does have a selected piece
 		{
-				arrow.GameObject.Enabled = true;
+			if( IsProxy && TestGameMode.Instance.mySide != teamSide )
+			{
 
+				Log.Info( "DO NOT SHOW ARROW" );
+				arrow.GameObject.Enabled = false;
+
+			}
+			else
+			{
+				Log.Info( "SHOW ARROW" );
+
+				arrow.GameObject.Enabled = true;
 
 				arrow.WorldPosition = selectedPiece.WorldPosition + Vector3.Up * 20f;
 
@@ -150,12 +139,16 @@ public sealed class PuntPlayerController : Component
 
 				arrow.WorldPosition += flickVector.Normal * arrow.PanelSize.x * 0.025f;
 
-			
 
-		} else
+
+			}
+
+
+		}
+		else
 		{
-
 			arrow.GameObject.Enabled = false;
+
 		}
 
 
@@ -163,8 +156,8 @@ public sealed class PuntPlayerController : Component
 
 
 
-			//if it's a proxy (so someone else's controller)
-			//now we need to find wh
+		//if it's a proxy (so someone else's controller)
+		//now we need to find wh
 
 
 
@@ -327,7 +320,6 @@ public sealed class PuntPlayerController : Component
 
 				case ControllerState.Disabled:
 					Sound.Play( "sounds/piecedud.sound" );
-					Log.Info( "here!" );
 					break;
 
 			}
