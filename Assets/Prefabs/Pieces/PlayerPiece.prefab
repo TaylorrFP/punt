@@ -12,6 +12,12 @@
         "__type": "PuntPiece",
         "__guid": "a4e5bbe3-f335-455a-a51e-01336be25b2b",
         "cooldownDuration": 2,
+        "playerCooldownRenderer": {
+          "_type": "component",
+          "component_id": "d1871549-e33b-4069-ad30-5e876dc2c85d",
+          "go": "36079f2e-9620-450a-aaa5-36a7930a9997",
+          "component_type": "ModelRenderer"
+        },
         "playerSquashStretch": {
           "_type": "component",
           "component_id": "d5cb658a-3a3d-4d88-9383-accfe05bb483",
@@ -21,12 +27,6 @@
         "playerStatus": {
           "_type": "gameobject",
           "go": "36079f2e-9620-450a-aaa5-36a7930a9997"
-        },
-        "playerStatusRenderer": {
-          "_type": "component",
-          "component_id": "d1871549-e33b-4069-ad30-5e876dc2c85d",
-          "go": "36079f2e-9620-450a-aaa5-36a7930a9997",
-          "component_type": "ModelRenderer"
         },
         "frozenOutline": {
           "Color": "0.0902,0.0902,0.0902,1",
@@ -121,7 +121,7 @@
       {
         "__guid": "36079f2e-9620-450a-aaa5-36a7930a9997",
         "Flags": 0,
-        "Name": "PlayerStatus",
+        "Name": "PlayerCooldown",
         "Scale": "1.5,1.5,1",
         "Enabled": true,
         "Components": [
@@ -202,7 +202,7 @@
                 ],
                 "squashDuration": 0.5,
                 "squashTimeSince": {
-                  "Relative": 90536936
+                  "Relative": 90544050
                 }
               }
             ],

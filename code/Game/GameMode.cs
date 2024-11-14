@@ -210,7 +210,7 @@ public sealed class GameMode : Component
 				var spawnedPiece = puntPiece.Clone( redSideDefend[i] );
 				spawnedPiece.NetworkSpawn();
 				redPieceList[i] = spawnedPiece.Components.Get<PuntPiece>();
-				redPieceList[i].Initialize( i, TeamSide.Red );
+				redPieceList[i].Initialize( i, TeamSide.Red, false );
 
 			}
 
@@ -230,7 +230,7 @@ public sealed class GameMode : Component
 				var spawnedPiece = puntPiece.Clone( blueSideDefend[i] );
 				spawnedPiece.NetworkSpawn();
 				bluePieceList[i] = spawnedPiece.Components.Get<PuntPiece>();
-				bluePieceList[i].Initialize( i + 5, TeamSide.Blue );
+				bluePieceList[i].Initialize( i + 5, TeamSide.Blue, false );
 			}
 
 			if ( isKickingOff )

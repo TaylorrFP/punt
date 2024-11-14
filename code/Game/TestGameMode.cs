@@ -48,7 +48,7 @@ public sealed class TestGameMode : Component
 	[Group( "Spawn Points" )][Property] public List<GameObject> BlueSpawnsKickoff { get; set; } = new List<GameObject>();
 
 
-	//Spawn Points
+	//Music
 	[Group( "Music" )][Property] public SoundPointComponent musicSoundPoint { get; set; }
 
 
@@ -71,7 +71,7 @@ public sealed class TestGameMode : Component
 		{
 
 			State = GameState.KickingOff;
-			StartGame(TeamSide.Red);
+			StartGame(TeamSide.Blue);
 		}
 	}
 	protected override void OnUpdate()
@@ -94,7 +94,6 @@ public sealed class TestGameMode : Component
 		}
 
 		CalculateTimescale();
-		//Log.Info( "Timescale: " + Scene.TimeScale );
 	}
 
 	private void CalculateTimescale()
@@ -172,12 +171,6 @@ public sealed class TestGameMode : Component
 		RoundTimeLeft = RoundLength;
 
 		
-
-		// Start the game timer
-
-		// Set the score to 0-0
-
-		// Additional setup if needed
 	}
 
 	[Broadcast]
@@ -292,9 +285,11 @@ public sealed class TestGameMode : Component
 				var spawnedPiece = PiecePrefab.Clone( currentRedSpawns[i].WorldPosition, currentRedSpawns[i].WorldRotation );
 				spawnedPiece.NetworkSpawn();
 				RedPieceList.Add( spawnedPiece.Components.Get<PuntPiece>() );
-				RedPieceList[i].Initialize( i, TeamSide.Red );
 
-				Log.Info( "Init red piece" );
+				if(i == 2 && kickoffSide == TeamSide.Red ) { RedPieceList[i].Initialize( i, TeamSide.Red, false ); } else
+				{
+					RedPieceList[i].Initialize( i, TeamSide.Red, true );
+				}
 
 			}
 
@@ -304,8 +299,12 @@ public sealed class TestGameMode : Component
 				var spawnedPiece = PiecePrefab.Clone( currentBlueSpawns[i].WorldPosition, currentBlueSpawns[i].WorldRotation );
 				spawnedPiece.NetworkSpawn();
 				BluePieceList.Add( spawnedPiece.Components.Get<PuntPiece>() );
-				BluePieceList[i].Initialize( i, TeamSide.Blue );
-				Log.Info( "Init blue piece" );
+
+				if ( i == 2 && kickoffSide == TeamSide.Blue ) { BluePieceList[i].Initialize( i, TeamSide.Blue, false ); }
+				else
+				{
+					BluePieceList[i].Initialize( i, TeamSide.Blue, true );
+				}
 
 			}
 

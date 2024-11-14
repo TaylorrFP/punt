@@ -7,7 +7,7 @@
     <div class="timescale-display">
 
         <p> Timescale: @Scene.TimeScale</p>
-        <p> @Scene.PhysicsWorld.SimulationMode</p>
+        <p> @TestGameMode.Instance.State</p>
 
 
     </div>
@@ -19,5 +19,5 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(Scene.TimeScale);
+    protected override int BuildHash() => System.HashCode.Combine(Scene.TimeScale, TestGameMode.Instance.State);
 }

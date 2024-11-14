@@ -22,7 +22,7 @@ public sealed class PuntPiece : Component
 	[Property] public OutlinePreset frozenOutline { get; set; }
 
 
-	[Property] public ModelRenderer playerStatusRenderer;
+	[Property] public ModelRenderer playerCooldownRenderer;
 
 	TimeSince cooldownTimeSince = 1f;
 
@@ -121,6 +121,7 @@ public sealed class PuntPiece : Component
 	private void HandleFrozenState()
 	{
 
+		
 
 		outline.Enabled = true;
 		outline.Color = frozenOutline.Color;
@@ -128,6 +129,7 @@ public sealed class PuntPiece : Component
 		outline.InsideColor = frozenOutline.InsideColor;
 		outline.InsideObscuredColor = frozenOutline.InsideObscuredColor;
 		outline.Width = frozenOutline.Width;
+
 
 	}
 
@@ -206,7 +208,7 @@ public sealed class PuntPiece : Component
 	}
 
 	[Broadcast]
-	public void Initialize(int ID,TeamSide Side )//initialise in an RPC, client sets their stuff locally
+	public void Initialize(int ID,TeamSide Side, bool isFrozen)//initialise in an RPC, client sets their stuff locally
 	{
 		pieceID = ID;
 		teamSide = Side;
@@ -221,16 +223,17 @@ public sealed class PuntPiece : Component
 		}
 
 
-		playerStatusRenderer.SceneObject.Attributes.Set( "Progress", 0f );
+		playerCooldownRenderer.SceneObject.Attributes.Set( "Progress", 0f );
 		cooldownTimeSince = cooldownDuration;
 
-		//pieceState = PieceState.Frozen; //don't do this on debug server maybe
 
-		//if ( IsProxy )
-		//{
-		//	rigidBody.PhysicsBody.MotionEnabled = false;
+		if ( isFrozen )
+		{
+			pieceState = PieceState.Frozen; //don't do this on debug server maybe
 
-		//}
+		}
+
+		
 	}
 
 	protected override void OnUpdate()
@@ -243,9 +246,9 @@ public sealed class PuntPiece : Component
 	private void CalculateCooldown()
 	{
 
-		if ( cooldownTimeSince < cooldownDuration && playerStatusRenderer!=null)
+		if ( cooldownTimeSince < cooldownDuration && playerCooldownRenderer!=null)
 		{
-			playerStatusRenderer.SceneObject.Attributes.Set( "Progress", cooldownTimeSince / cooldownDuration );
+			playerCooldownRenderer.SceneObject.Attributes.Set( "Progress", cooldownTimeSince / cooldownDuration );
 		}
 		else if (pieceState == PieceState.Cooldown )
 	
