@@ -83,6 +83,10 @@
         {
           "__type": "Sandbox.NetworkManager",
           "__guid": "1a87a0f8-cbb2-407f-a814-e5478a752797",
+          "ArrowPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player/playerarrow.prefab"
+          },
           "PlayerPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/player/playercontroller.prefab"
@@ -215,8 +219,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -7926.0137,
-            "Passed": 7926.0137,
+            "Relative": -165.8072,
+            "Passed": 165.8072,
             "Fraction": 1
           },
           "ResetTimerLength": 4,

@@ -21,7 +21,7 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 	/// </summary>
 	[Property] public GameObject PlayerPrefab { get; set; }
 
-	
+	[Property] public GameObject ArrowPrefab { get; set; }
 
 	/// <summary>
 	/// A list of points to choose from randomly to spawn the player in. If not set, we'll spawn at the
@@ -66,6 +66,16 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 			player.NetworkSpawn( channel );
 			PuntPlayerController controller = player.Components.Get<PuntPlayerController>();
 			//Add player in gamemode
+
+			var playerArrow = ArrowPrefab.Clone();
+			playerArrow.Name = $"Arrow - {channel.DisplayName}";
+			player.NetworkSpawn( channel );
+			controller.arrow = ArrowPrefab.GetComponent<WorldPanel>();
+
+			Log.Info( "arrow spawned" );
+
+
+			//spawn the arrow here too????
 			TestGameMode.Instance.AddPlayer( controller );
 		}
 
@@ -90,10 +100,24 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 			player.NetworkSpawn( channel );
 			var controller = player.Components.Get<PuntPlayerController>();
 
+			var playerArrow = ArrowPrefab.Clone();
+			playerArrow.Name = $"Arrow - {channel.DisplayName}";
+			playerArrow.NetworkSpawn( channel );
+			controller.InitArrow(playerArrow);
 
+
+			//controller.arrow = playerArrow.GetComponent<WorldPanel>();
+			//var arrowComponent = playerArrow.GetComponent<AimArrow>();
+			//arrowComponent.playerController = controller;
 			//Add player in gamemode
+
+
 			TestGameMode.Instance.AddPlayer( controller );
 			
+
+			//I want to network spawn the arrow
+			//I then want to assign controller variable in the aimarrow component
+			//This is synced, so I can only do this if I'm the owner
 
 		}
 

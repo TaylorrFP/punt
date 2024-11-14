@@ -9,12 +9,6 @@
       {
         "__type": "PuntPlayerController",
         "__guid": "06fa746e-3f17-4b1f-b9f0-2cbfe65e8a4c",
-        "arrow": {
-          "_type": "component",
-          "component_id": "864797cd-16a7-4974-8075-96eebe455e46",
-          "go": "b61fb3fe-f888-4870-aa9f-c260b249dd42",
-          "component_type": "WorldPanel"
-        },
         "arrowCurve": [
           {
             "mode": "Linear"
@@ -25,6 +19,10 @@
             "mode": "Linear"
           }
         ],
+        "arrowPrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/player/playerarrow.prefab"
+        },
         "arrowUIScale": 0,
         "clampedFlickStrength": 1000,
         "controllerState": "Idle",
@@ -47,45 +45,9 @@
     ],
     "Children": [
       {
-        "__guid": "b61fb3fe-f888-4870-aa9f-c260b249dd42",
-        "Flags": 0,
-        "Name": "Arrow",
-        "Position": "0,0,-123.745",
-        "Rotation": "-0.5,-0.5,-0.4999998,0.5",
-        "Enabled": true,
-        "Components": [
-          {
-            "__type": "Sandbox.WorldPanel",
-            "__guid": "864797cd-16a7-4974-8075-96eebe455e46",
-            "HorizontalAlign": "Center",
-            "InteractionRange": 1000,
-            "LookAtCamera": false,
-            "PanelSize": "20000,1000",
-            "RenderOptions": {
-              "GameLayer": true,
-              "OverlayLayer": false,
-              "BloomLayer": false,
-              "AfterUILayer": false
-            },
-            "RenderScale": 1,
-            "VerticalAlign": "Center"
-          },
-          {
-            "__type": "AimArrow",
-            "__guid": "94f4d489-a516-455c-8ed1-ad0f46015494",
-            "playerController": {
-              "_type": "component",
-              "component_id": "06fa746e-3f17-4b1f-b9f0-2cbfe65e8a4c",
-              "go": "76446c15-d055-4557-8f52-0cc3deee8997",
-              "component_type": "PuntPlayerController"
-            }
-          }
-        ]
-      },
-      {
         "__guid": "3d05b4c1-0d7f-4d90-91d3-9c415c03bf7f",
         "Flags": 0,
-        "Name": "debugsphere",
+        "Name": "NetworkedCursor",
         "Enabled": true,
         "OwnerTransfer": 0,
         "Components": [

@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using System.Threading.Channels;
 
 public sealed class PuntPlayerController : Component
 {
@@ -15,7 +16,8 @@ public sealed class PuntPlayerController : Component
 	[Property] public Curve flickCurve { get; set; }
 
 
-	[Property] public WorldPanel arrow { get; set; }
+
+	[Property, Sync] public WorldPanel arrow { get; set; }
 
 
 	[Property, Sync] public PuntPiece hoveredPiece { get; set; }
@@ -41,13 +43,22 @@ public sealed class PuntPlayerController : Component
 
 	[Property] public Vector3 targetArrowPos { get; set; }
 
-	[Property] public float arrowUIScale { get; set; }
+	[Property, Sync] public float arrowUIScale { get; set; }
+
+
 
 
 	protected override void OnStart()
 	{
 		base.OnStart();
 
+
+
+
+		//var player = PlayerPrefab.Clone();
+		//player.Name = $"Player - {channel.DisplayName}";
+		//player.NetworkSpawn( channel );
+		//PuntPlayerController controller = player.Components.Get<PuntPlayerController>();
 
 	}
 
@@ -90,7 +101,74 @@ public sealed class PuntPlayerController : Component
 
 	}
 
+	[Broadcast]
+	public void InitArrow(GameObject arrowGO)
+	{
+		arrow = arrowGO.GetComponent<WorldPanel>();
 
+		var arrowComponent = arrowGO.GetComponent<AimArrow>();
+
+		arrowComponent.playerController = this;
+
+	}
+
+	private void CalculateArrow()
+	{
+		//var myTeamSide = TeamSide.None;
+
+		//for ( int i = 0; i < TestGameMode.Instance.PlayerList.Count; i++ )
+		//{
+		//	//go through all the player controllers
+
+		//	if ( TestGameMode.Instance.PlayerList[i].IsProxy != true )
+		//	{//if it's the one we own
+		//		myTeamSide = TestGameMode.Instance.PlayerList[i].teamSide;
+
+		//		Log.Info (myTeamSide.ToString ());
+		//	}
+
+
+		//}
+
+
+
+		//if( teamSide != myTeamSide )
+		//{
+		//	arrow.GameObject.Enabled = false;
+
+		//}
+		if ( selectedPiece != null )
+		{
+				arrow.GameObject.Enabled = true;
+
+
+				arrow.WorldPosition = selectedPiece.WorldPosition + Vector3.Up * 20f;
+
+				arrow.WorldRotation = Rotation.LookAt( Vector3.Up, flickVector ) * Rotation.FromAxis( Vector3.Forward, 90 );
+
+				arrowUIScale = (flickVector.Length / clampedFlickStrength) * 8000f;
+
+				arrow.WorldPosition += flickVector.Normal * arrow.PanelSize.x * 0.025f;
+
+			
+
+		} else
+		{
+
+			arrow.GameObject.Enabled = false;
+		}
+
+
+
+
+
+
+			//if it's a proxy (so someone else's controller)
+			//now we need to find wh
+
+
+
+	}
 
 	private void ReadyInputs()
 	{
@@ -359,34 +437,7 @@ public sealed class PuntPlayerController : Component
 		}
 	}
 
-	private void CalculateArrow()
-	{
-		
-
-		if ( selectedPiece != null )
-		{
-			arrow.GameObject.Enabled = true;
-
-
-			arrow.WorldPosition = selectedPiece.WorldPosition + Vector3.Up * 20f;
-
-			arrow.WorldRotation = Rotation.LookAt( Vector3.Up, flickVector ) * Rotation.FromAxis( Vector3.Forward, 90 );
-
-			arrowUIScale = (flickVector.Length / clampedFlickStrength) * 8000f;
-
-			//arrow.PanelSize = new Vector2(arrowScale *17f, 1000f );
-
-			
-			arrow.WorldPosition += flickVector.Normal * arrow.PanelSize.x * 0.025f;
-
-		}
-		else
-		{
-
-			arrow.GameObject.Enabled = false;
-		}
-
-	}
+	
 	private void RotatePiece()
 	{
 		if ( selectedPiece !=null )
