@@ -28,6 +28,18 @@
           "_type": "gameobject",
           "go": "36079f2e-9620-450a-aaa5-36a7930a9997"
         },
+        "baseModell": {
+          "_type": "component",
+          "component_id": "044d8e2e-a3ff-4d0d-914e-d7abe6a23104",
+          "go": "057a4de3-acd2-4127-b7eb-a82ed82e5aea",
+          "component_type": "ModelRenderer"
+        },
+        "characterModell": {
+          "_type": "component",
+          "component_id": "1d913748-e93f-4609-a6f8-8aeb13f864b5",
+          "go": "82af1cab-a5b5-486c-8d58-54a1e1dcd004",
+          "component_type": "ModelRenderer"
+        },
         "emitter": {
           "_type": "component",
           "component_id": "fc8366aa-858c-4572-8a1c-700b80bdf4ca",
@@ -68,12 +80,6 @@
         "playerModelHolder": {
           "_type": "gameobject",
           "go": "c67a5325-24e2-4cb5-908e-4dec26bb09fb"
-        },
-        "puntPlayerModel": {
-          "_type": "component",
-          "component_id": "044d8e2e-a3ff-4d0d-914e-d7abe6a23104",
-          "go": "057a4de3-acd2-4127-b7eb-a82ed82e5aea",
-          "component_type": "ModelRenderer"
         },
         "rigidBody": {
           "_type": "component",
@@ -210,7 +216,7 @@
                 ],
                 "squashDuration": 0.5,
                 "squashTimeSince": {
-                  "Relative": 90676060
+                  "Relative": 90677280
                 }
               }
             ],

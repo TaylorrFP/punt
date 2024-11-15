@@ -182,6 +182,8 @@ public sealed class TestGameMode : Component
 	[Broadcast]
 	public void StartGame()
 	{
+
+
 		if ( !IsProxy )//fixes the bug where it starts playing by itself, I guess the client was broadcasting it a second later and then the server was setting it?
 		{
 			State = GameState.Playing;
@@ -405,7 +407,7 @@ public sealed class TestGameMode : Component
 		piece.WorldRotation = spawn.WorldRotation;
 		piece.GetComponent<Rigidbody>().Velocity = Vector3.Zero;
 		piece.GetComponent<Rigidbody>().AngularVelocity = Vector3.Zero;
-		piece.puntPlayerModel.LocalRotation = Rotation.From( Angles.Zero );
+		piece.baseModell.LocalRotation = Rotation.From( Angles.Zero );
 		piece.Network.EnableInterpolation();
 
 		if( isFrozen )

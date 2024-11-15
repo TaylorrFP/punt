@@ -23,11 +23,33 @@
 							},
 							{
 								from = "m_tshirt.vmat"
-								to = "prefabs/pieces/puntguy/materials/puntguy_blueshirt.vmat"
+								to = "prefabs/pieces/puntguy/materials/puntguy_defaultshirt.vmat"
 							},
 						]
 						use_global_default = false
 						global_default_material = "materials/default.vmat"
+					},
+					{
+						_class = "MaterialGroup"
+						name = "Red"
+						remaps = 
+						[
+							{
+								from = "prefabs/pieces/puntguy/materials/puntguy_defaultshirt.vmat"
+								to = "prefabs/pieces/puntguy/materials/puntguy_redshirt.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "Blue"
+						remaps = 
+						[
+							{
+								from = "prefabs/pieces/puntguy/materials/puntguy_defaultshirt.vmat"
+								to = "prefabs/pieces/puntguy/materials/puntguy_blueshirt.vmat"
+							},
+						]
 					},
 				]
 			},

@@ -42,8 +42,8 @@ public sealed class PuntPiece : Component
 
 	[Property] public GameObject playerModelHolder { get; set; }
 
-	[Property] public ModelRenderer puntPlayerModel { get; set; }
-
+	[Property] public ModelRenderer baseModell { get; set; }
+	[Property] public ModelRenderer characterModell { get; set; }
 	[Property] public TeamSide teamSide { get; set; }
 	[Property] public int pieceID { get; set; }
 
@@ -235,11 +235,13 @@ public sealed class PuntPiece : Component
 
 		if ( teamSide == TeamSide.Red )
 		{
-			puntPlayerModel.MaterialGroup = "red";
+			baseModell.MaterialGroup = "red";
+			characterModell.MaterialGroup = "red";
 		}
 		else
 		{
-			puntPlayerModel.MaterialGroup = "blue";
+			baseModell.MaterialGroup = "blue";
+			characterModell.MaterialGroup = "blue";
 		}
 
 
