@@ -208,6 +208,35 @@ public sealed class PuntPlayerController : Component
 	private void PieceTrace()
 	{
 
+		if(TestGameMode.Instance.State == GameState.Resetting )
+		{
+			//reset everything for now
+			Log.Info( "Resetting" );
+			controllerState = ControllerState.Idle;
+			Mouse.CursorType = "cooldown";
+
+			if(selectedPiece != null )
+			{
+				selectedPiece.ToggleSelection();
+				selectedPiece.pieceState = PieceState.Ready;
+				
+
+			}
+
+			if ( hoveredPiece != null )
+			{
+				hoveredPiece.ToggleHover();
+				hoveredPiece.pieceState = PieceState.Ready;
+
+			}
+		}
+		else
+		{
+
+
+		
+
+
 		if(controllerState != ControllerState.Grabbing )//only do this stuff if we're not grabbing anything
 		{
 			// Trace and find a piece that is under the cursor.
@@ -303,6 +332,7 @@ public sealed class PuntPlayerController : Component
 				Mouse.CursorType = "pointer";
 			}
 
+
 		}//we've done all the initial traces, we can check our inputs to see if we want to select, or deselect anything
 
 		if ( Input.Pressed( "attack1" ) )
@@ -362,7 +392,7 @@ public sealed class PuntPlayerController : Component
 			}
 
 		}
-
+		}
 
 
 

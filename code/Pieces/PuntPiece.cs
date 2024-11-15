@@ -25,7 +25,7 @@ public sealed class PuntPiece : Component
 
 	[Property] public ModelRenderer playerCooldownRenderer;
 
-	TimeSince cooldownTimeSince = 1f;
+	[Property] public TimeSince cooldownTimeSince = 1f;
 
 	[Property] public float cooldownDuration;
 

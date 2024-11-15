@@ -410,7 +410,12 @@ public sealed class TestGameMode : Component
 		piece.baseModell.LocalRotation = Rotation.From( Angles.Zero );
 		piece.Network.EnableInterpolation();
 
-		if( isFrozen )
+		//piece.playerCooldownRenderer.SceneObject.Attributes.Set( "Progress", 0f );
+		piece.cooldownTimeSince = piece.cooldownDuration;
+
+
+
+		if ( isFrozen )
 		{
 			piece.pieceState = PieceState.Frozen;
 		}
