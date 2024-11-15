@@ -166,6 +166,7 @@ public sealed class TestGameMode : Component
 
 	}
 
+	[Broadcast]
 	private void SetupGame( TeamSide kickoffSide )
 	{
 

@@ -2,6 +2,7 @@ using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Internal;
 using System;
+using System.Runtime.CompilerServices;
 
 public sealed class PuntBall : Component, Component.ICollisionListener
 {
@@ -124,9 +125,31 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 		if ( collision.Other.GameObject.Tags.HasAny( "GoalPost" ) )
 		{
 			//dampen ball impact when it's the back of the net
-			Sound.Play( "sounds/ball/post.sound" );
+			if ( !IsProxy )
+			{
+				HitPost();
+
+			}
+			
 		}
 
+
+
+	}
+
+	[Broadcast]
+	private void HitPost()
+	{
+		Sound.Play( "sounds/ball/post.sound" );
+
+
+		Random random = new Random();
+		int chance = random.Next( 1, 5 ); // Generates a number between 1 and 4 inclusive.
+
+		if ( chance == 1 ) // 1 in 4 chance
+		{
+			Sound.Play( "sounds/ball/crowdgasp.sound" );
+		}
 
 
 	}

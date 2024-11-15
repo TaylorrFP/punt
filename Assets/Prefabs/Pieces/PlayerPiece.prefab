@@ -12,6 +12,10 @@
         "__type": "PuntPiece",
         "__guid": "a4e5bbe3-f335-455a-a51e-01336be25b2b",
         "cooldownDuration": 2,
+        "cooldownTimeSince": {
+          "Absolute": -1,
+          "Relative": 1366.0276
+        },
         "playerCooldownRenderer": {
           "_type": "component",
           "component_id": "d1871549-e33b-4069-ad30-5e876dc2c85d",
@@ -216,7 +220,7 @@
                 ],
                 "squashDuration": 0.5,
                 "squashTimeSince": {
-                  "Relative": 90677700
+                  "Relative": 90683340
                 }
               }
             ],
@@ -566,5 +570,6 @@
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
   "__references": [],
+  "HasUnsavedChanges": false,
   "__version": 1
 }
