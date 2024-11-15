@@ -20,8 +20,8 @@
       "__guid": "550bdf2a-cc82-4002-93ae-203c70112f80",
       "Flags": 0,
       "Name": "Sun",
-      "Rotation": "0.3984556,0.7796111,-0.3483649,0.3347856",
-      "Tags": "light_directional,light",
+      "Rotation": "0.477579,0.7990638,-0.1705772,0.322984",
+      "Tags": "light,light_directional",
       "Enabled": true,
       "Components": [
         {
@@ -220,8 +220,8 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -378.2607,
-            "Passed": 378.2607,
+            "Relative": -5797.141,
+            "Passed": 5797.141,
             "Fraction": 1
           },
           "ResetTimerLength": 4,

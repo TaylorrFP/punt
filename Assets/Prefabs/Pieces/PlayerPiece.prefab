@@ -210,7 +210,7 @@
                 ],
                 "squashDuration": 0.5,
                 "squashTimeSince": {
-                  "Relative": 90627960
+                  "Relative": 90676060
                 }
               }
             ],
@@ -219,7 +219,6 @@
                 "__guid": "b8ebd53a-a82d-4d10-854f-f1791cac22c5",
                 "Flags": 0,
                 "Name": "Model",
-                "Scale": "10,10,10",
                 "Enabled": true,
                 "Components": [
                   {
@@ -238,7 +237,6 @@
                     "Flags": 0,
                     "Name": "puntchartest",
                     "Position": "0,0,5.170628",
-                    "Enabled": true,
                     "Components": [
                       {
                         "__type": "Sandbox.ModelRenderer",
@@ -261,7 +259,6 @@
                     "__guid": "057a4de3-acd2-4127-b7eb-a82ed82e5aea",
                     "Flags": 0,
                     "Name": "Base",
-                    "Scale": "0.1,0.1,0.1",
                     "Enabled": true,
                     "Components": [
                       {
@@ -270,6 +267,30 @@
                         "BodyGroups": 18446744073709551615,
                         "CreateAttachments": false,
                         "Model": "prefabs/pieces/puntbase.vmdl",
+                        "RenderOptions": {
+                          "GameLayer": true,
+                          "OverlayLayer": false,
+                          "BloomLayer": false,
+                          "AfterUILayer": false
+                        },
+                        "RenderType": "On",
+                        "Tint": "1,1,1,1"
+                      }
+                    ]
+                  },
+                  {
+                    "__guid": "82af1cab-a5b5-486c-8d58-54a1e1dcd004",
+                    "Flags": 0,
+                    "Name": "puntguy",
+                    "Position": "0,0,20",
+                    "Enabled": true,
+                    "Components": [
+                      {
+                        "__type": "Sandbox.ModelRenderer",
+                        "__guid": "1d913748-e93f-4609-a6f8-8aeb13f864b5",
+                        "BodyGroups": 18446744073709551615,
+                        "CreateAttachments": false,
+                        "Model": "prefabs/pieces/puntguy/puntguy.vmdl",
                         "RenderOptions": {
                           "GameLayer": true,
                           "OverlayLayer": false,
