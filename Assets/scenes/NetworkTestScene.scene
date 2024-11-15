@@ -158,7 +158,7 @@
             }
           ],
           "BlueTeam": [],
-          "DebugServer": false,
+          "DebugServer": true,
           "kickingOffSide": "Blue",
           "musicSoundPoint": {
             "_type": "component",
@@ -220,15 +220,15 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -1598.4071,
-            "Passed": 1598.4071,
+            "Relative": -386.79355,
+            "Passed": 386.79355,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
           "RoundLength": 300,
           "RoundTimeLeft": 0,
           "State": "Waiting",
-          "timescaleMult": 1
+          "timescaleMult": 0.3
         }
       ]
     },
@@ -952,5 +952,6 @@
   "Title": "networktestscene",
   "Description": null,
   "__references": [],
+  "HasUnsavedChanges": false,
   "__version": 2
 }
