@@ -220,12 +220,12 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -2126.5298,
-            "Passed": 2126.5298,
+            "Relative": -3263.1704,
+            "Passed": 3263.1704,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
-          "RoundLength": 300,
+          "RoundLength": 10,
           "RoundTimeLeft": 0,
           "State": "Waiting",
           "timescaleMult": 0.3
@@ -891,7 +891,7 @@
           "Reflections": false,
           "Repeat": false,
           "SoundEvent": "sounds/music/puntost.sound",
-          "SoundOverride": false,
+          "SoundOverride": true,
           "StopOnNew": false,
           "TargetMixer": {
             "Name": "ui",

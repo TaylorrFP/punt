@@ -141,7 +141,7 @@ public sealed class TestGameMode : Component
 		{
 			//if it's a draw
 			State = GameState.Overtime;
-			Sound.Play( "sounds/overtimesting.sound" );
+			PlayOvertimeSound();
 			ResetTeamPieces( kickingOffSide );
 			ResetBall();
 		}
@@ -149,6 +149,13 @@ public sealed class TestGameMode : Component
 		{
 			FinishGame();
 		}
+	}
+
+	[Broadcast]
+	private void PlayOvertimeSound()
+	{
+		Sound.Play( "sounds/overtimesting.sound" );
+		musicSoundPoint.Pitch = 1.25f;
 	}
 
 	private void FinishGame()
