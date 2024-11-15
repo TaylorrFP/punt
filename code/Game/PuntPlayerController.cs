@@ -136,13 +136,13 @@ public sealed class PuntPlayerController : Component
 				if ( IsProxy && TestGameMode.Instance.mySide != teamSide )
 				{
 
-					Log.Info( "DO NOT SHOW ARROW" );
+					
 					arrow.GameObject.Enabled = false;
 
 				}
 				else
 				{
-					Log.Info( "SHOW ARROW" );
+					
 
 					arrow.GameObject.Enabled = true;
 
@@ -289,10 +289,17 @@ public sealed class PuntPlayerController : Component
 				}
 			}else
 			{
-				//if we don't hit anything, do a bit of a reset
+				if ( hoveredPiece != null )
+				{
+					controllerState = ControllerState.Idle;
+					Log.Info( "hovered pice is valid" );
+					hoveredPiece.ToggleHover();
+					hoveredPiece = null;
+					Mouse.CursorType = "pointer";
+
+				}
+
 				controllerState = ControllerState.Idle;
-				if(hoveredPiece != null) {hoveredPiece.pieceState = PieceState.Ready;}
-				hoveredPiece = null;
 				Mouse.CursorType = "pointer";
 			}
 
@@ -406,39 +413,6 @@ public sealed class PuntPlayerController : Component
 			selectedPiece.playerModelHolder.WorldRotation = targetRotation;
 
 		}
-	}
-
-	private void SetCursor()
-	{
-
-
-
-
-		if ( !selectedPiece.IsValid() && !hoveredPiece.IsValid() )
-		{
-			Mouse.CursorType = "pointer";
-		}
-
-		if ( hoveredPiece != null )
-		{
-
-			if ( hoveredPiece.isOnCooldown )
-			{
-				Mouse.CursorType = "not-allowed";
-			}
-			else
-			{
-				Mouse.CursorType = "grab";
-			}
-
-
-		}
-
-		if ( selectedPiece != null )
-		{
-			Mouse.CursorType = "grabbing";
-		}
-
 	}
 
 

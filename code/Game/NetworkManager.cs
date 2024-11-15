@@ -40,7 +40,15 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 		{
 			LoadingScreen.Title = "Creating Lobby";
 			await Task.DelayRealtimeSeconds( 0.1f );
+
 			Networking.CreateLobby();
+
+			//Networking.CreateLobby( new LobbyConfig()
+			//{
+			//	MaxPlayers = 4,
+			//	Privacy = LobbyPrivacy.Public,
+			//	Name = Network.Owner.DisplayName + "'s Punt Lobby"
+			//} );
 
 
 			Log.Info( "NetworkingManager: Creating Lobby" );

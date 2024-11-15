@@ -168,12 +168,14 @@ public sealed class PuntPiece : Component
 	[Broadcast]
 	private void HandleHoveredState()
 	{
+		pieceState = PieceState.Hovered;
 		outline.Enabled = true;
 		outline.Color = hoveredOutline.Color;
 		outline.ObscuredColor = hoveredOutline.ObscuredColor;
 		outline.InsideColor = hoveredOutline.InsideColor;
 		outline.InsideObscuredColor = hoveredOutline.InsideObscuredColor;
 		outline.Width = hoveredOutline.Width;
+
 	}
 
 
@@ -188,20 +190,14 @@ public sealed class PuntPiece : Component
 
 	}
 
+	[Broadcast]
 	public void ToggleHover()
 	{
-		isHovered = !isHovered;
+		
 
-		if ( isHovered )
-		{
-
-			//Sound.Play( "sounds/piecehover.sound" ); //weird delay on this for some reason
-		}
-		else
-		{
-			
+			pieceState = PieceState.Ready;
 	
-		}
+		
 	}
 
 	[Broadcast]
@@ -211,7 +207,7 @@ public sealed class PuntPiece : Component
 
 		if ( isSelected )
 		{
-			
+			pieceState = PieceState.Grabbed;
 			playerSquashStretch.StartSquash( 0.4f );
 			Sound.Play( "sounds/pieceselect.sound" );
 
@@ -223,7 +219,7 @@ public sealed class PuntPiece : Component
 		{
 
 			shakeEffect.Strength = 0f;
-
+			pieceState = PieceState.Ready;
 		}
 	}
 
