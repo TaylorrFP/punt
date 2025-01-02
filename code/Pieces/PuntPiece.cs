@@ -106,14 +106,14 @@ public sealed class PuntPiece : Component
 		}
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void HandleReadyState()
 	{
 
 		outline.Enabled = false;
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void HandleCooldownState()
 	{
 
@@ -121,7 +121,7 @@ public sealed class PuntPiece : Component
 	}
 
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void PieceFlicked()
 	{
 
@@ -137,7 +137,7 @@ public sealed class PuntPiece : Component
 		emitter.Enabled = false;
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void HandleFrozenState()
 	{
 
@@ -153,7 +153,7 @@ public sealed class PuntPiece : Component
 
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void HandleGrabbedState()
 	{
 
@@ -165,7 +165,7 @@ public sealed class PuntPiece : Component
 		outline.Width = grabbedOutline.Width;
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void HandleHoveredState()
 	{
 		pieceState = PieceState.Hovered;
@@ -190,7 +190,7 @@ public sealed class PuntPiece : Component
 
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void ToggleHover()
 	{
 		
@@ -200,7 +200,7 @@ public sealed class PuntPiece : Component
 		
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void ToggleSelection()
 	{
 		isSelected = !isSelected;
@@ -223,7 +223,7 @@ public sealed class PuntPiece : Component
 		}
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void Initialize(int ID,TeamSide Side, bool isFrozen)//initialise in an RPC, client sets their stuff locally
 	{
 		pieceID = ID;
@@ -286,7 +286,7 @@ public sealed class PuntPiece : Component
 	}
 
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void StartCooldown()
 	{
 

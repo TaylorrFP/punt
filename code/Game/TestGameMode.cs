@@ -13,23 +13,23 @@ public sealed class TestGameMode : Component
 
 	[Property] public TeamSide mySide { get; set; }
 
-	[Group( "Debug" )][Property, HostSync] public Boolean DebugServer { get; set; }
-	[Group( "Player List" )][Property, HostSync] public List<PuntPlayerController> PlayerList { get; set; } = new List<PuntPlayerController>();
+	[Group( "Debug" )][Property, Sync(SyncFlags.FromHost)] public Boolean DebugServer { get; set; }
+	[Group( "Player List" )][Property, Sync( SyncFlags.FromHost )] public List<PuntPlayerController> PlayerList { get; set; } = new List<PuntPlayerController>();
 
 	//Team Lists
-	[Group( "Team Lists" )][Property, HostSync] public List<PuntPlayerController> BlueTeam { get; set; } = new List<PuntPlayerController>();
-	[Group( "Team Lists" )][Property, HostSync] public List<PuntPlayerController> RedTeam { get; set; } = new List<PuntPlayerController>();
+	[Group( "Team Lists" )][Property, Sync(SyncFlags.FromHost)] public List<PuntPlayerController> BlueTeam { get; set; } = new List<PuntPlayerController>();
+	[Group( "Team Lists" )][Property, Sync(SyncFlags.FromHost)] public List<PuntPlayerController> RedTeam { get; set; } = new List<PuntPlayerController>();
 
 	//GameState
-	[Group( "Game State" )][Property, HostSync] public GameState State { get; set; }
+	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public GameState State { get; set; }
 
-	[Group( "Game State" )][Property, HostSync] public float RoundTimeLeft { get; set; }
-	[Group( "Game State" )][Property, HostSync] public int BlueScore { get; set; }
-	[Group( "Game State" )][Property, HostSync] public int RedScore { get; set; }
+	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public float RoundTimeLeft { get; set; }
+	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public int BlueScore { get; set; }
+	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public int RedScore { get; set; }
 
-	[Group( "Game State" )][Property, HostSync] public TimeUntil ResetTimer { get; set; }
+	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public TimeUntil ResetTimer { get; set; }
 
-	[Group( "Game State" )][Property, HostSync] public TeamSide kickingOffSide { get; set; }
+	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public TeamSide kickingOffSide { get; set; }
 
 
 	//GameSettings
@@ -42,9 +42,9 @@ public sealed class TestGameMode : Component
 	[Group( "Piece Prefab" )][Property] public GameObject BallPrefab { get; set; }
 
 	//PieceLists
-	[Group( "Piece GameObjects" )][Property, HostSync] public List<PuntPiece> BluePieceList { get; set; } = new List<PuntPiece>();
-	[Group( "Piece GameObjects" )][Property, HostSync] public List<PuntPiece> RedPieceList { get; set; } = new List<PuntPiece>();
-	[Group( "Piece GameObjects" )][Property, HostSync] public PuntBall Ball { get; set; }
+	[Group( "Piece GameObjects" )][Property, Sync(SyncFlags.FromHost)] public List<PuntPiece> BluePieceList { get; set; } = new List<PuntPiece>();
+	[Group( "Piece GameObjects" )][Property, Sync(SyncFlags.FromHost)] public List<PuntPiece> RedPieceList { get; set; } = new List<PuntPiece>();
+	[Group( "Piece GameObjects" )][Property, Sync(SyncFlags.FromHost)] public PuntBall Ball { get; set; }
 	//Spawn Points
 	[Group( "Spawn Points" )][Property] public List<GameObject> RedSpawns { get; set; } = new List<GameObject>();
 	[Group( "Spawn Points" )][Property] public List<GameObject> RedSpawnsKickoff { get; set; } = new List<GameObject>();
@@ -57,9 +57,9 @@ public sealed class TestGameMode : Component
 
 
 	//GameState
-	[Group( "Timescale" )][Property, HostSync] public float timescaleMult { get; set; } = 0.1f;
+	[Group( "Timescale" )][Property, Sync(SyncFlags.FromHost)] public float timescaleMult { get; set; } = 0.1f;
 
-	[HostSync] public TimeSince TimeSinceCountdown { get; set; }
+	[Sync( SyncFlags.FromHost )] public TimeSince TimeSinceCountdown { get; set; }
 
 
 
@@ -151,7 +151,7 @@ public sealed class TestGameMode : Component
 		}
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void PlayOvertimeSound()
 	{
 		Sound.Play( "sounds/overtimesting.sound" );
@@ -173,7 +173,7 @@ public sealed class TestGameMode : Component
 
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void SetupGame( TeamSide kickoffSide )
 	{
 
@@ -187,12 +187,12 @@ public sealed class TestGameMode : Component
 
 
 	}
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void StartGame()
 	{
 
 
-		if ( !IsProxy )//fixes the bug where it starts playing by itself, I guess the client was broadcasting it a second later and then the server was setting it?
+		if ( !IsProxy )//fixes the bug where it starts playing by itself, I guess the client was Rpc.Broadcasting it a second later and then the server was setting it?
 		{
 			State = GameState.Playing;
 
@@ -239,7 +239,7 @@ public sealed class TestGameMode : Component
 
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void GoalScored(TeamSide goalTeam )// goal scored in this team's goal
 	{
 		Sound.Play( "sounds/ball/whistle.sound" );
@@ -407,7 +407,7 @@ public sealed class TestGameMode : Component
 		
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void ResetPiece(PuntPiece piece, GameObject spawn, bool isFrozen )
 	{
 		piece.Network.DisableInterpolation();
@@ -433,7 +433,7 @@ public sealed class TestGameMode : Component
 		}
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void EvaluateReadyState( PuntPlayerController player, bool ready )
 	{
 		if ( State == GameState.Waiting || State == GameState.Countdown )//only do this is we're waiting or in cooldown

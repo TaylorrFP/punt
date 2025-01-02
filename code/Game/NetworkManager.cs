@@ -28,34 +28,31 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 	/// location of the NetworkHelper object.
 	/// </summary>
 
-
-
-	protected override async Task OnLoad()
+	protected override void OnStart()
 	{
-		
 		if ( Scene.IsEditor )
 			return;
 
 		if ( StartServer && !Networking.IsActive )
 		{
 			LoadingScreen.Title = "Creating Lobby";
-			await Task.DelayRealtimeSeconds( 0.1f );
 
-			Networking.CreateLobby();
+			//Networking.CreateLobby();
 
-			//Networking.CreateLobby( new LobbyConfig()
-			//{
-			//	MaxPlayers = 4,
-			//	Privacy = LobbyPrivacy.Public,
-			//	Name = Network.Owner.DisplayName + "'s Punt Lobby"
-			//} );
+			Networking.CreateLobby( new LobbyConfig()
+			{
+				//MaxPlayers = 4,
+				//Privacy = LobbyPrivacy.Public,
+				//Name = Network.Owner.DisplayName + "'s Punt Lobby"
+			} );
 
 
 			Log.Info( "NetworkingManager: Creating Lobby" );
 		}
 
-	}
 
+
+	}
 
 
 	/// <summary>

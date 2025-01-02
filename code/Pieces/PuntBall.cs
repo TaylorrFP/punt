@@ -137,7 +137,7 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void HitPost()
 	{
 		Sound.Play( "sounds/ball/post.sound" );

@@ -66,7 +66,7 @@ public sealed class PuntPlayerController : Component
 
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void AssignTeam(TeamSide teamSide )
 	{
 		if ( !IsProxy )
@@ -113,7 +113,7 @@ public sealed class PuntPlayerController : Component
 
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void InitArrow(GameObject arrowGO)
 	{
 
@@ -450,7 +450,7 @@ public sealed class PuntPlayerController : Component
 
 
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void FlickPiece(PuntPiece piece, Vector3 flickVector)
 	{
 
