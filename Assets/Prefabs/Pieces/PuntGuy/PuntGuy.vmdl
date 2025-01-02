@@ -84,6 +84,7 @@
 				[
 					{
 						_class = "ModelModifier_ScaleAndMirror"
+						disabled = true
 						scale = 10.0
 						mirror_x = false
 						mirror_y = false

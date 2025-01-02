@@ -64,7 +64,7 @@
 						faceMergeAngle = 10.0
 						maxHullVertices = 0
 						import_mode = "SingleHull"
-						optimization_algorithm = "QEM"
+						optimization_algorithm = "Exact"
 						import_filter = 
 						{
 							exclude_by_default = false
