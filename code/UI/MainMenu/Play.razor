@@ -1,0 +1,44 @@
+@using Sandbox;
+@using Sandbox.UI;
+
+@implements INavigatorPage
+@namespace Facepunch.UI
+
+<root class="mainmenu">
+
+    <title> Punt!</title>
+
+    <div class="options">
+
+            <div class="button">
+                1v1
+            </div>
+
+            <div class="button">
+                2v2
+            </div>
+
+        <a class="button" href="serverbrowser"> Server Browser</a>
+
+        <div class="button" onclick=@(() => DebugPlay())>
+            DebugPlay
+            
+        </div>
+
+        <a class="button" href=""> Back</a>
+
+
+
+    </div>
+</root>
+
+@code
+{
+    private void DebugPlay()
+    {
+
+        Scene.LoadFromFile("scenes/networktestscene.scene");
+    }
+
+
+}

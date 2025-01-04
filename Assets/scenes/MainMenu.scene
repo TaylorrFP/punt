@@ -18,9 +18,8 @@
           "ZIndex": 100
         },
         {
-          "__type": "Sandbox.MainMenu",
-          "__guid": "34ee869f-37e5-486f-a546-1a4c4d88be8a",
-          "MyStringValue": "Hello World!"
+          "__type": "Facepunch.UI.MainMenuPanel",
+          "__guid": "d86378a8-5578-4f01-ad3c-5532a2205aee"
         }
       ]
     },
@@ -28,7 +27,7 @@
       "__guid": "c1ee724a-da01-454f-b087-312c09507fa4",
       "Flags": 0,
       "Name": "playerpiece (1)",
-      "Rotation": "0,0,0.09985426,0.9950021",
+      "Rotation": "0.00000001210719,-0.00000000372529,0.09985425,0.995002",
       "Tags": "piece",
       "Enabled": true,
       "NetworkMode": 0,
@@ -41,7 +40,7 @@
           "cooldownDuration": 0,
           "cooldownTimeSince": {
             "Absolute": 0,
-            "Relative": 913.16095
+            "Relative": 28419.918
           },
           "playerCooldownRenderer": {
             "_type": "component",
@@ -278,7 +277,7 @@
                   "squashDuration": 0.5,
                   "squashTimeSince": {
                     "Absolute": 0,
-                    "Relative": 94566550
+                    "Relative": 95036050
                   }
                 }
               ],
@@ -1228,7 +1227,7 @@
             {
               "__type": "Sandbox.CameraComponent",
               "__guid": "dedae265-317f-47c0-871d-0779607c8627",
-              "BackgroundColor": "0.2888,0.69767,0.69086,1",
+              "BackgroundColor": "0,0.85882,0.84314,1",
               "ClearFlags": "All",
               "FieldOfView": 60,
               "IsMainCamera": true,
@@ -1320,6 +1319,7 @@
               "__type": "Sandbox.AmbientOcclusion",
               "__guid": "5580d2f5-505f-453d-a971-61d7303dcc2a",
               "__version": 1,
+              "__enabled": false,
               "DenoiseMode": "Temporal",
               "FalloffRange": 0.75,
               "Intensity": 0.31,

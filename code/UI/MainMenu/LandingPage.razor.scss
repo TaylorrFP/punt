@@ -10,7 +10,11 @@
 	font-size: 64px;
 	flex-direction: column;
 
-	> h2 {
+	&.hidden {
+		display: none;
+	}
+
+	> title {
 		font-size: 256px;
 		font-weight: bold;
 	}

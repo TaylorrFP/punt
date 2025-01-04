@@ -1,0 +1,37 @@
+@using Sandbox;
+@using Sandbox.UI;
+
+@inherits Panel
+@implements INavigatorPage
+@namespace Facepunch.UI
+
+<root class="mainmenu">
+
+    <title> Punt!</title>
+
+    <div class="options">
+
+        <a class="button" href="/play"> Play</a>
+
+        <a class="button" href="leaderboard"> Leaderboard</a>
+
+        <a class="button" href="settings"> Settings</a>
+
+        <div class="button standard" onclick=@(()=>Quit())>
+
+            Quit
+        </div>
+
+
+
+    </div>
+
+</root>
+
+@code
+{
+    void Quit()
+    {
+        Game.Close();
+    }
+}
