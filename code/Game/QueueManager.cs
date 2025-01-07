@@ -26,8 +26,15 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	[Property] public bool isSearching { get; private set; } = false;
 	[Property] public string queueType { get; private set; }
 
+
+
+
 	protected override void OnAwake()
 	{
+
+
+
+
 		Instance = this;
 		base.OnAwake();
 	}

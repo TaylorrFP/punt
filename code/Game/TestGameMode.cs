@@ -214,15 +214,46 @@ public sealed class TestGameMode : Component
 		winningSideStat = winningStatValue;
 		losingSideStat = losingStatValue;
 
+		if ( mySide == winningTeam )
+		{
+
+			Log.Info( "I won, add to my score" );
+
+			Log.Info( "Previous Score: " + winningSideStat );
+
+			(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat );
+
+			Sandbox.Services.Stats.SetValue( "solo_q_points", (winningSideStat) );
+
+
+			
+			Log.Info( "New score: " + winningSideStat );
+
+
+		}
+		else
+		{
+
+			Log.Info( "I lost, subtract from my score" );
+			Log.Info( "Previous Score: " + losingSideStat );
+
+			(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat );
+			Sandbox.Services.Stats.SetValue( "solo_q_points", (losingSideStat) );
+
+			
+			Log.Info( "new score: " + losingSideStat );
+
+		}
+
 
 	}
 
-
+	public TeamSide winningTeam = TeamSide.Red;
 
 	[Rpc.Broadcast]
 	private void FinishGame()
 	{
-		var winningTeam = TeamSide.Red;
+		
 
 		State = GameState.Results;
 		if ( BlueScore > RedScore )
@@ -254,28 +285,10 @@ public sealed class TestGameMode : Component
 			}
 		}
 
-		if ( mySide == winningTeam )
-		{
 
-			Log.Info( "I won, add to my score" );
+		RetrievePlayerStat(); //is this fine at the end?
 
-			Log.Info( "new score: " + winningSideStat );
-
-			(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat);
-			Sandbox.Services.Stats.SetValue( "solo_q_points", (winningSideStat) );
-
-
-		}
-		else
-		{
-			Log.Info( "I lost, subtract from my score" );
-			Log.Info( "new score: " + losingSideStat );
-
-
-			(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat );
-			Sandbox.Services.Stats.SetValue( "solo_q_points", (losingSideStat) );
-
-		}
+		
 
 
 
