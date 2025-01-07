@@ -1,8 +1,7 @@
-@using Sandbox;
-@using Sandbox.UI;
+@using Sandbox
+@using Sandbox.UI
 @using System
 @using System.Threading.Tasks
-@using System.Threading
 
 @implements INavigatorPage
 @namespace Facepunch.UI
@@ -12,76 +11,25 @@
     <title> Punt!</title>
 
     <div class="options">
-
-        <div class="button" onclick=@(async () => { NetworkManagerTest.Instance.CreateLobby("0"); await SearchGames("0"); })>
-            1v1
+        <div class="button" onclick=@(async () => { QueueManager.Instance.CreateLobby("0"); await QueueManager.Instance.StartSearching("0"); })>
+            Solo
         </div>
 
-        <div class="button">
-            2v2
+        <div class="button" onclick=@(async () => await QueueManager.Instance.StartSearching("1"))>
+            Duo
         </div>
 
         <a class="button" href="serverbrowser"> Custom Games</a>
 
-        <div class="button" onclick=@(() => DebugPlay())>
-            DebugPlay
 
-        </div>
-
-        <a class="button" href=""> Back</a>
-
-
-
+        <a class="button" href="">Back</a>
     </div>
 </root>
 
 @code
 {
-    private CancellationTokenSource searchTokenSource;
-
-   
-
     private void DebugPlay()
     {
-
         Scene.LoadFromFile("scenes/networktestscene.scene");
     }
-
-    private void CreateLobby(String QueueType)
-    {
-        NetworkManagerTest.Instance.CreateLobby(QueueType);
-
-    }
-
-    
-    private async Task SearchGames(String QueueType)
-    {
-        searchTokenSource?.Cancel(); // Cancel any previous search before starting a new one
-        searchTokenSource = new CancellationTokenSource();
-
-        try
-        {
-            while (!searchTokenSource.Token.IsCancellationRequested)
-            {
-                await NetworkManagerTest.Instance.SearchGame(QueueType);
-                await Task.Delay(NetworkManagerTest.Instance.searchFrequency, searchTokenSource.Token); // Delay between searches to avoid overwhelming the server
-            }
-        }
-        catch (TaskCanceledException)
-        {
-            Log.Info("Search canceled.");
-        }
-        catch (Exception ex)
-        {
-            Log.Error($"Error occurred: {ex.Message}");
-        }
-    }
-
-    private void StopSearching()
-    {
-        searchTokenSource?.Cancel(); // Stop the loop
-        Log.Info("Search manually stopped.");
-    }
-    
-
 }

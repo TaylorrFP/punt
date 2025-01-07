@@ -4,9 +4,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sandbox.Network;
+using Sandbox.Services;
+using System.Threading.Tasks;
 
 public sealed class TestGameMode : Component
 {
+
+	// K-Factor: Determines how much the rating can change per game.
+	public const int K_FACTOR = 32;
+
+	// Starting rating is zero, since that's your constraint.
+	public const int STARTING_ELO = 0;
+
 	public static TestGameMode Instance { get; private set; }
 
 	//Player List
@@ -158,20 +167,149 @@ public sealed class TestGameMode : Component
 		musicSoundPoint.Pitch = 1.25f;
 	}
 
+	[Property] public int winningSideStat { get; set; }
+	[Property] public int losingSideStat { get; set; }
+	public async Task RetrievePlayerStat()
+	{
+		var winningTeamSide = TeamSide.Red;
+
+		if ( BlueScore > RedScore )
+		{
+			winningTeamSide = TeamSide.Blue;
+		}
+		else
+		{
+			winningTeamSide = TeamSide.Red;
+		}
+
+		var winningID = new SteamId();
+		var losingID = new SteamId();
+
+		for ( int i = 0; i < PlayerList.Count; i++ )
+		{
+			if ( PlayerList[i].teamSide == winningTeamSide )
+			{
+				winningID = PlayerList[i].Network.Owner.SteamId;
+			}
+			else
+			{
+				losingID = PlayerList[i].Network.Owner.SteamId;
+			}
+		}
+
+		var winningPlayerStats = Stats.GetPlayerStats( "fptaylor.punt", winningID );
+		var losingPlayerStats = Stats.GetPlayerStats( "fptaylor.punt", losingID );
+		await winningPlayerStats.Refresh();
+		await losingPlayerStats.Refresh();
+
+
+		var winningStat = winningPlayerStats.Get( "solo_q_points" );
+		int winningStatValue = (int)winningStat.Value;
+
+
+		var losingStat = losingPlayerStats.Get( "solo_q_points" );
+		int losingStatValue = (int)losingStat.Value;
+
+
+		winningSideStat = winningStatValue;
+		losingSideStat = losingStatValue;
+
+
+	}
+
+
+
+	[Rpc.Broadcast]
 	private void FinishGame()
 	{
+		var winningTeam = TeamSide.Red;
+
 		State = GameState.Results;
 		if ( BlueScore > RedScore )
 		{
 			Log.Info( "Game Finished. Winner: Blue Team!" );
-
+			winningTeam = TeamSide.Blue;
 		}
 		else
 		{
 			Log.Info( "Game Finished. Winner: Red Team!" );
+			winningTeam = TeamSide.Red;
 		}
 
+
+		var winningID = new SteamId();
+		var losingID = new SteamId();
+
+		//set winning and losing IDs here
+
+		for ( int i = 0; i < PlayerList.Count; i++ )
+		{
+			if ( PlayerList[i].teamSide == winningTeam )
+			{
+				winningID = PlayerList[i].Network.Owner.SteamId;
+			}
+			else
+			{
+				losingID = PlayerList[i].Network.Owner.SteamId;
+			}
+		}
+
+		if ( mySide == winningTeam )
+		{
+
+			Log.Info( "I won, add to my score" );
+
+			Log.Info( "new score: " + winningSideStat );
+
+			(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat);
+			Sandbox.Services.Stats.SetValue( "solo_q_points", (winningSideStat) );
+
+
+		}
+		else
+		{
+			Log.Info( "I lost, subtract from my score" );
+			Log.Info( "new score: " + losingSideStat );
+
+
+			(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat );
+			Sandbox.Services.Stats.SetValue( "solo_q_points", (losingSideStat) );
+
+		}
+
+
+
 	}
+
+	// Default baseline adjustment
+	private const int BaselineAdjustment = 1200;
+	private const int KFactor = 32; // Adjust for faster or slower rating adjustments
+
+	// Function to calculate new ELO ratings
+	public static (int, int) CalculateElo( int winnerRating, int loserRating )
+	{
+		// Adjust for baseline
+		winnerRating += BaselineAdjustment;
+		loserRating += BaselineAdjustment;
+
+		// Convert ratings to probabilities
+		double winnerExpected = 1 / (1 + Math.Pow( 10, (loserRating - winnerRating) / 400.0 ));
+		double loserExpected = 1 / (1 + Math.Pow( 10, (winnerRating - loserRating) / 400.0 ));
+
+		// Calculate the new ratings
+		int newWinnerRating = (int)Math.Round( winnerRating + KFactor * (1 - winnerExpected) );
+		int newLoserRating = (int)Math.Round( loserRating + KFactor * (0 - loserExpected) );
+
+		// Adjust back from baseline
+		newWinnerRating -= BaselineAdjustment;
+		newLoserRating -= BaselineAdjustment;
+
+		// Return the updated ratings
+		return (newWinnerRating, newLoserRating);
+	}
+
+
+
 
 	[Rpc.Broadcast]
 	private void SetupGame( TeamSide kickoffSide )

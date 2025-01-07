@@ -211,7 +211,7 @@ public sealed class PuntPlayerController : Component
 		if(TestGameMode.Instance.State == GameState.Resetting )
 		{
 			//reset everything for now
-			Log.Info( "Resetting" );
+			//Log.Info( "Resetting" );
 			controllerState = ControllerState.Idle;
 			Mouse.CursorType = "cooldown";
 

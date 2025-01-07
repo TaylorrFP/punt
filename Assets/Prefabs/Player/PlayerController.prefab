@@ -11,11 +11,17 @@
         "__guid": "06fa746e-3f17-4b1f-b9f0-2cbfe65e8a4c",
         "arrowCurve": [
           {
+            "x": 0,
+            "y": 0,
+            "in": 0,
+            "out": 0,
             "mode": "Linear"
           },
           {
             "x": 1,
             "y": 1,
+            "in": 0,
+            "out": 0,
             "mode": "Linear"
           }
         ],
@@ -31,7 +37,10 @@
         "flickCurve": [
           {
             "x": 0.5,
-            "y": 0.5
+            "y": 0.5,
+            "in": 0,
+            "out": 0,
+            "mode": "Mirrored"
           }
         ],
         "flickStrength": 3,

@@ -6,6 +6,7 @@
     "Tags": "ball",
     "Enabled": true,
     "NetworkMode": 1,
+    "NetworkOrphaned": 1,
     "Components": [
       {
         "__type": "PuntBall",
@@ -23,14 +24,18 @@
         "angleAcuteness": 0,
         "ballCornerRollBias": [
           {
+            "x": 0,
+            "y": 0,
             "in": -0.38596484,
-            "out": 0.38596484
+            "out": 0.38596484,
+            "mode": "Mirrored"
           },
           {
             "x": 1,
             "y": 1,
             "in": -2.1666667,
-            "out": 2.1666667
+            "out": 2.1666667,
+            "mode": "Mirrored"
           }
         ],
         "ballRB": {
@@ -45,6 +50,7 @@
         "cornerRollBias": true,
         "cornerRollBiasDebug": false,
         "exitZVelocity": 0,
+        "goalWallDampning": 0.9,
         "preCollisionVelocity": "0,0,0"
       },
       {
@@ -73,7 +79,14 @@
         "AngularDamping": 1,
         "Gravity": true,
         "LinearDamping": 0.2,
-        "Locking": {},
+        "Locking": {
+          "X": false,
+          "Y": false,
+          "Z": false,
+          "Pitch": false,
+          "Yaw": false,
+          "Roll": false
+        },
         "MassCenterOverride": "0,0,0",
         "MassOverride": 0,
         "MotionEnabled": true,
@@ -87,8 +100,10 @@
         "BlendMode": "Normal",
         "CastShadows": false,
         "Color": {
+          "blend": "Linear",
           "color": [
             {
+              "t": 0,
               "c": "1,1,1,1"
             },
             {
@@ -114,17 +129,25 @@
           "Texture": "prefabs/ball/materials/trailtest.vtex",
           "WorldSpace": true,
           "UnitsPerTexture": 10,
-          "Scale": 1
+          "Scale": 1,
+          "Offset": 0,
+          "Scroll": 0
         },
         "Width": {
           "rangey": "0,15",
           "frames": [
             {
+              "x": 0,
               "y": 1,
+              "in": 0,
+              "out": 0,
               "mode": "Linear"
             },
             {
               "x": 1,
+              "y": 0,
+              "in": 0,
+              "out": 0,
               "mode": "Linear"
             }
           ]
@@ -139,12 +162,18 @@
         "DistanceAttenuationOverride": false,
         "Falloff": [
           {
+            "x": 0,
             "y": 1,
             "in": 3.1415927,
-            "out": -3.1415927
+            "out": -3.1415927,
+            "mode": "Mirrored"
           },
           {
-            "x": 1
+            "x": 1,
+            "y": 0,
+            "in": 0,
+            "out": 0,
+            "mode": "Mirrored"
           }
         ],
         "Force2d": false,

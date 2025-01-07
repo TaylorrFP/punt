@@ -158,8 +158,9 @@
             }
           ],
           "BlueTeam": [],
-          "DebugServer": true,
+          "DebugServer": false,
           "kickingOffSide": "Blue",
+          "losingSideStat": 0,
           "musicSoundPoint": {
             "_type": "component",
             "component_id": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
@@ -220,15 +221,17 @@
           ],
           "RedTeam": [],
           "ResetTimer": {
-            "Relative": -2132.0684,
-            "Passed": 2132.0684,
+            "Absolute": 0,
+            "Relative": -7792.988,
+            "Passed": 7792.988,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
-          "RoundLength": 300,
+          "RoundLength": 180,
           "RoundTimeLeft": 0,
           "State": "Waiting",
-          "timescaleMult": 0.3
+          "timescaleMult": 0.3,
+          "winningSideStat": 0
         }
       ]
     },
@@ -778,8 +781,10 @@
               "__type": "Sandbox.Bloom",
               "__guid": "0cd27493-ff1b-43f8-9af9-bba1a15c3af7",
               "BloomColor": {
+                "blend": "Linear",
                 "color": [
                   {
+                    "t": 0,
                     "c": "1,1,1,1"
                   },
                   {
@@ -791,11 +796,18 @@
               },
               "BloomCurve": [
                 {
-                  "y": 0.5
+                  "x": 0,
+                  "y": 0.5,
+                  "in": 0,
+                  "out": 0,
+                  "mode": "Mirrored"
                 },
                 {
                   "x": 1,
-                  "y": 1
+                  "y": 1,
+                  "in": 0,
+                  "out": 0,
+                  "mode": "Mirrored"
                 }
               ],
               "Mode": "Additive",
@@ -871,12 +883,18 @@
           "DistanceAttenuationOverride": false,
           "Falloff": [
             {
+              "x": 0,
               "y": 1,
               "in": 3.1415927,
-              "out": -3.1415927
+              "out": -3.1415927,
+              "mode": "Mirrored"
             },
             {
-              "x": 1
+              "x": 1,
+              "y": 0,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
             }
           ],
           "Force2d": false,
@@ -953,6 +971,5 @@
   "Title": "networktestscene",
   "Description": null,
   "__references": [],
-  "HasUnsavedChanges": false,
   "__version": 2
 }
