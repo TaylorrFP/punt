@@ -22,7 +22,7 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/networktestscene.scene",
-    "LaunchMode": "QuickPlay"
+    "StartupScene": "scenes/mainmenu.scene",
+    "LaunchMode": "Normal"
   }
 }

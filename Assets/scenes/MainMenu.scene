@@ -40,7 +40,7 @@
           "cooldownDuration": 0,
           "cooldownTimeSince": {
             "Absolute": 0,
-            "Relative": 28496.406
+            "Relative": 14242.624
           },
           "playerCooldownRenderer": {
             "_type": "component",
@@ -277,7 +277,7 @@
                   "squashDuration": 0.5,
                   "squashTimeSince": {
                     "Absolute": 0,
-                    "Relative": 95036130
+                    "Relative": 95205030
                   }
                 }
               ],
@@ -1337,6 +1337,25 @@
               "Smoothness": 1
             }
           ]
+        }
+      ]
+    },
+    {
+      "__guid": "8e23c3b0-3adc-40cf-9081-e58f3e856b61",
+      "Flags": 0,
+      "Name": "NetworkManager",
+      "Position": "1.216125,-425.2054,708.3363",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.NetworkManagerTest",
+          "__guid": "69134bc3-7c71-402e-85ad-278f707404cf",
+          "isSearching": false,
+          "lobbyListNames": [],
+          "myLobby": {
+            "IsFull": true
+          }
         }
       ]
     }
