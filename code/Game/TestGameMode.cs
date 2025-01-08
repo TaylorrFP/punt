@@ -75,6 +75,11 @@ public sealed class TestGameMode : Component
 
 	protected override void OnAwake()
 	{
+		//Sandbox.Services.Stats.SetValue( "solo_q_points", (0) ); //reset stats
+
+
+
+
 		Instance = this;
 		State = GameState.Waiting;
 		base.OnAwake();
@@ -199,16 +204,15 @@ public sealed class TestGameMode : Component
 
 		var winningPlayerStats = Stats.GetPlayerStats( "fptaylor.punt", winningID );
 		var losingPlayerStats = Stats.GetPlayerStats( "fptaylor.punt", losingID );
-		await winningPlayerStats.Refresh();
-		await losingPlayerStats.Refresh();
+		await Task.WhenAll( winningPlayerStats.Refresh(), losingPlayerStats.Refresh() );
 
 
 		var winningStat = winningPlayerStats.Get( "solo_q_points" );
-		int winningStatValue = (int)winningStat.Value;
+		int winningStatValue = (int)winningStat.LastValue;
 
 
 		var losingStat = losingPlayerStats.Get( "solo_q_points" );
-		int losingStatValue = (int)losingStat.Value;
+		int losingStatValue = (int)losingStat.LastValue;
 
 
 		winningSideStat = winningStatValue;
@@ -301,6 +305,9 @@ public sealed class TestGameMode : Component
 	// Function to calculate new ELO ratings
 	public static (int, int) CalculateElo( int winnerRating, int loserRating )
 	{
+		Log.Info( "Winner Rating: " + winnerRating );
+		Log.Info("Loser Rating: " + loserRating );
+
 		// Adjust for baseline
 		winnerRating += BaselineAdjustment;
 		loserRating += BaselineAdjustment;
