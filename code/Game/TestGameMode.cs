@@ -174,7 +174,7 @@ public sealed class TestGameMode : Component
 
 	[Property] public int winningSideStat { get; set; }
 	[Property] public int losingSideStat { get; set; }
-	public async Task RetrievePlayerStat()
+	public async Task RetrievePlayerStat() //clean this shit up
 	{
 		var winningTeamSide = TeamSide.Red;
 
@@ -290,7 +290,7 @@ public sealed class TestGameMode : Component
 		}
 
 
-		RetrievePlayerStat(); //is this fine at the end?
+		_ = RetrievePlayerStat(); //is this fine at the end?
 
 		
 

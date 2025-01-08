@@ -1,0 +1,42 @@
+.searching-panel {
+	font-family: 'Lemon Days';
+	position: absolute;
+	top: 64px;
+	right: 64px;
+	padding: 10px;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: white;
+	border-radius: 30%;
+	font-size: 32px;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	justify-content: space-between;
+	width: 385px; /* Fixed width to avoid panel resizing */
+	padding-left: 25px;
+	pointer-events: all;
+}
+
+.dots {
+	display: flex;
+	justify-content: flex-start;
+	font-weight: bold;
+}
+
+/* Cancel Button Styling */
+.cancel-button {
+	padding: 10px 20px;
+	font-size: 24px;
+	background-color: #e74c3c;
+	color: white;
+	border: none;
+	border-radius: 30%;
+	cursor: pointer;
+	transition: transform 0.1s ease, background-color 0.2s ease; /* Added transform to transition */
+	transform-origin: center; /* Makes the scaling happen from the center */
+}
+
+.cancel-button:hover {
+	transform: scale(1.1) translateX(-5px);
+}

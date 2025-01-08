@@ -24,6 +24,9 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	[Property] public LobbyInformation myLobby { get; private set; }
 	[Property] public bool isSearching { get; private set; } = false;
+
+	[Property] public bool gameFound { get; private set; } = false;
+
 	[Property] public string queueType { get; private set; }
 
 

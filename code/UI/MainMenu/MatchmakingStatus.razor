@@ -1,0 +1,50 @@
+@using Sandbox
+@using Sandbox.UI
+@inherits Panel
+@namespace Sandbox
+@using System
+
+
+@if (QueueManager.Instance?.isSearching == true)
+{
+    <div class="searching-panel">
+        <h3>Searching<span class="dots">@dots</span></h3>
+        <button class="cancel-button" @onclick=@(()=>CancelSearch())>Cancel</button>
+    </div>
+
+}
+
+
+@code
+{
+    private string dots = "";
+    private float _time = 0f;
+
+    public override void Tick()
+    {
+        _time += Time.Delta;
+
+        // Every 0.5 seconds, update the dots (5 stages)
+        if (_time >= 0.2f)
+        {
+            _time = 0;
+            dots += ".";
+
+            // Reset dots if there are 5
+            if (dots.Length > 5)
+            {
+                dots = "";
+            }
+        }
+    }
+
+    void CancelSearch()
+    {
+        QueueManager.Instance.StopSearching();
+        Log.Info("Stop");
+    }
+
+
+
+    protected override int BuildHash() => System.HashCode.Combine(dots);
+}
