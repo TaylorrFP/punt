@@ -8,19 +8,17 @@
 
 <root class="mainmenu">
 
-    <title> Punt!</title>
+    <title>Punt!</title>
 
     <div class="options">
+        <!-- Regular Play Button -->
         <div class="button" onclick=@(async () => { QueueManager.Instance.CreateLobby("0"); await QueueManager.Instance.StartSearching("0"); })>
             Solo
         </div>
 
-        <div class="button" onclick=@(async () => await QueueManager.Instance.StartSearching("1"))>
-            Duo
-        </div>
-
-        <a class="button" href="serverbrowser"> Custom Games</a>
-
+        <!-- WIP Style for Duos and Custom Games -->
+        <div class="button wip-button">Duo</div>
+        <a class="button wip-button" href="#">Custom Games</a>
 
         <a class="button" href="">Back</a>
     </div>

@@ -86,7 +86,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		}
 		finally
 		{
-			isSearching = false;
+			//isSearching = false;
 		}
 	}
 
@@ -134,6 +134,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			{
 				Log.Info( "Game Found! Connecting..." );
 				Networking.Connect( lobby.LobbyId );
+				gameFound = true;
 				return;
 			}
 		}
@@ -145,6 +146,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	{
 		if ( !channel.IsHost )
 		{
+			gameFound = true;
 			StopSearching();
 			Log.Info( "Player Joined: " + channel.DisplayName );
 			Log.Info( "Starting game..." );

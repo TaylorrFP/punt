@@ -1,4 +1,4 @@
-.MainMenu {
+﻿.MainMenu {
 	position: absolute;
 	top: 0;
 	left: 64px;
@@ -23,15 +23,23 @@
 	> .options {
 		flex-direction: column;
 		justify-content: center;
-
-
+		/* Standard Button Styling */
 		> .button {
 			transition: all 0.1s ease;
 			transform-origin: left center;
 
 			&:hover {
 				transform: scale(1.2);
+				sound-in: ui.button.over;
 			}
+		}
+		> .wip-button {
+			color: #d0d0d0; /* Light grey text for contrast */
+			cursor: default; /* No click interaction */
+			pointer-events: none; /* Prevents hover and clicks */
+			transition: none; /* No transition effects */
+			transform: none; /* Prevent scaling */
+			sound-in: none; /* Disables sounds */
 		}
 	}
 }

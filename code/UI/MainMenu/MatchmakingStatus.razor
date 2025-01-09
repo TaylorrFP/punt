@@ -4,16 +4,26 @@
 @namespace Sandbox
 @using System
 
-
-@if (QueueManager.Instance?.isSearching == true)
+@if (QueueManager.Instance?.isSearching == true || QueueManager.Instance?.gameFound == true)
 {
-    <div class="searching-panel">
-        <h3>Searching<span class="dots">@dots</span></h3>
-        <button class="cancel-button" @onclick=@(()=>CancelSearch())>Cancel</button>
+    <div class="searching-panel @(QueueManager.Instance.gameFound ? "game-found" : "")">
+        <h3>
+            @if (QueueManager.Instance.gameFound)
+            {
+                @("Game Found!")
+            }
+            else
+            {
+                <span>Searching<span class="dots">@dots</span></span>
+            }
+        </h3>
+
+        @if (!QueueManager.Instance.gameFound)
+        {
+            <button class="cancel-button" @onclick="@(() => CancelSearch())">Cancel</button>
+        }
     </div>
-
 }
-
 
 @code
 {
@@ -24,27 +34,18 @@
     {
         _time += Time.Delta;
 
-        // Every 0.5 seconds, update the dots (5 stages)
-        if (_time >= 0.2f)
+        if (!QueueManager.Instance.gameFound && _time >= 0.2f)
         {
             _time = 0;
-            dots += ".";
-
-            // Reset dots if there are 5
-            if (dots.Length > 5)
-            {
-                dots = "";
-            }
+            dots = dots.Length < 5 ? dots + "." : "";
         }
     }
 
     void CancelSearch()
     {
         QueueManager.Instance.StopSearching();
-        Log.Info("Stop");
+        Log.Info("Matchmaking canceled.");
     }
 
-
-
-    protected override int BuildHash() => System.HashCode.Combine(dots);
+    protected override int BuildHash() => System.HashCode.Combine(dots, QueueManager.Instance.gameFound, QueueManager.Instance.isSearching);
 }

@@ -52,7 +52,7 @@
           "cooldownDuration": 0,
           "cooldownTimeSince": {
             "Absolute": 0,
-            "Relative": 10507.993
+            "Relative": 11262.961
           },
           "playerCooldownRenderer": {
             "_type": "component",
@@ -350,7 +350,7 @@
                   "squashDuration": 0.5,
                   "squashTimeSince": {
                     "Absolute": 0,
-                    "Relative": 95381110
+                    "Relative": 95381864
                   }
                 }
               ],
@@ -1547,8 +1547,9 @@
         {
           "__type": "Sandbox.QueueManager",
           "__guid": "2e49e3ef-04eb-4193-a9c4-f5905f6fe0c0",
+          "gameFound": false,
           "isSearching": false,
-          "loadDelay": 3000,
+          "loadDelay": 1000,
           "lobbyListNames": [],
           "myLobby": {
             "IsFull": true

@@ -1,4 +1,4 @@
-.searching-panel {
+﻿.searching-panel {
 	font-family: 'Lemon Days';
 	position: absolute;
 	top: 64px;
@@ -13,9 +13,10 @@
 	align-items: center;
 	gap: 20px;
 	justify-content: space-between;
-	width: 385px; /* Fixed width to avoid panel resizing */
+	width: 385px;
 	padding-left: 25px;
 	pointer-events: all;
+	transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .dots {
@@ -33,10 +34,25 @@
 	border: none;
 	border-radius: 30%;
 	cursor: pointer;
-	transition: transform 0.1s ease, background-color 0.2s ease; /* Added transform to transition */
-	transform-origin: center; /* Makes the scaling happen from the center */
+	transition: transform 0.1s ease, background-color 0.2s ease;
+	transform-origin: center;
 }
 
 .cancel-button:hover {
 	transform: scale(1.1) translateX(-5px);
+}
+
+.game-found {
+	background-color: #2ecc71;
+	transform: scale(1.1);
+	pointer-events: none;
+	display: flex;
+	justify-content: center; /* Centers horizontally */
+	align-items: center; /* Centers vertically */
+	text-align: center; /* Centers text itself */
+	width: 385px;
+	height: 100px;
+	padding: 0;
+	font-size: 48px;
+	transform-origin: center; /* ✅ The Fix: Scaling from the center */
 }
