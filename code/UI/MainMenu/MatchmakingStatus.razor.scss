@@ -19,6 +19,7 @@
 	width: auto; /* ✅ Dynamic width */
 	min-width: 350px; /* Ensures it doesn't get too small */
 	max-width: 100%; /* Prevents overflow */
+	cursor: pointer;
 }
 
 /* Player Icons Container (Dynamic Width Based on Player Count) */

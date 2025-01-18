@@ -4,6 +4,7 @@
 @namespace Facepunch.UI
 @using System
 @using System.Threading.Tasks
+@using System.Collections.Generic
 
 @implements INavigatorPage
 
@@ -18,31 +19,10 @@
             <div class="leaderboard-entries">
                 @if (soloboard != null)
                 {
-
-                        @foreach (var entry in soloboard.Entries)
-                        {
-                            <div class="leaderboard-entry">
-                                @($"{entry.Rank}: {entry.DisplayName} - {entry.Value + 1200}")
-                            </div>
-                        }
-                }
-                else
-                {
-                    <div class="leaderboard-entry">Loading...</div>
-                }
-
-            </div>
-        </div>
-
-        <div class="leaderboard-section duo-leaderboard">
-            <h2>Duo</h2>
-            <div class="leaderboard-entries">
-                @if (duoboard != null)
-                {
-
-                    @foreach (var entry in duoboard.Entries)
+                    @foreach (var entry in soloboard.Entries)
                     {
-                        <div class="leaderboard-entry">
+                        bool isLocalPlayer = entry.DisplayName == Connection.Local.DisplayName;
+                        <div class="leaderboard-entry @(isLocalPlayer ? "local-player" : "")">
                             @($"{entry.Rank}: {entry.DisplayName} - {entry.Value + 1200}")
                         </div>
                     }
@@ -51,26 +31,43 @@
                 {
                     <div class="leaderboard-entry">Loading...</div>
                 }
+            </div>
+        </div>
 
+        <div class="leaderboard-section duo-leaderboard">
+            <h2>Duo</h2>
+            <div class="leaderboard-entries">
+                @if (duoboard != null)
+                {
+                    @foreach (var entry in duoboard.Entries)
+                    {
+                        bool isLocalPlayer = entry.DisplayName == Connection.Local.DisplayName;
+                        <div class="leaderboard-entry @(isLocalPlayer ? "local-player" : "")">
+                            @($"{entry.Rank}: {entry.DisplayName} - {entry.Value + 1200}")
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="leaderboard-entry">Loading...</div>
+                }
             </div>
         </div>
     </div>
 
-    <!-- Back Button -->
     <div class="options">
+        <div class="button" onclick=@(()=>FetchLeaderboards())>
+            Refresh
+        </div>
         <a class="button" href="">Back</a>
     </div>
 
 </root>
 
-
 @code
 {
-
-
     Sandbox.Services.Leaderboards.Board2 soloboard;
     Sandbox.Services.Leaderboards.Board2 duoboard;
-
 
     protected override void OnAfterTreeRender(bool firstTime)
     {
@@ -85,38 +82,23 @@
         Log.Info("Fetching Leaderboards...");
 
         soloboard = Sandbox.Services.Leaderboards.GetFromStat("fptaylor.punt", "solo_q_points");
-
         soloboard.SetAggregationLast();
-        soloboard.SetSortDescending(); // Order by the lowest value first
-        soloboard.FilterByMonth(); // Only show results from this month
-        soloboard.CenterOnMe(); // Offset so I'm in the middle of the results
-        soloboard.MaxEntries = 100;
-
+        soloboard.SetSortDescending();
+        soloboard.FilterByMonth();
+        soloboard.CenterOnMe();
+        soloboard.MaxEntries = 10;
         await soloboard.Refresh();
 
-
         duoboard = Sandbox.Services.Leaderboards.GetFromStat("fptaylor.punt", "duo_q_points");
-
         duoboard.SetAggregationLast();
-        duoboard.SetSortDescending(); // Order by the lowest value first
-        duoboard.FilterByMonth(); // Only show results from this month
-        duoboard.CenterOnMe(); // Offset so I'm in the middle of the results
-        duoboard.MaxEntries = 100;
-
+        duoboard.SetSortDescending();
+        duoboard.FilterByMonth();
+        duoboard.CenterOnMe();
+        duoboard.MaxEntries = 10;
         await duoboard.Refresh();
 
-        
-
-        foreach (var entry in soloboard.Entries)
-        {
-            Log.Info($"{entry.Rank}: {entry.DisplayName} - {entry.Value}");
-        }
-
-        foreach (var entry in duoboard.Entries)
-        {
-            Log.Info($"{entry.Rank}: {entry.DisplayName} - {entry.Value}");
-        }
+        Log.Info("Leaderboards Fetched Successfully!");
     }
 
-    protected override int BuildHash() => System.HashCode.Combine(soloboard,duoboard);
+    protected override int BuildHash() => System.HashCode.Combine(soloboard, duoboard);
 }
