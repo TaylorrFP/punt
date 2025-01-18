@@ -194,6 +194,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	public void CreateLobby( QueueType queue )
 	{
+		Networking.Disconnect();
 		SelectedQueueType = queue;
 
 		Networking.CreateLobby( new LobbyConfig()

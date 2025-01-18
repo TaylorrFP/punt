@@ -1,0 +1,53 @@
+@using Sandbox
+@using Sandbox.UI
+@using System
+@using System.Threading.Tasks
+
+@implements INavigatorPage
+@namespace Facepunch.UI
+
+<root class="mainmenu">
+
+    <title>Punt!</title>
+
+
+    <div class="options">
+            <a class="button" href="">Back</a>
+    </div>
+
+
+</root>
+
+@code
+{
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        if (firstTime)
+        {
+            FetchLeaderboards();
+        }
+    }
+
+    protected async void FetchLeaderboards()
+    {
+        Log.Info("Hello!");
+
+
+        var board = Sandbox.Services.Leaderboards.GetFromStat("fptaylor.punt", "solo_q_points");
+
+        board.SetAggregationLast();
+        board.SetSortAscending(); // order by the lowest value first
+        board.FilterByMonth(); // only show results from this month
+        board.CenterOnMe(); // offset so I'm in the middle of the results
+        board.MaxEntries = 100;
+
+        await board.Refresh();
+
+        foreach (var entry in board.Entries)
+        {
+            Log.Info($"{entry.Rank} - {entry.DisplayName} - {entry.Value} [{entry.Timestamp}]");
+        }
+
+
+    }
+}
