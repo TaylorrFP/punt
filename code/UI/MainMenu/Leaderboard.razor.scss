@@ -1,45 +1,89 @@
 ﻿.MainMenu {
-	position: absolute;
-	top: 0;
-	left: 64px;
-	right: 0;
-	bottom: 0;
-	pointer-events: all;
-	color: #fff;
-	font-family: 'Lemon Days';
-	font-size: 64px;
-	flex-direction: column;
-	cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 64px;
+    right: 0;
+    bottom: 0;
+    pointer-events: all;
+    color: #fff;
+    font-family: 'Lemon Days';
+    font-size: 64px;
+    flex-direction: column;
+    cursor: pointer;
 
-	&.hidden {
-		display: none;
-	}
+    &.hidden {
+        display: none;
+    }
 
-	> title {
-		font-size: 256px;
-		font-weight: bold;
-	}
+    > title {
+        font-size: 256px;
+        font-weight: bold;
+    }
+    /* ✅ Leaderboards aligned to the left */
+    > .leaderboards {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        width: auto;
+        max-width: 900px; /* Ensures they don't get too wide */
+       
+    }
+    /* ✅ Shared styles for all leaderboard sections */
+    .leaderboard-section {
+        flex: 1;
+        
+        border-radius: 10px;
+        text-align: left;
+        width: 50%;
+        display: flex;
+        flex-direction: column; /* ✅ Stack elements inside */
+        align-items: flex-start; /* ✅ Ensure everything aligns left */
+    }
+    /* Leaderboard Header */
+    .leaderboard-section h2 {
+        margin-bottom: 10px; /* ✅ Adds space between header and entries */
+        width: 100%; /* ✅ Ensures full width alignment */
+    }
+    /* Leaderboard Entries */
+    .leaderboard-entries {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%; /* ✅ Ensure full width */
+    }
 
-	> .options {
-		flex-direction: column;
-		justify-content: center;
-		/* Standard Button Styling */
-		> .button {
-			transition: all 0.1s ease;
-			transform-origin: left center;
+    .leaderboard-entry {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 10px 15px; /* ✅ Added padding (10px top/bottom, 15px left/right) */
+        border-radius: 25%;
+        text-align: left;
+        font-size: 24px;
+        color: white;
+        width: 100%; /* ✅ Ensure full width consistency */
+    }
+    /* Back Button */
+    > .options {
+        flex-direction: column;
+        justify-content: center;
+  
+        /* Standard Button Styling */
+        > .button {
+            transition: all 0.1s ease;
+            transform-origin: left center;
 
-			&:hover {
-				transform: scale(1.2);
-				sound-in: ui.button.over;
-			}
-		}
-		> .wip-button {
-			color: #d0d0d0; /* Light grey text for contrast */
-			cursor: default; /* No click interaction */
-			pointer-events: none; /* Prevents hover and clicks */
-			transition: none; /* No transition effects */
-			transform: none; /* Prevent scaling */
-			sound-in: none; /* Disables sounds */
-		}
-	}
+            &:hover {
+                transform: scale(1.2);
+                sound-in: ui.button.over;
+            }
+        }
+
+        > .wip-button {
+            color: #d0d0d0;
+            cursor: default;
+            pointer-events: none;
+            transition: none;
+            transform: none;
+            sound-in: none;
+        }
+    }
 }

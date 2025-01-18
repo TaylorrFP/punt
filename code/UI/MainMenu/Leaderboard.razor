@@ -1,25 +1,77 @@
-@using Sandbox
+﻿@using Sandbox
 @using Sandbox.UI
+@inherits Panel
+@namespace Facepunch.UI
 @using System
 @using System.Threading.Tasks
 
 @implements INavigatorPage
-@namespace Facepunch.UI
 
 <root class="mainmenu">
 
     <title>Punt!</title>
 
+    <!-- Leaderboard Sections -->
+    <div class="leaderboards">
+        <div class="leaderboard-section solo-leaderboard">
+            <h2>Solo</h2>
+            <div class="leaderboard-entries">
+                @if (soloboard != null)
+                {
 
-    <div class="options">
-            <a class="button" href="">Back</a>
+                        @foreach (var entry in soloboard.Entries)
+                        {
+                            <div class="leaderboard-entry">
+                                @($"{entry.Rank}: {entry.DisplayName} - {entry.Value + 1200}")
+                            </div>
+                        }
+                }
+                else
+                {
+                    <div class="leaderboard-entry">Loading...</div>
+                }
+
+            </div>
+        </div>
+
+        <div class="leaderboard-section duo-leaderboard">
+            <h2>Duo</h2>
+            <div class="leaderboard-entries">
+                @if (duoboard != null)
+                {
+
+                    @foreach (var entry in duoboard.Entries)
+                    {
+                        <div class="leaderboard-entry">
+                            @($"{entry.Rank}: {entry.DisplayName} - {entry.Value + 1200}")
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="leaderboard-entry">Loading...</div>
+                }
+
+            </div>
+        </div>
     </div>
 
+    <!-- Back Button -->
+    <div class="options">
+        <a class="button" href="">Back</a>
+    </div>
 
 </root>
 
+
 @code
 {
+
+
+    Sandbox.Services.Leaderboards.Board2 soloboard;
+    Sandbox.Services.Leaderboards.Board2 duoboard;
+
+
     protected override void OnAfterTreeRender(bool firstTime)
     {
         if (firstTime)
@@ -30,24 +82,41 @@
 
     protected async void FetchLeaderboards()
     {
-        Log.Info("Hello!");
+        Log.Info("Fetching Leaderboards...");
+
+        soloboard = Sandbox.Services.Leaderboards.GetFromStat("fptaylor.punt", "solo_q_points");
+
+        soloboard.SetAggregationLast();
+        soloboard.SetSortDescending(); // Order by the lowest value first
+        soloboard.FilterByMonth(); // Only show results from this month
+        soloboard.CenterOnMe(); // Offset so I'm in the middle of the results
+        soloboard.MaxEntries = 100;
+
+        await soloboard.Refresh();
 
 
-        var board = Sandbox.Services.Leaderboards.GetFromStat("fptaylor.punt", "solo_q_points");
+        duoboard = Sandbox.Services.Leaderboards.GetFromStat("fptaylor.punt", "duo_q_points");
 
-        board.SetAggregationLast();
-        board.SetSortAscending(); // order by the lowest value first
-        board.FilterByMonth(); // only show results from this month
-        board.CenterOnMe(); // offset so I'm in the middle of the results
-        board.MaxEntries = 100;
+        duoboard.SetAggregationLast();
+        duoboard.SetSortDescending(); // Order by the lowest value first
+        duoboard.FilterByMonth(); // Only show results from this month
+        duoboard.CenterOnMe(); // Offset so I'm in the middle of the results
+        duoboard.MaxEntries = 100;
 
-        await board.Refresh();
+        await duoboard.Refresh();
 
-        foreach (var entry in board.Entries)
+        
+
+        foreach (var entry in soloboard.Entries)
         {
-            Log.Info($"{entry.Rank} - {entry.DisplayName} - {entry.Value} [{entry.Timestamp}]");
+            Log.Info($"{entry.Rank}: {entry.DisplayName} - {entry.Value}");
         }
 
-
+        foreach (var entry in duoboard.Entries)
+        {
+            Log.Info($"{entry.Rank}: {entry.DisplayName} - {entry.Value}");
+        }
     }
+
+    protected override int BuildHash() => System.HashCode.Combine(soloboard,duoboard);
 }
