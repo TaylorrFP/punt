@@ -3,7 +3,9 @@ using Sandbox.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Sandbox;
@@ -13,22 +15,74 @@ namespace Sandbox;
 [Icon( "electrical_services" )]
 public sealed class QueueManager : Component, Component.INetworkListener
 {
-	[Property] public int searchFrequency { get; set; } = 5000;
-	[Property] public int loadDelay { get; set; } = 3000;
+
 	public static QueueManager Instance { get; private set; }
+
+
+	//Queue Type
+	[Group( "Queue Type" )]
+
+	
+	private QueueType selectedQueueType;
+
+	[Property]
+	public QueueType SelectedQueueType
+	{
+		get => selectedQueueType;
+		set
+		{
+			selectedQueueType = value;
+			UpdateMaxPlayers( value ); // Call the method to handle max players
+		}
+	}
+	private void UpdateMaxPlayers( QueueType queue )
+	{
+		switch ( queue ) // Set the max players based on the queue type
+		{
+			case QueueType.None:
+				maxPlayers = 0;
+				break;
+
+			case QueueType.Solo:
+				maxPlayers = 2;
+				break;
+
+			case QueueType.Duo:
+				maxPlayers = 4;
+				break;
+
+			case QueueType.Custom:
+				maxPlayers = 4;
+				break;
+		}
+
+	}
+
+
+	//Searching
+	[Group( "Searching" )] [Property] public int searchFrequency { get; set; } = 5000;
+	public List<LobbyInformation> lobbyList { get; private set; } = new List<LobbyInformation>();
+
+	public LobbyInformation myLobby { get; private set; }
+
+	[Group( "Searching" )] [Property] public List<string> lobbyListNames { get; private set; } = new List<string>();
+
+	[Group("Searching")][Property] public bool isSearching { get; private set; } = false;
+
+	[Group("Searching")][Property] public bool gameFound { get; private set; } = false;
+
+	[Group( "Searching" )][Property] public int maxPlayers { get; private set; }
+
+	[Group( "Loading" )][Property] public bool gameJoined { get; private set; } = false;
+
+	[Group( "Loading" )][Property] public int loadDelay { get; set; } = 3000;
 
 	private CancellationTokenSource searchTokenSource;
 
-	public List<LobbyInformation> lobbyList { get; private set; } = new List<LobbyInformation>();
-	[Property] public List<string> lobbyListNames { get; private set; } = new List<string>();
 
-	[Property] public LobbyInformation myLobby { get; private set; }
-	[Property] public bool isSearching { get; private set; } = false;
 
-	[Property] public bool gameFound { get; private set; } = false;
 
-	[Property] public string queueType { get; private set; }
-
+	
 
 
 
@@ -36,8 +90,9 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	{
 
 
+		//this.Gameobject.Flags = GameObjectFlags.DontDestroyOnLoad;
 
-
+		this.GameObject.Flags = GameObjectFlags.DontDestroyOnLoad; //keep this around so I can see the match type
 		Instance = this;
 		base.OnAwake();
 	}
@@ -45,40 +100,31 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	/// <summary>
 	/// Creates a new lobby with the specified queue type.
 	/// </summary>
-	public void CreateLobby( string QueueType )
-	{
-		Log.Info( "Lobby Created. Name: " + Steam.PersonaName + QueueType );
-		Networking.CreateLobby( new LobbyConfig()
-		{
-			MaxPlayers = 2,
-			Privacy = LobbyPrivacy.Public,
-			Name = QueueType
-		} );
-	}
+
 
 	/// <summary>
 	/// Starts searching for a game repeatedly until canceled.
 	/// </summary>
-	public async Task StartSearching( string QueueType )
+	public async Task StartSearching( QueueType queue )
 	{
-		StopSearching(); // Cancel any ongoing search before starting a new one
+		
+		StopSearching(true); // Cancel any ongoing search before starting a new one
+		SelectedQueueType = queue;
 		searchTokenSource = new CancellationTokenSource();
-		queueType = QueueType;
 		isSearching = true;
-
-		Log.Info( $"Started searching for games in queue: {queueType}" );
+		Log.Info( $"Started searching for games in queue: {queue.ToString()}" );
 
 		try
 		{
 			while ( !searchTokenSource.Token.IsCancellationRequested )
 			{
-				await SearchGame( queueType );
+				await SearchGame(queue);
 				await Task.Delay( searchFrequency, searchTokenSource.Token );
 			}
 		}
 		catch ( TaskCanceledException )
 		{
-			Log.Info( "Search was canceled successfully." );
+			Log.Info( "Search was cancelled successfully." );
 		}
 		catch ( Exception ex )
 		{
@@ -90,10 +136,81 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		}
 	}
 
+	public async Task SearchGame( QueueType queue )
+	{
+		Log.Info( "Searching Games..." );
+		lobbyList = await Networking.QueryLobbies();
+		lobbyListNames.Clear();
+
+	
+
+		if ( Networking.IsActive )//if we've already made a lobby, remove our lobby from the list
+		{
+			//make a reference to mylobby
+			myLobby = lobbyList.FirstOrDefault( lobby => lobby.OwnerId == Connection.Host.SteamId );
+			// Filter and remove the player's own lobby
+			lobbyList.RemoveAll( lobby => lobby.OwnerId == Connection.Host.SteamId );
+		}
+
+		//remove all the lobbys that don't match the queue we're searching for
+		for ( int i = 0; i < lobbyList.Count; i++ )
+		{
+			if ( lobbyList[i].Name != queue.ToString() )
+			{
+				lobbyList.Remove( lobbyList[i] );
+			}
+		}
+
+
+		if (lobbyList.Count == 0 )
+		{
+			Log.Info( "No Lobbies found" );
+			if ( !Networking.IsActive )//only create a lobby if we haven't already created one
+			{
+				Log.Info( "Creating Lobby" );
+				CreateLobby( queue );
+			}
+
+		}
+		else //if there is at least 1 relevant lobby
+		{
+			// Collect lobby names so I can read them in the editor
+			foreach ( var lobby in lobbyList )
+			{
+				lobbyListNames.Add( lobby.Name + " " + lobby.Members + "/" + lobby.MaxMembers + " " + lobby.OwnerId );
+			}
+
+			Log.Info( "Active Lobbies in queue: " + lobbyList.Count );
+
+			//put the lobby with most members first
+			lobbyList = lobbyList.OrderByDescending( lobby => lobby.Members ).ToList();
+			Networking.Disconnect();//disconnect if we were hosting
+			Log.Info( "Game Found! Connecting..." );
+			Networking.Connect( lobbyList[0].LobbyId ); //connect to the one with the most members
+			gameFound = true;
+
+		}
+	}
+
+	public void CreateLobby( QueueType queue )
+	{
+		SelectedQueueType = queue;
+
+		Networking.CreateLobby( new LobbyConfig()
+		{
+			MaxPlayers = maxPlayers,
+			Privacy = LobbyPrivacy.Public,
+			Name = queue.ToString(),
+			Hidden = true
+
+
+		} );
+	}
+
 	/// <summary>
 	/// Cancels the current search process.
 	/// </summary>
-	public void StopSearching()
+	public void StopSearching(bool DestroyLobby)
 	{
 		if ( !isSearching )
 		{
@@ -103,61 +220,67 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 		searchTokenSource?.Cancel();
 		isSearching = false;
+	
 		Log.Info( "Search stopped." );
+
+
+
+
+		if ( DestroyLobby )
+		{
+			Networking.Disconnect();
+			lobbyListNames.Clear();
+			lobbyList.Clear();
+			SelectedQueueType = QueueType.None;
+		}
+		
 	}
 
 	/// <summary>
 	/// Searches for lobbies and tries to join if a match is found.
 	/// </summary>
-	public async Task SearchGame( string QueueType )
-	{
-		Log.Info( "Searching Games..." );
-		lobbyList = await Networking.QueryLobbies();
-		lobbyListNames.Clear();
+	
 
-		// Filter and remove the player's own lobby
-		lobbyList.RemoveAll( lobby => lobby.OwnerId == Connection.Host.SteamId );
-
-		// Collect lobby names for logging and filtering
-		foreach ( var lobby in lobbyList )
-		{
-			lobbyListNames.Add( lobby.Name );
-			Log.Info( "LobbyID: " + lobby.OwnerId );
-		}
-
-		Log.Info( "Active Lobbies: " + lobbyList.Count );
-
-		// Attempt to join the first matching lobby
-		foreach ( var lobby in lobbyList )
-		{
-			if ( lobby.Name == QueueType )
-			{
-				Log.Info( "Game Found! Connecting..." );
-				Networking.Connect( lobby.LobbyId );
-				gameFound = true;
-				return;
-			}
-		}
-
-		Log.Info( "No matching lobbies found." );
-	}
+	
 
 	public async void OnActive( Connection channel )
 	{
-		if ( !channel.IsHost )
+		
+		if ( !channel.IsHost & gameJoined != true ) //if the joining player isn't a host, and we haven't started the game yet
 		{
-			gameFound = true;
-			StopSearching();
 			Log.Info( "Player Joined: " + channel.DisplayName );
-			Log.Info( "Starting game..." );
+			StopSearching(false);
 
-			await Task.Delay( 3000 ); // Delays for 3 seconds once
-			Scene.LoadFromFile( "scenes/networktestscene.scene" );
+			//if I'm the owner I need to stop searching?
+			if ( Connection.All.Count == maxPlayers )
+			{
+
+				//start game
+				gameFound = true;
+				await Task.Delay( 3000 ); // Delays for a little bit to allow the incoming player to load?
+				Log.Info( "Loading Scene" );
+				Scene.LoadFromFile( "scenes/networktestscene.scene" );
+				gameJoined = true; //do this with enums later
+				Log.Info( "game full, starting game" );
+
+			}
+
+
 		}
 	}
-	public void OnDisconnected( Connection connection )
+	public async void OnDisconnected( Connection channel )
 	{
-	
+		//needs the host bit because otherwise the person connecting calls this when they join
+
+		if ( !channel.IsHost & gameJoined != true & Connection.All.Count <= 2)//if we haven't started the game, someone disconnects and it's just us left (2 because this is called just before the player disconnects)
+		{
+			Log.Info( "Not enough players after disconnect, starting search" );
+			await StartSearching(selectedQueueType);
+
+		}
+
+		//we need to check if it's just us, if it is we need to create a lobby again
+
 	}
 	protected override void OnUpdate() { }
 }

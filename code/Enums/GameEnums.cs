@@ -5,6 +5,14 @@
 	Blue
 }
 
+public enum QueueType
+{
+	None,
+	Solo,
+	Duo,
+	Custom
+}
+
 public enum PieceState
 {
 	Ready,

@@ -1,23 +1,39 @@
-@using Sandbox
+﻿@using Sandbox
 @using Sandbox.UI
 @inherits Panel
 @namespace Sandbox
 @using System
 
-@if (QueueManager.Instance?.isSearching == true || QueueManager.Instance?.gameFound == true)
+@if (QueueManager.Instance?.isSearching == true || QueueManager.Instance?.gameFound == true || Connection.All.Count>1)
 {
     <div class="searching-panel @(QueueManager.Instance.gameFound ? "game-found" : "")">
-        <h3>
-            @if (QueueManager.Instance.gameFound)
-            {
-                @("Game Found!")
-            }
-            else
-            {
-                <span>Searching<span class="dots">@dots</span></span>
-            }
-        </h3>
 
+        <!-- Player Icons Section -->
+        <div class="player-icons">
+            @for (int i = 0; i < QueueManager.Instance.maxPlayers; i++)
+            {
+                bool isConnected = i < Connection.All.Count; // Check if this slot represents a connected player
+                <span class="player-icon @(isConnected ? "connected" : "")">
+                    <i>person</i>
+                </span>
+            }
+        </div>
+
+        <!-- ✅ Left-Aligned Searching Text Container with Fixed Width -->
+        <div class="searching-text-container">
+            <h3>
+                @if (QueueManager.Instance.gameFound)
+                {
+                    @("Game Found!")
+                }
+                else
+                {
+                    <span>Searching<span class="dots">@dots</span></span>
+                }
+            </h3>
+        </div>
+
+        <!-- Cancel Button (Only Shows if Game is NOT Found) -->
         @if (!QueueManager.Instance.gameFound)
         {
             <button class="cancel-button" @onclick="@(() => CancelSearch())">Cancel</button>
@@ -43,9 +59,9 @@
 
     void CancelSearch()
     {
-        QueueManager.Instance.StopSearching();
+        QueueManager.Instance.StopSearching(true);
         Log.Info("Matchmaking canceled.");
     }
 
-    protected override int BuildHash() => System.HashCode.Combine(dots, QueueManager.Instance.gameFound, QueueManager.Instance.isSearching);
+    protected override int BuildHash() => System.HashCode.Combine(dots, QueueManager.Instance.gameFound, QueueManager.Instance.isSearching, QueueManager.Instance.maxPlayers, Connection.All);
 }

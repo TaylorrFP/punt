@@ -12,20 +12,62 @@
 	display: flex;
 	align-items: center;
 	gap: 20px;
-	justify-content: space-between;
-	width: 385px;
+	justify-content: flex-start; /* Align content from the left */
 	padding-left: 25px;
 	pointer-events: all;
 	transition: transform 0.2s ease, background-color 0.2s ease;
+	width: auto; /* ✅ Dynamic width */
+	min-width: 350px; /* Ensures it doesn't get too small */
+	max-width: 100%; /* Prevents overflow */
 }
 
-.dots {
+/* Player Icons Container (Dynamic Width Based on Player Count) */
+.player-icons {
 	display: flex;
-	justify-content: flex-start;
+	gap: 10px;
+	align-items: center;
+	flex-shrink: 0; /* Prevents it from shrinking */
+}
+
+/* Individual Player Icons (Default Grey) */
+.player-icon {
+	font-size: 40px; /* ✅ Increased size */
+	color: grey;
+	background-color: transparent;
+	padding: 5px;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: color 0.3s ease, transform 0.3s ease; /* ✅ Smooth transition */
+}
+
+/* Connected Players (Turn Green) */
+.player-icon.connected {
+	color: #2ecc71; /* ✅ Green when player is connected */
+	transform: scale(1.2); /* ✅ Slightly larger */
+}
+
+/* ✅ Fixed Width for "Searching" Text */
+.searching-text-container {
+	display: flex;
+	align-items: center;
+	width: 210px; /* ✅ Fixed width for consistency */
+	text-align: left;
+	overflow: hidden;
+	white-space: nowrap;
+	flex-shrink: 0; /* Prevents shrinking when panel resizes */
+}
+
+/* Dots Animation */
+.dots {
+
+	text-align: left;
 	font-weight: bold;
 }
 
-/* Cancel Button Styling */
+/* Cancel Button */
 .cancel-button {
 	padding: 10px 20px;
 	font-size: 24px;
@@ -42,17 +84,18 @@
 	transform: scale(1.1) translateX(-5px);
 }
 
+/* Game Found Styling */
 .game-found {
 	background-color: #2ecc71;
 	transform: scale(1.1);
 	pointer-events: none;
 	display: flex;
-	justify-content: center; /* Centers horizontally */
-	align-items: center; /* Centers vertically */
-	text-align: center; /* Centers text itself */
-	width: 385px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: auto; /* ✅ Allow dynamic width */
 	height: 100px;
 	padding: 0;
 	font-size: 48px;
-	transform-origin: center; /* ✅ The Fix: Scaling from the center */
+	transform-origin: center;
 }

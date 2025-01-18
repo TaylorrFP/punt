@@ -10,9 +10,19 @@
         {
           "__type": "Sandbox.SceneInformation",
           "__guid": "ab48c7c7-f8bd-4277-83b0-96530be57997",
+          "Author": null,
+          "Changes": "",
           "Description": "",
+          "Group": null,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "SceneTags": "",
-          "Title": "networktestscene"
+          "Title": "networktestscene",
+          "Version": null
         }
       ]
     },
@@ -30,6 +40,12 @@
           "FogMode": "Enabled",
           "FogStrength": 1,
           "LightColor": "0.94419,0.97767,1,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Shadows": true,
           "SkyColor": "0.2532,0.32006,0.35349,1"
         }
@@ -46,6 +62,12 @@
         {
           "__type": "Sandbox.SkyBox2D",
           "__guid": "c26e2e94-7cda-4155-a78f-1891498806d5",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "SkyIndirectLighting": true,
           "SkyMaterial": "materials/skybox/skybox_overcast_01.vmat",
           "Tint": "1,1,1,1"
@@ -62,8 +84,15 @@
           "FrameInterval": 5,
           "MaxDistance": 512,
           "MultiBounce": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Projection": "Sphere",
           "RenderDynamically": true,
+          "Texture": null,
           "TintColor": "1,1,1,1",
           "UpdateStrategy": "OnEnabled",
           "ZFar": 4096,
@@ -85,10 +114,18 @@
           "__guid": "1a87a0f8-cbb2-407f-a814-e5478a752797",
           "ArrowPrefab": {
             "_type": "gameobject",
+            "go": "00000000-0000-0000-0000-000000000000",
             "prefab": "prefabs/player/playerarrow.prefab"
           },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "PlayerPrefab": {
             "_type": "gameobject",
+            "go": "00000000-0000-0000-0000-000000000000",
             "prefab": "prefabs/player/playercontroller.prefab"
           },
           "StartServer": true
@@ -107,8 +144,10 @@
         {
           "__type": "TestGameMode",
           "__guid": "49a325ce-8634-4fcb-8517-513f7f63fcf5",
+          "Ball": null,
           "BallPrefab": {
             "_type": "gameobject",
+            "go": "00000000-0000-0000-0000-000000000000",
             "prefab": "prefabs/ball/ball.prefab"
           },
           "BluePieceList": [],
@@ -116,49 +155,59 @@
           "BlueSpawns": [
             {
               "_type": "gameobject",
-              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b"
+              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "2cc0bca1-a376-4dba-bae2-578b9e48c658"
+              "go": "2cc0bca1-a376-4dba-bae2-578b9e48c658",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "01666fae-e491-41bb-b7b4-2eac17e6c0bd"
+              "go": "01666fae-e491-41bb-b7b4-2eac17e6c0bd",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f"
+              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
+              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95",
+              "prefab": null
             }
           ],
           "BlueSpawnsKickoff": [
             {
               "_type": "gameobject",
-              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b"
+              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "a24bc367-2115-4069-af40-ce99479ca167"
+              "go": "a24bc367-2115-4069-af40-ce99479ca167",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "f836d634-7088-46d6-83f5-f3535898e664"
+              "go": "f836d634-7088-46d6-83f5-f3535898e664",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f"
+              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
+              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95",
+              "prefab": null
             }
           ],
           "BlueTeam": [],
-          "DebugServer": false,
+          "DebugServer": true,
           "kickingOffSide": "Blue",
           "losingSideStat": 0,
           "musicSoundPoint": {
@@ -168,8 +217,15 @@
             "component_type": "SoundPointComponent"
           },
           "mySide": "None",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "PiecePrefab": {
             "_type": "gameobject",
+            "go": "00000000-0000-0000-0000-000000000000",
             "prefab": "prefabs/pieces/playerpiece.prefab"
           },
           "PlayerList": [],
@@ -178,52 +234,62 @@
           "RedSpawns": [
             {
               "_type": "gameobject",
-              "go": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542"
+              "go": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "1b200075-73e0-4218-9421-a91a8037e7b1"
+              "go": "1b200075-73e0-4218-9421-a91a8037e7b1",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "a196c05e-f4ae-460c-a64e-8fc03e7aff0e"
+              "go": "a196c05e-f4ae-460c-a64e-8fc03e7aff0e",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "863d25c5-71dd-4583-8cba-9491616243c9"
+              "go": "863d25c5-71dd-4583-8cba-9491616243c9",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3"
+              "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3",
+              "prefab": null
             }
           ],
           "RedSpawnsKickoff": [
             {
               "_type": "gameobject",
-              "go": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542"
+              "go": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "15e5e32c-87f4-4e24-8fb2-bfa3d89aae28"
+              "go": "15e5e32c-87f4-4e24-8fb2-bfa3d89aae28",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "de4ff50c-c9c1-4550-994b-49ef77752fbd"
+              "go": "de4ff50c-c9c1-4550-994b-49ef77752fbd",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "863d25c5-71dd-4583-8cba-9491616243c9"
+              "go": "863d25c5-71dd-4583-8cba-9491616243c9",
+              "prefab": null
             },
             {
               "_type": "gameobject",
-              "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3"
+              "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3",
+              "prefab": null
             }
           ],
           "RedTeam": [],
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -7792.988,
-            "Passed": 7792.988,
+            "Relative": -16.076933,
+            "Passed": 16.076933,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -246,6 +312,12 @@
           "__type": "Sandbox.ScreenPanel",
           "__guid": "c8ed4c32-e34a-450c-bf5c-9ab92e3dfc3d",
           "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Opacity": 1,
           "Scale": 1,
           "ScaleStrategy": "ConsistentHeight",
@@ -253,11 +325,23 @@
         },
         {
           "__type": "CursorPassthroughComponent",
-          "__guid": "39fcaadc-4f4f-4444-ac6e-c102e0c2e3c6"
+          "__guid": "39fcaadc-4f4f-4444-ac6e-c102e0c2e3c6",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         },
         {
           "__type": "Sandbox.TestHUD",
           "__guid": "ce87ced8-6b63-4957-84b9-874889cc3cad",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "refreshUI": false
         }
       ]
@@ -280,8 +364,15 @@
               "__guid": "38ee44a0-6d7b-4f92-9495-8936317c9c31",
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
+              "MaterialGroup": null,
               "MaterialOverride": "prefabs/pitch/materials/pitchgrass_fp.vmat",
               "Model": "prefabs/pitch/models/pitchgrass.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "RenderOptions": {
                 "GameLayer": true,
                 "OverlayLayer": false,
@@ -306,8 +397,15 @@
               "__guid": "b180f9c8-8c78-4ecf-9617-c7876191f12d",
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
+              "MaterialGroup": null,
               "MaterialOverride": "prefabs/pitch/materials/pitchgrass_sbox.vmat",
               "Model": "prefabs/pitch/models/pitchgrass.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "RenderOptions": {
                 "GameLayer": true,
                 "OverlayLayer": false,
@@ -331,7 +429,15 @@
               "__guid": "2882fcc2-2b08-4de0-a140-20bda1796079",
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
               "Model": "prefabs/pitch/models/pitchsides.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "RenderOptions": {
                 "GameLayer": true,
                 "OverlayLayer": false,
@@ -357,8 +463,15 @@
               "__guid": "e0fcc1f2-2d6d-43f0-a7d8-000b79fd11f4",
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
+              "MaterialGroup": null,
               "MaterialOverride": "materials/default.vmat",
               "Model": "models/dev/plane.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "RenderOptions": {
                 "GameLayer": true,
                 "OverlayLayer": false,
@@ -372,7 +485,18 @@
               "__type": "Sandbox.BoxCollider",
               "__guid": "1de69319-5330-488f-ae4f-dee52bb4b745",
               "Center": "0,0,-20",
+              "Friction": null,
               "IsTrigger": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
               "Scale": "100,100,40",
               "Static": false,
               "Surface": "physicssurfaces/floorsurface.surface",
@@ -426,10 +550,17 @@
               "cornerRadius": 275,
               "cornerResolution": 16,
               "cornerSegmentWidth": 0,
+              "gameMode": null,
               "goalBackSurface": "physicssurfaces/goalbacksurface.surface",
               "goalHeight": 177.5,
               "goalWidth": 330,
               "height": 500,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "pitchX": 1200,
               "pitchY": 900,
               "thickness": 100,
@@ -767,6 +898,12 @@
               "ClearFlags": "All",
               "FieldOfView": 32.39,
               "IsMainCamera": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Orthographic": false,
               "OrthographicHeight": 1204,
               "Priority": 1,
@@ -811,6 +948,12 @@
                 }
               ],
               "Mode": "Additive",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Strength": 0.5,
               "Threshold": 0.5,
               "ThresholdWidth": 0.5
@@ -826,17 +969,35 @@
               "MaximumExposure": 2,
               "MinimumExposure": 1,
               "Mode": "ACES",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Rate": 1
             },
             {
               "__type": "Sandbox.Sharpen",
               "__guid": "e96eb26a-a8df-4d7e-8538-2b12788ec3f6",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Scale": 0.2
             },
             {
               "__type": "Sandbox.ChromaticAberration",
               "__guid": "5cd48e3b-2093-4cdd-96b3-a43e65324a93",
               "Offset": "4,6,0",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Scale": 0.02
             },
             {
@@ -845,11 +1006,23 @@
               "Brightness": 1.79,
               "Contrast": 1,
               "HueRotate": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Saturation": 1
             },
             {
               "__type": "Sandbox.Highlight",
-              "__guid": "1e58aece-d3a1-4f8c-8b1d-478ee2068904"
+              "__guid": "1e58aece-d3a1-4f8c-8b1d-478ee2068904",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
             }
           ]
         },
@@ -863,6 +1036,12 @@
             {
               "__type": "Sandbox.AudioListener",
               "__guid": "cd30dc65-bc12-44d1-b8f4-6eb0be6a2bc3",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "UseCameraDirection": true
             }
           ]
@@ -903,6 +1082,12 @@
           "Occlusion": false,
           "OcclusionOverride": false,
           "OcclusionRadius": 32,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Pitch": 1,
           "PlayOnStart": false,
           "ReflectionOverride": false,
@@ -929,6 +1114,12 @@
           "__guid": "af25647e-4b8c-4bcb-9565-842ec0aa0f6c",
           "__enabled": false,
           "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Opacity": 1,
           "Scale": 1,
           "ScaleStrategy": "ConsistentHeight",
@@ -937,7 +1128,13 @@
         {
           "__type": "Sandbox.DebugHUD",
           "__guid": "6179daad-ed51-462d-be42-6ec74dbafc50",
-          "__enabled": false
+          "__enabled": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ]
     }

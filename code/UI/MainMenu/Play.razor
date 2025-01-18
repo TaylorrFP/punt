@@ -12,12 +12,16 @@
 
     <div class="options">
         <!-- Regular Play Button -->
-        <div class="button" onclick=@(async () => { QueueManager.Instance.CreateLobby("0"); await QueueManager.Instance.StartSearching("0"); })>
-            Solo
+        <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Solo); *@ await QueueManager.Instance.StartSearching(QueueType.Solo); })>
+            1v1
         </div>
 
         <!-- WIP Style for Duos and Custom Games -->
-        <div class="button wip-button">Duo</div>
+        <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Duo) *@; await QueueManager.Instance.StartSearching(QueueType.Duo); })>
+            2v2
+        </div>
+
+
         <a class="button wip-button" href="#">Custom Games</a>
 
         <a class="button" href="">Back</a>
