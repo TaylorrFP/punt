@@ -107,8 +107,8 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	/// </summary>
 	public async Task StartSearching( QueueType queue )
 	{
-		
-		StopSearching(true); // Cancel any ongoing search before starting a new one
+
+		StopSearching(false); // Cancel any ongoing search before starting a new one. What if we don't destroy the server here? IE someone leaving the game?
 		SelectedQueueType = queue;
 		searchTokenSource = new CancellationTokenSource();
 		isSearching = true;
@@ -210,29 +210,28 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	/// <summary>
 	/// Cancels the current search process.
 	/// </summary>
+	/// 
+
+
+
 	public void StopSearching(bool DestroyLobby)
 	{
-		if ( !isSearching )
-		{
-			Log.Info( "No active search to cancel." );
-			return;
-		}
 
-		searchTokenSource?.Cancel();
-		isSearching = false;
-	
-		Log.Info( "Search stopped." );
-
-
-
+		
 
 		if ( DestroyLobby )
 		{
+
+			Log.Info( "Destroying Lobby" );
 			Networking.Disconnect();
 			lobbyListNames.Clear();
 			lobbyList.Clear();
 			SelectedQueueType = QueueType.None;
 		}
+
+		isSearching = false;
+		searchTokenSource?.Cancel();
+
 		
 	}
 
@@ -246,12 +245,15 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	public async void OnActive( Connection channel )
 	{
 		
-		if ( !channel.IsHost & gameJoined != true ) //if the joining player isn't a host, and we haven't started the game yet
+		if ( Networking.IsHost & gameJoined != true & Connection.All.Count>1) //if the joining player isn't a host, and we haven't started the game yet
 		{
 			Log.Info( "Player Joined: " + channel.DisplayName );
-			StopSearching(false);
+
 
 			//if I'm the owner I need to stop searching?
+			StopSearching( false);
+
+		
 			if ( Connection.All.Count == maxPlayers )
 			{
 
@@ -270,14 +272,22 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	}
 	public async void OnDisconnected( Connection channel )
 	{
-		//needs the host bit because otherwise the person connecting calls this when they join
+		//needs the host bit because otherwise the person connecting calls this when they join?
+
+		//this is only called on the host
+		//when there are two people left in the lobby - does it pass over to the host before or after this is called?
+
+
 
 		if ( !channel.IsHost & gameJoined != true & Connection.All.Count <= 2)//if we haven't started the game, someone disconnects and it's just us left (2 because this is called just before the player disconnects)
 		{
 			Log.Info( "Not enough players after disconnect, starting search" );
 			await StartSearching(selectedQueueType);
-
 		}
+
+		//we're automatically searching again if we click cancel - I think because of this logic.
+
+
 
 		//we need to check if it's just us, if it is we need to create a lobby again
 

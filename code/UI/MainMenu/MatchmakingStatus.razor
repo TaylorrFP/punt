@@ -36,7 +36,7 @@
         <!-- Cancel Button (Only Shows if Game is NOT Found) -->
         @if (!QueueManager.Instance.gameFound)
         {
-            <button class="cancel-button" @onclick="@(() => CancelSearch())">Cancel</button>
+            <button class="cancel-button" @onclick="@(() => QueueManager.Instance.StopSearching(true))">Cancel</button>
         }
     </div>
 }
@@ -57,11 +57,11 @@
         }
     }
 
-    void CancelSearch()
-    {
-        QueueManager.Instance.StopSearching(true);
-        Log.Info("Matchmaking canceled.");
-    }
+    // void CancelSearch()
+    // {
+    //     QueueManager.Instance.StopSearching(true);
+    //     Log.Info("Matchmaking canceled.");
+    // }
 
     protected override int BuildHash() => System.HashCode.Combine(dots, QueueManager.Instance.gameFound, QueueManager.Instance.isSearching, QueueManager.Instance.maxPlayers, Connection.All);
 }

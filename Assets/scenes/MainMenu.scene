@@ -42,7 +42,6 @@
       "Rotation": "0.00000001210719,-0.00000000372529,0.09985425,0.995002",
       "Tags": "piece",
       "Enabled": true,
-      "NetworkMode": 0,
       "OwnerTransfer": 0,
       "Components": [
         {
@@ -52,7 +51,7 @@
           "cooldownDuration": 0,
           "cooldownTimeSince": {
             "Absolute": 0,
-            "Relative": 175.28162
+            "Relative": 422.7845
           },
           "playerCooldownRenderer": {
             "_type": "component",
@@ -351,7 +350,7 @@
                   "squashDuration": 0.5,
                   "squashTimeSince": {
                     "Absolute": 0,
-                    "Relative": 96226424
+                    "Relative": 96227930
                   }
                 }
               ],
