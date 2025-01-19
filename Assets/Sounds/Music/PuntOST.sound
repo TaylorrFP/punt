@@ -3,7 +3,7 @@
   "Volume": "0.03",
   "Pitch": "1",
   "Decibels": 70,
-  "SelectionMode": "Random",
+  "SelectionMode": "RandomExclusive",
   "Sounds": [
     "sounds/music/puntost.vsnd",
     "sounds/music/puntost2.vsnd",
