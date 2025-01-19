@@ -9,6 +9,7 @@
       {
         "__type": "PuntPlayerController",
         "__guid": "06fa746e-3f17-4b1f-b9f0-2cbfe65e8a4c",
+        "arrow": null,
         "arrowCurve": [
           {
             "x": 0,
@@ -36,19 +37,55 @@
         },
         "flickCurve": [
           {
-            "x": 0.5,
-            "y": 0.5,
+            "x": 0,
+            "y": 0.19148937,
             "in": 0,
             "out": 0,
-            "mode": "Mirrored"
+            "mode": "Linear"
+          },
+          {
+            "x": 0.125,
+            "y": 0.39999998,
+            "in": 0,
+            "out": 0,
+            "mode": "Linear"
+          },
+          {
+            "x": 0.2638037,
+            "y": 0.5505319,
+            "in": 0,
+            "out": 0,
+            "mode": "Linear"
+          },
+          {
+            "x": 0.50229,
+            "y": 0.7204402,
+            "in": 0,
+            "out": 0,
+            "mode": "Linear"
+          },
+          {
+            "x": 1,
+            "y": 0.975,
+            "in": 0,
+            "out": 0,
+            "mode": "Linear"
           }
         ],
         "flickStrength": 3,
         "flickVector": "0,0,0",
-        "isReady": false,
+        "hoveredPiece": null,
         "mouseOffset": "0,0",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "queueScore": 0,
         "scaledFlickVector": 0,
         "SceneCursorPosition": "0,0,0",
+        "selectedPiece": null,
         "targetArrowPos": "0,0,0",
         "targetmouseOffset": "0,0",
         "teamSide": "Red"
@@ -64,6 +101,12 @@
         "FlipVertical": false,
         "FogStrength": 1,
         "Lighting": false,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Opaque": false,
         "Pivot": "0.5,0.5",
         "RenderOptions": {

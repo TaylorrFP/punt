@@ -464,7 +464,12 @@ public sealed class PuntPlayerController : Component
 		piece.PieceFlicked();
 		scaledFlickVector = flickVector.Length / clampedFlickStrength;
 
-		piece.rigidBody.PhysicsBody.Velocity = flickVector;
+		//do some scaling so it matches the arrow (this is just to adjust for friction basically)
+		var strenghth = MathX.Lerp( 0, clampedFlickStrength, flickCurve.Evaluate( scaledFlickVector ) );
+
+		var adjustedflickVector = flickVector.Normal * strenghth;
+
+		piece.rigidBody.PhysicsBody.Velocity = adjustedflickVector;
 
 		piece.StartCooldown();
 		piece.pieceState = PieceState.Cooldown;
