@@ -73,7 +73,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	[Group( "Searching" )][Property] public int maxPlayers { get; private set; } = 2;
 
-	[Group( "Loading" )][Property] public bool gameJoined { get; private set; } = false;
+	[Group( "Loading" )][Property] public bool gameJoined { get; set; } = false;
 
 	[Group( "Loading" )][Property] public int loadDelay { get; set; } = 3000;
 
@@ -278,6 +278,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		//this is only called on the host
 		//when there are two people left in the lobby - does it pass over to the host before or after this is called?
 
+		//this is triggering when a player leaves a game properly
 
 
 		if ( !channel.IsHost & gameJoined != true & Connection.All.Count <= 2)//if we haven't started the game, someone disconnects and it's just us left (2 because this is called just before the player disconnects)

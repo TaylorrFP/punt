@@ -22,7 +22,7 @@
                     <div class="player-wrapper">
                         <div class="player-panel">
                             <img class="image" src="avatar:@player.GameObject.Network.Owner.SteamId" />
-                            <span class="player-name">@player.GameObject.Network.Owner.DisplayName</span>
+                            <span class="player-name">@player.GameObject.Network.Owner.DisplayName (@player.queueScore) </span>
                         </div>
                     </div>
                 }
@@ -42,7 +42,7 @@
                     var player = TestGameMode.Instance.RedTeam[i];
                     <div class="player-wrapper">
                         <div class="player-panel">
-                            <span class="player-name">@player.GameObject.Network.Owner.DisplayName</span>
+                            <span class="player-name">@player.GameObject.Network.Owner.DisplayName (@player.queueScore) </span>
                             <img class="image" src="avatar:@player.GameObject.Network.Owner.SteamId" />
                         </div>
                     </div>
@@ -80,7 +80,7 @@
             <div class="results-text">@GetWinnerText()</div>
             <div class="results-info">
                 <div class="results-entry @(GetWinnerScore() >= 0 ? "positive-score" : "negative-score")">
-                    @(GetWinnerScore() >= 0 ? $"+{GetWinnerScore()}" : $"{GetWinnerScore()}")
+                    New Score: @(GetWinnerScore() >= 0 ? $"{GetWinnerScore()}" : $" {GetWinnerScore()}")
                 </div>
             </div>
         </div>
@@ -120,6 +120,7 @@
 
         Networking.Disconnect();
         Scene.LoadFromFile("scenes/mainmenu.scene");
+        QueueManager.Instance.StopSearching(true);
 
         Log.Info("Returning to Main Menu...");
 
@@ -181,45 +182,46 @@
 
     int GetWinnerScore()
     {
-        // Determine winner based on score
+        // If blue wins
         if (TestGameMode.Instance.BlueScore > TestGameMode.Instance.RedScore)
         {
             if(TestGameMode.Instance.mySide == TeamSide.Blue)
 
             {
                 //if we're the winner
-                ScoreChange = TestGameMode.Instance.winningSideStat;
+                ScoreChange = TestGameMode.Instance.BlueTeamPendingWin;
 
-                return TestGameMode.Instance.winningSideStat;
+                return TestGameMode.Instance.BlueTeamPendingWin;
 
             }
             else if (TestGameMode.Instance.mySide == TeamSide.Red)
             {
-                return TestGameMode.Instance.losingSideStat;
+                return TestGameMode.Instance.RedTeamPendingLoss;
                 //we're the loser
 
             }
 
         }
+        //if red wins
         else if (TestGameMode.Instance.RedScore > TestGameMode.Instance.BlueScore)
         {
             if (TestGameMode.Instance.mySide == TeamSide.Red)
 
             {
                 //if we're the winner
-                return TestGameMode.Instance.winningSideStat;
+                return TestGameMode.Instance.RedTeamPendingWin;
 
             }
             else if (TestGameMode.Instance.mySide == TeamSide.Blue)
             {
-                return TestGameMode.Instance.losingSideStat;
+                return TestGameMode.Instance.BlueTeamPendingLoss;
                 //we're the loser
 
             }
         }
 
 
-        return TestGameMode.Instance.losingSideStat;
+        return 0;
 
         //return ScoreChange;
     }

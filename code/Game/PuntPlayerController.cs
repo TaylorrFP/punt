@@ -16,6 +16,8 @@ public sealed class PuntPlayerController : Component
 
 	[Property] public Curve flickCurve { get; set; }
 
+	[Property] public int queueScore { get; set; }
+
 
 
 	[Property, Sync] public WorldPanel arrow { get; set; }

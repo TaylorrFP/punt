@@ -22,12 +22,24 @@ public sealed class TestGameMode : Component
 
 	[Property] public TeamSide mySide { get; set; }
 
+	[Property] public string queueIndent = "none";
+
 	[Group( "Debug" )][Property, Sync(SyncFlags.FromHost)] public Boolean DebugServer { get; set; }
 	[Group( "Player List" )][Property, Sync( SyncFlags.FromHost )] public List<PuntPlayerController> PlayerList { get; set; } = new List<PuntPlayerController>();
+	
 
 	//Team Lists
 	[Group( "Team Lists" )][Property, Sync(SyncFlags.FromHost)] public List<PuntPlayerController> BlueTeam { get; set; } = new List<PuntPlayerController>();
 	[Group( "Team Lists" )][Property, Sync(SyncFlags.FromHost)] public List<PuntPlayerController> RedTeam { get; set; } = new List<PuntPlayerController>();
+
+	[Group( "Team Lists" )][Property] public int BlueTeamAverageScore { get; set; }
+
+	[Group( "Team Lists" )][Property] public int BlueTeamPendingLoss { get; set; }
+	[Group( "Team Lists" )][Property] public int BlueTeamPendingWin { get; set; }
+
+	[Group( "Team Lists" )][Property] public int RedTeamAverageScore { get; set; }
+	[Group( "Team Lists" )][Property] public int RedTeamPendingLoss { get; set; }
+	[Group( "Team Lists" )][Property] public int RedTeamPendingWin { get; set; }
 
 	//GameState
 	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public GameState State { get; set; }
@@ -77,7 +89,7 @@ public sealed class TestGameMode : Component
 	{
 		//Sandbox.Services.Stats.SetValue( "solo_q_points", (0) ); //reset stats
 
-
+		QueueManager.Instance.gameJoined = true; //this is just a hack so the clients don't start searching after someone left at the end of the game
 
 
 		Instance = this;
@@ -168,89 +180,89 @@ public sealed class TestGameMode : Component
 	[Rpc.Broadcast]
 	private void PlayOvertimeSound()
 	{
-		Sound.Play( "sounds/overtimesting.sound" );
+		Sound.Play( "sounds/kenney/ui/ui.navigate.deny.sound" );
 		musicSoundPoint.Pitch = 1.25f;
 	}
 
 	[Property] public int winningSideStat { get; set; }
 	[Property] public int losingSideStat { get; set; }
-	public async Task RetrievePlayerStat() //clean this shit up
-	{
-		var winningTeamSide = TeamSide.Red;
+	//public async Task RetrievePlayerStat() //clean this shit up
+	//{
+	//	var winningTeamSide = TeamSide.Red;
 
-		if ( BlueScore > RedScore )
-		{
-			winningTeamSide = TeamSide.Blue;
-		}
-		else
-		{
-			winningTeamSide = TeamSide.Red;
-		}
+	//	if ( BlueScore > RedScore )
+	//	{
+	//		winningTeamSide = TeamSide.Blue;
+	//	}
+	//	else
+	//	{
+	//		winningTeamSide = TeamSide.Red;
+	//	}
 
-		var winningID = new SteamId();
-		var losingID = new SteamId();
+	//	var winningID = new SteamId();
+	//	var losingID = new SteamId();
 
-		for ( int i = 0; i < PlayerList.Count; i++ )
-		{
-			if ( PlayerList[i].teamSide == winningTeamSide )
-			{
-				winningID = PlayerList[i].Network.Owner.SteamId;
-			}
-			else
-			{
-				losingID = PlayerList[i].Network.Owner.SteamId;
-			}
-		}
+	//	for ( int i = 0; i < PlayerList.Count; i++ )
+	//	{
+	//		if ( PlayerList[i].teamSide == winningTeamSide )
+	//		{
+	//			winningID = PlayerList[i].Network.Owner.SteamId;
+	//		}
+	//		else
+	//		{
+	//			losingID = PlayerList[i].Network.Owner.SteamId;
+	//		}
+	//	}
 
-		var winningPlayerStats = Stats.GetPlayerStats( "fptaylor.punt", winningID );
-		var losingPlayerStats = Stats.GetPlayerStats( "fptaylor.punt", losingID );
-		await Task.WhenAll( winningPlayerStats.Refresh(), losingPlayerStats.Refresh() );
-
-
-		var winningStat = winningPlayerStats.Get( "solo_q_points" );
-		int winningStatValue = (int)winningStat.LastValue;
+	//	var winningPlayerStats = Stats.GetPlayerStats( "fptaylor.punt", winningID );
+	//	var losingPlayerStats = Stats.GetPlayerStats( "fptaylor.punt", losingID );
+	//	await Task.WhenAll( winningPlayerStats.Refresh(), losingPlayerStats.Refresh() );
 
 
-		var losingStat = losingPlayerStats.Get( "solo_q_points" );
-		int losingStatValue = (int)losingStat.LastValue;
+	//	var winningStat = winningPlayerStats.Get( "solo_q_points" );
+	//	int winningStatValue = (int)winningStat.LastValue;
 
 
-		winningSideStat = winningStatValue;
-		losingSideStat = losingStatValue;
+	//	var losingStat = losingPlayerStats.Get( "solo_q_points" );
+	//	int losingStatValue = (int)losingStat.LastValue;
 
-		if ( mySide == winningTeam )
-		{
 
-			Log.Info( "I won, add to my score" );
+	//	winningSideStat = winningStatValue;
+	//	losingSideStat = losingStatValue;
 
-			Log.Info( "Previous Score: " + winningSideStat );
+	//	if ( mySide == winningTeam )
+	//	{
 
-			(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat );
+	//		Log.Info( "I won, add to my score" );
 
-			Sandbox.Services.Stats.SetValue( "solo_q_points", (winningSideStat) );
+	//		Log.Info( "Previous Score: " + winningSideStat );
+
+	//		(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat );
+
+	//		Sandbox.Services.Stats.SetValue( "solo_q_points", (winningSideStat) );
 
 
 			
-			Log.Info( "New score: " + winningSideStat );
+	//		Log.Info( "New score: " + winningSideStat );
 
 
-		}
-		else
-		{
+	//	}
+	//	else
+	//	{
 
-			Log.Info( "I lost, subtract from my score" );
-			Log.Info( "Previous Score: " + losingSideStat );
+	//		Log.Info( "I lost, subtract from my score" );
+	//		Log.Info( "Previous Score: " + losingSideStat );
 
-			(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat );
-			Sandbox.Services.Stats.SetValue( "solo_q_points", (losingSideStat) );
+	//		(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat );
+	//		Sandbox.Services.Stats.SetValue( "solo_q_points", (losingSideStat) );
 
 			
-			Log.Info( "new score: " + losingSideStat );
+	//		Log.Info( "new score: " + losingSideStat );
 
-		}
+	//	}
 
 
-	}
+	//}
 
 	public TeamSide winningTeam = TeamSide.Red;
 
@@ -271,30 +283,64 @@ public sealed class TestGameMode : Component
 			winningTeam = TeamSide.Red;
 		}
 
+		//you can only do your local score so...
 
-		var winningID = new SteamId();
-		var losingID = new SteamId();
-
-		//set winning and losing IDs here
-
-		for ( int i = 0; i < PlayerList.Count; i++ )
+		if ( mySide == winningTeam )
 		{
-			if ( PlayerList[i].teamSide == winningTeam )
+			switch ( winningTeam )
 			{
-				winningID = PlayerList[i].Network.Owner.SteamId;
+				case TeamSide.None:
+					break;
+
+				case TeamSide.Red:
+
+					Sandbox.Services.Stats.SetValue( queueIndent, (RedTeamPendingWin) );
+					//set my score to be red winning team
+
+					break;
+
+				case TeamSide.Blue:
+
+					Sandbox.Services.Stats.SetValue( queueIndent, (BlueTeamPendingWin) );
+					//set my score to be red losing team
+
+					break;
+
+				default:
+					break;
 			}
-			else
+
+		}
+		else
+		{
+			switch ( winningTeam )
 			{
-				losingID = PlayerList[i].Network.Owner.SteamId;
+				case TeamSide.None:
+					break;
+
+				case TeamSide.Red:
+
+					Sandbox.Services.Stats.SetValue( queueIndent, (BlueTeamPendingLoss) );
+					//set my score to be blue losing team
+
+					break;
+
+				case TeamSide.Blue:
+
+					Sandbox.Services.Stats.SetValue( queueIndent, (RedTeamPendingLoss) );
+					//set my score to be red losing team
+
+					break;
+
+				default:
+					break;
 			}
+
+
 		}
 
 
-		_ = RetrievePlayerStat(); //is this fine at the end?
-
-		
-
-
+		Sandbox.Services.Stats.SetValue( queueIndent + "_pendingloss", (0) );//reset my pending loss here now we've finished the game. We can do the punishment later.
 
 	}
 
@@ -305,9 +351,6 @@ public sealed class TestGameMode : Component
 	// Function to calculate new ELO ratings
 	public static (int, int) CalculateElo( int winnerRating, int loserRating )
 	{
-		Log.Info( "Winner Rating: " + winnerRating );
-		Log.Info("Loser Rating: " + loserRating );
-
 		// Adjust for baseline
 		winnerRating += BaselineAdjustment;
 		loserRating += BaselineAdjustment;
@@ -499,30 +542,19 @@ public sealed class TestGameMode : Component
 				if ( kickoffSide == TeamSide.Red && i == 2 )
 
 				{
-
-				
-				
 					ResetPiece( RedPieceList[i], currentRedSpawns[i], false );
 					ResetPiece( BluePieceList[i], currentBlueSpawns[i], true );
-
 				}
 				else if ( kickoffSide == TeamSide.Blue && i == 2 )
 				{
-					
 					ResetPiece( RedPieceList[i], currentRedSpawns[i], true );
 					ResetPiece( BluePieceList[i], currentBlueSpawns[i],false );
-
 				}
 				else
 				{
 					ResetPiece( RedPieceList[i], currentRedSpawns[i], true );
 					ResetPiece( BluePieceList[i], currentBlueSpawns[i], true );
-
 				}
-
-
-
-
 			}
 
 
@@ -591,49 +623,7 @@ public sealed class TestGameMode : Component
 		}
 	}
 
-	//[Rpc.Broadcast]
-	//public void EvaluateReadyState( PuntPlayerController player, bool ready )
-	//{
-	//	if ( State == GameState.Waiting || State == GameState.Countdown )//only do this is we're waiting or in cooldown
-	//	{
-	//		State = GameState.Waiting;//assume we're waiting, if we're not we set it later
-	//		if ( IsProxy )
-	//		{
-	//			return;
-	//		}
-
-	//		if ( PlayerList.Count <= 1 )
-	//		{
-	//			Log.Info( "Not enough players to evaluate readiness." );
-	//			return;
-	//		}
-
-	//		// If the incoming request is not ready, no need to evaluate others.
-	//		if ( !ready )
-	//		{
-	//			Log.Info( $"Player {player.Network.Owner.DisplayName} is not ready." );
-	//			return;
-	//		}
-
-	//		// Iterate through the player list to see if anyone isn't ready, don't bother with the incoming one as we've processed that already.
-	//		foreach ( var p in PlayerList )
-	//		{
-	//			if ( p != player)
-	//			{
-	//				// If a player is not ready, log and exit early.
-	//				Log.Info( "Not all players are ready." );
-	//				return;
-	//			}
-	//		}
-
-	//		// All players are ready
-	//		Log.Info( "All players are ready!" );
-
-	//		State = GameState.Countdown;
-	//		TimeSinceCountdown = 0f;
-
-	//	}
-	//}
+	
 
 
 	public void AddPlayer( PuntPlayerController player)
@@ -645,11 +635,121 @@ public sealed class TestGameMode : Component
 
 			if(PlayerList.Count == QueueManager.Instance.maxPlayers )
 			{
-				State = GameState.Countdown;
-				TimeSinceCountdown = 0f;
+				InitialiseGame();
 
 			}
 		}
+	}
+
+	[Rpc.Broadcast]
+	private void InitialiseGame()//everyone's connected so we can start the game
+	{
+		//get player scores
+
+		_ = GetPlayerScores(QueueManager.Instance.SelectedQueueType);
+
+
+		if ( !IsProxy )
+		{
+			State = GameState.Countdown;
+			TimeSinceCountdown = 0f;
+		}
+
+	}
+
+	public async Task GetPlayerScores(QueueType queueType)
+	{
+		//don't need to network any of this stuff
+		//this isn't working on the client for some reason... investigate!
+
+		Log.Info( "get player scores" );
+
+		
+
+		switch ( queueType )
+		{
+			case QueueType.None:
+				queueIndent = "none";
+				break;
+
+			case QueueType.Solo:
+				queueIndent = "solo_q_points";
+				break;
+
+			case QueueType.Duo:
+				queueIndent = "duo_q_points";
+				break;
+
+			case QueueType.Custom:
+				queueIndent = "custom";
+				break;
+
+			default:
+				queueIndent = "none";
+				break;
+		}
+
+		for ( int i = 0; i < PlayerList.Count; i++ )
+		{
+			var playerName = PlayerList[i].Network.Owner.Name;
+			var stats = Stats.GetPlayerStats( "fptaylor.punt", PlayerList[i].Network.Owner.SteamId);
+			await stats.Refresh();
+			var queueStats = stats.Get( queueIndent);
+			PlayerList[i].queueScore = (int)queueStats.LastValue;
+		}
+
+		//get average Blue team score
+		var totalBlueScore = 0;
+		for ( int i = 0; i < BlueTeam.Count; i++ )
+		{
+			totalBlueScore += BlueTeam[i].queueScore;
+		}
+		BlueTeamAverageScore = totalBlueScore / BlueTeam.Count;
+
+
+		//get average Red team score
+		var totalRedScore = 0;
+		for ( int i = 0; i < RedTeam.Count; i++ )
+		{
+			totalRedScore += RedTeam[i].queueScore;
+		}
+		RedTeamAverageScore = totalRedScore / RedTeam.Count;
+
+		//if red team loses
+		(BlueTeamPendingWin, RedTeamPendingLoss) = CalculatePendingLoss(BlueTeamAverageScore, RedTeamAverageScore);
+		//if blue team loses
+		(RedTeamPendingWin, BlueTeamPendingLoss) = CalculatePendingLoss( RedTeamAverageScore, BlueTeamAverageScore);
+
+		switch ( mySide )
+		{
+			case TeamSide.None:
+				break;
+
+			case TeamSide.Red:
+				Sandbox.Services.Stats.SetValue( queueIndent + "_pendingloss", (RedTeamPendingLoss) );
+				break;
+
+			case TeamSide.Blue:
+				Sandbox.Services.Stats.SetValue( queueIndent + "_pendingloss", (BlueTeamPendingLoss) );
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	public (int, int) CalculatePendingLoss(int WinningScore, int LosingScore)
+	{
+
+		var pendingWinningScore = 0;
+		var pendingLosingScore = 0;
+
+		(pendingWinningScore, pendingLosingScore) = CalculateElo(WinningScore, LosingScore);
+
+		return (pendingWinningScore, pendingLosingScore);
+
+		//get whatever team I'm on
+		//set my pending loss stat here
 	}
 
 	public void RemovePlayer( Connection channel )

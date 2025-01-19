@@ -194,6 +194,7 @@
             }
           ],
           "BlueTeam": [],
+          "BlueTeamAverageScore": 0,
           "DebugServer": false,
           "kickingOffSide": "Blue",
           "losingSideStat": 0,
@@ -262,10 +263,11 @@
             }
           ],
           "RedTeam": [],
+          "RedTeamAverageScore": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -110.19506,
-            "Passed": 110.19506,
+            "Relative": -1206.8098,
+            "Passed": 1206.8098,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
