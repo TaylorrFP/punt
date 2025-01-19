@@ -92,6 +92,7 @@ public sealed class TestGameMode : Component
 		QueueManager.Instance.gameJoined = true; //this is just a hack so the clients don't start searching after someone left at the end of the game
 
 
+
 		Instance = this;
 		State = GameState.Waiting;
 		base.OnAwake();
@@ -154,6 +155,16 @@ public sealed class TestGameMode : Component
 		if ( State == GameState.Playing )
 		{
 			RoundTimeLeft = MathX.Clamp( RoundTimeLeft - Time.Delta,0,RoundLength);
+
+
+			//check scores again if there's not much time left 
+			if( RoundTimeLeft < 5 )
+			{
+				_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
+
+			}
+
+
 			if ( RoundTimeLeft == 0 )
 			{
 				TryFinishRound();
@@ -186,90 +197,14 @@ public sealed class TestGameMode : Component
 
 	[Property] public int winningSideStat { get; set; }
 	[Property] public int losingSideStat { get; set; }
-	//public async Task RetrievePlayerStat() //clean this shit up
-	//{
-	//	var winningTeamSide = TeamSide.Red;
-
-	//	if ( BlueScore > RedScore )
-	//	{
-	//		winningTeamSide = TeamSide.Blue;
-	//	}
-	//	else
-	//	{
-	//		winningTeamSide = TeamSide.Red;
-	//	}
-
-	//	var winningID = new SteamId();
-	//	var losingID = new SteamId();
-
-	//	for ( int i = 0; i < PlayerList.Count; i++ )
-	//	{
-	//		if ( PlayerList[i].teamSide == winningTeamSide )
-	//		{
-	//			winningID = PlayerList[i].Network.Owner.SteamId;
-	//		}
-	//		else
-	//		{
-	//			losingID = PlayerList[i].Network.Owner.SteamId;
-	//		}
-	//	}
-
-	//	var winningPlayerStats = Stats.GetPlayerStats( "fptaylor.punt", winningID );
-	//	var losingPlayerStats = Stats.GetPlayerStats( "fptaylor.punt", losingID );
-	//	await Task.WhenAll( winningPlayerStats.Refresh(), losingPlayerStats.Refresh() );
-
-
-	//	var winningStat = winningPlayerStats.Get( "solo_q_points" );
-	//	int winningStatValue = (int)winningStat.LastValue;
-
-
-	//	var losingStat = losingPlayerStats.Get( "solo_q_points" );
-	//	int losingStatValue = (int)losingStat.LastValue;
-
-
-	//	winningSideStat = winningStatValue;
-	//	losingSideStat = losingStatValue;
-
-	//	if ( mySide == winningTeam )
-	//	{
-
-	//		Log.Info( "I won, add to my score" );
-
-	//		Log.Info( "Previous Score: " + winningSideStat );
-
-	//		(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat );
-
-	//		Sandbox.Services.Stats.SetValue( "solo_q_points", (winningSideStat) );
-
-
-			
-	//		Log.Info( "New score: " + winningSideStat );
-
-
-	//	}
-	//	else
-	//	{
-
-	//		Log.Info( "I lost, subtract from my score" );
-	//		Log.Info( "Previous Score: " + losingSideStat );
-
-	//		(winningSideStat, losingSideStat) = CalculateElo( winningSideStat, losingSideStat );
-	//		Sandbox.Services.Stats.SetValue( "solo_q_points", (losingSideStat) );
-
-			
-	//		Log.Info( "new score: " + losingSideStat );
-
-	//	}
-
-
-	//}
+	
 
 	public TeamSide winningTeam = TeamSide.Red;
 
 	[Rpc.Broadcast]
 	private void FinishGame()
 	{
-		
+
 
 		State = GameState.Results;
 		if ( BlueScore > RedScore )
@@ -285,6 +220,26 @@ public sealed class TestGameMode : Component
 
 		//you can only do your local score so...
 
+		_ = RefreshScoresAtFinish();
+
+		
+
+		Sandbox.Services.Stats.SetValue( queueIndent + "_pendingloss", (0) );//reset my pending loss here now we've finished the game. We can do the punishment later.
+
+	}
+
+
+	public async Task RefreshScoresAtFinish()
+	{
+
+
+		await GetPlayerScores(QueueManager.Instance.SelectedQueueType);
+		SetSteamScores();
+
+	}
+
+	private void SetSteamScores()
+	{
 		if ( mySide == winningTeam )
 		{
 			switch ( winningTeam )
@@ -338,10 +293,6 @@ public sealed class TestGameMode : Component
 
 
 		}
-
-
-		Sandbox.Services.Stats.SetValue( queueIndent + "_pendingloss", (0) );//reset my pending loss here now we've finished the game. We can do the punishment later.
-
 	}
 
 	// Default baseline adjustment
@@ -639,6 +590,8 @@ public sealed class TestGameMode : Component
 
 			}
 		}
+
+		//_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
 	}
 
 	[Rpc.Broadcast]
@@ -659,12 +612,6 @@ public sealed class TestGameMode : Component
 
 	public async Task GetPlayerScores(QueueType queueType)
 	{
-		//don't need to network any of this stuff
-		//this isn't working on the client for some reason... investigate!
-
-		Log.Info( "get player scores" );
-
-		
 
 		switch ( queueType )
 		{

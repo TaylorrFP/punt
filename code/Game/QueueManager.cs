@@ -281,11 +281,23 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		//this is triggering when a player leaves a game properly
 
 
+		if(gameJoined == true & Connection.All.Count <= maxPlayers )//if a game is in progress and someone leaves
+		{
+
+			Networking.Disconnect();
+			Scene.LoadFromFile( "scenes/mainmenu.scene" );
+			QueueManager.Instance.StopSearching( true );
+
+		}
+
+
 		if ( !channel.IsHost & gameJoined != true & Connection.All.Count <= 2)//if we haven't started the game, someone disconnects and it's just us left (2 because this is called just before the player disconnects)
 		{
 			Log.Info( "Not enough players after disconnect, starting search" );
 			await StartSearching(selectedQueueType);
 		}
+
+
 
 		//we're automatically searching again if we click cancel - I think because of this logic.
 

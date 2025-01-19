@@ -142,6 +142,7 @@
         {
           "__type": "TestGameMode",
           "__guid": "49a325ce-8634-4fcb-8517-513f7f63fcf5",
+          "queueIndent": "none",
           "Ball": null,
           "BallPrefab": {
             "_type": "gameobject",
@@ -195,6 +196,8 @@
           ],
           "BlueTeam": [],
           "BlueTeamAverageScore": 0,
+          "BlueTeamPendingLoss": 0,
+          "BlueTeamPendingWin": 0,
           "DebugServer": false,
           "kickingOffSide": "Blue",
           "losingSideStat": 0,
@@ -264,14 +267,16 @@
           ],
           "RedTeam": [],
           "RedTeamAverageScore": 0,
+          "RedTeamPendingLoss": 0,
+          "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -1206.8098,
-            "Passed": 1206.8098,
+            "Relative": -1406.0956,
+            "Passed": 1406.0956,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
-          "RoundLength": 10,
+          "RoundLength": 120,
           "RoundTimeLeft": 0,
           "State": "Waiting",
           "timescaleMult": 0.3,

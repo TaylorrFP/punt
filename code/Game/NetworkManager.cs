@@ -130,7 +130,7 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 	/// //this shit don't work
 	void INetworkListener.OnDisconnected( Connection connection )
 	{
-		TestGameMode.Instance.RemovePlayer( connection );
+
 	}
 
 		/// <summary>

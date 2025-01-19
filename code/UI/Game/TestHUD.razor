@@ -79,8 +79,8 @@
         <div class="results-panel">
             <div class="results-text">@GetWinnerText()</div>
             <div class="results-info">
-                <div class="results-entry @(GetWinnerScore() >= 0 ? "positive-score" : "negative-score")">
-                    New Score: @(GetWinnerScore() >= 0 ? $"{GetWinnerScore()}" : $" {GetWinnerScore()}")
+                <div class="results-entry @(IsWinner() ? "positive-score" : "negative-score")">
+                    New Score: @(GetWinnerScore() >= 0 ? $"{GetWinnerScore()}" : $"{GetWinnerScore()}")
                 </div>
             </div>
         </div>
@@ -178,6 +178,11 @@
         }
 
         return "You Lose";
+    }
+
+    bool IsWinner()
+    {
+        return GetWinnerText() == "You Win!";
     }
 
     int GetWinnerScore()
