@@ -82,20 +82,23 @@
         Log.Info("Fetching Leaderboards...");
 
         soloboard = Sandbox.Services.Leaderboards.GetFromStat("fptaylor.punt", "solo_q_points");
+        duoboard = Sandbox.Services.Leaderboards.GetFromStat("fptaylor.punt", "duo_q_points");
+
+        // Configure leaderboards
         soloboard.SetAggregationLast();
         soloboard.SetSortDescending();
         soloboard.FilterByMonth();
         soloboard.CenterOnMe();
         soloboard.MaxEntries = 10;
-        await soloboard.Refresh();
 
-        duoboard = Sandbox.Services.Leaderboards.GetFromStat("fptaylor.punt", "duo_q_points");
         duoboard.SetAggregationLast();
         duoboard.SetSortDescending();
         duoboard.FilterByMonth();
         duoboard.CenterOnMe();
         duoboard.MaxEntries = 10;
-        await duoboard.Refresh();
+
+        // ✅ Fetch both leaderboards at the same time and wait for both to complete
+        await Task.WhenAll(soloboard.Refresh(), duoboard.Refresh());
 
         Log.Info("Leaderboards Fetched Successfully!");
     }

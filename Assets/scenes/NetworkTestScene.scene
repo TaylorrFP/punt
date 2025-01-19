@@ -198,7 +198,7 @@
           "BlueTeamAverageScore": 0,
           "BlueTeamPendingLoss": 0,
           "BlueTeamPendingWin": 0,
-          "DebugServer": false,
+          "DebugServer": true,
           "kickingOffSide": "Blue",
           "losingSideStat": 0,
           "musicSoundPoint": {
@@ -271,8 +271,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -1406.0956,
-            "Passed": 1406.0956,
+            "Relative": -148.45677,
+            "Passed": 148.45677,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -1036,6 +1036,7 @@
       "__guid": "ab541497-7e01-4c6b-9fb6-1bf2c23f6686",
       "Flags": 0,
       "Name": "Music",
+      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.SoundPointComponent",
@@ -1084,7 +1085,7 @@
             "Name": "ui",
             "Id": "1b004eb1-2458-44cd-ae65-823e82f8d4e2"
           },
-          "Volume": 0
+          "Volume": 0.05
         }
       ]
     },
