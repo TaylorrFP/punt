@@ -30,8 +30,8 @@
       "__guid": "550bdf2a-cc82-4002-93ae-203c70112f80",
       "Flags": 0,
       "Name": "Sun",
-      "Rotation": "0.477579,0.7990638,-0.1705772,0.322984",
-      "Tags": "light,light_directional",
+      "Rotation": "0.2074881,0.9074875,-0.1535157,0.3314336",
+      "Tags": "light_directional,light",
       "Enabled": true,
       "Components": [
         {
@@ -271,8 +271,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -2683.9153,
-            "Passed": 2683.9153,
+            "Relative": -5990.584,
+            "Passed": 5990.584,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -982,7 +982,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
-              "Scale": 0.02
+              "Scale": 0.03
             },
             {
               "__type": "Sandbox.ColorAdjustments",
@@ -1007,6 +1007,39 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.AmbientOcclusion",
+              "__guid": "9e77a1fa-1fdc-4631-a69b-060f81fa6464",
+              "__version": 1,
+              "DenoiseMode": "Temporal",
+              "FalloffRange": 0.01,
+              "Intensity": 0.2,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Quality": "High",
+              "Radius": 100,
+              "ThinCompensation": 0
+            },
+            {
+              "__type": "Sandbox.DepthOfField",
+              "__guid": "a94c4f1c-2d4a-4098-acc5-ead28587fdde",
+              "BackBlur": true,
+              "BlurSize": 20,
+              "FocalDistance": 2650,
+              "FocusRange": 590,
+              "FrontBlur": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "QualityLevel": "High"
             }
           ]
         },
@@ -1119,6 +1152,37 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "efb58c04-6ade-4686-9048-6621cb9a465c",
+      "Flags": 0,
+      "Name": "pitch",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "3e42ace2-abed-41ad-9a0f-422e93112b92",
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "prefabs/pitch/models/pitch.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
         }
       ]
     }

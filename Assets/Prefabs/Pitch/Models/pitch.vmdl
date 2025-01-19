@@ -14,16 +14,28 @@
 						remaps = 
 						[
 							{
-								from = "pitchsides_red.vmat"
-								to = "prefabs/pitch/materials/pitchsidesred.vmat"
+								from = "redchair.vmat"
+								to = "prefabs/pieces/materials/redseats.vmat"
 							},
 							{
-								from = "pitchsides_blue.vmat"
-								to = "prefabs/pitch/materials/pitchsidesblue.vmat"
+								from = "blackmetal.vmat"
+								to = "prefabs/pieces/materials/blackseatmetal.vmat"
+							},
+							{
+								from = "signage.vmat"
+								to = "prefabs/pieces/materials/signage.vmat"
+							},
+							{
+								from = "concrete_blue.vmat"
+								to = "prefabs/pieces/materials/concrete_blue.vmat"
+							},
+							{
+								from = "concrete.vmat"
+								to = "prefabs/pieces/materials/concrete.vmat"
 							},
 						]
 						use_global_default = false
-						global_default_material = "prefabs/pitch/materials/pitchsides.vmat"
+						global_default_material = "materials/default.vmat"
 					},
 				]
 			},
@@ -33,7 +45,7 @@
 				[
 					{
 						_class = "RenderMeshFile"
-						filename = "prefabs/pitch/models/pitchsides.fbx"
+						filename = "prefabs/pitch/models/pitch.fbx"
 						import_translation = [ 0.0, 0.0, 0.0 ]
 						import_rotation = [ 0.0, 0.0, 0.0 ]
 						import_scale = 1.0
@@ -46,10 +58,27 @@
 							exclude_by_default = true
 							exception_list = 
 							[
-								"Cylinder_006",
-								"Cylinder_005",
+								"exported_014",
+								"Cube",
+								"Plane_008",
+								"Cube_004",
 							]
 						}
+					},
+				]
+			},
+			{
+				_class = "ModelModifierList"
+				children = 
+				[
+					{
+						_class = "ModelModifier_ScaleAndMirror"
+						scale = 0.5
+						mirror_x = false
+						mirror_y = false
+						mirror_z = false
+						flip_bone_forward = false
+						swap_left_and_right_bones = false
 					},
 				]
 			},

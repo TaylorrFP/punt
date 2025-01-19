@@ -51,7 +51,7 @@
           "cooldownDuration": 0,
           "cooldownTimeSince": {
             "Absolute": 0,
-            "Relative": 152.20963
+            "Relative": 4600.8525
           },
           "playerCooldownRenderer": {
             "_type": "component",
@@ -350,7 +350,7 @@
                   "squashDuration": 0.5,
                   "squashTimeSince": {
                     "Absolute": 0,
-                    "Relative": 96312570
+                    "Relative": 96327280
                   }
                 }
               ],
