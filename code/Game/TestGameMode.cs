@@ -192,7 +192,7 @@ public sealed class TestGameMode : Component
 	private void PlayOvertimeSound()
 	{
 		Sound.Play( "sounds/kenney/ui/ui.navigate.deny.sound" );
-		musicSoundPoint.Pitch = 1.25f;
+		musicSoundPoint.Pitch = 1.125f;
 	}
 
 	[Property] public int winningSideStat { get; set; }

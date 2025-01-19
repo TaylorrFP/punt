@@ -271,8 +271,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -5990.584,
-            "Passed": 5990.584,
+            "Relative": -306.01508,
+            "Passed": 306.01508,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -1030,8 +1030,8 @@
               "__guid": "a94c4f1c-2d4a-4098-acc5-ead28587fdde",
               "BackBlur": true,
               "BlurSize": 20,
-              "FocalDistance": 2650,
-              "FocusRange": 590,
+              "FocalDistance": 2700,
+              "FocusRange": 1000,
               "FrontBlur": false,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
