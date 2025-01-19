@@ -23,13 +23,13 @@
                     {
                         bool isLocalPlayer = entry.DisplayName == Connection.Local.DisplayName;
                         <div class="leaderboard-entry @(isLocalPlayer ? "local-player" : "")">
-                            @($"{entry.Rank}: {entry.DisplayName} - {entry.Value + 1200}")
+                            @($"{entry.Rank}: {entry.DisplayName}: {entry.Value}")
                         </div>
                     }
                 }
                 else
                 {
-                    <div class="leaderboard-entry">Loading...</div>
+                    @* <div class="leaderboard-entry">Loading...</div> *@
                 }
             </div>
         </div>
@@ -43,13 +43,13 @@
                     {
                         bool isLocalPlayer = entry.DisplayName == Connection.Local.DisplayName;
                         <div class="leaderboard-entry @(isLocalPlayer ? "local-player" : "")">
-                            @($"{entry.Rank}: {entry.DisplayName} - {entry.Value + 1200}")
+                            @($"{entry.Rank}: {entry.DisplayName}: {entry.Value}")
                         </div>
                     }
                 }
                 else
                 {
-                    <div class="leaderboard-entry">Loading...</div>
+                    @* <div class="leaderboard-entry">Loading...</div> *@
                 }
             </div>
         </div>

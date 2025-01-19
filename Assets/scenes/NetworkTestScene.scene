@@ -114,7 +114,6 @@
           "__guid": "1a87a0f8-cbb2-407f-a814-e5478a752797",
           "ArrowPrefab": {
             "_type": "gameobject",
-            "go": "00000000-0000-0000-0000-000000000000",
             "prefab": "prefabs/player/playerarrow.prefab"
           },
           "OnComponentDestroy": null,
@@ -125,7 +124,6 @@
           "OnComponentUpdate": null,
           "PlayerPrefab": {
             "_type": "gameobject",
-            "go": "00000000-0000-0000-0000-000000000000",
             "prefab": "prefabs/player/playercontroller.prefab"
           },
           "StartServer": true
@@ -147,7 +145,6 @@
           "Ball": null,
           "BallPrefab": {
             "_type": "gameobject",
-            "go": "00000000-0000-0000-0000-000000000000",
             "prefab": "prefabs/ball/ball.prefab"
           },
           "BluePieceList": [],
@@ -155,59 +152,49 @@
           "BlueSpawns": [
             {
               "_type": "gameobject",
-              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b",
-              "prefab": null
+              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b"
             },
             {
               "_type": "gameobject",
-              "go": "2cc0bca1-a376-4dba-bae2-578b9e48c658",
-              "prefab": null
+              "go": "2cc0bca1-a376-4dba-bae2-578b9e48c658"
             },
             {
               "_type": "gameobject",
-              "go": "01666fae-e491-41bb-b7b4-2eac17e6c0bd",
-              "prefab": null
+              "go": "01666fae-e491-41bb-b7b4-2eac17e6c0bd"
             },
             {
               "_type": "gameobject",
-              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f",
-              "prefab": null
+              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f"
             },
             {
               "_type": "gameobject",
-              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95",
-              "prefab": null
+              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
             }
           ],
           "BlueSpawnsKickoff": [
             {
               "_type": "gameobject",
-              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b",
-              "prefab": null
+              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b"
             },
             {
               "_type": "gameobject",
-              "go": "a24bc367-2115-4069-af40-ce99479ca167",
-              "prefab": null
+              "go": "a24bc367-2115-4069-af40-ce99479ca167"
             },
             {
               "_type": "gameobject",
-              "go": "f836d634-7088-46d6-83f5-f3535898e664",
-              "prefab": null
+              "go": "f836d634-7088-46d6-83f5-f3535898e664"
             },
             {
               "_type": "gameobject",
-              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f",
-              "prefab": null
+              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f"
             },
             {
               "_type": "gameobject",
-              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95",
-              "prefab": null
+              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
             }
           ],
           "BlueTeam": [],
-          "DebugServer": true,
+          "DebugServer": false,
           "kickingOffSide": "Blue",
           "losingSideStat": 0,
           "musicSoundPoint": {
@@ -225,7 +212,6 @@
           "OnComponentUpdate": null,
           "PiecePrefab": {
             "_type": "gameobject",
-            "go": "00000000-0000-0000-0000-000000000000",
             "prefab": "prefabs/pieces/playerpiece.prefab"
           },
           "PlayerList": [],
@@ -234,66 +220,56 @@
           "RedSpawns": [
             {
               "_type": "gameobject",
-              "go": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542",
-              "prefab": null
+              "go": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542"
             },
             {
               "_type": "gameobject",
-              "go": "1b200075-73e0-4218-9421-a91a8037e7b1",
-              "prefab": null
+              "go": "1b200075-73e0-4218-9421-a91a8037e7b1"
             },
             {
               "_type": "gameobject",
-              "go": "a196c05e-f4ae-460c-a64e-8fc03e7aff0e",
-              "prefab": null
+              "go": "a196c05e-f4ae-460c-a64e-8fc03e7aff0e"
             },
             {
               "_type": "gameobject",
-              "go": "863d25c5-71dd-4583-8cba-9491616243c9",
-              "prefab": null
+              "go": "863d25c5-71dd-4583-8cba-9491616243c9"
             },
             {
               "_type": "gameobject",
-              "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3",
-              "prefab": null
+              "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3"
             }
           ],
           "RedSpawnsKickoff": [
             {
               "_type": "gameobject",
-              "go": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542",
-              "prefab": null
+              "go": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542"
             },
             {
               "_type": "gameobject",
-              "go": "15e5e32c-87f4-4e24-8fb2-bfa3d89aae28",
-              "prefab": null
+              "go": "15e5e32c-87f4-4e24-8fb2-bfa3d89aae28"
             },
             {
               "_type": "gameobject",
-              "go": "de4ff50c-c9c1-4550-994b-49ef77752fbd",
-              "prefab": null
+              "go": "de4ff50c-c9c1-4550-994b-49ef77752fbd"
             },
             {
               "_type": "gameobject",
-              "go": "863d25c5-71dd-4583-8cba-9491616243c9",
-              "prefab": null
+              "go": "863d25c5-71dd-4583-8cba-9491616243c9"
             },
             {
               "_type": "gameobject",
-              "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3",
-              "prefab": null
+              "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3"
             }
           ],
           "RedTeam": [],
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -16.076933,
-            "Passed": 16.076933,
+            "Relative": -110.19506,
+            "Passed": 110.19506,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
-          "RoundLength": 180,
+          "RoundLength": 10,
           "RoundTimeLeft": 0,
           "State": "Waiting",
           "timescaleMult": 0.3,
@@ -342,7 +318,8 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "refreshUI": false
+          "refreshUI": false,
+          "ScoreChange": 0
         }
       ]
     },
@@ -1052,11 +1029,11 @@
       "__guid": "ab541497-7e01-4c6b-9fb6-1bf2c23f6686",
       "Flags": 0,
       "Name": "Music",
-      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.SoundPointComponent",
           "__guid": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
+          "__enabled": false,
           "Distance": 512,
           "DistanceAttenuation": false,
           "DistanceAttenuationOverride": false,
@@ -1100,7 +1077,7 @@
             "Name": "ui",
             "Id": "1b004eb1-2458-44cd-ae65-823e82f8d4e2"
           },
-          "Volume": 0.11
+          "Volume": 0
         }
       ]
     },

@@ -71,7 +71,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	[Group("Searching")][Property] public bool gameFound { get; private set; } = false;
 
-	[Group( "Searching" )][Property] public int maxPlayers { get; private set; }
+	[Group( "Searching" )][Property] public int maxPlayers { get; private set; } = 2;
 
 	[Group( "Loading" )][Property] public bool gameJoined { get; private set; } = false;
 

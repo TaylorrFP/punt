@@ -8,7 +8,7 @@ using System.Threading.Channels;
 
 public sealed class PuntPlayerController : Component
 {
-	[Property, Sync] public bool isReady { get; set; }
+
 	[Property, Sync] public Vector3 SceneCursorPosition { get; set; }
 
 
@@ -80,7 +80,6 @@ public sealed class PuntPlayerController : Component
 		if ( !IsProxy )// if you own this controller
 		{
 
-			ReadyInputs(); //lobby stuff - do this better
 			PitchTrace();
 			PieceTrace();
 			CalculateFlick();
@@ -171,20 +170,7 @@ public sealed class PuntPlayerController : Component
 
 	}
 
-	private void ReadyInputs()
-	{
-		if ( Input.Pressed( "use" ) & this.GameObject.Network.IsOwner)
-		{
 
-			if(TestGameMode.Instance.State == GameState.Waiting || TestGameMode.Instance.State == GameState.Countdown )//Only mess with ready if we're in waiting or countdown
-			{
-				isReady = !isReady;
-				TestGameMode.Instance.EvaluateReadyState( this, isReady );
-			}
-
-
-		}
-	}
 	private void PitchTrace()
 	{
 

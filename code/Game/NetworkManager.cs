@@ -33,7 +33,7 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 		if ( Scene.IsEditor )
 			return;
 
-		if ( StartServer && !Networking.IsActive )
+		if ( StartServer && !Networking.IsActive ) //this is just for debug reasons
 		{
 			LoadingScreen.Title = "Creating Lobby";
 
@@ -41,9 +41,11 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 
 			Networking.CreateLobby( new LobbyConfig()
 			{
-				//MaxPlayers = 4,
-				//Privacy = LobbyPrivacy.Public,
-				//Name = Network.Owner.DisplayName + "'s Punt Lobby"
+				MaxPlayers = 4,
+				Privacy = LobbyPrivacy.Public,
+				Name = "Editor Test Lobby",
+				Hidden = true
+
 			} );
 
 
@@ -111,18 +113,10 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 			controller.InitArrow(playerArrow);
 
 
-			//controller.arrow = playerArrow.GetComponent<WorldPanel>();
-			//var arrowComponent = playerArrow.GetComponent<AimArrow>();
-			//arrowComponent.playerController = controller;
-			//Add player in gamemode
 
 
 			TestGameMode.Instance.AddPlayer( controller );
 			
-
-			//I want to network spawn the arrow
-			//I then want to assign controller variable in the aimarrow component
-			//This is synced, so I can only do this if I'm the owner
 
 		}
 

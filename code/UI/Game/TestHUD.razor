@@ -1,19 +1,20 @@
-@using Sandbox
+﻿@using Sandbox
 @using Sandbox.UI
 @using System.Collections.Generic
 @inherits PanelComponent
 @namespace Sandbox
+@using Sandbox.Network;
 
 <root>
     <!-- Draw this first so it's under the other panels -->
     @if (TestGameMode.Instance.State == GameState.Waiting)
     {
-        <div class="ready-panel">Press E to ready up</div>
+        <div class="ready-panel">Waiting for players...</div>
     }
     <div class="team-container">
         <!-- Blue Team Panel -->
         <div class="blue-team">
-            @for (int i = 0; i < 2; i++)
+            @for (int i = 0; i < QueueManager.Instance.maxPlayers/2; i++)
             {
                 if (i < TestGameMode.Instance.BlueTeam?.Count)
                 {
@@ -23,11 +24,6 @@
                             <img class="image" src="avatar:@player.GameObject.Network.Owner.SteamId" />
                             <span class="player-name">@player.GameObject.Network.Owner.DisplayName</span>
                         </div>
-                        @if (player.isReady &&
-                       (TestGameMode.Instance.State == GameState.Waiting || TestGameMode.Instance.State == GameState.Countdown))
-                        {
-                            <div class="ready-indicator">Ready</div>
-                        }
                     </div>
                 }
                 else if (TestGameMode.Instance.State == GameState.Waiting)
@@ -39,17 +35,12 @@
 
         <!-- Red Team Panel -->
         <div class="red-team">
-            @for (int i = 0; i < 2; i++)
+            @for (int i = 0; i < QueueManager.Instance.maxPlayers / 2; i++)
             {
                 if (i < TestGameMode.Instance.RedTeam?.Count)
                 {
                     var player = TestGameMode.Instance.RedTeam[i];
                     <div class="player-wrapper">
-                        @if (player.isReady &&
-                       (TestGameMode.Instance.State == GameState.Waiting || TestGameMode.Instance.State == GameState.Countdown))
-                        {
-                            <div class="ready-indicator">Ready</div>
-                        }
                         <div class="player-panel">
                             <span class="player-name">@player.GameObject.Network.Owner.DisplayName</span>
                             <img class="image" src="avatar:@player.GameObject.Network.Owner.SteamId" />
@@ -81,10 +72,24 @@
     }
 
     <!-- Results Panel -->
+    <!-- Results Panel -->
+    <!-- Results Panel -->
     @if (TestGameMode.Instance.State == GameState.Results)
     {
         <div class="results-panel">
             <div class="results-text">@GetWinnerText()</div>
+            <div class="results-info">
+                <div class="results-entry @(GetWinnerScore() >= 0 ? "positive-score" : "negative-score")">
+                    @(GetWinnerScore() >= 0 ? $"+{GetWinnerScore()}" : $"{GetWinnerScore()}")
+                </div>
+            </div>
+        </div>
+
+        <!-- ✅ Main Menu Button (Outside of Results Panel) -->
+        <div class="main-menu-container">
+            <button class="main-menu-button" onclick=@(()=>ReturnToMainMenu())>
+                Main Menu
+            </button>
         </div>
     }
 </root>
@@ -92,6 +97,9 @@
 @code
 {
     [Property] public bool refreshUI { get; set; }
+
+    [Property] public int ScoreChange { get; set; }
+
     string GetRoundTimerString()
     {
 
@@ -105,6 +113,16 @@
         var minutes = (int)time / 60;
         var seconds = (int)time % 60;
         return $"{minutes:00}:{seconds:00}";
+    }
+
+    void ReturnToMainMenu()
+    {
+
+        Networking.Disconnect();
+        Scene.LoadFromFile("scenes/mainmenu.scene");
+
+        Log.Info("Returning to Main Menu...");
+
     }
 
     string GetCountdownTimeString()
@@ -122,16 +140,88 @@
         // Determine winner based on score
         if (TestGameMode.Instance.BlueScore > TestGameMode.Instance.RedScore)
         {
-            return "Blue Wins!";
+            if (TestGameMode.Instance.mySide == TeamSide.Blue)
+
+            {
+
+
+                return "You Win!";
+
+            }
+            else if (TestGameMode.Instance.mySide == TeamSide.Red)
+            {
+                return "You Lose!";
+                //we're the loser
+
+            }
         }
         else if (TestGameMode.Instance.RedScore > TestGameMode.Instance.BlueScore)
         {
-            return "Red Wins!";
+            if (TestGameMode.Instance.mySide == TeamSide.Red)
+
+            {
+                //if we're the winner
+                return "You Win!";
+
+            }
+            else if (TestGameMode.Instance.mySide == TeamSide.Blue)
+            {
+                return "You Lose!";
+                //we're the loser
+
+            }
         }
         else
         {
-            return "It's a Draw!";
+            return "You Lose";
         }
+
+        return "You Lose";
+    }
+
+    int GetWinnerScore()
+    {
+        // Determine winner based on score
+        if (TestGameMode.Instance.BlueScore > TestGameMode.Instance.RedScore)
+        {
+            if(TestGameMode.Instance.mySide == TeamSide.Blue)
+
+            {
+                //if we're the winner
+                ScoreChange = TestGameMode.Instance.winningSideStat;
+
+                return TestGameMode.Instance.winningSideStat;
+
+            }
+            else if (TestGameMode.Instance.mySide == TeamSide.Red)
+            {
+                return TestGameMode.Instance.losingSideStat;
+                //we're the loser
+
+            }
+
+        }
+        else if (TestGameMode.Instance.RedScore > TestGameMode.Instance.BlueScore)
+        {
+            if (TestGameMode.Instance.mySide == TeamSide.Red)
+
+            {
+                //if we're the winner
+                return TestGameMode.Instance.winningSideStat;
+
+            }
+            else if (TestGameMode.Instance.mySide == TeamSide.Blue)
+            {
+                return TestGameMode.Instance.losingSideStat;
+                //we're the loser
+
+            }
+        }
+
+
+        return TestGameMode.Instance.losingSideStat;
+
+        //return ScoreChange;
     }
 
     protected override int BuildHash()
@@ -153,7 +243,7 @@
         {
             foreach (var player in TestGameMode.Instance.PlayerList)
             {
-                hash = System.HashCode.Combine(hash, player.isReady ? 1 : 0);
+                hash = System.HashCode.Combine(hash, ScoreChange);
             }
         }
 

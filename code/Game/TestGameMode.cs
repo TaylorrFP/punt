@@ -591,49 +591,49 @@ public sealed class TestGameMode : Component
 		}
 	}
 
-	[Rpc.Broadcast]
-	public void EvaluateReadyState( PuntPlayerController player, bool ready )
-	{
-		if ( State == GameState.Waiting || State == GameState.Countdown )//only do this is we're waiting or in cooldown
-		{
-			State = GameState.Waiting;//assume we're waiting, if we're not we set it later
-			if ( IsProxy )
-			{
-				return;
-			}
+	//[Rpc.Broadcast]
+	//public void EvaluateReadyState( PuntPlayerController player, bool ready )
+	//{
+	//	if ( State == GameState.Waiting || State == GameState.Countdown )//only do this is we're waiting or in cooldown
+	//	{
+	//		State = GameState.Waiting;//assume we're waiting, if we're not we set it later
+	//		if ( IsProxy )
+	//		{
+	//			return;
+	//		}
 
-			if ( PlayerList.Count <= 1 )
-			{
-				Log.Info( "Not enough players to evaluate readiness." );
-				return;
-			}
+	//		if ( PlayerList.Count <= 1 )
+	//		{
+	//			Log.Info( "Not enough players to evaluate readiness." );
+	//			return;
+	//		}
 
-			// If the incoming request is not ready, no need to evaluate others.
-			if ( !ready )
-			{
-				Log.Info( $"Player {player.Network.Owner.DisplayName} is not ready." );
-				return;
-			}
+	//		// If the incoming request is not ready, no need to evaluate others.
+	//		if ( !ready )
+	//		{
+	//			Log.Info( $"Player {player.Network.Owner.DisplayName} is not ready." );
+	//			return;
+	//		}
 
-			// Iterate through the player list to see if anyone isn't ready, don't bother with the incoming one as we've processed that already.
-			foreach ( var p in PlayerList )
-			{
-				if ( p != player && !p.isReady )
-				{
-					// If a player is not ready, log and exit early.
-					Log.Info( "Not all players are ready." );
-					return;
-				}
-			}
+	//		// Iterate through the player list to see if anyone isn't ready, don't bother with the incoming one as we've processed that already.
+	//		foreach ( var p in PlayerList )
+	//		{
+	//			if ( p != player)
+	//			{
+	//				// If a player is not ready, log and exit early.
+	//				Log.Info( "Not all players are ready." );
+	//				return;
+	//			}
+	//		}
 
-			// All players are ready
-			Log.Info( "All players are ready!" );
+	//		// All players are ready
+	//		Log.Info( "All players are ready!" );
 
-			State = GameState.Countdown;
-			TimeSinceCountdown = 0f;
+	//		State = GameState.Countdown;
+	//		TimeSinceCountdown = 0f;
 
-		}
-	}
+	//	}
+	//}
 
 
 	public void AddPlayer( PuntPlayerController player)
@@ -642,6 +642,13 @@ public sealed class TestGameMode : Component
 		{
 			PlayerList.Add( player );
 			FindTeam( player );
+
+			if(PlayerList.Count == QueueManager.Instance.maxPlayers )
+			{
+				State = GameState.Countdown;
+				TimeSinceCountdown = 0f;
+
+			}
 		}
 	}
 

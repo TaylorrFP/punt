@@ -1,4 +1,4 @@
-TestHUD {
+﻿TestHUD {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -8,6 +8,8 @@ TestHUD {
 	font-weight: bold;
 	font-family: Poppins;
 }
+
+
 
 .team-container {
 	position: absolute;
@@ -181,10 +183,66 @@ TestHUD {
 	min-width: 80px;
 }
 
-/* Results Panel Styling */
 .results-panel {
 	position: absolute;
 	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 40px 40px;
+	backdrop-filter: blur(10px);
+	background-color: #000000d2;
+	color: #fff;
+	border-radius: 15%;
+	font-size: 80px;
+	font-weight: bold;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 20px; /* Adds spacing between elements */
+	pointer-events: all;
+	cursor: pointer;
+}
+/* ✅ Results Entry: Base Styling */
+.results-entry {
+	background-color: rgba(255, 255, 255, 0.1);
+	padding: 10px 15px;
+	border-radius: 15px;
+	font-size: 60px;
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
+}
+
+/* ✅ Green for Positive Scores */
+.positive-score {
+	color: #2ecc71; /* Bright Green */
+}
+
+/* ✅ Red for Negative Scores */
+.negative-score {
+	color: #e74c3c; /* Bright Red */
+}
+
+/* Winner Text */
+.results-text {
+	font-size: 80px;
+	font-weight: bold;
+}
+
+/* Results Info Section */
+.results-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px; /* Spacing between players */
+}
+
+/* Individual Player Entries */
+.results-panel {
+	position: absolute;
+	top: 45%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	padding: 40px 80px;
@@ -196,6 +254,35 @@ TestHUD {
 	font-weight: bold;
 	text-align: center;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	gap: 20px; /* Adds spacing between elements */
+}
+
+/* ✅ Main Menu Container: Positioned Below the Results Panel */
+.main-menu-container {
+	position: absolute;
+	top: calc(45% + -200px); /* ✅ Moves below results panel */
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+/* ✅ Main Menu Button */
+.main-menu-button {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: white;
+	border: none;
+	padding: 15px 30px;
+	font-size: 24px;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: transform 0.1s ease, background-color 0.2s ease;
+	pointer-events: all;
+	cursor: pointer;
+}
+
+/* ✅ Hover Effect */
+.main-menu-button:hover {
+	background-color: rgba(255, 255, 255, 0.3);
 }
