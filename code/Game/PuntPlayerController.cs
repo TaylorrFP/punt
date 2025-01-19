@@ -198,24 +198,43 @@ public sealed class PuntPlayerController : Component
 
 		if(TestGameMode.Instance.State == GameState.Resetting )
 		{
-			//reset everything for now
-			//Log.Info( "Resetting" );
-			controllerState = ControllerState.Idle;
-			Mouse.CursorType = "cooldown";
+			////reset everything for now
+			////Log.Info( "Resetting" );
+			//controllerState = ControllerState.Idle;
+			//Mouse.CursorType = "cooldown";
 
-			if(selectedPiece != null )
+			if ( selectedPiece != null )
 			{
-				selectedPiece.ToggleSelection();
-				selectedPiece.pieceState = PieceState.Ready;
-				
+
+				switch ( controllerState )
+			{
+
+				case ControllerState.Grabbing:
+
+
+					selectedPiece.playerModelHolder.Network.DropOwnership();//drop ownership of the model rotation
+					selectedPiece.ToggleSelection();
+					FlickPiece( selectedPiece, flickVector );
+					controllerState = ControllerState.Idle;
+
+
+					Mouse.CursorType = "pointer";
+					break;
+
+
+
+				}
+
 
 			}
 
 			if ( hoveredPiece != null )
 			{
+				controllerState = ControllerState.Idle;
+				Log.Info( "hovered pice is valid" );
 				hoveredPiece.ToggleHover();
-				hoveredPiece.pieceState = PieceState.Ready;
-
+				hoveredPiece = null;
+				Mouse.CursorType = "pointer";
 			}
 		}
 		else
