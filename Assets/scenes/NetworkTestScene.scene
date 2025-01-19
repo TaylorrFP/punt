@@ -271,8 +271,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -18.959894,
-            "Passed": 18.959894,
+            "Relative": -732.4686,
+            "Passed": 732.4686,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -1041,7 +1041,6 @@
         {
           "__type": "Sandbox.SoundPointComponent",
           "__guid": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
-          "__enabled": false,
           "Distance": 512,
           "DistanceAttenuation": false,
           "DistanceAttenuationOverride": false,
@@ -1077,7 +1076,7 @@
           "PlayOnStart": false,
           "ReflectionOverride": false,
           "Reflections": false,
-          "Repeat": false,
+          "Repeat": true,
           "SoundEvent": "sounds/music/puntost.sound",
           "SoundOverride": true,
           "StopOnNew": false,
