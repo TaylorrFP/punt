@@ -87,13 +87,13 @@
         // Configure leaderboards
         soloboard.SetAggregationLast();
         soloboard.SetSortDescending();
-        soloboard.FilterByMonth();
+        //soloboard.FilterByMonth();
         soloboard.CenterOnMe();
         soloboard.MaxEntries = 10;
 
         duoboard.SetAggregationLast();
         duoboard.SetSortDescending();
-        duoboard.FilterByMonth();
+        //duoboard.FilterByMonth();
         duoboard.CenterOnMe();
         duoboard.MaxEntries = 10;
 
@@ -101,6 +101,18 @@
         await Task.WhenAll(soloboard.Refresh(), duoboard.Refresh());
 
         Log.Info("Leaderboards Fetched Successfully!");
+
+        
+
+        // for (int i = 0; i < soloboard.entries; i++)
+        // {
+        //     @foreach (var entry in soloboard.Entries)
+        //     {
+        //         Log.Info(soloboard[i].name);
+        //     }
+
+            
+        // }
     }
 
     protected override int BuildHash() => System.HashCode.Combine(soloboard, duoboard);
