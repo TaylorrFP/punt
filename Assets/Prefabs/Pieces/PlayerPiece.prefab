@@ -72,7 +72,7 @@
         "cooldownDuration": 2,
         "cooldownTimeSince": {
           "Absolute": 0,
-          "Relative": 6764.082
+          "Relative": 12938.707
         },
         "emitter": {
           "_type": "component",
@@ -221,7 +221,7 @@
               }
             }
           },
-          "compiled": null
+          "compiled": "textures/generated/text/a0e437169e69749c.vtex"
         },
         "playerNameString": "MESSY",
         "PlayerNumberBack": {
@@ -268,7 +268,7 @@
               }
             }
           },
-          "compiled": null
+          "compiled": "textures/generated/text/9518c3085536d436.vtex"
         },
         "playerNumberString": "10",
         "playerSponsoString": "PEPPERMINT",
@@ -322,7 +322,7 @@
             "TargetColor": "0,1,0,1",
             "CacheToDisk": true
           },
-          "compiled": null
+          "compiled": "textures/generated/imagefile/3250b20dd8dad14.vtex"
         },
         "ShortsNumber": {
           "$compiler": "texture",
@@ -563,7 +563,7 @@
                 "squashDuration": 0.5,
                 "squashTimeSince": {
                   "Absolute": 0,
-                  "Relative": 97507010
+                  "Relative": 97520580
                 }
               }
             ],
@@ -626,6 +626,7 @@
                     "__guid": "057a4de3-acd2-4127-b7eb-a82ed82e5aea",
                     "Flags": 0,
                     "Name": "Base",
+                    "Scale": "1.16,1.16,1.16",
                     "Enabled": true,
                     "Components": [
                       {
@@ -658,6 +659,7 @@
                     "Flags": 0,
                     "Name": "puntguy",
                     "Position": "0,0,20",
+                    "Scale": "1.16,1.16,1.16",
                     "Enabled": true,
                     "Components": [
                       {

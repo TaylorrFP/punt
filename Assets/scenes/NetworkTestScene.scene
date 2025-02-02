@@ -205,7 +205,7 @@
           "BlueTeamAverageScore": 0,
           "BlueTeamPendingLoss": 0,
           "BlueTeamPendingWin": 0,
-          "DebugServer": false,
+          "DebugServer": true,
           "kickingOffSide": "Blue",
           "losingSideStat": 0,
           "musicSoundPoint": {
@@ -287,8 +287,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -12576.172,
-            "Passed": 12576.172,
+            "Relative": -12735.893,
+            "Passed": 12735.893,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
