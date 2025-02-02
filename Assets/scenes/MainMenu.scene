@@ -48,28 +48,6 @@
           "__type": "PuntPiece",
           "__guid": "cc76db9e-b42d-4201-adcf-0e85534adf1b",
           "__enabled": false,
-          "cooldownDuration": 0,
-          "cooldownTimeSince": {
-            "Absolute": 0,
-            "Relative": 4600.8525
-          },
-          "playerCooldownRenderer": {
-            "_type": "component",
-            "component_id": "098307b2-9f02-40f0-933f-29d4beb43f37",
-            "go": "c3d9bcf0-cdaf-439f-b429-8fc7644414ff",
-            "component_type": "ModelRenderer"
-          },
-          "playerSquashStretch": {
-            "_type": "component",
-            "component_id": "10706150-9090-4fd7-b9fe-227611c0e968",
-            "go": "3036fb89-3de0-40d9-a479-12a23c0abdfc",
-            "component_type": "SquashAndStretch"
-          },
-          "playerStatus": {
-            "_type": "gameobject",
-            "go": "c3d9bcf0-cdaf-439f-b429-8fc7644414ff"
-          },
-          "playerStatusMaterial": null,
           "baseModell": {
             "_type": "component",
             "component_id": "793636bb-9019-428b-b550-a41de9e4ff99",
@@ -81,6 +59,11 @@
             "component_id": "609fcd35-0de8-45df-9a32-2b51ee87d827",
             "go": "33569fa1-1c07-4343-9a69-d32531976477",
             "component_type": "ModelRenderer"
+          },
+          "cooldownDuration": 0,
+          "cooldownTimeSince": {
+            "Absolute": 0,
+            "Relative": 630.2141
           },
           "emitter": {
             "_type": "component",
@@ -128,10 +111,27 @@
           },
           "pieceID": 0,
           "pieceState": "Ready",
+          "playerCooldownRenderer": {
+            "_type": "component",
+            "component_id": "098307b2-9f02-40f0-933f-29d4beb43f37",
+            "go": "c3d9bcf0-cdaf-439f-b429-8fc7644414ff",
+            "component_type": "ModelRenderer"
+          },
           "playerModelHolder": {
             "_type": "gameobject",
             "go": "b0b35d7a-17c0-4247-9989-5dc136132b77"
           },
+          "playerSquashStretch": {
+            "_type": "component",
+            "component_id": "10706150-9090-4fd7-b9fe-227611c0e968",
+            "go": "3036fb89-3de0-40d9-a479-12a23c0abdfc",
+            "component_type": "SquashAndStretch"
+          },
+          "playerStatus": {
+            "_type": "gameobject",
+            "go": "c3d9bcf0-cdaf-439f-b429-8fc7644414ff"
+          },
+          "playerStatusMaterial": null,
           "rigidBody": {
             "_type": "component",
             "component_id": "3a1d15ac-7a5a-42dd-ab58-1c3ddbb118df",
@@ -350,7 +350,7 @@
                   "squashDuration": 0.5,
                   "squashTimeSince": {
                     "Absolute": 0,
-                    "Relative": 96327280
+                    "Relative": 97437880
                   }
                 }
               ],

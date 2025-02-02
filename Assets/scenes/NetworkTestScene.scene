@@ -142,7 +142,6 @@
         {
           "__type": "TestGameMode",
           "__guid": "49a325ce-8634-4fcb-8517-513f7f63fcf5",
-          "queueIndent": "none",
           "Ball": null,
           "BallPrefab": {
             "_type": "gameobject",
@@ -219,6 +218,7 @@
             "prefab": "prefabs/pieces/playerpiece.prefab"
           },
           "PlayerList": [],
+          "queueIndent": "none",
           "RedPieceList": [],
           "RedScore": 0,
           "RedSpawns": [
@@ -271,8 +271,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -306.01508,
-            "Passed": 306.01508,
+            "Relative": -6753.2544,
+            "Passed": 6753.2544,
             "Fraction": 1
           },
           "ResetTimerLength": 4,

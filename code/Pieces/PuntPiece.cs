@@ -1,4 +1,5 @@
-using Sandbox;
+﻿using Sandbox;
+using Sandbox.Resources;
 using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -52,7 +53,26 @@ public sealed class PuntPiece : Component
 	[Property] public ParticleBoxEmitter emitter { get; set; }
 	[Property] public float emitterRate { get; set; }
 
+	[Property] public string playerNameString { get; set; }
 
+	[Property] public string playerNumberString { get; set; }
+
+	[Property] public string playerBadgeString { get; set; }
+
+	[Property] public string playerSponsoString { get; set; }
+
+	[Property] public Texture PlayerName { get; set; }
+	[Property] public Texture ShirtMask2 { get; set; }
+	[Property] public Texture PlayerNumberBack { get; set; }
+	[Property] public Texture FrontSponsor { get; set; }
+	[Property] public Texture Badge { get; set; }
+	[Property] public Texture ShortsNumber { get; set; }
+
+	[Property] public Color PrimaryColour { get; set; }
+
+	[Property] public Color SecondaryColour { get; set; }
+
+	[Property] public Color TertiaryColour { get; set; }
 
 	private PieceState _pieceState;
 
@@ -231,13 +251,56 @@ public sealed class PuntPiece : Component
 
 		if ( teamSide == TeamSide.Red )
 		{
+
+			playerBadgeString = "⚽";
+
+
+			//Log.Info ( PlayerNumberBack.CreateGenerator().FindCached().GetType().Name );
+
+			//PlayerNumberBack.CreateGenerator().
+			
+		
+
+			PrimaryColour = new Color( 0.07f, 0.07f, 0.07f, 1.00f );
+			SecondaryColour = new Color( 1.00f, 0.14f, 0.14f, 0.87f );
+			TertiaryColour = new Color( 0.07f, 0.07f, 0.07f, 1.00f );
+
+
+			characterModell.SceneObject.Attributes.Set( "shirtmask", ShirtMask2 );
+			characterModell.SceneObject.Attributes.Set( "playername", PlayerName );
+			characterModell.SceneObject.Attributes.Set( "playernumberback", PlayerNumberBack );
+			characterModell.SceneObject.Attributes.Set( "frontsponsor", FrontSponsor );
+			characterModell.SceneObject.Attributes.Set( "badge", Badge );
+			characterModell.SceneObject.Attributes.Set( "shortsnumber", ShortsNumber );
+
+			characterModell.SceneObject.Attributes.Set( "primarycolor", PrimaryColour );
+			characterModell.SceneObject.Attributes.Set( "secondarycolor", SecondaryColour );
+			characterModell.SceneObject.Attributes.Set( "tertiarycolor", TertiaryColour );
 			baseModell.MaterialGroup = "red";
-			characterModell.MaterialGroup = "red";
+			//characterModell.MaterialGroup = "red";
+
+
 		}
 		else
 		{
+
+			PrimaryColour = new Color( 1.00f, 1.00f, 1.00f, 1.00f );
+			SecondaryColour = new Color( 0.00f, 0.33f, 0.74f, 1.00f );
+			TertiaryColour = new Color( 1.00f, 1.00f, 1.00f, 1.00f );
+
+
+			characterModell.SceneObject.Attributes.Set( "playername", PlayerName );
+			characterModell.SceneObject.Attributes.Set( "playernumberback", PlayerNumberBack );
+			characterModell.SceneObject.Attributes.Set( "frontsponsor", FrontSponsor );
+			characterModell.SceneObject.Attributes.Set( "badge", Badge );
+			characterModell.SceneObject.Attributes.Set( "shortsnumber", ShortsNumber );
+
+			characterModell.SceneObject.Attributes.Set( "primarycolor", PrimaryColour );
+			characterModell.SceneObject.Attributes.Set( "secondarycolor", SecondaryColour );
+			characterModell.SceneObject.Attributes.Set( "tertiarycolor", TertiaryColour );
+
 			baseModell.MaterialGroup = "blue";
-			characterModell.MaterialGroup = "blue";
+			//characterModell.MaterialGroup = "blue";
 		}
 
 

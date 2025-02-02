@@ -1,0 +1,38 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/shirtshader.shader"
+
+	AmbientOcclusion "[1.000000 1.000000 1.000000 0.000000]"
+	Diffse "prefabs/pieces/puntguy/materials/m_puntguy_albedo.png"
+	g_flRoughnessScale "0.106"
+	g_vColor_Primary "[1.000000 1.000000 1.000000 1.000000]"
+	g_vColor_Secondary "[0.419608 0.180392 0.243137 1.000000]"
+	g_vColor_Tertiary "[0.639216 0.725490 0.866667 1.000000]"
+	Metalness "[0.000000 0.000000 0.000000 0.000000]"
+	Normal "materials/default/default_normal.tga"
+	Roughness "prefabs/pieces/puntguy/materials/m_puntguy_rough.png"
+	ShirtMask "prefabs/pieces/puntguy/materials/m_puntguy_mask.png"
+	Text_Badge "materials/default/default_mask.tga"
+	Text_FrontSponsor "materials/default/default_mask.tga"
+	Text_PlayerName "materials/default/default_mask.tga"
+	Text_PlayerNumberBack "materials/default/default_mask.tga"
+	Text_ShotsNumber "materials/default/default_mask.tga"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	DynamicParams
+	{
+		g_vColor_Primary "primarycolor"
+		g_vColor_Secondary "secondarycolor"
+		g_vColor_Tertiary "tertiarycolor"
+		ShirtMask "shirtmask"
+		Text_Badge "badge"
+		Text_FrontSponsor "frontsponsor"
+		Text_PlayerName "playername"
+		Text_PlayerNumberBack "playernumberback"
+		Text_ShotsNumber "shortsnumber"
+	}
+}

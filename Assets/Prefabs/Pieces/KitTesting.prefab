@@ -1,132 +1,40 @@
 {
   "RootObject": {
-    "__guid": "cb2901cd-7385-48b3-9c35-210aaf6c5b8c",
+    "__guid": "46a0bfbf-413f-4a03-9c37-c93648c1d22b",
     "Flags": 0,
-    "Name": "playerpiece",
+    "Name": "KitTesting",
+    "Position": "-142.0209,-61.46094,36.12674",
     "Tags": "piece",
     "Enabled": true,
     "NetworkMode": 1,
-    "NetworkOrphaned": 1,
     "Components": [
       {
         "__type": "PuntPiece",
-        "__guid": "a4e5bbe3-f335-455a-a51e-01336be25b2b",
-        "Badge": {
-          "$compiler": "texture",
-          "$source": "text",
-          "data": {
-            "Size": "512,512",
-            "Margin": {
-              "Size": "0.4000316,-121.2001",
-              "EdgeSize": "0.4000316,-121.2001"
-            },
-            "TextFlags": "CenterHorizontally, CenterVertically, DontClip",
-            "TextScope": {
-              "Text": "\uD83D\uDEE1️",
-              "TextColor": "1,1,1,1",
-              "FontName": "Roboto",
-              "FontSize": 59.74,
-              "FontWeight": 400,
-              "FontItalic": false,
-              "LineHeight": 1,
-              "LetterSpacing": 0,
-              "WordSpacing": 0,
-              "Outline": {
-                "Enabled": true,
-                "Size": 4,
-                "Color": "0,0,0,1"
-              },
-              "Shadow": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,0,1",
-                "Offset": "4,4"
-              },
-              "OutlineUnder": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,1,0,1"
-              },
-              "ShadowUnder": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,0,1",
-                "Offset": "4,4"
-              }
-            }
-          },
-          "compiled": "textures/generated/text/b4773b3637a2dfe9.vtex"
-        },
+        "__guid": "5d8c77f6-c8c7-49f1-8a9c-01bad3739ca1",
         "baseModell": {
           "_type": "component",
-          "component_id": "044d8e2e-a3ff-4d0d-914e-d7abe6a23104",
-          "go": "057a4de3-acd2-4127-b7eb-a82ed82e5aea",
+          "component_id": "b2527cef-3fe7-48f7-b69e-640125b9f041",
+          "go": "7ed3fa52-7154-491c-9f16-7473e1647276",
           "component_type": "ModelRenderer"
         },
         "characterModell": {
           "_type": "component",
-          "component_id": "1d913748-e93f-4609-a6f8-8aeb13f864b5",
-          "go": "82af1cab-a5b5-486c-8d58-54a1e1dcd004",
+          "component_id": "c88a8a56-ce53-4ac9-a771-49d7e2fb21b8",
+          "go": "db30a901-a8dc-4381-b57e-dbe7541e4cc7",
           "component_type": "ModelRenderer"
         },
         "cooldownDuration": 2,
         "cooldownTimeSince": {
           "Absolute": 0,
-          "Relative": 6764.082
+          "Relative": 7879.453
         },
         "emitter": {
           "_type": "component",
-          "component_id": "fc8366aa-858c-4572-8a1c-700b80bdf4ca",
-          "go": "5ef49142-c450-4f1c-9f78-0e3e7635b1c4",
+          "component_id": "ec0f9cb7-2794-497e-b216-94246b05c57a",
+          "go": "85bdea57-e561-480a-ab8f-c2af26806539",
           "component_type": "ParticleBoxEmitter"
         },
         "emitterRate": 14,
-        "FrontSponsor": {
-          "$compiler": "texture",
-          "$source": "text",
-          "data": {
-            "Size": "1024,1024",
-            "Margin": {
-              "Size": "309.9999,-540.5333",
-              "EdgeSize": "309.9999,-540.5333"
-            },
-            "TextFlags": "CenterHorizontally, CenterVertically, DontClip",
-            "TextScope": {
-              "Text": "PEPPERMINT",
-              "TextColor": "1,1,1,1",
-              "FontName": "Lemon Days",
-              "FontSize": 87.52,
-              "FontWeight": 385,
-              "FontItalic": true,
-              "LineHeight": 1,
-              "LetterSpacing": 2.3333328,
-              "WordSpacing": 0,
-              "Outline": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,1,1"
-              },
-              "Shadow": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,0,1",
-                "Offset": "4,4"
-              },
-              "OutlineUnder": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,1,0,1"
-              },
-              "ShadowUnder": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,0,1",
-                "Offset": "4,4"
-              }
-            }
-          },
-          "compiled": "textures/generated/text/4c3cd5c78a379a3a.vtex"
-        },
         "frozenOutline": {
           "Color": "0.30196,0.30196,0.30196,1",
           "ObscuredColor": "0,0,0,0.4",
@@ -160,222 +68,50 @@
         "OnComponentUpdate": null,
         "outline": {
           "_type": "component",
-          "component_id": "da381471-801c-4f5f-982e-196e76af22f8",
-          "go": "d72fd439-05ac-4afa-b5a0-e93154264c83",
+          "component_id": "75f8b476-1afc-42fb-8a4f-6b174f1de7f0",
+          "go": "f5118762-16b9-4499-abcf-e6dd564646a0",
           "component_type": "HighlightOutline"
         },
         "pieceID": 0,
         "pieceState": "Ready",
-        "playerBadgeString": "\uD83D\uDE05",
         "playerCooldownRenderer": {
           "_type": "component",
-          "component_id": "d1871549-e33b-4069-ad30-5e876dc2c85d",
-          "go": "36079f2e-9620-450a-aaa5-36a7930a9997",
+          "component_id": "447616e0-c28b-4407-b53d-d4fef4d49d0f",
+          "go": "da6a8c21-28cb-4018-945a-6d360120c7b6",
           "component_type": "ModelRenderer"
         },
         "playerModelHolder": {
           "_type": "gameobject",
-          "go": "c67a5325-24e2-4cb5-908e-4dec26bb09fb"
+          "go": "736e2b3b-0fcf-40ec-9163-39f3423435b2"
         },
-        "PlayerName": {
-          "$compiler": "texture",
-          "$source": "text",
-          "data": {
-            "Size": "512,512",
-            "Margin": {
-              "Size": "172.1331,379.7337",
-              "EdgeSize": "172.1331,379.7337"
-            },
-            "TextFlags": "CenterHorizontally, CenterVertically, DontClip",
-            "TextScope": {
-              "Text": "MESSY",
-              "TextColor": "1,1,1,1",
-              "FontName": "Lemon Days",
-              "FontSize": 53.71,
-              "FontWeight": 400,
-              "FontItalic": false,
-              "LineHeight": 1,
-              "LetterSpacing": 3.066667,
-              "WordSpacing": 0,
-              "Outline": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,1,1"
-              },
-              "Shadow": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,0,1",
-                "Offset": "4,4"
-              },
-              "OutlineUnder": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,1,0,1"
-              },
-              "ShadowUnder": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,0,1",
-                "Offset": "4,4"
-              }
-            }
-          },
-          "compiled": null
-        },
-        "playerNameString": "MESSY",
-        "PlayerNumberBack": {
-          "$compiler": "texture",
-          "$source": "text",
-          "data": {
-            "Size": "512,512",
-            "Margin": {
-              "Size": "153.6665,200.3334",
-              "EdgeSize": "153.6665,200.3334"
-            },
-            "TextFlags": "CenterHorizontally, CenterVertically, DontClip",
-            "TextScope": {
-              "Text": "10",
-              "TextColor": "1,1,1,1",
-              "FontName": "Lemon Days",
-              "FontSize": 140.66,
-              "FontWeight": 400,
-              "FontItalic": false,
-              "LineHeight": 1,
-              "LetterSpacing": 0,
-              "WordSpacing": 0,
-              "Outline": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,1,1"
-              },
-              "Shadow": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,0,1",
-                "Offset": "4,4"
-              },
-              "OutlineUnder": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,1,0,1"
-              },
-              "ShadowUnder": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,0,1",
-                "Offset": "4,4"
-              }
-            }
-          },
-          "compiled": null
-        },
-        "playerNumberString": "10",
-        "playerSponsoString": "PEPPERMINT",
         "playerSquashStretch": {
           "_type": "component",
-          "component_id": "d5cb658a-3a3d-4d88-9383-accfe05bb483",
-          "go": "d72fd439-05ac-4afa-b5a0-e93154264c83",
+          "component_id": "818418d9-0b43-4205-9d46-6b495f6b21f6",
+          "go": "f5118762-16b9-4499-abcf-e6dd564646a0",
           "component_type": "SquashAndStretch"
         },
         "playerStatus": {
           "_type": "gameobject",
-          "go": "36079f2e-9620-450a-aaa5-36a7930a9997"
+          "go": "da6a8c21-28cb-4018-945a-6d360120c7b6"
         },
         "playerStatusMaterial": null,
-        "PrimaryColour": "0.70196,0.70196,0.7098,1",
         "rigidBody": {
           "_type": "component",
-          "component_id": "b2e8c182-1fee-4861-99b3-58983ed2ef9c",
-          "go": "cb2901cd-7385-48b3-9c35-210aaf6c5b8c",
+          "component_id": "3dafbfbf-d9df-4b2c-9bab-90e828156229",
+          "go": "46a0bfbf-413f-4a03-9c37-c93648c1d22b",
           "component_type": "Rigidbody"
         },
-        "SecondaryColour": "0.50588,0.0902,0.19608,1",
         "shakeEffect": {
           "_type": "component",
-          "component_id": "81dbc13d-5d3c-444a-940a-325d81d63ca1",
-          "go": "b8ebd53a-a82d-4d10-854f-f1791cac22c5",
+          "component_id": "3561639a-5d49-4b60-8b6e-6f9ac69bf704",
+          "go": "1510d22a-4d68-49bc-a9e8-6f834b3823c3",
           "component_type": "ShakeEffect"
         },
-        "ShirtMask2": {
-          "$compiler": "texture",
-          "$source": "imagefile",
-          "data": {
-            "FilePath": "prefabs/pieces/puntguy/materials/m_puntguy_mask2.png",
-            "MaxSize": 4096,
-            "ConvertHeightToNormals": false,
-            "NormalScale": 1,
-            "Rotate": 0,
-            "FlipVertical": false,
-            "FlipHorizontal": false,
-            "Padding": {
-              "Size": "0,0",
-              "EdgeSize": "0,0"
-            },
-            "Sharpen": 0,
-            "Blur": 0,
-            "Brightness": 1,
-            "Contrast": 1,
-            "Saturation": 1,
-            "Hue": 0,
-            "Colorize": false,
-            "TargetColor": "0,1,0,1",
-            "CacheToDisk": true
-          },
-          "compiled": null
-        },
-        "ShortsNumber": {
-          "$compiler": "texture",
-          "$source": "text",
-          "data": {
-            "Size": "512,512",
-            "Margin": {
-              "Size": "-354.7999,80.13326",
-              "EdgeSize": "-354.7999,80.13326"
-            },
-            "TextFlags": "CenterHorizontally, CenterVertically, DontClip",
-            "TextScope": {
-              "Text": "15",
-              "TextColor": "0.39535,0.39535,0.39535,1",
-              "FontName": "Lemon Days",
-              "FontSize": 64,
-              "FontWeight": 400,
-              "FontItalic": false,
-              "LineHeight": 1,
-              "LetterSpacing": 0,
-              "WordSpacing": 0,
-              "Outline": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,1,1"
-              },
-              "Shadow": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,0,1",
-                "Offset": "4,4"
-              },
-              "OutlineUnder": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,1,0,1"
-              },
-              "ShadowUnder": {
-                "Enabled": false,
-                "Size": 4,
-                "Color": "0,0,0,1",
-                "Offset": "4,4"
-              }
-            }
-          },
-          "compiled": "textures/generated/text/e6b873cc0659a569.vtex"
-        },
-        "teamSide": "None",
-        "TertiaryColour": "0.23137,0.38039,0.79216,1"
+        "teamSide": "None"
       },
       {
         "__type": "Sandbox.ModelCollider",
-        "__guid": "68aab748-7131-4148-995a-a088f9804da7",
+        "__guid": "58d3ae34-af72-42d1-86e7-3cb681ed7a92",
         "Friction": null,
         "IsTrigger": false,
         "Model": "prefabs/pieces/socceteobasecol.vmdl",
@@ -395,7 +131,7 @@
       },
       {
         "__type": "Sandbox.Rigidbody",
-        "__guid": "b2e8c182-1fee-4861-99b3-58983ed2ef9c",
+        "__guid": "3dafbfbf-d9df-4b2c-9bab-90e828156229",
         "AngularDamping": 0,
         "Gravity": true,
         "LinearDamping": 0,
@@ -422,7 +158,7 @@
       },
       {
         "__type": "Sandbox.CapsuleCollider",
-        "__guid": "17b985bc-1106-4697-82ae-7041b77a16f1",
+        "__guid": "bad5c9db-37c9-480e-b9a9-48856fe71fcd",
         "End": "0,0,94.79977",
         "Friction": null,
         "IsTrigger": false,
@@ -445,7 +181,7 @@
     ],
     "Children": [
       {
-        "__guid": "36079f2e-9620-450a-aaa5-36a7930a9997",
+        "__guid": "da6a8c21-28cb-4018-945a-6d360120c7b6",
         "Flags": 0,
         "Name": "PlayerCooldown",
         "Scale": "1.5,1.5,1",
@@ -453,7 +189,7 @@
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
-            "__guid": "d1871549-e33b-4069-ad30-5e876dc2c85d",
+            "__guid": "447616e0-c28b-4407-b53d-d4fef4d49d0f",
             "BodyGroups": 18446744073709551615,
             "CreateAttachments": false,
             "MaterialGroup": null,
@@ -477,21 +213,22 @@
         ]
       },
       {
-        "__guid": "c67a5325-24e2-4cb5-908e-4dec26bb09fb",
+        "__guid": "736e2b3b-0fcf-40ec-9163-39f3423435b2",
         "Flags": 0,
         "Name": "Model",
+        "Rotation": "0,0,1,0.0000001947072",
         "Enabled": true,
         "OwnerTransfer": 0,
         "Children": [
           {
-            "__guid": "d72fd439-05ac-4afa-b5a0-e93154264c83",
+            "__guid": "f5118762-16b9-4499-abcf-e6dd564646a0",
             "Flags": 0,
             "Name": "PlayerModel",
             "Enabled": true,
             "Components": [
               {
                 "__type": "Sandbox.HighlightOutline",
-                "__guid": "da381471-801c-4f5f-982e-196e76af22f8",
+                "__guid": "75f8b476-1afc-42fb-8a4f-6b174f1de7f0",
                 "__enabled": false,
                 "Color": "1,1,1,1",
                 "InsideColor": "0,0,0,0",
@@ -508,7 +245,7 @@
               },
               {
                 "__type": "SquashAndStretch",
-                "__guid": "d5cb658a-3a3d-4d88-9383-accfe05bb483",
+                "__guid": "818418d9-0b43-4205-9d46-6b495f6b21f6",
                 "currentScale": "0,0,0",
                 "OnComponentDestroy": null,
                 "OnComponentDisabled": null,
@@ -563,20 +300,20 @@
                 "squashDuration": 0.5,
                 "squashTimeSince": {
                   "Absolute": 0,
-                  "Relative": 97507010
+                  "Relative": 97445810
                 }
               }
             ],
             "Children": [
               {
-                "__guid": "b8ebd53a-a82d-4d10-854f-f1791cac22c5",
+                "__guid": "1510d22a-4d68-49bc-a9e8-6f834b3823c3",
                 "Flags": 0,
                 "Name": "Model",
                 "Enabled": true,
                 "Components": [
                   {
                     "__type": "ShakeEffect",
-                    "__guid": "81dbc13d-5d3c-444a-940a-325d81d63ca1",
+                    "__guid": "3561639a-5d49-4b60-8b6e-6f9ac69bf704",
                     "OnComponentDestroy": null,
                     "OnComponentDisabled": null,
                     "OnComponentEnabled": null,
@@ -592,14 +329,14 @@
                 ],
                 "Children": [
                   {
-                    "__guid": "91f1ab5c-966d-4ff0-ad12-11f627911c75",
+                    "__guid": "cc7f7558-ac26-45fa-9d1e-5883dfa7446b",
                     "Flags": 0,
                     "Name": "puntchartest",
                     "Position": "0,0,5.170628",
                     "Components": [
                       {
                         "__type": "Sandbox.ModelRenderer",
-                        "__guid": "dfff27cc-7c1f-496b-9364-29a934258ed1",
+                        "__guid": "11ab460f-aadb-49f3-a834-e8513e91a691",
                         "BodyGroups": 18446744073709551615,
                         "CreateAttachments": false,
                         "MaterialGroup": null,
@@ -623,14 +360,14 @@
                     ]
                   },
                   {
-                    "__guid": "057a4de3-acd2-4127-b7eb-a82ed82e5aea",
+                    "__guid": "7ed3fa52-7154-491c-9f16-7473e1647276",
                     "Flags": 0,
                     "Name": "Base",
                     "Enabled": true,
                     "Components": [
                       {
                         "__type": "Sandbox.ModelRenderer",
-                        "__guid": "044d8e2e-a3ff-4d0d-914e-d7abe6a23104",
+                        "__guid": "b2527cef-3fe7-48f7-b69e-640125b9f041",
                         "BodyGroups": 18446744073709551615,
                         "CreateAttachments": false,
                         "MaterialGroup": null,
@@ -654,15 +391,15 @@
                     ]
                   },
                   {
-                    "__guid": "82af1cab-a5b5-486c-8d58-54a1e1dcd004",
+                    "__guid": "db30a901-a8dc-4381-b57e-dbe7541e4cc7",
                     "Flags": 0,
                     "Name": "puntguy",
-                    "Position": "0,0,20",
+                    "Position": "0,0,26.21183",
                     "Enabled": true,
                     "Components": [
                       {
                         "__type": "Sandbox.ModelRenderer",
-                        "__guid": "1d913748-e93f-4609-a6f8-8aeb13f864b5",
+                        "__guid": "c88a8a56-ce53-4ac9-a771-49d7e2fb21b8",
                         "BodyGroups": 18446744073709551615,
                         "CreateAttachments": false,
                         "MaterialGroup": null,
@@ -682,6 +419,255 @@
                         },
                         "RenderType": "On",
                         "Tint": "1,1,1,1"
+                      },
+                      {
+                        "__type": "TestTextureGenerator",
+                        "__guid": "099bf885-be9b-4571-bd58-13db66eda1eb",
+                        "Badge": {
+                          "$compiler": "texture",
+                          "$source": "text",
+                          "data": {
+                            "Size": "512,512",
+                            "Margin": {
+                              "Size": "0.4000316,-121.2001",
+                              "EdgeSize": "0.4000316,-121.2001"
+                            },
+                            "TextFlags": "CenterHorizontally, CenterVertically, DontClip",
+                            "TextScope": {
+                              "Text": "\uD83D\uDEE1️",
+                              "TextColor": "1,1,1,1",
+                              "FontName": "Roboto",
+                              "FontSize": 59.74,
+                              "FontWeight": 400,
+                              "FontItalic": false,
+                              "LineHeight": 1,
+                              "LetterSpacing": 0,
+                              "WordSpacing": 0,
+                              "Outline": {
+                                "Enabled": true,
+                                "Size": 4,
+                                "Color": "0,0,0,1"
+                              },
+                              "Shadow": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,0,1",
+                                "Offset": "4,4"
+                              },
+                              "OutlineUnder": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,1,0,1"
+                              },
+                              "ShadowUnder": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,0,1",
+                                "Offset": "4,4"
+                              }
+                            }
+                          },
+                          "compiled": "textures/generated/text/b4773b3637a2dfe9.vtex"
+                        },
+                        "FrontSponsor": {
+                          "$compiler": "texture",
+                          "$source": "text",
+                          "data": {
+                            "Size": "1024,1024",
+                            "Margin": {
+                              "Size": "309.9999,-540.5333",
+                              "EdgeSize": "309.9999,-540.5333"
+                            },
+                            "TextFlags": "CenterHorizontally, CenterVertically, DontClip",
+                            "TextScope": {
+                              "Text": "PEPPERMINT",
+                              "TextColor": "1,1,1,1",
+                              "FontName": "Lemon Days",
+                              "FontSize": 87.52,
+                              "FontWeight": 385,
+                              "FontItalic": true,
+                              "LineHeight": 1,
+                              "LetterSpacing": 2.3333328,
+                              "WordSpacing": 0,
+                              "Outline": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,1,1"
+                              },
+                              "Shadow": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,0,1",
+                                "Offset": "4,4"
+                              },
+                              "OutlineUnder": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,1,0,1"
+                              },
+                              "ShadowUnder": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,0,1",
+                                "Offset": "4,4"
+                              }
+                            }
+                          },
+                          "compiled": "textures/generated/text/4c3cd5c78a379a3a.vtex"
+                        },
+                        "Model": {
+                          "_type": "component",
+                          "component_id": "c88a8a56-ce53-4ac9-a771-49d7e2fb21b8",
+                          "go": "db30a901-a8dc-4381-b57e-dbe7541e4cc7",
+                          "component_type": "ModelRenderer"
+                        },
+                        "OnComponentDestroy": null,
+                        "OnComponentDisabled": null,
+                        "OnComponentEnabled": null,
+                        "OnComponentFixedUpdate": null,
+                        "OnComponentStart": null,
+                        "OnComponentUpdate": null,
+                        "PlayerName": {
+                          "$compiler": "texture",
+                          "$source": "text",
+                          "data": {
+                            "Size": "512,512",
+                            "Margin": {
+                              "Size": "172.1331,379.7337",
+                              "EdgeSize": "172.1331,379.7337"
+                            },
+                            "TextFlags": "CenterHorizontally, CenterVertically, DontClip",
+                            "TextScope": {
+                              "Text": "Greeve",
+                              "TextColor": "1,1,1,1",
+                              "FontName": "Lemon Days",
+                              "FontSize": 53.71,
+                              "FontWeight": 400,
+                              "FontItalic": false,
+                              "LineHeight": 1,
+                              "LetterSpacing": 3.066667,
+                              "WordSpacing": 0,
+                              "Outline": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,1,1"
+                              },
+                              "Shadow": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,0,1",
+                                "Offset": "4,4"
+                              },
+                              "OutlineUnder": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,1,0,1"
+                              },
+                              "ShadowUnder": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,0,1",
+                                "Offset": "4,4"
+                              }
+                            }
+                          },
+                          "compiled": "textures/generated/text/b0dde44af9b83f7f.vtex"
+                        },
+                        "PlayerNumberBack": {
+                          "$compiler": "texture",
+                          "$source": "text",
+                          "data": {
+                            "Size": "512,512",
+                            "Margin": {
+                              "Size": "153.6665,200.3334",
+                              "EdgeSize": "153.6665,200.3334"
+                            },
+                            "TextFlags": "CenterHorizontally, CenterVertically, DontClip",
+                            "TextScope": {
+                              "Text": "15",
+                              "TextColor": "1,1,1,1",
+                              "FontName": "Lemon Days",
+                              "FontSize": 140.66,
+                              "FontWeight": 400,
+                              "FontItalic": false,
+                              "LineHeight": 1,
+                              "LetterSpacing": 0,
+                              "WordSpacing": 0,
+                              "Outline": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,1,1"
+                              },
+                              "Shadow": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,0,1",
+                                "Offset": "4,4"
+                              },
+                              "OutlineUnder": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,1,0,1"
+                              },
+                              "ShadowUnder": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,0,1",
+                                "Offset": "4,4"
+                              }
+                            }
+                          },
+                          "compiled": "textures/generated/text/9503a279c89dff25.vtex"
+                        },
+                        "PrimaryColour": "0,0,0,0",
+                        "SecondaryColour": "0,0,0,0",
+                        "ShortsNumber": {
+                          "$compiler": "texture",
+                          "$source": "text",
+                          "data": {
+                            "Size": "512,512",
+                            "Margin": {
+                              "Size": "-354.7999,80.13326",
+                              "EdgeSize": "-354.7999,80.13326"
+                            },
+                            "TextFlags": "CenterHorizontally, CenterVertically, DontClip",
+                            "TextScope": {
+                              "Text": "15",
+                              "TextColor": "0.39535,0.39535,0.39535,1",
+                              "FontName": "Lemon Days",
+                              "FontSize": 64,
+                              "FontWeight": 400,
+                              "FontItalic": false,
+                              "LineHeight": 1,
+                              "LetterSpacing": 0,
+                              "WordSpacing": 0,
+                              "Outline": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,1,1"
+                              },
+                              "Shadow": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,0,1",
+                                "Offset": "4,4"
+                              },
+                              "OutlineUnder": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,1,0,1"
+                              },
+                              "ShadowUnder": {
+                                "Enabled": false,
+                                "Size": 4,
+                                "Color": "0,0,0,1",
+                                "Offset": "4,4"
+                              }
+                            }
+                          },
+                          "compiled": "textures/generated/text/e6b873cc0659a569.vtex"
+                        },
+                        "TertiaryColour": "0,0,0,0"
                       }
                     ]
                   }
@@ -692,7 +678,7 @@
         ]
       },
       {
-        "__guid": "5ef49142-c450-4f1c-9f78-0e3e7635b1c4",
+        "__guid": "85bdea57-e561-480a-ab8f-c2af26806539",
         "Flags": 0,
         "Name": "PuffVFX",
         "Position": "0,0,23.7682",
@@ -700,7 +686,7 @@
         "Components": [
           {
             "__type": "Sandbox.ParticleEffect",
-            "__guid": "6802cad6-251f-4ba3-bec0-94682010c273",
+            "__guid": "4feb96f2-e882-46de-8865-520f26ce691e",
             "__version": 1,
             "Alpha": 1,
             "ApplyAlpha": false,
@@ -933,7 +919,7 @@
           },
           {
             "__type": "Sandbox.ParticleModelRenderer",
-            "__guid": "537fbd28-957c-4ae6-97b5-109b2ab37b3c",
+            "__guid": "2da1cc1b-42ff-4de1-a8b5-f376b6d7e27d",
             "__version": 1,
             "CastShadows": true,
             "Choices": [
@@ -975,7 +961,7 @@
           },
           {
             "__type": "Sandbox.ParticleBoxEmitter",
-            "__guid": "fc8366aa-858c-4572-8a1c-700b80bdf4ca",
+            "__guid": "ec0f9cb7-2794-497e-b216-94246b05c57a",
             "Burst": 0,
             "Delay": 0,
             "DestroyOnEnd": false,
@@ -994,31 +980,7 @@
           }
         ]
       }
-    ],
-    "__variables": [],
-    "__properties": {
-      "FixedUpdateFrequency": 50,
-      "MaxFixedUpdates": 5,
-      "NetworkFrequency": 30,
-      "NetworkInterpolation": true,
-      "PhysicsSubSteps": 1,
-      "ThreadedAnimation": true,
-      "TimeScale": 1,
-      "UseFixedUpdate": true,
-      "Metadata": {},
-      "NavMesh": {
-        "Enabled": false,
-        "IncludeStaticBodies": true,
-        "IncludeKeyframedBodies": true,
-        "EditorAutoUpdate": true,
-        "AgentHeight": 64,
-        "AgentRadius": 16,
-        "AgentStepSize": 18,
-        "AgentMaxSlope": 40,
-        "ExcludedBodies": "",
-        "IncludedBodies": ""
-      }
-    }
+    ]
   },
   "ShowInMenu": false,
   "MenuPath": null,

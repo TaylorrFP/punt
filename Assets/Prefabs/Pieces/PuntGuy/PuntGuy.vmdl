@@ -15,15 +15,15 @@
 						[
 							{
 								from = "m_puntguy.vmat"
-								to = "prefabs/pieces/puntguy/materials/puntguy.vmat"
+								to = "prefabs/pieces/puntguy/materials/puntguy_defaultshirt.vmat"
 							},
 							{
 								from = "m_skin.vmat"
 								to = "prefabs/pieces/puntguy/materials/puntguy_skin.vmat"
 							},
 							{
-								from = "m_tshirt.vmat"
-								to = "prefabs/pieces/puntguy/materials/puntguy_defaultshirt.vmat"
+								from = "m_puntkit.vmat"
+								to = "prefabs/pieces/puntguy/materials/puntguy_shirtshader.vmat"
 							},
 						]
 						use_global_default = false
@@ -36,7 +36,11 @@
 						[
 							{
 								from = "prefabs/pieces/puntguy/materials/puntguy_defaultshirt.vmat"
-								to = "prefabs/pieces/puntguy/materials/puntguy_redshirt.vmat"
+								to = "prefabs/pieces/puntguy/materials/puntguy_defaultshirt.vmat"
+							},
+							{
+								from = "prefabs/pieces/puntguy/materials/puntguy_shirtshader.vmat"
+								to = "prefabs/pieces/puntguy/materials/puntguy_shirtshader.vmat"
 							},
 						]
 					},

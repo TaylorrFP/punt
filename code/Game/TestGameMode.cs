@@ -330,8 +330,10 @@ public sealed class TestGameMode : Component
 	{
 
 		
+
 		musicSoundPoint.StartSound();
 		musicSoundPoint.Repeat = true;
+		musicSoundPoint.SoundOverride = true;
 		ResetTeamPieces( kickoffSide );
 		ResetBall();
 		RoundTimeLeft = RoundLength;

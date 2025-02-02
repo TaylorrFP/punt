@@ -1,0 +1,543 @@
+{
+  "Model": "prefabs/pieces/puntguy/puntguy.vmdl",
+  "Description": "",
+  "BlendMode": "Opaque",
+  "ShadingModel": "Lit",
+  "Domain": "Surface",
+  "PreviewSettings": {
+    "EnableShadows": true,
+    "ShowSkybox": true,
+    "BackgroundColor": "0,0,0,1",
+    "Tint": "1,1,1,1"
+  },
+  "nodes": [
+    {
+      "_class": "Result",
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "Identifier": "0",
+      "Position": "3636,-120",
+      "HandleOffsets": {},
+      "Albedo": {
+        "Identifier": "9",
+        "Output": "Result"
+      },
+      "Normal": {
+        "Identifier": "33",
+        "Output": "Result"
+      },
+      "Roughness": {
+        "Identifier": "14",
+        "Output": "Result"
+      },
+      "Metalness": {
+        "Identifier": "12",
+        "Output": "Result"
+      },
+      "AmbientOcclusion": {
+        "Identifier": "13",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Float4",
+      "Value": "1,0,0,1",
+      "Name": "Color_Primary",
+      "IsAttribute": false,
+      "UI": {
+        "Type": "Color"
+      },
+      "Identifier": "1",
+      "Position": "-672,-1104",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "Float4",
+      "Value": "0,1,0.16667,1",
+      "Name": "Color_Secondary",
+      "IsAttribute": false,
+      "UI": {
+        "Type": "Color"
+      },
+      "Identifier": "2",
+      "Position": "-672,-924",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "Float4",
+      "Value": "0,0.01667,1,1",
+      "Name": "Color_Tertiary",
+      "IsAttribute": false,
+      "UI": {
+        "Type": "Color"
+      },
+      "Identifier": "3",
+      "Position": "-432,-600",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "prefabs/pieces/puntguy/materials/m_puntguy_mask.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "ShirtMask2",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "4",
+      "Position": "-672,-744",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Fraction": 0.7239837,
+      "Identifier": "5",
+      "Position": "-204,-1068",
+      "HandleOffsets": {},
+      "A": {
+        "Identifier": "1",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "7",
+        "Output": "X"
+      }
+    },
+    {
+      "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Fraction": 0.5,
+      "Identifier": "6",
+      "Position": "84,-1152",
+      "HandleOffsets": {},
+      "A": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "3",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "7",
+        "Output": "Y"
+      }
+    },
+    {
+      "_class": "SplitVector",
+      "Identifier": "7",
+      "Position": "-432,-744",
+      "HandleOffsets": {},
+      "Input": {
+        "Identifier": "4",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "prefabs/pieces/puntguy/materials/m_puntguy_albedo.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "Diffse",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "8",
+      "Position": "2628,-948",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "9",
+      "Position": "3336,-1092",
+      "HandleOffsets": {},
+      "A": {
+        "Identifier": "30",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "8",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "materials/default/default_normal.tga",
+      "Sampler": {},
+      "UI": {
+        "Name": "Normal",
+        "Default": "1,1,1,1",
+        "Extension": "Normal",
+        "ShowExtension": true,
+        "Processor": "NormalizeNormals",
+        "ColorSpace": "Linear"
+      },
+      "Identifier": "10",
+      "Position": "3072,-348",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "prefabs/pieces/puntguy/materials/m_puntguy_albedo.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "Roughness",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "11",
+      "Position": "168,-456",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "prefabs/pieces/puntguy/materials/m_puntguy_albedo.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "Metalness",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "12",
+      "Position": "168,-264",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "prefabs/pieces/puntguy/materials/m_puntguy_albedo.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "AmbientOcclusion",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "13",
+      "Position": "168,-84",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "Multiply",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "14",
+      "Position": "624,-456",
+      "HandleOffsets": {},
+      "A": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "16",
+        "Output": "Out"
+      }
+    },
+    {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 0,
+      "Name": "RoughnessScale",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "15",
+      "Position": "336,-408",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "OneMinus",
+      "Identifier": "16",
+      "Position": "516,-408",
+      "HandleOffsets": {},
+      "In": {
+        "Identifier": "15",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Fraction": 0.5,
+      "Identifier": "17",
+      "Position": "624,-1140",
+      "HandleOffsets": {},
+      "A": {
+        "Identifier": "6",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "19",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "19",
+        "Output": "A"
+      }
+    },
+    {
+      "_class": "Float4",
+      "Value": "1,0,0,1",
+      "Name": "Color_Text",
+      "IsAttribute": false,
+      "UI": {
+        "Type": "Color"
+      },
+      "Identifier": "18",
+      "Position": "-24,-1464",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "prefabs/pieces/puntguy/materials/m_puntguy_albedo.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "Text_PlayerName",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "19",
+      "Position": "312,-1008",
+      "HandleOffsets": {},
+      "Coords": {
+        "Identifier": "20",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "TextureCoord",
+      "UseSecondaryCoord": true,
+      "Tiling": "1,1",
+      "Identifier": "20",
+      "Position": "108,-1020",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "prefabs/pieces/puntguy/materials/m_puntguy_albedo.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "Text_PlayerNumberBack",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "21",
+      "Position": "804,-1032",
+      "HandleOffsets": {},
+      "Coords": {
+        "Identifier": "22",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "TextureCoord",
+      "UseSecondaryCoord": true,
+      "Tiling": "1,1",
+      "Identifier": "22",
+      "Position": "624,-1032",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Fraction": 0.5,
+      "Identifier": "23",
+      "Position": "1032,-1140",
+      "HandleOffsets": {},
+      "A": {
+        "Identifier": "17",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "21",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "21",
+        "Output": "A"
+      }
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "prefabs/pieces/puntguy/materials/m_puntguy_albedo.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "Text_FrontSponsor",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "24",
+      "Position": "1260,-996",
+      "HandleOffsets": {},
+      "Coords": {
+        "Identifier": "25",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "TextureCoord",
+      "UseSecondaryCoord": true,
+      "Tiling": "1,1",
+      "Identifier": "25",
+      "Position": "1044,-996",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Fraction": 0.5,
+      "Identifier": "26",
+      "Position": "1500,-1140",
+      "HandleOffsets": {},
+      "A": {
+        "Identifier": "23",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "24",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "24",
+        "Output": "A"
+      }
+    },
+    {
+      "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Fraction": 0.5,
+      "Identifier": "27",
+      "Position": "2088,-1128",
+      "HandleOffsets": {},
+      "A": {
+        "Identifier": "26",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "29",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "29",
+        "Output": "A"
+      }
+    },
+    {
+      "_class": "TextureCoord",
+      "UseSecondaryCoord": true,
+      "Tiling": "1,1",
+      "Identifier": "28",
+      "Position": "1596,-1008",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "prefabs/pieces/puntguy/materials/m_puntguy_albedo.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "Text_Badge",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "29",
+      "Position": "1824,-1008",
+      "HandleOffsets": {},
+      "Coords": {
+        "Identifier": "28",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Fraction": 0.5,
+      "Identifier": "30",
+      "Position": "2592,-1128",
+      "HandleOffsets": {},
+      "A": {
+        "Identifier": "27",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "31",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "31",
+        "Output": "A"
+      }
+    },
+    {
+      "_class": "TextureSampler",
+      "Image": "prefabs/pieces/puntguy/materials/m_puntguy_albedo.png",
+      "Sampler": {},
+      "UI": {
+        "Name": "Text_ShotsNumber",
+        "Default": "1,1,1,1",
+        "Extension": "Mask",
+        "ShowExtension": true,
+        "SrgbRead": true
+      },
+      "Identifier": "31",
+      "Position": "2316,-1020",
+      "HandleOffsets": {},
+      "Coords": {
+        "Identifier": "32",
+        "Output": "Result"
+      }
+    },
+    {
+      "_class": "TextureCoord",
+      "UseSecondaryCoord": true,
+      "Tiling": "1,1",
+      "Identifier": "32",
+      "Position": "2088,-1020",
+      "HandleOffsets": {}
+    },
+    {
+      "_class": "TransformNormal",
+      "InputSpace": "Tangent",
+      "OutputSpace": "Tangent",
+      "DecodeNormal": true,
+      "Identifier": "33",
+      "Position": "3276,-216",
+      "HandleOffsets": {},
+      "Input": {
+        "Identifier": "10",
+        "Output": "Result"
+      }
+    }
+  ]
+}
