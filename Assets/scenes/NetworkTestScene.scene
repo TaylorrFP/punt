@@ -169,6 +169,10 @@
             {
               "_type": "gameobject",
               "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
+            },
+            {
+              "_type": "gameobject",
+              "go": "afa03c98-f988-4a11-9783-7ea985bdec5f"
             }
           ],
           "BlueSpawnsKickoff": [
@@ -191,6 +195,10 @@
             {
               "_type": "gameobject",
               "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
+            },
+            {
+              "_type": "gameobject",
+              "go": "ef5cb807-b274-49f9-98aa-6145f5858ec2"
             }
           ],
           "BlueTeam": [],
@@ -241,6 +249,10 @@
             {
               "_type": "gameobject",
               "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3"
+            },
+            {
+              "_type": "gameobject",
+              "go": "5f2330ec-80b8-4d9c-a49b-ba893640c4ec"
             }
           ],
           "RedSpawnsKickoff": [
@@ -263,6 +275,10 @@
             {
               "_type": "gameobject",
               "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3"
+            },
+            {
+              "_type": "gameobject",
+              "go": "ef520dca-2361-4414-9f20-21b87165f2ae"
             }
           ],
           "RedTeam": [],
@@ -271,8 +287,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -11283.4795,
-            "Passed": 11283.4795,
+            "Relative": -12576.172,
+            "Passed": 12576.172,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -340,7 +356,7 @@
           "__guid": "e9475e78-cdce-4e6d-b7b0-40fc19756b89",
           "Flags": 0,
           "Name": "PitchGrass_Red",
-          "Scale": "0.5,0.5,0.5",
+          "Scale": "0.58,0.58,0.58",
           "Enabled": true,
           "Components": [
             {
@@ -373,7 +389,7 @@
           "Flags": 0,
           "Name": "PitchGrass_Blue",
           "Rotation": "0,0,1,0.0000001947072",
-          "Scale": "0.5,0.5,0.5",
+          "Scale": "0.58,0.58,0.58",
           "Enabled": true,
           "Components": [
             {
@@ -405,7 +421,7 @@
           "__guid": "0759f6f2-295d-4f64-8e6c-745e76fb022c",
           "Flags": 0,
           "Name": "PitchSides",
-          "Scale": "0.5,0.5,0.5",
+          "Scale": "0.58,0.58,0.58",
           "Enabled": true,
           "Components": [
             {
@@ -498,7 +514,7 @@
               "__guid": "e70deb20-e196-4bd6-a216-8c09b440f847",
               "Flags": 0,
               "Name": "goal_red",
-              "Position": "605,0,0",
+              "Position": "700,0,0",
               "Scale": "0.5,0.5,0.5",
               "Enabled": true,
               "__Prefab": "prefabs/pitch/goal.prefab",
@@ -510,7 +526,7 @@
               "__guid": "2c321bb5-e4ea-40c7-bfc3-e1203e71e9c6",
               "Flags": 0,
               "Name": "goal_blue",
-              "Position": "-605,0,0",
+              "Position": "-700,0,0",
               "Rotation": "-0,0,-1,-0.00000004371139",
               "Scale": "0.5,0.5,0.5",
               "Enabled": true,
@@ -545,8 +561,8 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
-              "pitchX": 1200,
-              "pitchY": 900,
+              "pitchX": 1400,
+              "pitchY": 1050,
               "thickness": 100,
               "wallSurface": "physicssurfaces/wallsurface.surface"
             }
@@ -568,7 +584,7 @@
                   "__guid": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542",
                   "Flags": 0,
                   "Name": "Goalkeeper",
-                  "Position": "575,0,1",
+                  "Position": "675,-0.000008826082,0.9999999",
                   "Rotation": "-0,0,-1,-0.00000004371139",
                   "Tags": "spawnpoint",
                   "Enabled": true,
@@ -611,13 +627,13 @@
                   "Position": "155.6404,-0.000003552899,1.000026",
                   "Rotation": "-0,0,-1,-0.00000004371139",
                   "Tags": "spawnpoint",
-                  "Enabled": true,
                   "Children": [
                     {
                       "__guid": "46bc75af-7418-4f89-aa19-f8d0920469f8",
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
+                      "Enabled": true,
                       "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
@@ -651,13 +667,13 @@
                   "Position": "-89.88309,74.82692,1.000027",
                   "Rotation": "0,0,-0.4712663,0.8819908",
                   "Tags": "spawnpoint",
-                  "Enabled": true,
                   "Children": [
                     {
                       "__guid": "be341a78-f89c-4e9c-adc0-db5e0f59edcf",
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
+                      "Enabled": true,
                       "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
@@ -703,6 +719,46 @@
                       "__PrefabVariables": {}
                     }
                   ]
+                },
+                {
+                  "__guid": "5f2330ec-80b8-4d9c-a49b-ba893640c4ec",
+                  "Flags": 0,
+                  "Name": "Defender_M",
+                  "Position": "285,0,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "a795f36c-13fe-496c-8900-e626b7c7ab71",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "ef520dca-2361-4414-9f20-21b87165f2ae",
+                  "Flags": 0,
+                  "Name": "Defender_M",
+                  "Position": "375,-0.00001170463,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "e9361bf1-73f9-4e9d-8c9a-d867df542d5a",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
                 }
               ]
             },
@@ -717,7 +773,7 @@
                   "__guid": "2ab70c95-3217-4b95-b9db-188345ecb29b",
                   "Flags": 0,
                   "Name": "Goalkeeper",
-                  "Position": "575,0,1",
+                  "Position": "675,-0.000009179254,0.9999999",
                   "Rotation": "-0,0,-1,-0.00000004371139",
                   "Tags": "spawnpoint",
                   "Enabled": true,
@@ -852,6 +908,46 @@
                       "__PrefabVariables": {}
                     }
                   ]
+                },
+                {
+                  "__guid": "afa03c98-f988-4a11-9783-7ea985bdec5f",
+                  "Flags": 0,
+                  "Name": "Defender_M",
+                  "Position": "285,0,1.000026",
+                  "Rotation": "0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "062233ed-debe-4f62-b65e-6ed51112af5c",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
+                },
+                {
+                  "__guid": "ef5cb807-b274-49f9-98aa-6145f5858ec2",
+                  "Flags": 0,
+                  "Name": "Defender_M",
+                  "Position": "375,-0.000007752995,1.000026",
+                  "Rotation": "0,0,-1,-0.00000004371139",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "Children": [
+                    {
+                      "__guid": "bd0ccbc5-a08d-441a-a803-9d6177158681",
+                      "Flags": 0,
+                      "Name": "playerpiece (1)",
+                      "Tags": "piece",
+                      "NetworkMode": 1,
+                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
+                      "__PrefabVariables": {}
+                    }
+                  ]
                 }
               ]
             }
@@ -872,7 +968,7 @@
           "__guid": "1be91d04-469f-48f5-9333-18f5e5d6ca8c",
           "Flags": 0,
           "Name": "Camera",
-          "Position": "-2468.052,0.002171511,0.0001220703",
+          "Position": "-2712.034,0.001151232,-0.0002441406",
           "Enabled": true,
           "Components": [
             {
@@ -1160,6 +1256,7 @@
       "__guid": "efb58c04-6ade-4686-9048-6621cb9a465c",
       "Flags": 0,
       "Name": "pitch",
+      "Scale": "1.12,1.12,1.12",
       "Enabled": true,
       "Components": [
         {
