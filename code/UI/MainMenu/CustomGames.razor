@@ -1,4 +1,4 @@
-@using Sandbox
+﻿@using Sandbox
 @using Sandbox.UI
 @using System
 @using System.Threading.Tasks
@@ -13,16 +13,13 @@
     <div class="options">
         <!-- Regular Play Button -->
         <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Solo); *@ await QueueManager.Instance.StartSearching(QueueType.Solo); })>
-            1v1
+            Create Game
         </div>
 
         <!-- WIP Style for Duos and Custom Games -->
         <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Duo) *@; await QueueManager.Instance.StartSearching(QueueType.Duo); })>
-            2v2
+            Browse Games
         </div>
-
-
-        <a class="button" href="gamebrowser">Custom Games</a>
 
         <a class="button" href="">Back</a>
     </div>

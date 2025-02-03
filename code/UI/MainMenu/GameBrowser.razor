@@ -1,0 +1,81 @@
+﻿@using Sandbox
+@using Sandbox.UI
+@inherits Panel
+@namespace Facepunch.UI
+@using System
+@using System.Threading.Tasks
+@using System.Collections.Generic
+@using Sandbox.Network;
+
+@implements INavigatorPage
+
+<root class="mainmenu">
+
+    <title>Punt!</title>
+
+    <!-- Server Table -->
+    <div class="servertable">
+        <div class="server-header">
+            <span class="server-name">Name</span>
+            <span class="server-players">Players</span>
+            <span class="server-ping">Ping</span>
+            <span class="join-button-fill">Join</span>
+        </div>
+
+        <!-- ✅ Display Dynamic Server List -->
+        @if (lobbyList != null && lobbyList.Count > 0)
+        {
+            @foreach (var lobby in lobbyList)
+            {
+                <div class="server-entry">
+                    <span class="server-name">@lobby.Name</span>
+                    <span class="server-players">@lobby.Members / @lobby.MaxMembers</span>
+                    <span class="server-ping">0ms</span> <!-- ✅ Placeholder for ping -->
+                    <button class="join-button" onclick=@(()=>JoinServer(lobby))>Join</button>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="server-entry">No servers found.</div>
+        }
+    </div>
+
+    <!-- Options Buttons -->
+    <div class="options">
+        <div class="button" onclick=@(()=>FetchLobbies())>Refresh</div>
+        <div class="button">Create</div>
+        <a class="button" href="play">Back</a>
+    </div>
+
+</root>
+
+
+@code
+{
+    public List<LobbyInformation> lobbyList { get; private set; } = new List<LobbyInformation>();
+
+    void JoinServer(LobbyInformation lobby)
+    {
+        Log.Info($"Joining Server: {lobby.Name}...");
+        // TODO: Implement actual connection logic here#
+        Networking.Connect(lobby.LobbyId);
+
+
+    }
+
+    protected async void FetchLobbies()
+    {
+        Log.Info("Fetching Lobbies...");
+        lobbyList = await Networking.QueryLobbies();
+        Log.Info($"Found {lobbyList.Count} lobbies.");
+    }
+
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        if (firstTime)
+        {
+            FetchLobbies();
+        }
+    }
+}

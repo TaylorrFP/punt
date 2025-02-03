@@ -1,0 +1,128 @@
+﻿.MainMenu {
+	position: absolute;
+	top: 0;
+	left: 64px;
+	right: 0;
+	bottom: 0;
+	pointer-events: all;
+	color: #fff;
+	font-family: 'Lemon Days';
+	font-size: 64px;
+	flex-direction: column;
+	cursor: pointer;
+
+	&.hidden {
+		display: none;
+	}
+}
+
+> title {
+	font-size: 256px;
+	font-weight: bold;
+}
+
+
+
+/* ✅ Server Table Styling */
+.servertable {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	max-width: 800px;
+	padding: 20px;
+	background-color: transparent;
+	border-radius: 10px;
+}
+
+/* ✅ Server Header */
+.server-header {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	font-size: 28px;
+	font-weight: bold;
+	border-bottom: 2px solid white;
+}
+
+/* ✅ Server Entry Styling */
+.server-entry {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	font-size: 24px;
+	background-color: rgba(255, 255, 255, 0.1);
+	margin-top: 5px;
+	border-radius: 25%;
+	transition: background-color 0.2s ease;
+}
+
+/* ✅ Hover Effect */
+.server-entry:hover {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ✅ Align Text */
+.server-name {
+	flex: 1;
+	text-align: left;
+}
+
+.server-players {
+	flex: 1;
+	text-align: left;
+}
+
+.server-ping {
+	flex: 1;
+	text-align: right;
+}
+
+.join-button-fill {
+	padding: 5px 15px;
+	font-size: 20px;
+	background-color: transparent;
+	color: transparent;
+}
+
+/* ✅ Join Button */
+.join-button {
+	padding: 5px 15px;
+	font-size: 20px;
+	background-color: #2ecc71;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+/* ✅ Join Button Hover Effect */
+.join-button:hover {
+	background-color: #27ae60;
+	transform: scale(1.05);
+}
+
+/* Back Button */
+> .options {
+	flex-direction: column;
+	justify-content: center;
+	/* Standard Button Styling */
+	> .button {
+		transition: all 0.1s ease;
+		transform-origin: left center;
+
+		&:hover {
+			transform: scale(1.2);
+			sound-in: ui.button.over;
+		}
+	}
+
+	> .wip-button {
+		color: #d0d0d0; /* Light grey text for contrast */
+		cursor: default; /* No click interaction */
+		pointer-events: none; /* Prevents hover and clicks */
+		transition: none; /* No transition effects */
+		transform: none; /* Prevent scaling */
+	}
+}

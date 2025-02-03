@@ -24,6 +24,8 @@ public sealed class TestGameMode : Component
 
 	[Property] public string queueIndent = "none";
 
+
+
 	[Group( "Debug" )][Property, Sync(SyncFlags.FromHost)] public Boolean DebugServer { get; set; }
 	[Group( "Player List" )][Property, Sync( SyncFlags.FromHost )] public List<PuntPlayerController> PlayerList { get; set; } = new List<PuntPlayerController>();
 	
