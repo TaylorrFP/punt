@@ -108,6 +108,13 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	public async Task StartSearching( QueueType queue )
 	{
 
+		if ( queue != selectedQueueType )
+		{
+			Networking.Disconnect();
+
+		}
+
+
 		StopSearching(false); // Cancel any ongoing search before starting a new one. What if we don't destroy the server here? IE someone leaving the game?
 		SelectedQueueType = queue;
 		searchTokenSource = new CancellationTokenSource();
