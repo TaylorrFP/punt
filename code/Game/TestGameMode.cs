@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Sandbox.Network;
 using Sandbox.Services;
 using System.Threading.Tasks;
+using Sandbox.Utility;
 
 public sealed class TestGameMode : Component
 {
@@ -92,7 +93,6 @@ public sealed class TestGameMode : Component
 		//Sandbox.Services.Stats.SetValue( "solo_q_points", (0) ); //reset stats
 
 		QueueManager.Instance.gameJoined = true; //this is just a hack so the clients don't start searching after someone left at the end of the game
-
 
 
 		Instance = this;

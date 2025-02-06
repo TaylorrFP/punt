@@ -175,7 +175,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			if ( !Networking.IsActive )//only create a lobby if we haven't already created one
 			{
 				Log.Info( "Creating Lobby" );
-				CreateLobby( queue );
+				CreateMatchmakingLobby( queue );
 			}
 
 		}
@@ -199,7 +199,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		}
 	}
 
-	public void CreateLobby( QueueType queue )
+	public void CreateMatchmakingLobby( QueueType queue )
 	{
 		Networking.Disconnect();
 		SelectedQueueType = queue;
@@ -210,6 +210,24 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			Privacy = LobbyPrivacy.Public,
 			Name = queue.ToString(),
 			Hidden = true
+
+
+		} );
+	}
+
+	public void CreateCustomLobby( QueueType queue, string name, int maximuimPlayers)
+	{
+		Log.Info( "Creating Custom Lobby" );
+
+		Networking.Disconnect();
+		SelectedQueueType = queue;
+
+		Networking.CreateLobby( new LobbyConfig()
+		{
+			MaxPlayers = maximuimPlayers,
+			Privacy = LobbyPrivacy.Public,
+			Name = name,
+			Hidden = false
 
 
 		} );

@@ -29,7 +29,7 @@
 	flex-direction: column;
 	justify-content: center;
 	width: 100%;
-	max-width: 800px;
+	max-width:1024px;
 	padding: 20px;
 	background-color: transparent;
 	border-radius: 10px;
@@ -92,7 +92,7 @@
 	background-color: #2ecc71;
 	color: white;
 	border: none;
-	border-radius: 8px;
+	border-radius: 100%;
 	cursor: pointer;
 	transition: transform 0.1s ease, background-color 0.2s ease;
 }

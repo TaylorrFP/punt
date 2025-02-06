@@ -29,6 +29,7 @@
             {
                 <div class="server-entry">
                     <span class="server-name">@lobby.Name</span>
+                    @*  <span class="server-name">@lobby.OwnerID.</span> *@
                     <span class="server-players">@lobby.Members / @lobby.MaxMembers</span>
                     <span class="server-ping">0ms</span> <!-- ✅ Placeholder for ping -->
                     <button class="join-button" onclick=@(()=>JoinServer(lobby))>Join</button>
@@ -44,7 +45,7 @@
     <!-- Options Buttons -->
     <div class="options">
         <div class="button" onclick=@(()=>FetchLobbies())>Refresh</div>
-        <div class="button">Create</div>
+        <a class="button" href="createcustomgame">Create</a>
         <a class="button" href="play">Back</a>
     </div>
 
@@ -66,9 +67,19 @@
 
     protected async void FetchLobbies()
     {
+
+        var filters = new Dictionary<string, string>
+        {
+            { "hidden", "false" }
+        };
+
+
         Log.Info("Fetching Lobbies...");
-        lobbyList = await Networking.QueryLobbies();
+        lobbyList = await Networking.QueryLobbies(); //make sure filters are set or we find ranked games here
         Log.Info($"Found {lobbyList.Count} lobbies.");
+
+       
+
     }
 
     protected override void OnAfterTreeRender(bool firstTime)
