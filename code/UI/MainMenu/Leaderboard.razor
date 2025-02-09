@@ -73,8 +73,14 @@
     {
         if (firstTime)
         {
-            FetchLeaderboards();
+            
         }
+    }
+
+    public void OnNavigationOpen()
+    {
+        FetchLeaderboards();
+
     }
 
     protected async void FetchLeaderboards()

@@ -12,22 +12,22 @@
 
     <title>Punt!</title>
 
-    <!-- Lobby Name Section -->
+
     <div class="lobby-settings">
         <label class="lobby-label">Lobby Name:</label>
         <TextEntry class="lobby-input" @ref="InputBox" placeholder="My Lobby" />
     </div>
 
-    <!-- Game Type Dropdown -->
+
     <div class="lobby-settings">
         <label class="lobby-label">Game Type:</label>
         <DropDown class="lobby-dropdown" itemref="GameTypeDropdown" Value:bind="@SelectedGameType" Options="@GameTypeOptions"></DropDown>
 
     </div>
 
-    <!-- ✅ Play Button -->
+
     <div class="lobby-settings">
-        <button class="play-button" href="/lobby" onclick="@CreateLobby">Create</button>
+        <button class="play-button" onclick=@(() => CreateLobby())>Create</button>  <!-- Create lobby isn't being called here when I href' -->
     </div>
 
     <div class="options">
@@ -39,19 +39,19 @@
 @code
 {
 
-    
+
     public string LobbyName { get; set; } = "My Punt! Lobby";
     TextEntry InputBox { get; set; }
 
 
-    // ✅ Dropdown Options for game type
+
     public List<Option> GameTypeOptions { get; set; } = new()
     {
         new Option("1v1", "1v1"),
         new Option("2v2", "2v2")
     };
 
-    // ✅ Stores the selected game type
+
     public string SelectedGameType { get; set; } = "1v1"; // Default selection
 
     // ✅ Converts game type to an int (2 for 1v1, 4 for 2v2)
@@ -60,12 +60,12 @@
     // ✅ Function for Creating a Lobby
     void CreateLobby()
     {
+        this.Navigate("/lobby");
         LobbyName = InputBox.Text;
-
         Log.Info("Lobby name: " + LobbyName);
-
         QueueManager.Instance.CreateCustomLobby(QueueType.Custom, LobbyName, PlayerCount);
     }
+
 
 
 }

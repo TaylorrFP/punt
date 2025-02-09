@@ -227,7 +227,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			MaxPlayers = maximuimPlayers,
 			Privacy = LobbyPrivacy.Public,
 			Name = name,
-			Hidden = false
+			Hidden = false,
 
 
 		} );

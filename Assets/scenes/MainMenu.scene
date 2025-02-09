@@ -39,7 +39,7 @@
       "__guid": "4a771bbc-a5fd-4d4d-9684-dde485314c55",
       "Flags": 0,
       "Name": "GameObject",
-      "Rotation": "0.00000001210719,-0.00000000372529,0.09985425,0.995002",
+      "Rotation": "0.00000001266638,0.0000000001569878,0.3994468,0.9167563",
       "Enabled": true,
       "Components": [
         {
@@ -51,7 +51,7 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "speed": 0.1
+          "speed": -0.1
         },
         {
           "__type": "Sandbox.BoxCollider",
@@ -106,7 +106,7 @@
               "cooldownDuration": 0,
               "cooldownTimeSince": {
                 "Absolute": 0,
-                "Relative": 4027.3257
+                "Relative": 4333.0327
               },
               "emitter": {
                 "_type": "component",
@@ -391,7 +391,7 @@
                       "squashDuration": 0.5,
                       "squashTimeSince": {
                         "Absolute": 0,
-                        "Relative": 98117590
+                        "Relative": 98117896
                       }
                     }
                   ],
