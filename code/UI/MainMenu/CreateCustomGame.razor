@@ -15,7 +15,15 @@
     <!-- Lobby Name Section -->
     <div class="lobby-settings">
         <label class="lobby-label">Lobby Name:</label>
-        <TextEntry class="lobby-input" bind="@LobbyName"/>
+
+        <TextEntry class="lobby-input" @ref="InputBox" placeholder="My Lobby" />
+
+
+
+
+        @*       <TextEntry class="lobby-input" placeholder="My Awesome Lobby" OnValueChanged="@SetLobbyName" /> *@
+
+
     </div>
 
     <!-- Game Type Dropdown -->
@@ -37,8 +45,11 @@
 
 @code
 {
+
     //this isn't working for some reason?
-    public string LobbyName { get; set; } = "My Awesome Lobby"; // ✅ Default placeholder text
+    public string LobbyName { get; set; } = "My Awesome Lobby";
+    TextEntry InputBox { get; set; }
+
 
     // ✅ Dropdown Options for game type
     public List<Option> GameTypeOptions { get; set; } = new()
@@ -56,9 +67,9 @@
     // ✅ Function for Creating a Lobby
     void CreateLobby()
     {
-        // Log.info("lobby started");
+        LobbyName = InputBox.Text;
 
-        
+        Log.Info("Lobby name: " + LobbyName);
 
         QueueManager.Instance.CreateCustomLobby(QueueType.Custom, LobbyName, PlayerCount);
     }

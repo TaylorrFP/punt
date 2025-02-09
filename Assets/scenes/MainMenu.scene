@@ -64,7 +64,7 @@
           "cooldownDuration": 0,
           "cooldownTimeSince": {
             "Absolute": 0,
-            "Relative": 1254.18
+            "Relative": 2900.617
           },
           "emitter": {
             "_type": "component",
@@ -363,7 +363,7 @@
                   "squashDuration": 0.5,
                   "squashTimeSince": {
                     "Absolute": 0,
-                    "Relative": 98056376
+                    "Relative": 98109330
                   }
                 }
               ],
@@ -1159,7 +1159,7 @@
               "TargetColor": "0,1,0,1",
               "CacheToDisk": true
             },
-            "compiled": null
+            "compiled": "textures/generated/imagefile/50286fd522953b36.vtex"
           },
           "TintColor": "1,1,1,1",
           "UpdateStrategy": "OnEnabled",
