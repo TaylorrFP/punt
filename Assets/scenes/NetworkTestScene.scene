@@ -169,10 +169,6 @@
             {
               "_type": "gameobject",
               "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
-            },
-            {
-              "_type": "gameobject",
-              "go": "afa03c98-f988-4a11-9783-7ea985bdec5f"
             }
           ],
           "BlueSpawnsKickoff": [
@@ -195,10 +191,6 @@
             {
               "_type": "gameobject",
               "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
-            },
-            {
-              "_type": "gameobject",
-              "go": "ef5cb807-b274-49f9-98aa-6145f5858ec2"
             }
           ],
           "BlueTeam": [],
@@ -249,10 +241,6 @@
             {
               "_type": "gameobject",
               "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3"
-            },
-            {
-              "_type": "gameobject",
-              "go": "5f2330ec-80b8-4d9c-a49b-ba893640c4ec"
             }
           ],
           "RedSpawnsKickoff": [
@@ -275,10 +263,6 @@
             {
               "_type": "gameobject",
               "go": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3"
-            },
-            {
-              "_type": "gameobject",
-              "go": "ef520dca-2361-4414-9f20-21b87165f2ae"
             }
           ],
           "RedTeam": [],
@@ -287,8 +271,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -1177.1301,
-            "Passed": 1177.1301,
+            "Relative": -18567.092,
+            "Passed": 18567.092,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
