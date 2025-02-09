@@ -25,7 +25,9 @@
         flex-direction: row;
         gap: 20px;
         width: auto;
-        max-width: 900px; /* Ensures they don't get too wide */
+        max-width: 900px;
+        margin-left: 20px;
+        margin-bottom: 20px; /* Ensures they don't get too wide */
     }
     /* ✅ Shared styles for all leaderboard sections */
     .leaderboard-section {

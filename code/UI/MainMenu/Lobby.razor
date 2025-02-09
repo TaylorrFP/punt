@@ -1,0 +1,62 @@
+﻿@using Sandbox
+@using Sandbox.UI
+@inherits Panel
+@namespace Facepunch.UI
+@using System
+@using System.Threading.Tasks
+@using System.Collections.Generic
+@using Sandbox.Network;
+
+@implements INavigatorPage
+
+<root class="mainmenu">
+
+    <title>Punt!</title>
+
+    <!-- Lobby Name -->
+    <div class="lobby-name">My Lobby</div>
+
+    <!-- Players Table -->
+    <div class="players-table">
+        <!-- Table Headers -->
+        <div class="table-header">
+            <span class="player-name">Name</span>
+            <span class="player-image">Avatar</span>
+            <span class="player-ready">Ready</span>
+            <span class="player-ping">Ping</span>
+        </div>
+
+        <!-- Placeholder Player Rows -->
+        @for (int i = 0; i < 4; i++) // Placeholder for 4 players
+        {
+            <div class="player-row">
+                <span class="player-name">Player @(i + 1)</span>
+                <img class="player-image" src="avatar:7656119800000000" />
+                <span class="player-ready">@(i % 2 == 0 ? "Ready" : "Not Ready")</span>
+                <span class="player-ping">@((i + 1) * 15)ms</span>
+            </div>
+        }
+    </div>
+
+    <!-- Buttons -->
+    <div class="lobby-options">
+        <button class="exit-button" href="/gamebrowser" >Exit Lobby</button>
+        <button class="start-button">Start Game</button>
+    </div>
+
+</root>
+
+@code
+{
+    void ExitLobby()
+    {
+        Log.Info("Exiting Lobby...");
+        // Logic to leave lobby goes here
+    }
+
+    void StartGame()
+    {
+        Log.Info("Starting Game...");
+        // Logic to start game goes here
+    }
+}

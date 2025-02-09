@@ -1,0 +1,115 @@
+﻿.MainMenu {
+    position: absolute;
+    top: 0;
+    left: 64px;
+    right: 0;
+    bottom: 0;
+    pointer-events: all;
+    color: #fff;
+    font-family: 'Lemon Days';
+    font-size: 64px;
+    flex-direction: column;
+    cursor: pointer;
+
+    &.hidden {
+        display: none;
+    }
+
+    > title {
+        font-size: 256px;
+        font-weight: bold;
+    }
+
+    .lobby-name {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .players-table {
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .table-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        border-bottom: 2px solid white;
+    }
+
+    .player-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        font-size: 20px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin-top: 5px;
+        border-radius: 10px;
+        transition: background-color 0.2s ease;
+    }
+
+    .player-row:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .player-name {
+        flex: 2;
+        text-align: left;
+    }
+
+    .player-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        flex: 1;
+    }
+
+    .player-ready {
+        flex: 1;
+        text-align: center;
+    }
+
+    .player-ping {
+        flex: 1;
+        text-align: right;
+    }
+
+    .lobby-options {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .exit-button, .start-button {
+        padding: 10px 20px;
+        font-size: 24px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.1s ease, background-color 0.2s ease;
+    }
+
+    .exit-button:hover {
+        background-color: #c0392b;
+        transform: scale(1.05);
+    }
+
+    .start-button {
+        background-color: #2ecc71;
+    }
+
+    .start-button:hover {
+        background-color: #27ae60;
+        transform: scale(1.05);
+    }
+}
