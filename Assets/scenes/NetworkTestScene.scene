@@ -205,7 +205,7 @@
           "BlueTeamAverageScore": 0,
           "BlueTeamPendingLoss": 0,
           "BlueTeamPendingWin": 0,
-          "DebugServer": false,
+          "DebugServer": true,
           "kickingOffSide": "Blue",
           "losingSideStat": 0,
           "musicSoundPoint": {
@@ -287,8 +287,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -198.90347,
-            "Passed": 198.90347,
+            "Relative": -1177.1301,
+            "Passed": 1177.1301,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -1092,7 +1092,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
-              "Saturation": 1
+              "Saturation": 1.06
             },
             {
               "__type": "Sandbox.Highlight",

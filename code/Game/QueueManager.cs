@@ -231,6 +231,9 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 
 		} );
+
+		Log.Info( "Lobby Created" );
+
 	}
 
 	/// <summary>

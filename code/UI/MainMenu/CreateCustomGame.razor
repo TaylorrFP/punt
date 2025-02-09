@@ -37,6 +37,7 @@
 
 @code
 {
+    //this isn't working for some reason?
     public string LobbyName { get; set; } = "My Awesome Lobby"; // ✅ Default placeholder text
 
     // ✅ Dropdown Options for game type
@@ -55,6 +56,10 @@
     // ✅ Function for Creating a Lobby
     void CreateLobby()
     {
+        // Log.info("lobby started");
+
+        
+
         QueueManager.Instance.CreateCustomLobby(QueueType.Custom, LobbyName, PlayerCount);
     }
 }
