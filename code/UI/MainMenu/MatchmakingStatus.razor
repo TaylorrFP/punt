@@ -4,7 +4,7 @@
 @namespace Sandbox
 @using System
 
-@if (QueueManager.Instance?.isSearching == true || QueueManager.Instance?.gameFound == true || Connection.All.Count>1)
+@if (QueueManager.Instance?.isSearching == true || QueueManager.Instance?.gameFound == true || Connection.All.Count>1 & QueueManager.Instance.SelectedQueueType!= QueueType.Custom) //this is dumb
 {
     <div class="searching-panel @(QueueManager.Instance.gameFound ? "game-found" : "")">
 

@@ -106,7 +106,7 @@
               "cooldownDuration": 0,
               "cooldownTimeSince": {
                 "Absolute": 0,
-                "Relative": 4333.0327
+                "Relative": 18165.23
               },
               "emitter": {
                 "_type": "component",
@@ -391,7 +391,7 @@
                       "squashDuration": 0.5,
                       "squashTimeSince": {
                         "Absolute": 0,
-                        "Relative": 98117896
+                        "Relative": 98136120
                       }
                     }
                   ],
@@ -1109,6 +1109,7 @@
           "isSearching": false,
           "loadDelay": 500,
           "lobbyListNames": [],
+          "lobbyName": null,
           "maxPlayers": 0,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,

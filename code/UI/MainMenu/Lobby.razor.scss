@@ -30,7 +30,7 @@
         display: flex;
         flex-direction: column;
         width: 600px;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: transparent;
         padding: 10px;
         border-radius: 10px;
     }
@@ -52,7 +52,7 @@
         font-size: 20px;
         background-color: rgba(255, 255, 255, 0.1);
         margin-top: 5px;
-        border-radius: 10px;
+        border-radius: 50%;
         transition: background-color 0.2s ease;
     }
 
@@ -63,6 +63,7 @@
     .player-name {
         flex: 2;
         text-align: left;
+        width: 300px;
     }
 
     .player-image {
@@ -111,5 +112,18 @@
     .start-button:hover {
         background-color: #27ae60;
         transform: scale(1.05);
+    }
+
+    .waiting-text {
+        font-size: 30px; /* ✅ Smaller font size */
+        font-weight: normal; /* ✅ Less emphasis */
+        color: rgba(255, 255, 255, 0.8); /* ✅ Slightly faded text */
+        text-align: center;
+        margin-top: 10px; /* ✅ Adds spacing from other elements */
+    }
+    /* Dots Animation */
+    .dots {
+        text-align: left;
+        font-weight: bold;
     }
 }

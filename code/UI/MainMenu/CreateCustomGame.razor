@@ -60,6 +60,8 @@
     // ✅ Function for Creating a Lobby
     void CreateLobby()
     {
+        QueueManager.Instance.StopSearching(true);
+
         this.Navigate("/lobby");
         LobbyName = InputBox.Text;
         Log.Info("Lobby name: " + LobbyName);

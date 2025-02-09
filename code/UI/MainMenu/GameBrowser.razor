@@ -58,7 +58,12 @@
 
     void JoinServer(LobbyInformation lobby)
     {
+        QueueManager.Instance.maxPlayers = lobby.MaxMembers;//when you join a server set max players here so if I become the owner of the lobby I know
+
+
+
         Log.Info($"Joining Server: {lobby.Name}...");
+        Log.Info("Max Players: " + lobby.MaxMembers);
         // TODO: Implement actual connection logic here#
         Networking.Connect(lobby.LobbyId);
 

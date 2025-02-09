@@ -38,4 +38,21 @@
     {
         Game.Close();
     }
+
+    public void OnNavigationOpen()
+    {
+       //check here were we should be
+
+       //if we are in a custom lobby, do
+
+
+       if(Networking.IsActive & QueueManager.Instance.SelectedQueueType == QueueType.Custom){
+
+            this.Navigate("/lobby");
+
+       }
+
+        
+
+    }
 }

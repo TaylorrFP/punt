@@ -50,10 +50,6 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			case QueueType.Duo:
 				maxPlayers = 4;
 				break;
-
-			case QueueType.Custom:
-				maxPlayers = 4;
-				break;
 		}
 
 	}
@@ -69,9 +65,10 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	[Group("Searching")][Property] public bool isSearching { get; private set; } = false;
 
-	[Group("Searching")][Property] public bool gameFound { get; private set; } = false;
+	[Group("Searching")][Property] public bool gameFound { get; set; } = false;
 
-	[Group( "Searching" )][Property] public int maxPlayers { get; private set; } = 2;
+	
+	[Group( "Searching" )][Property] public int maxPlayers { get; set; } = 2;
 
 	[Group( "Loading" )][Property] public bool gameJoined { get; set; } = false;
 
@@ -80,9 +77,9 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	private CancellationTokenSource searchTokenSource;
 
 
+	[Group( "CustomGame" )][Property] public string lobbyName { get; set; }
 
 
-	
 
 
 
@@ -218,10 +215,10 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	public void CreateCustomLobby( QueueType queue, string name, int maximuimPlayers)
 	{
 		Log.Info( "Creating Custom Lobby" );
-
+		lobbyName = name;
 		Networking.Disconnect();
 		SelectedQueueType = queue;
-
+		maxPlayers = maximuimPlayers;
 		Networking.CreateLobby( new LobbyConfig()
 		{
 			MaxPlayers = maximuimPlayers,
@@ -283,7 +280,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			StopSearching( false);
 
 		
-			if ( Connection.All.Count == maxPlayers )
+			if ( Connection.All.Count == maxPlayers & selectedQueueType != QueueType.Custom )
 			{
 
 				//start game
@@ -307,6 +304,11 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		//when there are two people left in the lobby - does it pass over to the host before or after this is called?
 
 		//this is triggering when a player leaves a game properly
+
+		if(selectedQueueType == QueueType.Custom )
+		{
+			return;
+		}
 
 
 		if(gameJoined == true & Connection.All.Count <= maxPlayers )//if a game is in progress and someone leaves

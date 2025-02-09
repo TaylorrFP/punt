@@ -14,55 +14,104 @@
     <title>Punt!</title>
 
     <!-- Lobby Name -->
-    <div class="lobby-name">My Lobby</div>
+    <div class="lobby-name">@QueueManager.Instance.lobbyName @Connection.All.Count/@QueueManager.Instance.maxPlayers</div>
 
     <!-- Players Table -->
     <div class="players-table">
         <!-- Table Headers -->
         <div class="table-header">
             <span class="player-name">Name</span>
-            <span class="player-image">Avatar</span>
-            <span class="player-ready">Ready</span>
             <span class="player-ping">Ping</span>
         </div>
 
-        <!-- Placeholder Player Rows -->
-        @for (int i = 0; i < 4; i++) // Placeholder for 4 players
+
+        @for (int i = 0; i < Connection.All.Count; i++)
         {
             <div class="player-row">
-                <span class="player-name">Player @(i + 1)</span>
-                <img class="player-image" src="avatar:7656119800000000" />
-                <span class="player-ready">@(i % 2 == 0 ? "Ready" : "Not Ready")</span>
-                <span class="player-ping">@((i + 1) * 15)ms</span>
+                <span class="player-name"> @Connection.All[i].DisplayName </span>
+                <span class="player-ping">0ms</span>
             </div>
+
         }
+
+
     </div>
 
     <!-- Buttons -->
     <div class="lobby-options">
-        <button class="exit-button" href="/gamebrowser" >Exit Lobby</button>
-        <button class="start-button">Start Game</button>
+        <button class="exit-button" onclick=@(() =>ExitLobby())>Exit Lobby</button>
+
+        @if(Networking.IsHost & Connection.All.Count == QueueManager.Instance.maxPlayers){
+
+            <button class="start-button" onclick=@(() =>StartGame())>Start Game</button>
+
+        }
+
+        @if (Connection.All.Count < QueueManager.Instance.maxPlayers)
+        {
+            <span class="waiting-text">Waiting for players<span class="dots">@dots</span></span>
+        }
+
+        @if (!Networking.IsHost & Connection.All.Count == QueueManager.Instance.maxPlayers)
+        {
+            <span class="waiting-text">Waiting for host to start<span class="dots">@dots</span></span>
+        }
+
+
+
+
     </div>
 
 </root>
 
 @code
 {
+
+    private string dots = "";
+    private float _time = 0f;
+
+    public override void Tick()
+    {
+        _time += Time.Delta;
+
+        if (!QueueManager.Instance.gameFound && _time >= 0.2f)
+        {
+            _time = 0;
+            dots = dots.Length < 5 ? dots + "." : "";
+        }
+    }
+
     void ExitLobby()
     {
-        Log.Info("Exiting Lobby...");
-        // Logic to leave lobby goes here
+        Networking.Disconnect();
+        this.Navigate("/gamebrowser");
+
     }
 
-    void StartGame()
+    async Task StartGame()
     {
+        // Log.Info(Networking.HostConnection.)
         Log.Info("Starting Game...");
         // Logic to start game goes here
+
+        
+
+
+        //put all of this in queuemanager function
+        //gameFound = true;
+
+        QueueManager.Instance.gameFound = true;
+        await Task.Delay(2000); // Delays for a little bit to allow the incoming player to load?
+        Log.Info("Loading Scene");
+        Scene.LoadFromFile("scenes/networktestscene.scene");
+        QueueManager.Instance.gameJoined = true; //do this with enums later
+        Log.Info("game full, starting game");
+
+
     }
 
-    // public void OnNavigationOpen()
-    // {
-    //     QueueManager.Instance.CreateCustomLobby(QueueType.Custom, "test" , 4);
 
-    // }
+    protected override int BuildHash() => System.HashCode.Combine(Connection.All.Count, dots );
+
+
 }
