@@ -98,10 +98,9 @@
 
 
         //put all of this in queuemanager function
-        //gameFound = true;
 
         QueueManager.Instance.gameFound = true;
-        await Task.Delay(2000); // Delays for a little bit to allow the incoming player to load?
+        await Task.Delay(3000); // Delays for a little bit to allow the incoming player to load?
         Log.Info("Loading Scene");
         Scene.LoadFromFile("scenes/networktestscene.scene");
         QueueManager.Instance.gameJoined = true; //do this with enums later

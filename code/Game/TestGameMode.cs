@@ -333,9 +333,7 @@ public sealed class TestGameMode : Component
 
 		
 
-		musicSoundPoint.StartSound();
-		musicSoundPoint.Repeat = true;
-		musicSoundPoint.SoundOverride = true;
+
 		ResetTeamPieces( kickoffSide );
 		ResetBall();
 		RoundTimeLeft = RoundLength;
@@ -346,6 +344,9 @@ public sealed class TestGameMode : Component
 	[Rpc.Broadcast]
 	public void StartGame()
 	{
+		musicSoundPoint.StartSound();
+		musicSoundPoint.Repeat = true;
+		musicSoundPoint.SoundOverride = true;
 
 
 		if ( !IsProxy )//fixes the bug where it starts playing by itself, I guess the client was Rpc.Broadcasting it a second later and then the server was setting it?

@@ -106,7 +106,7 @@
               "cooldownDuration": 0,
               "cooldownTimeSince": {
                 "Absolute": 0,
-                "Relative": 18165.23
+                "Relative": 213.27005
               },
               "emitter": {
                 "_type": "component",
@@ -391,7 +391,7 @@
                       "squashDuration": 0.5,
                       "squashTimeSince": {
                         "Absolute": 0,
-                        "Relative": 98136120
+                        "Relative": 98180810
                       }
                     }
                   ],
@@ -1251,7 +1251,7 @@
             "Name": "music",
             "Id": "4d43c5c3-7454-40c2-a0d1-822cd3ca98a9"
           },
-          "Volume": 0.25
+          "Volume": 0.2
         }
       ]
     }

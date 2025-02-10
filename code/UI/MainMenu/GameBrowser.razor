@@ -75,15 +75,32 @@
 
         var filters = new Dictionary<string, string>
         {
-            { "hidden", "false" }
+            { "hidden", "true" }
         };
 
 
         Log.Info("Fetching Lobbies...");
         lobbyList = await Networking.QueryLobbies(); //make sure filters are set or we find ranked games here
+
+
+
+        for (int i = 0; i < lobbyList.Count; i++)
+        {
+            if (lobbyList[i].Name == "Solo" || lobbyList[i].Name == "Duo")
+            {
+                lobbyList.Remove(lobbyList[i]);
+
+            }
+
+        }
+
+
+
+
+
+
         Log.Info($"Found {lobbyList.Count} lobbies.");
 
-       
 
     }
 
@@ -91,7 +108,7 @@
     {
         if (firstTime)
         {
-            
+
         }
     }
 
@@ -100,4 +117,7 @@
         FetchLobbies();
 
     }
+
+    protected override int BuildHash() => System.HashCode.Combine(lobbyList.Count);
+
 }

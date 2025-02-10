@@ -197,7 +197,7 @@
           "BlueTeamAverageScore": 0,
           "BlueTeamPendingLoss": 0,
           "BlueTeamPendingWin": 0,
-          "DebugServer": true,
+          "DebugServer": false,
           "kickingOffSide": "Blue",
           "losingSideStat": 0,
           "musicSoundPoint": {
@@ -271,8 +271,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -18567.092,
-            "Passed": 18567.092,
+            "Relative": -823.326,
+            "Passed": 823.326,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
@@ -952,7 +952,7 @@
           "__guid": "1be91d04-469f-48f5-9333-18f5e5d6ca8c",
           "Flags": 0,
           "Name": "Camera",
-          "Position": "-2712.034,0.001151232,-0.0002441406",
+          "Position": "-2731.614,0.001151232,-16.4299",
           "Enabled": true,
           "Components": [
             {
@@ -1198,7 +1198,7 @@
             "Name": "ui",
             "Id": "1b004eb1-2458-44cd-ae65-823e82f8d4e2"
           },
-          "Volume": 0.05
+          "Volume": 0.2
         }
       ]
     },

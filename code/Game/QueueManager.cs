@@ -193,6 +193,9 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			Networking.Connect( lobbyList[0].LobbyId ); //connect to the one with the most members
 			gameFound = true;
 
+
+
+
 		}
 	}
 
