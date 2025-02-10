@@ -271,12 +271,12 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -823.326,
-            "Passed": 823.326,
+            "Relative": -326.19214,
+            "Passed": 326.19214,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
-          "RoundLength": 120,
+          "RoundLength": 180,
           "RoundTimeLeft": 0,
           "State": "Waiting",
           "timescaleMult": 0.3,
@@ -578,7 +578,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -598,7 +597,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -618,7 +616,6 @@
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
                       "Enabled": true,
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -638,7 +635,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -658,7 +654,6 @@
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
                       "Enabled": true,
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -678,7 +673,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -698,7 +692,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -718,7 +711,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -738,7 +730,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -767,7 +758,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -787,7 +777,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -807,7 +796,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -827,7 +815,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -847,7 +834,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -867,7 +853,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -887,7 +872,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -907,7 +891,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
@@ -927,7 +910,6 @@
                       "Flags": 0,
                       "Name": "playerpiece (1)",
                       "Tags": "piece",
-                      "NetworkMode": 1,
                       "__Prefab": "prefabs/pieces/playerpiece.prefab",
                       "__PrefabVariables": {}
                     }
