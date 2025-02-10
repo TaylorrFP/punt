@@ -271,8 +271,8 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -326.19214,
-            "Passed": 326.19214,
+            "Relative": -2801.5066,
+            "Passed": 2801.5066,
             "Fraction": 1
           },
           "ResetTimerLength": 4,

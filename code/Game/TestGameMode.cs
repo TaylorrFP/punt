@@ -374,23 +374,14 @@ public sealed class TestGameMode : Component
 
 	}
 
-
+	[Rpc.Broadcast]
 	public void StartOvertimeGame()
 	{
 
 		for ( int i = 0; i < BluePieceList.Count; i++ )
 		{
-			if ( BluePieceList[i].pieceState == PieceState.Frozen )
-			{
-				BluePieceList[i].pieceState = PieceState.Ready;
-
-			}
-
-			if ( RedPieceList[i].pieceState == PieceState.Frozen )
-			{
-				RedPieceList[i].pieceState = PieceState.Ready;
-
-			}
+			BluePieceList[i].pieceState = PieceState.Ready;
+			RedPieceList[i].pieceState = PieceState.Ready;
 
 		}
 
