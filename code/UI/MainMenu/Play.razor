@@ -11,14 +11,19 @@
     <title>Punt!</title>
 
     <div class="options">
+
+
+        <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Solo); *@ await QueueManager.Instance.StartSearching(QueueType.Solo); })>
+            QuickPlay
+        </div>
  
         <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Solo); *@ await QueueManager.Instance.StartSearching(QueueType.Solo); })>
-            1v1 
+            Solo
         </div>
 
    
         <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Duo) *@; await QueueManager.Instance.StartSearching(QueueType.Duo); })>
-            2v2
+            Duo
         </div>
 
 

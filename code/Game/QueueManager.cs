@@ -43,9 +43,9 @@ Ranked 2v2 queue
 [Icon( "electrical_services" )]
 public sealed class QueueManager : Component, Component.INetworkListener
 {
+	
 
 	public static QueueManager Instance { get; private set; }
-
 
 	//Queue Type
 	[Group( "Queue Type" )]
@@ -56,10 +56,18 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	//Searching
 	[Group( "Searching" )] [Property] public int searchFrequency { get; set; } = 5000;
-	public List<LobbyInformation> LobbyInfoList { get; private set; } = new List<LobbyInformation>();
+	public List<LobbyInformation> LobbyInfoList { get; private set; } = new List<LobbyInformation>(); //depricate this
+
+	[Group( "Global" )][Property] public List<LobbyInformation> GlobalLobbyInfoList { get; private set; } = new List<LobbyInformation>();
+	[Group( "Global" )][Property] public List<LobbyInformation> SoloLobbyInfoList { get; private set; } = new List<LobbyInformation>();
+			
+	[Group( "Global" )][Property] public List<LobbyInformation> DuoLobbyInfoList { get; private set; } = new List<LobbyInformation>();
+			 
+	[Group( "Global" )][Property] public List<LobbyInformation> CustomLobbyInfoList { get; private set; } = new List<LobbyInformation>();
+
 	[Group( "Searching" )][Property] public List<string> lobbyListNames { get; private set; } = new List<string>(); //This is just for the inspector, don't really need it
 
-	public LobbyInformation myLobby { get; private set; }
+	public LobbyInformation myLobby { get; private set; }//do we really need this?
 
 	
 
@@ -74,11 +82,15 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	private CancellationTokenSource searchTokenSource;
 
+	//Custom Game
+	[Group( "CustomGame" )][Property] public string LobbyName { get; set; }
 
-	[Group( "CustomGame" )][Property] public string lobbyName { get; set; }
+	//Global
 
-
-
+	[Group( "Global" )][Property] public int TotalActivePlayerCount { get; set; }
+	[Group( "Global" )][Property] public int SoloQueuePlayerCount { get; set; }
+	[Group( "Global" )][Property] public int DuoQueuePlayerCount { get; set; }
+	[Group( "Global" )][Property] public int CustomGamePlayerCount { get; set; }
 
 
 	protected override void OnAwake()
@@ -89,6 +101,59 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		this.GameObject.Flags = GameObjectFlags.DontDestroyOnLoad; //keep this around so I can see the match type
 		Instance = this;
 		base.OnAwake();
+
+		//do an initial search of all players and queue types
+		_ = QuereyAllGames(true);
+
+	}
+
+
+
+
+
+	public async Task QuereyAllGames(bool LogPlayerCounts)
+	{
+		//this queries all games and sorts them into the different queue types
+		
+		
+		TotalActivePlayerCount = 0;
+		GlobalLobbyInfoList = await Networking.QueryLobbies();
+
+		SoloLobbyInfoList.Clear();
+		DuoLobbyInfoList.Clear();
+		CustomLobbyInfoList.Clear();
+
+		for (int i = 0;i < GlobalLobbyInfoList.Count; i++ )
+		{
+			if ( GlobalLobbyInfoList[i].Name == "Solo" )
+			{
+				SoloLobbyInfoList.Add( GlobalLobbyInfoList[i] );
+			}else if ( GlobalLobbyInfoList[i].Name == "Duo" )
+			{
+				DuoLobbyInfoList.Add( GlobalLobbyInfoList[i] );
+			}
+			else
+			{
+				CustomLobbyInfoList.Add( GlobalLobbyInfoList[i] );
+			}
+
+
+		}
+
+		//set all the player counts while we're here
+		TotalActivePlayerCount = GlobalLobbyInfoList.Count;
+		SoloQueuePlayerCount = SoloLobbyInfoList.Count;
+		DuoQueuePlayerCount = DuoLobbyInfoList.Count;
+		CustomGamePlayerCount = CustomLobbyInfoList.Count;
+
+		if ( LogPlayerCounts )
+		{
+			Log.Info( "Total Active Players: " + TotalActivePlayerCount );
+			Log.Info( "Solo Queue Active Players: " + SoloQueuePlayerCount );
+			Log.Info( "Duo Queue Active Players: " + DuoQueuePlayerCount );
+			Log.Info( "Custom Game Active Players: " +  CustomGamePlayerCount );
+		}
+
 	}
 
 	/// <summary>
@@ -112,7 +177,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		{
 			while ( !searchTokenSource.Token.IsCancellationRequested )
 			{
-				await SearchGame(queue);
+				await SearchGame(queue, true);
 				await Task.Delay( searchFrequency, searchTokenSource.Token );
 			}
 		}
@@ -130,7 +195,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		}
 	}
 
-	public async Task SearchGame( QueueType queue )
+	public async Task SearchGame( QueueType queue, bool joinGame )
 	{
 		Log.Info( "Searching Games..." );
 		LobbyInfoList = await Networking.QueryLobbies();
@@ -208,7 +273,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	public void CreateCustomLobby( QueueType queue, string name, int maximuimPlayers)
 	{
 		Log.Info( "Creating Custom Lobby" );
-		lobbyName = name;
+		LobbyName = name;
 		Networking.Disconnect();
 		QueueTypeInfo.Type = queue;
 		QueueTypeInfo.MaxPlayers = maximuimPlayers;
