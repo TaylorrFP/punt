@@ -46,7 +46,8 @@
        //if we are in a custom lobby, do
 
 
-       if(Networking.IsActive & QueueManager.Instance.SelectedQueueType == QueueType.Custom){
+        if (Networking.IsActive & QueueManager.Instance.QueueTypeInfo.Type == QueueType.Custom)
+        {
 
             this.Navigate("/lobby");
 

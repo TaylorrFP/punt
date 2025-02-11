@@ -106,7 +106,7 @@
               "cooldownDuration": 0,
               "cooldownTimeSince": {
                 "Absolute": 0,
-                "Relative": 2546.3728
+                "Relative": 2568.0176
               },
               "emitter": {
                 "_type": "component",
@@ -391,7 +391,7 @@
                       "squashDuration": 0.5,
                       "squashTimeSince": {
                         "Absolute": 0,
-                        "Relative": 98202950
+                        "Relative": 98299944
                       }
                     }
                   ],
@@ -1110,15 +1110,17 @@
           "loadDelay": 500,
           "lobbyListNames": [],
           "lobbyName": null,
-          "maxPlayers": 0,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "searchFrequency": 5000,
-          "SelectedQueueType": "None"
+          "QueueTypeInfo": {
+            "Type": "None",
+            "MaxPlayers": -1
+          },
+          "searchFrequency": 5000
         }
       ]
     },

@@ -162,7 +162,7 @@ public sealed class TestGameMode : Component
 			//check scores again if there's not much time left 
 			if( RoundTimeLeft < 5 )
 			{
-				_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
+				_ = GetPlayerScores( QueueManager.Instance.QueueTypeInfo.Type );
 
 			}
 
@@ -235,7 +235,7 @@ public sealed class TestGameMode : Component
 	{
 
 
-		await GetPlayerScores(QueueManager.Instance.SelectedQueueType);
+		await GetPlayerScores(QueueManager.Instance.QueueTypeInfo.Type);
 		SetSteamScores();
 
 	}
@@ -580,7 +580,7 @@ public sealed class TestGameMode : Component
 			PlayerList.Add( player );
 			FindTeam( player );
 
-			if(PlayerList.Count == QueueManager.Instance.maxPlayers )
+			if(PlayerList.Count == QueueManager.Instance.QueueTypeInfo.MaxPlayers )
 			{
 				InitialiseGame();
 
@@ -595,7 +595,7 @@ public sealed class TestGameMode : Component
 	{
 		//get player scores
 
-		_ = GetPlayerScores(QueueManager.Instance.SelectedQueueType);
+		_ = GetPlayerScores(QueueManager.Instance.QueueTypeInfo.Type);
 
 
 		if ( !IsProxy )
@@ -606,7 +606,7 @@ public sealed class TestGameMode : Component
 
 	}
 
-	public async Task GetPlayerScores(QueueType queueType)
+	public async Task GetPlayerScores( QueueType queueType )
 	{
 
 		switch ( queueType )
