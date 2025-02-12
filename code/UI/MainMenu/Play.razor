@@ -12,22 +12,30 @@
 
     <div class="options">
 
-
-        <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Solo); *@ await QueueManager.Instance.StartSearching(QueueType.Solo); })>
-            QuickPlay
-        </div>
- 
-        <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Solo); *@ await QueueManager.Instance.StartSearching(QueueType.Solo); })>
-            Solo
-        </div>
-
-   
-        <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Duo) *@; await QueueManager.Instance.StartSearching(QueueType.Duo); })>
-            Duo
+        <div class="button" onclick=@(async () => {await QueueManager.Instance.StartQueueSearch(QueueType.Solo, true); })>
+            <span>Solo</span>
+            <span class="queue-number @(QueueManager.Instance.SoloQueuePlayerCount > 0 ? "queue-active" : "queue-inactive")">
+                <i>person</i> @QueueManager.Instance.SoloQueuePlayerCount
+            </span>
         </div>
 
 
-        <a class="button" href="gamebrowser">Custom Games</a>
+        <div class="button" onclick=@(async () => {await QueueManager.Instance.StartQueueSearch(QueueType.Duo,true); })>
+            <span>Duo</span>
+            <span class="queue-number @(QueueManager.Instance.DuoQueuePlayerCount > 0 ? "queue-active" : "queue-inactive")">
+                <i>person</i> @QueueManager.Instance.DuoQueuePlayerCount
+            </span>
+        </div>
+
+
+        <a class="button" href="gamebrowser">
+
+            <span>Custom Games</span>
+            <span class="queue-number @(QueueManager.Instance.CustomGamePlayerCount > 0 ? "queue-active" : "queue-inactive")">
+                <i>person</i> @QueueManager.Instance.CustomGamePlayerCount
+            </span>
+
+        </a>
 
         <a class="button" href="">Back</a>
     </div>
@@ -39,4 +47,26 @@
     {
         Scene.LoadFromFile("scenes/networktestscene.scene");
     }
+
+    public void OnNavigationOpen()
+    {
+        _ = QueueManager.Instance.QuereyAllGames(true,false);
+
+
+
+        if(!QueueManager.Instance.isSearching)
+        {
+            _ = QueueManager.Instance.StartQueueSearch(QueueType.Solo, false);
+
+        }
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine(
+        QueueManager.Instance.GlobalLobbyInfoList,
+        QueueManager.Instance.TotalActivePlayerCount,
+        QueueManager.Instance.SoloQueuePlayerCount,
+        QueueManager.Instance.DuoQueuePlayerCount,
+        QueueManager.Instance.CustomGamePlayerCount
+    
+    );
 }
