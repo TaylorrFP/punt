@@ -184,18 +184,25 @@ public sealed class QueueManager : Component, Component.INetworkListener
 				CreateMatchmakingLobby( queue );
 			}
 		}
-		else //if there is at least 1 lobby in our queue
+		else // if there is at least 1 lobby in our queue
 		{
 			Log.Info( "Active Lobbies in" + queue.ToString() + "queue: " + selectedQueueList.Count );
 
 			//put the lobby with most members first
 			selectedQueueList = selectedQueueList.OrderByDescending( lobby => lobby.Members ).ToList();
-			Networking.Disconnect();//disconnect if we were hosting
+			Networking.Disconnect(); //disconnect if we were hosting
 
 			Log.Info( "Game Found! Connecting..." );
-			//join the queue with the most people in it for now, later we can actually do some matchmaking logic
-			Networking.Connect( selectedQueueList[0].LobbyId );
-			gameFound = true;
+
+			// join the queue with the most people in it for now, later we can actually do some matchmaking logic
+			if ( await Networking.TryConnectSteamId( selectedQueueList[0].OwnerId ) )
+			{
+				gameFound = true;
+			}
+			else
+			{
+				Log.Error( "Failed to join server wtf" );
+			}
 		}
 	}
 
