@@ -106,7 +106,7 @@
               "cooldownDuration": 0,
               "cooldownTimeSince": {
                 "Absolute": 0,
-                "Relative": 23.408491
+                "Relative": 1182.8531
               },
               "emitter": {
                 "_type": "component",
@@ -391,7 +391,7 @@
                       "squashDuration": 0.5,
                       "squashTimeSince": {
                         "Absolute": 0,
-                        "Relative": 98361150
+                        "Relative": 98388200
                       }
                     }
                   ],
@@ -1111,9 +1111,9 @@
           "gameFound": false,
           "gameJoined": false,
           "GlobalLobbyInfoList": [],
+          "GlobalLobbyListNames": [],
           "isSearching": false,
           "loadDelay": 500,
-          "lobbyListNames": [],
           "LobbyName": null,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -1125,7 +1125,7 @@
             "Type": "None",
             "MaxPlayers": -1
           },
-          "searchFrequency": 5000,
+          "searchFrequency": 2500,
           "SoloLobbyInfoList": [],
           "SoloQueuePlayerCount": 0,
           "TotalActivePlayerCount": 0

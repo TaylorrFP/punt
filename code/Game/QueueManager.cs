@@ -1,4 +1,4 @@
-using Sandbox.Network;
+ï»¿using Sandbox.Network;
 using Sandbox.Utility;
 using System;
 using System.Collections.Generic;
@@ -65,9 +65,10 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			 
 	[Group( "Global" )][Property] public List<LobbyInformation> CustomLobbyInfoList { get; private set; } = new List<LobbyInformation>();
 
-	[Group( "Searching" )][Property] public List<string> lobbyListNames { get; private set; } = new List<string>(); //This is just for the inspector, don't really need it
+	[Group( "Searching" )][Property] public List<string> GlobalLobbyListNames { get; private set; } = new List<string>(); //This is just for the inspector, don't really need it
 
 	public LobbyInformation myLobby { get; private set; }//do we really need this?
+
 
 	
 
@@ -93,21 +94,15 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	[Group( "Global" )][Property] public int CustomGamePlayerCount { get; set; }
 
 
+
 	protected override void OnAwake()
 	{
-
-		//this.Gameobject.Flags = GameObjectFlags.DontDestroyOnLoad;
-
 		this.GameObject.Flags = GameObjectFlags.DontDestroyOnLoad; //keep this around so I can see the match type
 		Instance = this;
 		base.OnAwake();
 
 		//do an initial search of all players and queue types
 		_ = QuereyAllGames(true,true);
-
-		//let's get the player's rank here too
-		//we can add it to the name to do basic matchmaking
-
 	}
 
 
@@ -116,18 +111,19 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	public async Task QuereyAllGames(bool IncludeOwnLobby,bool LogPlayerCounts)
 	{
+		
 		//this queries all games and sorts them into the different queue types
 		//this only does one querey so it's as effecient to search all queues as it is one
 		GlobalLobbyInfoList = await Networking.QueryLobbies();
-
-
-
+		GlobalLobbyListNames.Clear();
 		SoloLobbyInfoList.Clear();
 		DuoLobbyInfoList.Clear();
 		CustomLobbyInfoList.Clear();
 
 		for (int i = 0;i < GlobalLobbyInfoList.Count; i++ )
 		{
+			GlobalLobbyListNames.Add( GlobalLobbyInfoList[i].Name );
+
 			if ( GlobalLobbyInfoList[i].Name == "Solo" )
 			{
 				SoloLobbyInfoList.Add( GlobalLobbyInfoList[i] );
@@ -139,7 +135,6 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			{
 				CustomLobbyInfoList.Add( GlobalLobbyInfoList[i] );
 			}
-
 
 		}
 
@@ -173,22 +168,37 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	}
 
 
-	public async Task StartQueueSearch( QueueType? queue = null, bool tryJoin = false )
+	public async Task StartQueueSearch( QueueType queue, bool tryJoin )
 	{
+
+		//cancel current search if we have one
+		if ( searchTokenSource != null )
+		{
+			searchTokenSource.Cancel();
+			searchTokenSource = new CancellationTokenSource();
+		}
+		else
+		{
+			searchTokenSource = new CancellationTokenSource();
+		}
+
 		//starts a repeating search for all games
 		//the actual search happens in QueueSearch()
+		if ( tryJoin )
+		{
+			isSearching = true;
+			QueueTypeInfo.Type = queue;
+		
+		}
 
-		if ( tryJoin ) { isSearching = true; }
-
-		QueueType searchQueue = queue ?? QueueTypeInfo.Type;
-		searchTokenSource = new CancellationTokenSource();
+		
 		Log.Info( $"Searching for games in queue: {queue.ToString()}" );
 
 		try
 		{
 			while ( !searchTokenSource.Token.IsCancellationRequested )
 			{
-				await QueueSearch( searchQueue, tryJoin);
+				await QueueSearch( queue, tryJoin);
 				await Task.Delay( searchFrequency, searchTokenSource.Token );
 			}
 		}
@@ -204,15 +214,13 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	public async Task QueueSearch(QueueType queue, bool tryJoin )
 	{
+
+		Log.Info( "Quereying Lobbies" );
 		//we can use this var instead of specifying each queue type every time
 		var selectedQueueList = new List<LobbyInformation>();
 		await QuereyAllGames(false, false );
 
-		if (!tryJoin )
-		{
-			return;
-		}
-
+		if ( !tryJoin || searchTokenSource.Token.IsCancellationRequested ) return;
 
 		switch ( queue )
 		{
@@ -234,11 +242,11 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			default:
 				break;
 		}
-
 		if ( selectedQueueList.Count == 0 )
 		{
-			if ( !Networking.IsActive )//only create a lobby if we haven't already created one
+			if ( !Networking.IsActive && !searchTokenSource.Token.IsCancellationRequested )
 			{
+				//this is where it's fucking up?
 				Log.Info( "No lobbies found, creating lobby..." );
 				CreateMatchmakingLobby( queue );
 			}
@@ -250,21 +258,20 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			//put the lobby with most members first
 			selectedQueueList = selectedQueueList.OrderByDescending( lobby => lobby.Members ).ToList();
 			Networking.Disconnect();//disconnect if we were hosting
+
+			
+
 			Log.Info( "Game Found! Connecting..." );
 			//join the queue with the most people in it for now, later we can actually do some matchmaking logic
 			Networking.Connect( selectedQueueList[0].LobbyId );
 			gameFound = true;
 		}
-		
-
-		//PLEASE REMEMBER TO DO ANOTHER LOBBY QUERUEY WHEN YOU CANCEL TO UPDATE THE NUMERS PLEASSSESESa!"£!"$!£$"£$
 	}
 
 	public void CreateMatchmakingLobby( QueueType queue )
 	{
-		Networking.Disconnect();
-		QueueTypeInfo.Type = queue;
 
+		Networking.Disconnect();
 		Networking.CreateLobby( new LobbyConfig()
 		{
 			MaxPlayers = QueueTypeInfo.MaxPlayers,
@@ -272,6 +279,10 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			Name = queue.ToString(),
 			Hidden = true
 		} );
+
+		
+
+		
 	}
 
 	public void CreateCustomLobby( QueueType queue, string name, int maximuimPlayers)
@@ -305,10 +316,16 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			Networking.Disconnect();
 
 		}
+
+		searchTokenSource.Cancel();
+
+
+
 		isSearching = false;
 
-		//issue here is start search needs a queue
-		_ = StartQueueSearch( null, false );
+		//start a search with no queuetype, and tryjoin off
+		QueueTypeInfo.Type = QueueType.None;
+		_ = StartQueueSearch( QueueType.None, false );
 	}
 	
 

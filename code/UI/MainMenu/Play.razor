@@ -43,21 +43,13 @@
 
 @code
 {
-    private void DebugPlay()
-    {
-        Scene.LoadFromFile("scenes/networktestscene.scene");
-    }
-
     public void OnNavigationOpen()
     {
         _ = QueueManager.Instance.QuereyAllGames(true,false);
 
-
-
         if(!QueueManager.Instance.isSearching)
         {
-            _ = QueueManager.Instance.StartQueueSearch(QueueType.Solo, false);
-
+            _ = QueueManager.Instance.StartQueueSearch(QueueType.None, false);
         }
     }
 
