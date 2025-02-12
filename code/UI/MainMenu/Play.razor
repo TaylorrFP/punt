@@ -12,7 +12,7 @@
 
     <div class="options">
 
-        <div class="button" onclick=@(async () => {await QueueManager.Instance.StartQueueSearch(QueueType.Solo, true); })>
+        <div class="button" onclick=@(async () => {await QueueManager.Instance.StartQueueSearch(QueueType.Solo); })>
             <span>Solo</span>
             <span class="queue-number @(QueueManager.Instance.SoloQueuePlayerCount > 0 ? "queue-active" : "queue-inactive")">
                 <i>person</i> @QueueManager.Instance.SoloQueuePlayerCount
@@ -20,7 +20,7 @@
         </div>
 
 
-        <div class="button" onclick=@(async () => {await QueueManager.Instance.StartQueueSearch(QueueType.Duo,true); })>
+        <div class="button" onclick=@(async () => {await QueueManager.Instance.StartQueueSearch(QueueType.Duo); })>
             <span>Duo</span>
             <span class="queue-number @(QueueManager.Instance.DuoQueuePlayerCount > 0 ? "queue-active" : "queue-inactive")">
                 <i>person</i> @QueueManager.Instance.DuoQueuePlayerCount
@@ -45,20 +45,16 @@
 {
     public void OnNavigationOpen()
     {
-        _ = QueueManager.Instance.QuereyAllGames(true,false);
-
-        if(!QueueManager.Instance.isSearching)
+        if ( !QueueManager.Instance.isSearching )
         {
-            _ = QueueManager.Instance.StartQueueSearch(QueueType.None, false);
+            _ = QueueManager.Instance.QueryAllGames( false, true );
         }
     }
 
     protected override int BuildHash() => System.HashCode.Combine(
-        QueueManager.Instance.GlobalLobbyInfoList,
         QueueManager.Instance.TotalActivePlayerCount,
         QueueManager.Instance.SoloQueuePlayerCount,
         QueueManager.Instance.DuoQueuePlayerCount,
         QueueManager.Instance.CustomGamePlayerCount
-    
     );
 }
