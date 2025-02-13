@@ -14,27 +14,26 @@
 
         <div class="button" onclick=@(async () => {await QueueManager.Instance.StartQueueSearch(QueueType.Solo); })>
             <span>Solo</span>
-            <span class="queue-number @(QueueManager.Instance.SoloQueuePlayerCount > 0 ? "queue-active" : "queue-inactive")">
+@*             <span class="queue-number @(QueueManager.Instance.SoloQueuePlayerCount > 0 ? "queue-active" : "queue-inactive")">
                 <i>person</i> @QueueManager.Instance.SoloQueuePlayerCount
-            </span>
+            </span> *@
         </div>
 
 
         <div class="button" onclick=@(async () => {await QueueManager.Instance.StartQueueSearch(QueueType.Duo); })>
             <span>Duo</span>
-            <span class="queue-number @(QueueManager.Instance.DuoQueuePlayerCount > 0 ? "queue-active" : "queue-inactive")">
+@*             <span class="queue-number @(QueueManager.Instance.DuoQueuePlayerCount > 0 ? "queue-active" : "queue-inactive")">
                 <i>person</i> @QueueManager.Instance.DuoQueuePlayerCount
-            </span>
+            </span> *@
         </div>
 
 
         <a class="button" href="gamebrowser">
 
             <span>Custom Games</span>
-            <span class="queue-number @(QueueManager.Instance.CustomGamePlayerCount > 0 ? "queue-active" : "queue-inactive")">
+@*             <span class="queue-number @(QueueManager.Instance.CustomGamePlayerCount > 0 ? "queue-active" : "queue-inactive")">
                 <i>person</i> @QueueManager.Instance.CustomGamePlayerCount
-            </span>
-
+            </span> *@
         </a>
 
         <a class="button" href="">Back</a>
@@ -43,18 +42,18 @@
 
 @code
 {
-    public void OnNavigationOpen()
-    {
-        if ( !QueueManager.Instance.isSearching )
-        {
-            _ = QueueManager.Instance.QueryAllGames( false, true );
-        }
-    }
+    // public void OnNavigationOpen()
+    // {
+    //     if ( !QueueManager.Instance.isSearching )
+    //     {
+    //         _ = QueueManager.Instance.QueryAllGames( false );
+    //     }
+    // }
 
-    protected override int BuildHash() => System.HashCode.Combine(
-        QueueManager.Instance.TotalActivePlayerCount,
-        QueueManager.Instance.SoloQueuePlayerCount,
-        QueueManager.Instance.DuoQueuePlayerCount,
-        QueueManager.Instance.CustomGamePlayerCount
-    );
+    // protected override int BuildHash() => System.HashCode.Combine(
+    //     QueueManager.Instance.TotalActivePlayerCount,
+    //     QueueManager.Instance.SoloQueuePlayerCount,
+    //     QueueManager.Instance.DuoQueuePlayerCount,
+    //     QueueManager.Instance.CustomGamePlayerCount
+    // );
 }
