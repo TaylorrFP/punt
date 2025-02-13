@@ -1,6 +1,6 @@
 ﻿using Sandbox.Network;
 using System;
-using System.Threading;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Sandbox;
@@ -72,10 +72,13 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	[Group( "CustomGame" ), Property] public string LobbyName { get; set; }
 
 	// Global
-	[Group( "Global" ), Property] public int TotalActivePlayerCount => FoundLobbies.Count;
-	[Group( "Global" ), Property] public int SoloQueuePlayerCount => SoloLobbyInfoList.Count();
-	[Group( "Global" ), Property] public int DuoQueuePlayerCount => DuoLobbyInfoList.Count();
-	[Group( "Global" ), Property] public int CustomGamePlayerCount => CustomLobbyInfoList.Count();
+	[Group( "Global" ), Property, JsonIgnore] public int TotalActivePlayerCount => FoundLobbies.Count;
+	[Group( "Global" ), Property, JsonIgnore] public int SoloQueuePlayerCount => SoloLobbyInfoList.Count();
+	[Group( "Global" ), Property, JsonIgnore] public int DuoQueuePlayerCount => DuoLobbyInfoList.Count();
+	[Group( "Global" ), Property, JsonIgnore] public int CustomGamePlayerCount => CustomLobbyInfoList.Count();
+
+	[ConVar( "punt_debug_mm" )]
+	private static bool IsDebug { get; set; } = false;
 
 	protected override void OnAwake()
 	{
@@ -84,14 +87,13 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		base.OnAwake();
 	}
 
-	public async Task QueryAllGames(bool IncludeOwnLobby,bool LogPlayerCounts)
+	public async Task QueryAllGames(bool IncludeOwnLobby )
 	{
 		Log.Info( "Trying to query some lobbies" );
 
-		//this queries all games and sorts them into the different queue types
-		//this only does one querey so it's as effecient to search all queues as it is one
+		// this queries all games and sorts them into the different queue types
+		// this only does one query so it's as effecient to search all queues as it is one
 		FoundLobbies = await Networking.QueryLobbies();
-
 
 		GlobalLobbyListNames.Clear();
 
@@ -100,7 +102,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			GlobalLobbyListNames.Add( FoundLobbies[i].Name );
 		}
 
-		if ( LogPlayerCounts )
+		if ( IsDebug )
 		{
 			Log.Info( "Total Active Players: " + TotalActivePlayerCount );
 			Log.Info( "Solo Queue Active Players: " + SoloQueuePlayerCount );
@@ -153,7 +155,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	{
 		// we can use this var instead of specifying each queue type every time
 		var selectedQueueList = new List<LobbyInformation>();
-		await QueryAllGames( false, true );
+		await QueryAllGames( false );
 
 		switch ( queue )
 		{
@@ -319,30 +321,5 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 		// we're automatically searching again if we click cancel - I think because of this logic.
 		// we need to check if it's just us, if it is we need to create a lobby again
-	}
-
-	[ConVar( "punt_debug_mm" )]
-	private static bool IsDebug { get; set; } = false;
-
-	private bool isPopulating = false;
-	private const float ResearchInterval = 10f;
-	private async void Research()
-	{
-		if ( isPopulating ) return;
-
-		isPopulating = true;
-		await QueryAllGames( false, IsDebug );
-		isPopulating = false;
-		TimeSinceSearch = 0;
-	}
-
-	private TimeSince TimeSinceSearch { get; set; } = 5;
-	protected override void OnUpdate()
-	{
-		// Keep looking for lobbies always
-		if ( TimeSinceSearch > ResearchInterval )
-		{
-			Research();
-		}
 	}
 }
