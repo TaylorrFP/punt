@@ -143,16 +143,6 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		isSearching = true;
 		QueueTypeInfo.Type = queue;
 
-		await DoQueueSearch( queue );
-	}
-
-	/// <summary>
-	/// Do the actual search, if we find a game, join it.
-	/// </summary>
-	/// <param name="queue"></param>
-	/// <returns></returns>
-	private async Task DoQueueSearch( QueueType queue )
-	{
 		// we can use this var instead of specifying each queue type every time
 		var selectedQueueList = new List<LobbyInformation>();
 		await QueryAllGames( false );
@@ -215,6 +205,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	public void CreateMatchmakingLobby( QueueType queue )
 	{
 		Networking.Disconnect();
+
 		Networking.CreateLobby( new LobbyConfig()
 		{
 			MaxPlayers = QueueTypeInfo.MaxPlayers,
@@ -306,7 +297,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		if ( QueueTypeInfo.Type == QueueType.Custom )
 			return;
 
-		if ( gameJoined == true & Connection.All.Count <= QueueTypeInfo.MaxPlayers ) //if a game is in progress and someone leaves
+		if ( gameJoined == true & Connection.All.Count <= QueueTypeInfo.MaxPlayers ) // if a game is in progress and someone leaves
 		{
 			Networking.Disconnect();
 			Scene.LoadFromFile( "scenes/mainmenu.scene" );
