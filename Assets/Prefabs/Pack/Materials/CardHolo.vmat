@@ -4,17 +4,17 @@ Layer0
 {
 	shader "prefabs/pack/holopackshader.shader"
 
-	Albedo "prefabs/pack/materials/puntpack_albedo.png"
-	AmbientOcclusion "prefabs/pack/materials/puntpack_ao.png"
-	g_flDistortion "0.320"
-	g_flFrequency "10.000"
+	Albedo "[0.631373 0.631373 0.631373 1.000000]"
+	AmbientOcclusion "[1.000000 1.000000 1.000000 0.000000]"
+	g_flDistortion "0.248"
+	g_flFrequency "35.461"
 	g_flHoloStrength "0.960"
-	g_flNormalDistort "0.316"
-	g_flPower "4.700"
-	g_vTiling "[0.783 0.602]"
+	g_flNormalDistort "0.418"
+	g_flPower "3.582"
+	g_vTiling "[0.735 0.122]"
 	Metalness "[0.821000 0.821000 0.821000 0.000000]"
-	Normal "prefabs/pack/materials/puntpack_normal.png"
-	Opacity "prefabs/pack/materials/puntpack_opacity.png"
+	Normal "[1.000000 1.000000 1.000000 1.000000]"
+	Opacity "[1.000000 1.000000 1.000000 1.000000]"
 	Roughness "[0.292000 0.292000 0.292000 0.000000]"
 
 	//---- Fog ----
