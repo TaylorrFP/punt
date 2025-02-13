@@ -86,12 +86,12 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	public async Task QueryAllGames(bool IncludeOwnLobby,bool LogPlayerCounts)
 	{
+		Log.Info( "Trying to query some lobbies" );
 
 		//this queries all games and sorts them into the different queue types
 		//this only does one querey so it's as effecient to search all queues as it is one
 		FoundLobbies = await Networking.QueryLobbies();
 
-		Log.Info( "Found some lobbies" );
 
 		GlobalLobbyListNames.Clear();
 
@@ -321,5 +321,28 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		// we need to check if it's just us, if it is we need to create a lobby again
 	}
 
-	protected override void OnUpdate() { }
+	[ConVar( "punt_debug_mm" )]
+	private static bool IsDebug { get; set; } = false;
+
+	private bool isPopulating = false;
+	private const float ResearchInterval = 10f;
+	private async void Research()
+	{
+		if ( isPopulating ) return;
+
+		isPopulating = true;
+		await QueryAllGames( false, IsDebug );
+		isPopulating = false;
+		TimeSinceSearch = 0;
+	}
+
+	private TimeSince TimeSinceSearch { get; set; } = 5;
+	protected override void OnUpdate()
+	{
+		// Keep looking for lobbies always
+		if ( TimeSinceSearch > ResearchInterval )
+		{
+			Research();
+		}
+	}
 }
