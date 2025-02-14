@@ -5,6 +5,7 @@
 @using System
 @using System.Threading.Tasks
 @using System.Collections.Generic
+@using Sandbox.Network
 
 @implements INavigatorPage
 
@@ -38,12 +39,9 @@
 
 @code
 {
-
-
     public string LobbyName { get; set; } = "My Punt! Lobby";
+
     TextEntry InputBox { get; set; }
-
-
 
     public List<Option> GameTypeOptions { get; set; } = new()
     {
@@ -60,14 +58,11 @@
     // ✅ Function for Creating a Lobby
     void CreateLobby()
     {
-        QueueManager.Instance.StopSearching(true);
+        QueueManager.Instance.StopSearching( true );
 
-        this.Navigate("/lobby");
+        this.Navigate( "/lobby" );
         LobbyName = InputBox.Text;
-        Log.Info("Lobby name: " + LobbyName);
-        QueueManager.Instance.CreateCustomLobby(QueueType.Custom, LobbyName, PlayerCount);
+        Log.Info( "Lobby name: " + LobbyName );
+        QueueManager.Instance.CreateCustomLobby( QueueType.Custom, LobbyName, PlayerCount );
     }
-
-
-
 }

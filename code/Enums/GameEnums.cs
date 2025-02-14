@@ -65,4 +65,20 @@ public static class EnumExtensions
 		if ( lobby.Name.Equals( "duo", System.StringComparison.InvariantCultureIgnoreCase ) ) return QueueType.Duo;
 		return QueueType.Custom;
 	}
+	
+	/// Is this lobby of a specific queue type?
+	/// </summary>
+	/// <param name="queue"></param>
+	/// <param name="lobby"></param>
+	/// <returns></returns>
+	public static bool IsLobbyOfType( this QueueType queue, LobbyInformation lobby )
+	{
+		return queue switch
+		{
+			QueueType.Solo => lobby.Name.Equals( "solo", System.StringComparison.InvariantCultureIgnoreCase ),
+			QueueType.Duo => lobby.Name.Equals( "duo", System.StringComparison.InvariantCultureIgnoreCase ),
+			_ => !lobby.Name.Equals( "solo", System.StringComparison.InvariantCultureIgnoreCase ) 
+				&& !lobby.Name.Equals( "duo", System.StringComparison.InvariantCultureIgnoreCase )
+		};
+	}
 }
