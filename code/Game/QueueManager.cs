@@ -10,51 +10,77 @@ namespace Sandbox;
 [Icon( "electrical_services" )]
 public sealed class QueueManager : Component, Component.INetworkListener
 {
+	/// <summary>
+	/// Singleton
+	/// </summary>
 	public static QueueManager Instance { get; private set; }
 
-	//Queue Type
-	[Group( "Queue Type" )]
-	private QueueType selectedQueueType;
-
-	[Property]
-	public QueueType SelectedQueueType
-	{
-		get => selectedQueueType;
-		set
-		{
-			selectedQueueType = value;
-		}
-	}
+	/// <summary>
+	/// The current queue type.
+	/// </summary>
+	[Group( "Queue Type" ), Property]
+	public QueueType SelectedQueueType { get; set; }
 
 	/// <summary>
 	/// The current player count for the current queue type.
 	/// </summary>
 	public int MaxPlayers => SelectedQueueType.GetPlayers();
 
-	// Searching
+	/// <summary>
+	/// How frequently should we be searching for lobbies (While queueing)
+	/// </summary>
 	[Group( "Searching" ), Property] 
 	public int searchFrequency { get; set; } = 10;
 
+	/// <summary>
+	/// A list of lobby names (purely for debugging in the inspector)
+	/// </summary>
 	[Group( "Searching" ), Property]
 	public List<string> lobbyListNames { get; private set; } = new();
 
+	/// <summary>
+	/// Are we currently searching for a match?
+	/// </summary>
 	[Group( "Searching" ), Property] 
 	public bool isSearching { get; private set; } = false;
 
+	/// <summary>
+	/// Have we found a game?
+	/// </summary>
 	[Group( "Searching" ), Property]
 	public bool gameFound { get; set; } = false;
 
+	/// <summary>
+	/// Are we joining a game?
+	/// </summary>
 	[Group( "Loading" ), Property] 
 	public bool gameJoined { get; set; } = false;
 
+	/// <summary>
+	/// How long should it take until we fully join once we match with a server
+	/// </summary>
 	[Group( "Loading" ), Property] 
 	public int loadDelay { get; set; } = 3000;
 
+	/// <summary>
+	/// The lobby name for a custom game
+	/// </summary>
 	[Group( "CustomGame" ), Property]
 	public string lobbyName { get; set; }
 
+	/// <summary>
+	/// A list of lobbies we fetch from the query.
+	/// </summary>
 	public List<LobbyInformation> lobbyList { get; private set; } = new();
+
+	/// <summary>
+	/// My own lobby
+	/// </summary>
 	public LobbyInformation myLobby { get; private set; }
+
+	/// <summary>
+	/// A cancellation token so we can cancel 
+	/// </summary>
 	private CancellationTokenSource searchTokenSource;
 
 	protected override void OnAwake()
@@ -68,7 +94,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	/// </summary>
 	public async Task StartSearching( QueueType queue )
 	{
-		if ( queue != selectedQueueType )
+		if ( queue != SelectedQueueType )
 		{
 			Networking.Disconnect();
 		}
@@ -146,11 +172,29 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 			// put the lobby with most members first
 			lobbyList = lobbyList.OrderByDescending( lobby => lobby.Members ).ToList();
+
+			var found = lobbyList.First();
+
+			Log.Info( $"Game Found! Trying to connect to lobby with ID: {found.LobbyId}, owned by {new Friend(found.OwnerId).Name}" );
 			
-			Log.Info( "Game Found! Connecting..." );
-			
-			Networking.Connect( lobbyList[0].LobbyId ); // connect to the one with the most members
-			
+			if ( await Networking.TryConnectSteamId( found.LobbyId ) )
+			{
+				Log.Info( "Success!" );
+			}
+			else
+			{
+				Log.Warning( "Couldn't join.. Not sure why. Here's the lobby info:" );
+				Log.Info( $"Member count: {found.Members}" );
+				Log.Info( $"OwnerId: {found.OwnerId}" );
+				Log.Info( $"Lobby data:" );
+
+				foreach ( var kv in found.Data )
+				{
+					Log.Info( $"Lobby data: {kv.Key} - {kv.Value}" );
+				}
+			}
+
+
 			gameFound = true;
 		}
 	}
@@ -227,7 +271,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			// If I'm the owner I need to stop searching?
 			StopSearching( false );
 		
-			if ( Connection.All.Count == MaxPlayers & selectedQueueType != QueueType.Custom )
+			if ( Connection.All.Count == MaxPlayers & SelectedQueueType != QueueType.Custom )
 			{
 				// start game
 				gameFound = true;
@@ -249,7 +293,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 		// this is triggering when a player leaves a game properly
 
-		if ( selectedQueueType == QueueType.Custom )
+		if ( SelectedQueueType == QueueType.Custom )
 			return;
 
 		if ( gameJoined & Connection.All.Count <= MaxPlayers ) // if a game is in progress and someone leaves
@@ -262,7 +306,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		if ( !channel.IsHost & !gameJoined & Connection.All.Count <= 2 ) // if we haven't started the game, someone disconnects and it's just us left (2 because this is called just before the player disconnects)
 		{
 			Log.Info( "Not enough players after disconnect, starting search" );
-			await StartSearching( selectedQueueType );
+			await StartSearching( SelectedQueueType );
 		}
 
 		// we're automatically searching again if we click cancel - I think because of this logic.
