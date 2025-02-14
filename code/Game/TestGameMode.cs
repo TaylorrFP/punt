@@ -54,6 +54,7 @@ public sealed class TestGameMode : Component
 	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public TimeUntil ResetTimer { get; set; }
 
 	[Group( "Game State" )][Property, Sync( SyncFlags.FromHost )] public TimeUntil RoundStartTimer { get; set; }//delete this later
+	private int lastTimerValue = -1;
 
 	[Group( "Game State" )][Property] public float KickoffSideDisplayDuration { get; set; }
 	[Group( "Game State" )][Property] public float CountdownTimerDuration { get; set; }
@@ -124,7 +125,25 @@ public sealed class TestGameMode : Component
 		//	SetupGame( kickingOffSide );
 		//}
 
-		if( State == GameState.Resetting & ResetTimer < 0f)
+		// Get the current whole number part of the timer
+		int currentTimerValue = MathX.CeilToInt( RoundStartTimer );
+
+		if ( currentTimerValue != lastTimerValue )
+		{
+			lastTimerValue = currentTimerValue;
+
+			if ( currentTimerValue == 3 || currentTimerValue == 2 || currentTimerValue == 1 )
+			{
+				Log.Info( "Play game countdown sound" );
+			}
+			else if ( currentTimerValue == 0 )
+			{
+				Log.Info( "Play game start sound" );
+			}
+		}
+
+
+		if ( State == GameState.Resetting & ResetTimer < 0f)
 		{
 			ResetBall();
 			ResetTeamPieces(kickingOffSide); //not handling team who scored for now
@@ -133,7 +152,22 @@ public sealed class TestGameMode : Component
 		}
 
 		CalculateTimescale();
+		// Decrease the timer
+
+
 	}
+
+	private void PlayCountdownBeep()
+	{
+		Sound.Play( "countdown_beep" ); // Replace with your actual sound event
+	}
+
+	private void PlayStartSound()
+	{
+		Sound.Play( "start_game_sound" ); // Replace with your actual sound event
+	}
+
+
 
 	[Rpc.Broadcast]
 	private void InitialiseGame()//everyone's connected so we can start the game
