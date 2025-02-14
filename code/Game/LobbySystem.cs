@@ -30,7 +30,15 @@ public static class LobbySystem
 
 		Log.Info( "Doing a real query" );
 		TimeSinceLastQueue = 0;
-		QueriedLobbies = await Networking.QueryLobbies();
+		QueriedLobbies = await Networking.QueryLobbies( "fptaylor.punt_dev" );
+
+		Log.Info( $"Queried lobby count: {QueriedLobbies.Count()}" );
+
+		foreach ( var l in QueriedLobbies )
+		{
+			Log.Info( $"{new Friend( l.OwnerId).Name}'s lobby, name: {l.Name}" );
+		}
+
 		TimeSinceLastQueue = 0;
 	}
 
