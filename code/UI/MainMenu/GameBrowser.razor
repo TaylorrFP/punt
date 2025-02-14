@@ -59,8 +59,10 @@
 
     void JoinServer( LobbyInformation lobby )
     {
+        // TODO: Move this into a nice utility method..
         var queueType = lobby.GetQueueType();
         QueueManager.Instance.SelectedQueueType = queueType;
+        QueueManager.Instance.MaxPlayers = lobby.MaxMembers;
 
         Log.Info( $"Joining Server: {lobby.Name}..." );
         Log.Info( "Max Players: " + lobby.MaxMembers );

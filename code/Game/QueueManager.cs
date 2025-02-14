@@ -15,16 +15,26 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	/// </summary>
 	public static QueueManager Instance { get; private set; }
 
+	private QueueType selectedQueueType;
+
 	/// <summary>
 	/// The current queue type.
 	/// </summary>
 	[Group( "Queue Type" ), Property]
-	public QueueType SelectedQueueType { get; set; }
+	public QueueType SelectedQueueType
+	{
+		get => selectedQueueType;
+		set
+		{
+			selectedQueueType = value;
+			MaxPlayers = value.GetPlayers();
+		}
+	}
 
 	/// <summary>
 	/// The current player count for the current queue type.
 	/// </summary>
-	public int MaxPlayers => SelectedQueueType.GetPlayers();
+	public int MaxPlayers { get; set; } = 0;
 
 	/// <summary>
 	/// How frequently should we be searching for lobbies (While queueing)
@@ -227,6 +237,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		Networking.Disconnect();
 
 		SelectedQueueType = queue;
+		MaxPlayers = maxPlayers;
 
 		Networking.CreateLobby( new LobbyConfig()
 		{
