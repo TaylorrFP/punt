@@ -52,8 +52,8 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 			{
 				if ( !IsProxy )
 				{
-					TestGameMode.Instance.StartGame();
-					Log.Info( "ball restarting game" );
+					//TestGameMode.Instance.StartGame();
+					//Log.Info( "ball restarting game" );
 
 
 				}

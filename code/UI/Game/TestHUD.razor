@@ -65,10 +65,23 @@
     <!-- Countdown Panel -->
     @if (TestGameMode.Instance.State == GameState.Countdown)
     {
-        <div class="countdown-panel">
-            <div class="countdown-text">Starting Game</div>
-            <div class="countdown-number">@GetCountdownTimeString()</div>
-        </div>
+        if(TestGameMode.Instance.RoundStartTimer > 3){
+
+            <div class="countdown-panel">
+                <div class="countdown-text">Starting Game</div>
+                <div class="countdown-number"> Red side kicking off </div> <!--- this currently doesn't work properly  ---->
+            </div>
+
+        }else
+        {
+            <div class="countdown-panel">
+                <div class="countdown-text">Starting Game</div>
+                <div class="countdown-number">@GetCountdownTimeString()</div> <!--- this currently doesn't work properly  ---->
+            </div>
+
+
+        }
+
     }
 
     <!-- Results Panel -->
@@ -129,10 +142,19 @@
     string GetCountdownTimeString()
     {
 
+        if(TestGameMode.Instance.RoundStartTimer < 0){
 
-        var time = 4f-TestGameMode.Instance.TimeSinceCountdown;
-        var seconds = (int)time % 60;
-        return $"{seconds:0}";
+            return $"GO";
+        }
+
+
+       var time = TestGameMode.Instance.RoundStartTimer + 1;
+       var seconds = (int)time % 60;
+       return $"{seconds:0}";
+        
+
+
+
     }
 
 

@@ -197,8 +197,10 @@
           "BlueTeamAverageScore": 0,
           "BlueTeamPendingLoss": 0,
           "BlueTeamPendingWin": 0,
-          "DebugServer": false,
+          "CountdownTimerDuration": 3,
+          "DebugServer": true,
           "kickingOffSide": "Blue",
+          "KickoffSideDisplayDuration": 3,
           "losingSideStat": 0,
           "musicSoundPoint": {
             "_type": "component",
@@ -271,15 +273,25 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -2136.4265,
-            "Passed": 2136.4265,
+            "Relative": -988.2408,
+            "Passed": 988.2408,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
           "RoundLength": 180,
+          "RoundStartTimer": {
+            "Absolute": 0,
+            "Relative": -988.2408,
+            "Passed": 988.2408,
+            "Fraction": 1
+          },
           "RoundTimeLeft": 0,
           "State": "Waiting",
           "timescaleMult": 0.3,
+          "TimeSinceCountdown": {
+            "Absolute": 0,
+            "Relative": 988.2408
+          },
           "winningSideStat": 0
         }
       ]

@@ -53,6 +53,11 @@ public sealed class TestGameMode : Component
 
 	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public TimeUntil ResetTimer { get; set; }
 
+	[Group( "Game State" )][Property, Sync( SyncFlags.FromHost )] public TimeUntil RoundStartTimer { get; set; }//delete this later
+
+	[Group( "Game State" )][Property] public float KickoffSideDisplayDuration { get; set; }
+	[Group( "Game State" )][Property] public float CountdownTimerDuration { get; set; }
+
 	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public TeamSide kickingOffSide { get; set; }
 
 
@@ -83,7 +88,7 @@ public sealed class TestGameMode : Component
 	//GameState
 	[Group( "Timescale" )][Property, Sync(SyncFlags.FromHost)] public float timescaleMult { get; set; } = 0.1f;
 
-	[Sync( SyncFlags.FromHost )] public TimeSince TimeSinceCountdown { get; set; }
+	
 
 
 
@@ -102,21 +107,22 @@ public sealed class TestGameMode : Component
 
 		if ( DebugServer )
 		{
-
-			State = GameState.KickingOff;
-			SetupGame(kickingOffSide);
+			InitialiseGame();
+			//State = GameState.KickingOff;
+			//SetupGame(kickingOffSide);
 		}
 	}
 	protected override void OnUpdate()
 	{
 		UpdateTimeLeft();
 
-		//if we're doing a countdown and the timer is over 3 then start playing.
-		if ( State == GameState.Countdown & TimeSinceCountdown >3.0f)
-		{
-			State = GameState.KickingOff;
-			SetupGame( kickingOffSide );
-		}
+		//don't do this here for now 
+		////if we're doing a countdown and the timer is over 3 then start playing.
+		//if ( State == GameState.Countdown & TimeSinceCountdown >3.0f)
+		//{
+		//	State = GameState.KickingOff;
+		//	SetupGame( kickingOffSide );
+		//}
 
 		if( State == GameState.Resetting & ResetTimer < 0f)
 		{
@@ -127,6 +133,26 @@ public sealed class TestGameMode : Component
 		}
 
 		CalculateTimescale();
+	}
+
+	[Rpc.Broadcast]
+	private void InitialiseGame()//everyone's connected so we can start the game
+	{
+		//get player scores
+		if (!DebugServer ) //don't do this on the debug server for now
+		{
+			_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
+		}
+		
+
+		SetupGame( kickingOffSide );
+
+		if ( !IsProxy )
+		{
+			State = GameState.Countdown;
+			RoundStartTimer = KickoffSideDisplayDuration + CountdownTimerDuration;
+		}
+
 	}
 
 	private void CalculateTimescale()
@@ -590,21 +616,7 @@ public sealed class TestGameMode : Component
 		//_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
 	}
 
-	[Rpc.Broadcast]
-	private void InitialiseGame()//everyone's connected so we can start the game
-	{
-		//get player scores
 
-		_ = GetPlayerScores(QueueManager.Instance.SelectedQueueType);
-
-
-		if ( !IsProxy )
-		{
-			State = GameState.Countdown;
-			TimeSinceCountdown = 0f;
-		}
-
-	}
 
 	public async Task GetPlayerScores(QueueType queueType)
 	{
