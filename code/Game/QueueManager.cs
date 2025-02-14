@@ -1,279 +1,289 @@
-﻿using Sandbox.Network;
+using Sandbox.Network;
+using Sandbox.Utility;
 using System;
-using System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Sandbox;
-
-/*
-	Queue Manager
-
-	The queue manager is responsible for sorting out the different queues.
-	Static instance so exists always.
-
-	Queuetpes:
-	Quickplay
-	1v1
-	2v2
-	Custom
-
-	Quickplay:
-	Searches for any available RANKED game, 1v1 or 2v2
-
-	1v1:
-	Ranked 1v1 queue
-
-	2v2:
-	Ranked 2v2 queue
-*/
 
 [Title( "QueueManager" )]
 [Category( "Networking" )]
 [Icon( "electrical_services" )]
 public sealed class QueueManager : Component, Component.INetworkListener
 {
+
 	public static QueueManager Instance { get; private set; }
 
-	// Queue Type
+
+	//Queue Type
 	[Group( "Queue Type" )]
 
-	[Property]
-	public QueueTypeInfo QueueTypeInfo { get; set; } = new QueueTypeInfo( QueueType.None, -1 ); // might have to initialise this as custom to allow for joining via friends menu
-
-	// Searching
-	[Group( "Searching" ), Property] public int searchFrequency { get; set; } = 5000;
-
-	[Group( "Global" ), Property] public List<LobbyInformation> FoundLobbies { get; private set; } = new List<LobbyInformation>();
 	
-	/// <summary>
-	/// Filters the lobby list to find solo games.
-	/// </summary>
-	public IEnumerable<LobbyInformation> SoloLobbyInfoList => FoundLobbies.Where( x => x.Name.Equals( "Solo" ) );
+	private QueueType selectedQueueType;
 
-	/// <summary>
-	/// Filters the lobby list to find duo games.
-	/// </summary>
-	public IEnumerable<LobbyInformation> DuoLobbyInfoList => FoundLobbies.Where( x => x.Name.Equals( "Duo" ) );
+	[Property]
+	public QueueType SelectedQueueType
+	{
+		get => selectedQueueType;
+		set
+		{
+			selectedQueueType = value;
+			UpdateMaxPlayers( value ); // Call the method to handle max players
+		}
+	}
+	private void UpdateMaxPlayers( QueueType queue )
+	{
+		switch ( queue ) // Set the max players based on the queue type
+		{
+			case QueueType.None:
+				maxPlayers = 0;
+				break;
 
-	/// <summary>
-	/// Filters the lobby lis to find custom lobbies.
-	/// </summary>
-	public IEnumerable<LobbyInformation> CustomLobbyInfoList => FoundLobbies.Where( x => !x.Name.Equals( "Solo" ) && !x.Name.Equals( "Duo" ) );
+			case QueueType.Solo:
+				maxPlayers = 2;
+				break;
 
-	[Group( "Searching" ), Property] public List<string> GlobalLobbyListNames { get; private set; } = new List<string>(); // This is just for the inspector, don't really need it	
-	[Group( "Searching" ), Property] public bool isSearching { get; private set; } = false;
-	[Group( "Searching" ), Property] public bool gameFound { get; set; } = false;
+			case QueueType.Duo:
+				maxPlayers = 4;
+				break;
+		}
 
-	[Group( "Loading" ), Property] public bool gameJoined { get; set; } = false;
+	}
 
-	[Group( "Loading" ), Property] public int loadDelay { get; set; } = 3000;
 
-	// Custom Game
-	[Group( "CustomGame" ), Property] public string LobbyName { get; set; }
+	//Searching
+	[Group( "Searching" )] [Property] public int searchFrequency { get; set; } = 10;
+	public List<LobbyInformation> lobbyList { get; private set; } = new List<LobbyInformation>();
 
-	// Global
-	[Group( "Global" ), Property, JsonIgnore] public int TotalActivePlayerCount => FoundLobbies.Count;
-	[Group( "Global" ), Property, JsonIgnore] public int SoloQueuePlayerCount => SoloLobbyInfoList.Count();
-	[Group( "Global" ), Property, JsonIgnore] public int DuoQueuePlayerCount => DuoLobbyInfoList.Count();
-	[Group( "Global" ), Property, JsonIgnore] public int CustomGamePlayerCount => CustomLobbyInfoList.Count();
+	public LobbyInformation myLobby { get; private set; }
 
-	[ConVar( "punt_debug_mm" )]
-	private static bool IsDebug { get; set; } = false;
+	[Group( "Searching" )] [Property] public List<string> lobbyListNames { get; private set; } = new List<string>();
+
+	[Group("Searching")][Property] public bool isSearching { get; private set; } = false;
+
+	[Group("Searching")][Property] public bool gameFound { get; set; } = false;
+
+	
+	[Group( "Searching" )][Property] public int maxPlayers { get; set; } = 2;
+
+	[Group( "Loading" )][Property] public bool gameJoined { get; set; } = false;
+
+	[Group( "Loading" )][Property] public int loadDelay { get; set; } = 3000;
+
+	private CancellationTokenSource searchTokenSource;
+
+
+	[Group( "CustomGame" )][Property] public string lobbyName { get; set; }
+
+
+
+
 
 	protected override void OnAwake()
 	{
+
+
+		//this.Gameobject.Flags = GameObjectFlags.DontDestroyOnLoad;
+
 		this.GameObject.Flags = GameObjectFlags.DontDestroyOnLoad; //keep this around so I can see the match type
 		Instance = this;
 		base.OnAwake();
 	}
 
-	public async Task QueryAllGames(bool IncludeOwnLobby )
+	/// <summary>
+	/// Creates a new lobby with the specified queue type.
+	/// </summary>
+
+
+	/// <summary>
+	/// Starts searching for a game repeatedly until canceled.
+	/// </summary>
+	public async Task StartSearching( QueueType queue )
 	{
-		Log.Info( "Trying to query some lobbies" );
 
-		// this queries all games and sorts them into the different queue types
-		// this only does one query so it's as effecient to search all queues as it is one
-		FoundLobbies = await Networking.QueryLobbies();
-
-		GlobalLobbyListNames.Clear();
-
-		for ( int i = 0;i < FoundLobbies.Count; i++ )
+		if ( queue != selectedQueueType )
 		{
-			GlobalLobbyListNames.Add( FoundLobbies[i].Name );
+			Networking.Disconnect();
+
 		}
 
-		if ( IsDebug )
+
+		StopSearching(false); // Cancel any ongoing search before starting a new one. What if we don't destroy the server here? IE someone leaving the game?
+		SelectedQueueType = queue;
+		searchTokenSource = new CancellationTokenSource();
+		isSearching = true;
+		Log.Info( $"Started searching for games in queue: {queue.ToString()}" );
+
+		try
 		{
-			Log.Info( "Total Active Players: " + TotalActivePlayerCount );
-			Log.Info( "Solo Queue Active Players: " + SoloQueuePlayerCount );
-			Log.Info( "Duo Queue Active Players: " + DuoQueuePlayerCount );
-			Log.Info( "Custom Game Active Players: " +  CustomGamePlayerCount );
-
-			Log.Info( "Lobby info below:" );
-
-			foreach ( var lobby in FoundLobbies )
+			while ( !searchTokenSource.Token.IsCancellationRequested )
 			{
-				Log.Info( $"	Found lobby: {lobby.Name} owned by {lobby.OwnerId}" );
+				await SearchGame(queue);
+				await Task.DelaySeconds( searchFrequency, searchTokenSource.Token );
 			}
 		}
-
-		// Discard our own lobby after we've got the player counts
-		if ( Networking.IsActive & !IncludeOwnLobby )
+		catch ( TaskCanceledException )
 		{
-			FoundLobbies.RemoveAll( lobby => lobby.OwnerId == Connection.Host.SteamId );
+			Log.Info( "Search was cancelled successfully." );
+		}
+		catch ( Exception ex )
+		{
+			Log.Error( $"Error during search: {ex.Message}" );
+		}
+		finally
+		{
+			//isSearching = false;
 		}
 	}
 
-	/// <summary>
-	/// Starts queueing for a certain queue. Sets the is searching flag so the UI knows.
-	/// </summary>
-	/// <param name="queue"></param>
-	/// <returns></returns>
-	public async Task StartQueueSearch( QueueType queue )
+	public async Task SearchGame( QueueType queue )
 	{
-		if ( isSearching )
+		Log.Info( "Searching Games..." );
+		lobbyList = await Networking.QueryLobbies();
+		lobbyListNames.Clear();
+
+	
+
+		if ( Networking.IsActive )//if we've already made a lobby, remove our lobby from the list
 		{
-			Log.Info( "Already searching, fuck off" );
-			return;
+			//make a reference to mylobby
+			myLobby = lobbyList.FirstOrDefault( lobby => lobby.OwnerId == Connection.Host.SteamId );
+			// Filter and remove the player's own lobby
+			lobbyList.RemoveAll( lobby => lobby.OwnerId == Connection.Host.SteamId );
 		}
 
-		// starts a repeating search for all games
-		// the actual search happens in QueueSearch()
-
-		isSearching = true;
-		QueueTypeInfo.Type = queue;
-
-		// we can use this var instead of specifying each queue type every time
-		var selectedQueueList = new List<LobbyInformation>();
-		await QueryAllGames( false );
-
-		switch ( queue )
+		//remove all the lobbys that don't match the queue we're searching for
+		for ( int i = 0; i < lobbyList.Count; i++ )
 		{
-			case QueueType.None:
-				Log.Info( "Error: cannot search for queuetype: " + queue.ToString() );
-				break;
-			case QueueType.QuickPlay:
-				Log.Info( "Error: cannot search for queuetype: " + queue.ToString() );
-				break;
-			case QueueType.Solo:
-				selectedQueueList = SoloLobbyInfoList.ToList();
-				break;
-			case QueueType.Duo:
-				selectedQueueList = DuoLobbyInfoList.ToList();
-				break;
-			case QueueType.Custom:
-				Log.Info( "Error: cannot search for queuetype: " + queue.ToString() );
-				break;
-			default:
-				break;
-		}
-		if ( selectedQueueList.Count == 0 )
-		{
-			if ( !Networking.IsActive )
+			if ( lobbyList[i].Name != queue.ToString() )
 			{
-				//this is where it's fucking up?
-				Log.Info( "No lobbies found, creating lobby..." );
+				lobbyList.Remove( lobbyList[i] );
+			}
+		}
+
+
+		if (lobbyList.Count == 0 )
+		{
+			Log.Info( "No Lobbies found" );
+			if ( !Networking.IsActive )//only create a lobby if we haven't already created one
+			{
+				Log.Info( "Creating Lobby" );
 				CreateMatchmakingLobby( queue );
 			}
+
 		}
-		else // if there is at least 1 lobby in our queue
+		else //if there is at least 1 relevant lobby
 		{
-			Log.Info( "Active Lobbies in" + queue.ToString() + "queue: " + selectedQueueList.Count );
+			// Collect lobby names so I can read them in the editor
+			foreach ( var lobby in lobbyList )
+			{
+				lobbyListNames.Add( lobby.Name + " " + lobby.Members + "/" + lobby.MaxMembers + " " + lobby.OwnerId );
+			}
+
+			Log.Info( "Active Lobbies in queue: " + lobbyList.Count );
 
 			//put the lobby with most members first
-			selectedQueueList = selectedQueueList.OrderByDescending( lobby => lobby.Members ).ToList();
-			Networking.Disconnect(); //disconnect if we were hosting
-
+			lobbyList = lobbyList.OrderByDescending( lobby => lobby.Members ).ToList();
+			Networking.Disconnect();//disconnect if we were hosting
 			Log.Info( "Game Found! Connecting..." );
+			Networking.Connect( lobbyList[0].LobbyId ); //connect to the one with the most members
+			gameFound = true;
 
-			// join the queue with the most people in it for now, later we can actually do some matchmaking logic
-			if ( await Networking.TryConnectSteamId( selectedQueueList[0].OwnerId ) )
-			{
-				gameFound = true;
-			}
-			else
-			{
-				Log.Error( "Failed to join server wtf" );
-			}
+
+
+
 		}
 	}
 
-	/// <summary>
-	/// Creates a matchmaking lobby for a specific <see cref="QueueType"/>
-	/// </summary>
-	/// <param name="queue"></param>
 	public void CreateMatchmakingLobby( QueueType queue )
 	{
 		Networking.Disconnect();
+		SelectedQueueType = queue;
 
 		Networking.CreateLobby( new LobbyConfig()
 		{
-			MaxPlayers = QueueTypeInfo.MaxPlayers,
+			MaxPlayers = maxPlayers,
 			Privacy = LobbyPrivacy.Public,
 			Name = queue.ToString(),
 			Hidden = true
+
+
 		} );
 	}
 
-	/// <summary>
-	/// Create a custom lobby with however many players you decide
-	/// </summary>
-	/// <param name="queue"></param>
-	/// <param name="name"></param>
-	/// <param name="maximuimPlayers"></param>
 	public void CreateCustomLobby( QueueType queue, string name, int maximuimPlayers)
 	{
 		Log.Info( "Creating Custom Lobby" );
-		
-		LobbyName = name;
+		lobbyName = name;
 		Networking.Disconnect();
-
-		QueueTypeInfo.Type = queue;
-		QueueTypeInfo.MaxPlayers = maximuimPlayers;
-
+		SelectedQueueType = queue;
+		maxPlayers = maximuimPlayers;
 		Networking.CreateLobby( new LobbyConfig()
 		{
 			MaxPlayers = maximuimPlayers,
 			Privacy = LobbyPrivacy.Public,
 			Name = name,
 			Hidden = false,
+
+
 		} );
 
 		Log.Info( "Lobby Created" );
+
 	}
 
 	/// <summary>
-	/// Stop searching for a lobby - optionally, disconnect from your current lobby.
+	/// Cancels the current search process.
 	/// </summary>
-	/// <param name="DestroyLobby"></param>
-	public void StopSearching( bool DestroyLobby )
+	/// 
+
+
+
+	public void StopSearching(bool DestroyLobby)
 	{
+
+		
+
 		if ( DestroyLobby )
 		{
+
 			Log.Info( "Destroying Lobby" );
 			Networking.Disconnect();
+			lobbyListNames.Clear();
+			lobbyList.Clear();
+			SelectedQueueType = QueueType.None;
 		}
 
 		isSearching = false;
+		searchTokenSource?.Cancel();
 
-		// start a search with no queuetype, and try join off
-		QueueTypeInfo.Type = QueueType.None;
+		
 	}
 
 	/// <summary>
-	/// Called when we join a server.
+	/// Searches for lobbies and tries to join if a match is found.
 	/// </summary>
-	/// <param name="channel"></param>
+	
+
+	
+
 	public async void OnActive( Connection channel )
 	{
-		if ( Networking.IsHost & gameJoined != true & Connection.All.Count >1 ) //if the joining player isn't a host, and we haven't started the game yet
+		
+		if ( Networking.IsHost & gameJoined != true & Connection.All.Count>1) //if the joining player isn't a host, and we haven't started the game yet
 		{
 			Log.Info( "Player Joined: " + channel.DisplayName );
 
+
 			//if I'm the owner I need to stop searching?
-			StopSearching( false );
+			StopSearching( false);
+
 		
-			if ( Connection.All.Count == QueueTypeInfo.MaxPlayers & QueueTypeInfo.Type != QueueType.Custom )
+			if ( Connection.All.Count == maxPlayers & selectedQueueType != QueueType.Custom )
 			{
 
 				//start game
@@ -283,34 +293,51 @@ public sealed class QueueManager : Component, Component.INetworkListener
 				Scene.LoadFromFile( "scenes/networktestscene.scene" );
 				gameJoined = true; //do this with enums later
 				Log.Info( "game full, starting game" );
+
 			}
+
+
 		}
 	}
-
 	public async void OnDisconnected( Connection channel )
 	{
-		// needs the host bit because otherwise the person connecting calls this when they join?
-		// this is only called on the host
-		// when there are two people left in the lobby - does it pass over to the host before or after this is called?
-		// this is triggering when a player leaves a game properly
+		//needs the host bit because otherwise the person connecting calls this when they join?
 
-		if ( QueueTypeInfo.Type == QueueType.Custom )
-			return;
+		//this is only called on the host
+		//when there are two people left in the lobby - does it pass over to the host before or after this is called?
 
-		if ( gameJoined == true & Connection.All.Count <= QueueTypeInfo.MaxPlayers ) // if a game is in progress and someone leaves
+		//this is triggering when a player leaves a game properly
+
+		if(selectedQueueType == QueueType.Custom )
 		{
+			return;
+		}
+
+
+		if(gameJoined == true & Connection.All.Count <= maxPlayers )//if a game is in progress and someone leaves
+		{
+
 			Networking.Disconnect();
 			Scene.LoadFromFile( "scenes/mainmenu.scene" );
 			QueueManager.Instance.StopSearching( true );
+
 		}
 
-		if ( !channel.IsHost & gameJoined != true & Connection.All.Count <= 2) //if we haven't started the game, someone disconnects and it's just us left (2 because this is called just before the player disconnects)
+
+		if ( !channel.IsHost & gameJoined != true & Connection.All.Count <= 2)//if we haven't started the game, someone disconnects and it's just us left (2 because this is called just before the player disconnects)
 		{
 			Log.Info( "Not enough players after disconnect, starting search" );
-			await StartQueueSearch( QueueTypeInfo.Type );
+			await StartSearching(selectedQueueType);
 		}
 
-		// we're automatically searching again if we click cancel - I think because of this logic.
-		// we need to check if it's just us, if it is we need to create a lobby again
+
+
+		//we're automatically searching again if we click cancel - I think because of this logic.
+
+
+
+		//we need to check if it's just us, if it is we need to create a lobby again
+
 	}
+	protected override void OnUpdate() { }
 }

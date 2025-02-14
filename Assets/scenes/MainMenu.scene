@@ -106,7 +106,7 @@
               "cooldownDuration": 0,
               "cooldownTimeSince": {
                 "Absolute": 0,
-                "Relative": 1182.8531
+                "Relative": 68.67231
               },
               "emitter": {
                 "_type": "component",
@@ -391,7 +391,7 @@
                       "squashDuration": 0.5,
                       "squashTimeSince": {
                         "Absolute": 0,
-                        "Relative": 98388200
+                        "Relative": 98527680
                       }
                     }
                   ],
@@ -1104,31 +1104,21 @@
         {
           "__type": "Sandbox.QueueManager",
           "__guid": "2e49e3ef-04eb-4193-a9c4-f5905f6fe0c0",
-          "CustomGamePlayerCount": 0,
-          "CustomLobbyInfoList": [],
-          "DuoLobbyInfoList": [],
-          "DuoQueuePlayerCount": 0,
           "gameFound": false,
           "gameJoined": false,
-          "GlobalLobbyInfoList": [],
-          "GlobalLobbyListNames": [],
           "isSearching": false,
           "loadDelay": 500,
-          "LobbyName": null,
+          "lobbyListNames": [],
+          "lobbyName": null,
+          "maxPlayers": 2,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "QueueTypeInfo": {
-            "Type": "None",
-            "MaxPlayers": -1
-          },
-          "searchFrequency": 2500,
-          "SoloLobbyInfoList": [],
-          "SoloQueuePlayerCount": 0,
-          "TotalActivePlayerCount": 0
+          "searchFrequency": 10,
+          "SelectedQueueType": "None"
         }
       ]
     },

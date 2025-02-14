@@ -14,7 +14,7 @@
     <title>Punt!</title>
 
     <!-- Lobby Name -->
-    <div class="lobby-name">@QueueManager.Instance.LobbyName @Connection.All.Count/@QueueManager.Instance.QueueTypeInfo.MaxPlayers</div>
+    <div class="lobby-name">@QueueManager.Instance.lobbyName @Connection.All.Count/@QueueManager.Instance.maxPlayers</div>
 
     <!-- Players Table -->
     <div class="players-table">
@@ -41,19 +41,18 @@
     <div class="lobby-options">
         <button class="exit-button" onclick=@(() =>ExitLobby())>Exit Lobby</button>
 
-        @if (Networking.IsHost & Connection.All.Count == QueueManager.Instance.QueueTypeInfo.MaxPlayers)
-        {
+        @if(Networking.IsHost & Connection.All.Count == QueueManager.Instance.maxPlayers){
 
             <button class="start-button" onclick=@(() =>StartGame())>Start Game</button>
 
         }
 
-        @if (Connection.All.Count < QueueManager.Instance.QueueTypeInfo.MaxPlayers)
+        @if (Connection.All.Count < QueueManager.Instance.maxPlayers)
         {
             <span class="waiting-text">Waiting for players<span class="dots">@dots</span></span>
         }
 
-        @if (!Networking.IsHost & Connection.All.Count == QueueManager.Instance.QueueTypeInfo.MaxPlayers)
+        @if (!Networking.IsHost & Connection.All.Count == QueueManager.Instance.maxPlayers)
         {
             <span class="waiting-text">Waiting for host to start<span class="dots">@dots</span></span>
         }

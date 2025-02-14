@@ -11,30 +11,18 @@
     <title>Punt!</title>
 
     <div class="options">
+ 
+        <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Solo); *@ await QueueManager.Instance.StartSearching(QueueType.Solo); })>
+            1v1 
+        </div>
 
-        <div class="button" onclick=@(async () => {await QueueManager.Instance.StartQueueSearch(QueueType.Solo); })>
-            <span>Solo</span>
-@*             <span class="queue-number @(QueueManager.Instance.SoloQueuePlayerCount > 0 ? "queue-active" : "queue-inactive")">
-                <i>person</i> @QueueManager.Instance.SoloQueuePlayerCount
-            </span> *@
+   
+        <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Duo) *@; await QueueManager.Instance.StartSearching(QueueType.Duo); })>
+            2v2
         </div>
 
 
-        <div class="button" onclick=@(async () => {await QueueManager.Instance.StartQueueSearch(QueueType.Duo); })>
-            <span>Duo</span>
-@*             <span class="queue-number @(QueueManager.Instance.DuoQueuePlayerCount > 0 ? "queue-active" : "queue-inactive")">
-                <i>person</i> @QueueManager.Instance.DuoQueuePlayerCount
-            </span> *@
-        </div>
-
-
-        <a class="button" href="gamebrowser">
-
-            <span>Custom Games</span>
-@*             <span class="queue-number @(QueueManager.Instance.CustomGamePlayerCount > 0 ? "queue-active" : "queue-inactive")">
-                <i>person</i> @QueueManager.Instance.CustomGamePlayerCount
-            </span> *@
-        </a>
+        <a class="button" href="gamebrowser">Custom Games</a>
 
         <a class="button" href="">Back</a>
     </div>
@@ -42,18 +30,8 @@
 
 @code
 {
-    // public void OnNavigationOpen()
-    // {
-    //     if ( !QueueManager.Instance.isSearching )
-    //     {
-    //         _ = QueueManager.Instance.QueryAllGames( false );
-    //     }
-    // }
-
-    // protected override int BuildHash() => System.HashCode.Combine(
-    //     QueueManager.Instance.TotalActivePlayerCount,
-    //     QueueManager.Instance.SoloQueuePlayerCount,
-    //     QueueManager.Instance.DuoQueuePlayerCount,
-    //     QueueManager.Instance.CustomGamePlayerCount
-    // );
+    private void DebugPlay()
+    {
+        Scene.LoadFromFile("scenes/networktestscene.scene");
+    }
 }

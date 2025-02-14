@@ -14,7 +14,7 @@
     <div class="team-container">
         <!-- Blue Team Panel -->
         <div class="blue-team">
-            @for (int i = 0; i < QueueManager.Instance.QueueTypeInfo.MaxPlayers / 2; i++)
+            @for (int i = 0; i < QueueManager.Instance.maxPlayers/2; i++)
             {
                 if (i < TestGameMode.Instance.BlueTeam?.Count)
                 {
@@ -35,7 +35,7 @@
 
         <!-- Red Team Panel -->
         <div class="red-team">
-            @for (int i = 0; i < QueueManager.Instance.QueueTypeInfo.MaxPlayers / 2; i++)
+            @for (int i = 0; i < QueueManager.Instance.maxPlayers / 2; i++)
             {
                 if (i < TestGameMode.Instance.RedTeam?.Count)
                 {
