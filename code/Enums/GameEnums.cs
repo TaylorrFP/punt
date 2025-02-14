@@ -1,4 +1,6 @@
-﻿public enum TeamSide
+﻿using Sandbox.Network;
+
+public enum TeamSide
 {
 	None,
 	Red,
@@ -50,5 +52,17 @@ public static class EnumExtensions
 			QueueType.Duo => 4,
 			_ => 0,
 		};
+	}
+
+	/// <summary>
+	/// Gets the max players in a lobby for a specific queue type.
+	/// </summary>
+	/// <param name="lobby"></param>
+	/// <returns></returns>
+	public static QueueType GetQueueType( this LobbyInformation lobby )
+	{
+		if ( lobby.Name.Equals( "solo", System.StringComparison.InvariantCultureIgnoreCase ) ) return QueueType.Solo;
+		if ( lobby.Name.Equals( "duo", System.StringComparison.InvariantCultureIgnoreCase ) ) return QueueType.Duo;
+		return QueueType.Custom;
 	}
 }
