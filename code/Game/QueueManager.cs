@@ -23,28 +23,13 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		set
 		{
 			selectedQueueType = value;
-			UpdateMaxPlayers( value ); // Call the method to handle max players
 		}
 	}
 
-	private void UpdateMaxPlayers( QueueType queue )
-	{
-		switch ( queue ) // Set the max players based on the queue type
-		{
-			case QueueType.None:
-				maxPlayers = 0;
-				break;
-
-			case QueueType.Solo:
-				maxPlayers = 2;
-				break;
-
-			case QueueType.Duo:
-				maxPlayers = 4;
-				break;
-		}
-
-	}
+	/// <summary>
+	/// The current player count for the current queue type.
+	/// </summary>
+	public int MaxPlayers => SelectedQueueType.GetPlayers();
 
 	// Searching
 	[Group( "Searching" ), Property] 
@@ -58,9 +43,6 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	[Group( "Searching" ), Property]
 	public bool gameFound { get; set; } = false;
-	
-	[Group( "Searching" ), Property] 
-	public int maxPlayers { get; set; } = 2;
 
 	[Group( "Loading" ), Property] 
 	public bool gameJoined { get; set; } = false;
@@ -173,6 +155,10 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		}
 	}
 
+	/// <summary>
+	/// Create a specific lobby, grabbing maxplayers from a queue
+	/// </summary>
+	/// <param name="queue"></param>
 	public void CreateMatchmakingLobby( QueueType queue )
 	{
 		Networking.Disconnect();
@@ -181,14 +167,14 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 		Networking.CreateLobby( new LobbyConfig()
 		{
-			MaxPlayers = maxPlayers,
+			MaxPlayers = MaxPlayers,
 			Privacy = LobbyPrivacy.Public,
 			Name = queue.ToString(),
 			Hidden = true
 		} );
 	}
 
-	public void CreateCustomLobby( QueueType queue, string name, int maximuimPlayers)
+	public void CreateCustomLobby( QueueType queue, string name, int maxPlayers )
 	{
 		Log.Info( "Creating Custom Lobby" );
 
@@ -197,11 +183,10 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		Networking.Disconnect();
 
 		SelectedQueueType = queue;
-		maxPlayers = maximuimPlayers;
 
 		Networking.CreateLobby( new LobbyConfig()
 		{
-			MaxPlayers = maximuimPlayers,
+			MaxPlayers = maxPlayers,
 			Privacy = LobbyPrivacy.Public,
 			Name = name,
 			Hidden = false,
@@ -213,10 +198,9 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	/// <summary>
 	/// Cancels the current search process.
 	/// </summary>
-	/// 
-	public void StopSearching( bool DestroyLobby )
+	public void StopSearching( bool destroyLobby )
 	{
-		if ( DestroyLobby )
+		if ( destroyLobby )
 		{
 			Log.Info( "Destroying Lobby" );
 			Networking.Disconnect();
@@ -235,18 +219,20 @@ public sealed class QueueManager : Component, Component.INetworkListener
 	/// </summary>
 	public async void OnActive( Connection channel )
 	{
-		if ( Networking.IsHost & gameJoined != true & Connection.All.Count >1 ) // if the joining player isn't a host, and we haven't started the game yet
+		// If the joining player isn't a host, and we haven't started the game yet
+		if ( Networking.IsHost & !gameJoined & Connection.All.Count > 1 )
 		{
 			Log.Info( "Player Joined: " + channel.DisplayName );
 
-			// if I'm the owner I need to stop searching?
+			// If I'm the owner I need to stop searching?
 			StopSearching( false );
 		
-			if ( Connection.All.Count == maxPlayers & selectedQueueType != QueueType.Custom )
+			if ( Connection.All.Count == MaxPlayers & selectedQueueType != QueueType.Custom )
 			{
 				// start game
 				gameFound = true;
 				await Task.Delay( 3000 ); // Delays for a little bit to allow the incoming player to load?
+
 				Log.Info( "Loading Scene" );
 				Scene.LoadFromFile( "scenes/networktestscene.scene" );
 				gameJoined = true; //do this with enums later
@@ -266,14 +252,14 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		if ( selectedQueueType == QueueType.Custom )
 			return;
 
-		if ( gameJoined & Connection.All.Count <= maxPlayers ) // if a game is in progress and someone leaves
+		if ( gameJoined & Connection.All.Count <= MaxPlayers ) // if a game is in progress and someone leaves
 		{
 			Networking.Disconnect();
 			Scene.LoadFromFile( "scenes/mainmenu.scene" );
 			QueueManager.Instance.StopSearching( true );
 		}
 
-		if ( !channel.IsHost & gameJoined != true & Connection.All.Count <= 2 ) // if we haven't started the game, someone disconnects and it's just us left (2 because this is called just before the player disconnects)
+		if ( !channel.IsHost & !gameJoined & Connection.All.Count <= 2 ) // if we haven't started the game, someone disconnects and it's just us left (2 because this is called just before the player disconnects)
 		{
 			Log.Info( "Not enough players after disconnect, starting search" );
 			await StartSearching( selectedQueueType );

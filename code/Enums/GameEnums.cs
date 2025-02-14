@@ -20,19 +20,35 @@ public enum PieceState
 	Grabbed,
 	Cooldown,
 	Frozen
-
-
 }
 
 public enum ControllerState
 {
-	Idle,//default state
-	Hovering,//hovering a team piece
-	Grabbing,//currently grabbing a piece
-	Busy,//piece is on cooldown
-	Disabled,//piece is disabled (for kick off)
-	HoveringEnemy,//hovering enemy
+	Idle, // default state
+	Hovering, // hovering a team piece
+	Grabbing, // currently grabbing a piece
+	Busy, // piece is on cooldown
+	Disabled, // piece is disabled (for kick off)
+	HoveringEnemy, // hovering enemy
+}
 
-
-
+/// <summary>
+/// Some extenstion methods so we don't have to duplicate code.
+/// </summary>
+public static class EnumExtensions
+{
+	/// <summary>
+	/// Gets the max players in a lobby for a specific queue type.
+	/// </summary>
+	/// <param name="queue"></param>
+	/// <returns></returns>
+	public static int GetPlayers( this QueueType queue )
+	{
+		return queue switch
+		{
+			QueueType.Solo => 2,
+			QueueType.Duo => 4,
+			_ => 0,
+		};
+	}
 }

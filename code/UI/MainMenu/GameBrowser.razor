@@ -1,11 +1,12 @@
-﻿@using Sandbox
-@using Sandbox.UI
-@inherits Panel
+﻿@inherits Panel
 @namespace Facepunch.UI
+
 @using System
 @using System.Threading.Tasks
 @using System.Collections.Generic
-@using Sandbox.Network;
+@using Sandbox.Network
+@using Sandbox
+@using Sandbox.UI
 
 @implements INavigatorPage
 
@@ -56,68 +57,40 @@
 {
     public List<LobbyInformation> lobbyList { get; private set; } = new List<LobbyInformation>();
 
-    void JoinServer(LobbyInformation lobby)
+    void JoinServer( LobbyInformation lobby )
     {
-        QueueManager.Instance.maxPlayers = lobby.MaxMembers;//when you join a server set max players here so if I become the owner of the lobby I know
+        Log.Info( $"Joining Server: {lobby.Name}..." );
+        Log.Info( "Max Players: " + lobby.MaxMembers );
 
-
-
-        Log.Info($"Joining Server: {lobby.Name}...");
-        Log.Info("Max Players: " + lobby.MaxMembers);
-        // TODO: Implement actual connection logic here#
-        Networking.Connect(lobby.LobbyId);
-
-
+        // TODO: Implement actual connection logic here
+        Networking.Connect( lobby.LobbyId );
     }
 
     protected async void FetchLobbies()
     {
-
         var filters = new Dictionary<string, string>
         {
             { "hidden", "true" }
         };
 
-
         Log.Info("Fetching Lobbies...");
-        lobbyList = await Networking.QueryLobbies(); //make sure filters are set or we find ranked games here
+        lobbyList = await Networking.QueryLobbies(); // make sure filters are set or we find ranked games here
 
-
-
-        for (int i = 0; i < lobbyList.Count; i++)
+        for ( int i = 0; i < lobbyList.Count; i++ )
         {
-            if (lobbyList[i].Name == "Solo" || lobbyList[i].Name == "Duo")
+            if ( lobbyList[i].Name == "Solo" || lobbyList[i].Name == "Duo" )
             {
-                lobbyList.Remove(lobbyList[i]);
-
+                lobbyList.Remove( lobbyList[i] );
             }
-
         }
 
-
-
-
-
-
-        Log.Info($"Found {lobbyList.Count} lobbies.");
-
-
-    }
-
-    protected override void OnAfterTreeRender(bool firstTime)
-    {
-        if (firstTime)
-        {
-
-        }
+        Log.Info( $"Found {lobbyList.Count} lobbies." );
     }
 
     public void OnNavigationOpen()
     {
         FetchLobbies();
-
     }
 
-    protected override int BuildHash() => System.HashCode.Combine(lobbyList.Count);
-
+    protected override int BuildHash() => System.HashCode.Combine( lobbyList.Count );
 }

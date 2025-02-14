@@ -7,23 +7,18 @@
 @namespace Facepunch.UI
 
 <root class="mainmenu">
-
     <title>Punt!</title>
 
     <div class="options">
- 
         <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Solo); *@ await QueueManager.Instance.StartSearching(QueueType.Solo); })>
             1v1 
         </div>
-
    
         <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Duo) *@; await QueueManager.Instance.StartSearching(QueueType.Duo); })>
             2v2
         </div>
 
-
         <a class="button" href="gamebrowser">Custom Games</a>
-
         <a class="button" href="">Back</a>
     </div>
 </root>

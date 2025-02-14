@@ -570,23 +570,18 @@ public sealed class TestGameMode : Component
 		}
 	}
 
-	
-
-
-	public void AddPlayer( PuntPlayerController player)
+	public void AddPlayer( PuntPlayerController player )
 	{
 		if ( !IsProxy )
 		{
 			PlayerList.Add( player );
 			FindTeam( player );
 
-			if(PlayerList.Count == QueueManager.Instance.maxPlayers )
+			if ( PlayerList.Count == QueueManager.Instance.MaxPlayers )
 			{
 				InitialiseGame();
-
 			}
 		}
-
 		//_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
 	}
 

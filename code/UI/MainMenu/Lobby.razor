@@ -1,67 +1,59 @@
-﻿@using Sandbox
-@using Sandbox.UI
-@inherits Panel
+﻿@inherits Panel
 @namespace Facepunch.UI
+
 @using System
 @using System.Threading.Tasks
 @using System.Collections.Generic
-@using Sandbox.Network;
+@using Sandbox.Network
+@using Sandbox
+@using Sandbox.UI
 
 @implements INavigatorPage
 
 <root class="mainmenu">
-
     <title>Punt!</title>
 
     <!-- Lobby Name -->
-    <div class="lobby-name">@QueueManager.Instance.lobbyName @Connection.All.Count/@QueueManager.Instance.maxPlayers</div>
+    <div class="lobby-name">@QueueManager.Instance.lobbyName @Connection.All.Count/@QueueManager.Instance.MaxPlayers</div>
 
     <!-- Players Table -->
+    
     <div class="players-table">
         <!-- Table Headers -->
+
         <div class="table-header">
             <span class="player-name">Name</span>
             <span class="player-ping">Ping</span>
         </div>
 
-
-        @for (int i = 0; i < Connection.All.Count; i++)
+        @for ( int i = 0; i < Connection.All.Count; i++ )
         {
             <div class="player-row">
                 <span class="player-name"> @Connection.All[i].DisplayName </span>
                 <span class="player-ping">0ms</span>
             </div>
-
         }
-
-
     </div>
 
     <!-- Buttons -->
     <div class="lobby-options">
         <button class="exit-button" onclick=@(() =>ExitLobby())>Exit Lobby</button>
 
-        @if(Networking.IsHost & Connection.All.Count == QueueManager.Instance.maxPlayers){
-
-            <button class="start-button" onclick=@(() =>StartGame())>Start Game</button>
-
+        @if ( Networking.IsHost & Connection.All.Count == QueueManager.Instance.MaxPlayers )
+        {
+            <button class="start-button" onclick=@( () =>StartGame() )>Start Game</button>
         }
 
-        @if (Connection.All.Count < QueueManager.Instance.maxPlayers)
+        @if ( Connection.All.Count < QueueManager.Instance.MaxPlayers )
         {
             <span class="waiting-text">Waiting for players<span class="dots">@dots</span></span>
         }
 
-        @if (!Networking.IsHost & Connection.All.Count == QueueManager.Instance.maxPlayers)
+        @if ( !Networking.IsHost & Connection.All.Count == QueueManager.Instance.MaxPlayers )
         {
             <span class="waiting-text">Waiting for host to start<span class="dots">@dots</span></span>
         }
-
-
-
-
     </div>
-
 </root>
 
 @code
