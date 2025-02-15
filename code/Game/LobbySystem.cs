@@ -28,15 +28,17 @@ public static class LobbySystem
 	{
 		if ( TimeSinceLastQueue < QueueInterval ) return;
 
-		Log.Info( "Doing a real query" );
+		Log.Trace( "LobbySystem: Querying for lobbies..." );
 		TimeSinceLastQueue = 0;
-		QueriedLobbies = await Networking.QueryLobbies( "fptaylor.punt_dev" );
 
-		Log.Info( $"Queried lobby count: {QueriedLobbies.Count()}" );
+		// Can query for specific game idents
+		QueriedLobbies = await Networking.QueryLobbies( /*"fptaylor.punt_dev"*/ );
 
-		foreach ( var l in QueriedLobbies )
+		Log.Trace( $"LobbySystem: Queried lobby count: {QueriedLobbies.Count()}" );
+
+		foreach ( var lobby in QueriedLobbies )
 		{
-			Log.Info( $"{new Friend( l.OwnerId).Name}'s lobby, name: {l.Name}" );
+			Log.Trace( $"\t- {new Friend( lobby.OwnerId ).Name}'s lobby, queue: {lobby.GetQueueType()}" );
 		}
 
 		TimeSinceLastQueue = 0;
