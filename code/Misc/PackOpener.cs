@@ -49,6 +49,7 @@ public sealed class PackOpener : Component
 		if ( isDragging )
 		{
 			RotatePack();
+			Mouse.CursorType = "grabbing";
 		}
 		else if ( MathF.Abs( velocityY ) > VelocityThreshold )
 		{
@@ -93,6 +94,7 @@ public sealed class PackOpener : Component
 
 		if ( tr.Hit )
 		{
+			Mouse.CursorType = "hovering";
 			if ( Input.Pressed( "attack1" ) )
 			{
 				Log.Info( "Click Start" );
@@ -101,9 +103,10 @@ public sealed class PackOpener : Component
 				LerpSpeed = ActiveLerpSpeed;
 			}
 		}
-
-		// Set cursor type based on dragging state
-		Mouse.CursorType = isDragging ? "grabbing" : "pointer";
+		else
+		{
+			Mouse.CursorType = "pointer";
+		}
 
 		if ( Input.Released( "attack1" ) )
 		{
