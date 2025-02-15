@@ -2,6 +2,7 @@
 @using Sandbox.UI
 @using System
 @using System.Threading.Tasks
+@using Sandbox.Network
 
 @implements INavigatorPage
 @namespace Facepunch.UI
@@ -10,15 +11,32 @@
     <title>Punt!</title>
 
     <div class="options">
-        <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Solo); *@ await QueueManager.Instance.StartSearching(QueueType.Solo); })>
-            1v1 
-        </div>
-   
-        <div class="button" onclick=@(async () => { @* QueueManager.Instance.CreateLobby(QueueType.Duo) *@; await QueueManager.Instance.StartSearching(QueueType.Duo); })>
-            2v2
+        <div class="button" onclick=@( async () => await QueueManager.Instance.StartSearching( QueueType.Solo ) )>
+            Solos
+
+            <div class="players">
+                <i>person</i>
+                @SoloCount
+            </div>
         </div>
 
-        <a class="button" href="gamebrowser">Custom Games</a>
+        <div class="button" onclick=@( async () => await QueueManager.Instance.StartSearching( QueueType.Duo ) )>
+            Duos
+
+            <div class="players">
+                <i>person</i>
+                @DuosCount
+            </div>
+        </div>
+
+        <a class="button" href="gamebrowser">
+            Custom Games
+
+            <div class="players">
+                <i>person</i>
+                @CustomCount
+            </div>
+        </a>
         <a class="button" href="">Back</a>
     </div>
 </root>
@@ -28,5 +46,36 @@
     private void DebugPlay()
     {
         Scene.LoadFromFile( "scenes/networktestscene.scene" );
+    }
+
+    /// <summary>
+    /// A cached list of lobbies.
+    /// </summary>
+    private IEnumerable<LobbyInformation> Lobbies { get; set; } = new List<LobbyInformation>();
+
+    private int SoloCount => Lobbies.Where( x => QueueType.Solo.IsLobbyOfType( x ) ).Count();
+    private int DuosCount => Lobbies.Where( x => QueueType.Duo.IsLobbyOfType( x ) ).Count();
+    private int CustomCount => Lobbies.Where( x => QueueType.Custom.IsLobbyOfType( x ) ).Count();
+
+    /// <summary>
+    /// Are we querying right now?
+    /// </summary>
+    private bool querying = false;
+
+    /// <summary>
+    /// We'll try to run a query every frame, but GetLobbies will return the cached value if we have cached it, so don't worry.. it's fast!
+    /// </summary>
+    public override void Tick()
+    {
+        Query();
+    }
+
+    private async void Query()
+    {
+        if ( querying ) return;
+        querying = true;
+        // Fetch lobbies
+        Lobbies = await LobbySystem.GetLobbies();
+        querying = false;
     }
 }

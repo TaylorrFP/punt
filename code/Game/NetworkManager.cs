@@ -33,11 +33,9 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 		if ( Scene.IsEditor )
 			return;
 
-		if ( StartServer && !Networking.IsActive ) //this is just for debug reasons
+		if ( StartServer && !Networking.IsActive ) // this is just for debug reasons
 		{
 			LoadingScreen.Title = "Creating Lobby";
-
-			//Networking.CreateLobby();
 
 			Networking.CreateLobby( new LobbyConfig()
 			{
@@ -48,31 +46,23 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 
 			} );
 
-
 			Log.Info( "NetworkingManager: Creating Lobby" );
 		}
-
-
-
 	}
-
 
 	/// <summary>
 	/// A client is fully connected to the server. This is called on the host.
 	/// </summary>
-	/// 
-
-
 	public void OnActive( Connection channel )
 	{
 		if ( TestGameMode.Instance.DebugServer )
 		{
-			//if debugserver is on just spawn the player
+			// if debugserver is on just spawn the player
 			var player = PlayerPrefab.Clone();
 			player.Name = $"Player - {channel.DisplayName}";
 			player.NetworkSpawn( channel );
 			PuntPlayerController controller = player.Components.Get<PuntPlayerController>();
-			//Add player in gamemode
+			// Add player in gamemode
 
 			var playerArrow = ArrowPrefab.Clone();
 			playerArrow.Name = $"Arrow - {channel.DisplayName}";

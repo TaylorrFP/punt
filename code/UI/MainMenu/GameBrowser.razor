@@ -57,7 +57,7 @@
 {
     public List<LobbyInformation> lobbyList { get; private set; } = new List<LobbyInformation>();
 
-    void JoinServer( LobbyInformation lobby )
+    async void JoinServer( LobbyInformation lobby )
     {
         // TODO: Move this into a nice utility method..
         var queueType = lobby.GetQueueType();
@@ -67,8 +67,11 @@
         Log.Info( $"Joining Server: {lobby.Name}..." );
         Log.Info( "Max Players: " + lobby.MaxMembers );
 
-        // TODO: Implement actual connection logic here
-        Networking.Connect( lobby.LobbyId );
+        // TODO: UX
+        if ( await Networking.TryConnectSteamId( lobby.LobbyId ) )
+        {
+            Log.Info( "Successfully joined a game server" );
+        }
     }
 
     protected async void FetchLobbies()
@@ -78,16 +81,10 @@
             { "hidden", "true" }
         };
 
-        Log.Info("Fetching Lobbies...");
-        lobbyList = await Networking.QueryLobbies(); // make sure filters are set or we find ranked games here
+        Log.Info( "Fetching Lobbies..." );
 
-        for ( int i = 0; i < lobbyList.Count; i++ )
-        {
-            if ( lobbyList[i].Name == "Solo" || lobbyList[i].Name == "Duo" )
-            {
-                lobbyList.Remove( lobbyList[i] );
-            }
-        }
+        // make sure filters are set or we find ranked games here
+        lobbyList = await LobbySystem.GetLobbies( QueueType.Custom );
 
         Log.Info( $"Found {lobbyList.Count} lobbies." );
     }

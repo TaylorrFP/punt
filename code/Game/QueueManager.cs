@@ -139,8 +139,8 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	public async Task SearchGame( QueueType queue )
 	{
-		Log.Info( "Searching Games..." );
-		lobbyList = await Networking.QueryLobbies();
+		Log.Info( $"Searching Games for {queue}..." );
+		lobbyList = await LobbySystem.GetLobbies( queue );
 		lobbyListNames.Clear();
 
 		if ( Networking.IsActive ) //if we've already made a lobby, remove our lobby from the list
