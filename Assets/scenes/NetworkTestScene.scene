@@ -215,6 +215,8 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
+          "OrganCountdownSound": "sounds/organcountdown.sound",
+          "OrganStartSound": "sounds/organstart.sound",
           "PiecePrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/pieces/playerpiece.prefab"
@@ -273,25 +275,21 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -988.2408,
-            "Passed": 988.2408,
+            "Relative": -1810.6642,
+            "Passed": 1810.6642,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
           "RoundLength": 180,
           "RoundStartTimer": {
             "Absolute": 0,
-            "Relative": -988.2408,
-            "Passed": 988.2408,
+            "Relative": -1810.6642,
+            "Passed": 1810.6642,
             "Fraction": 1
           },
           "RoundTimeLeft": 0,
           "State": "Waiting",
           "timescaleMult": 0.3,
-          "TimeSinceCountdown": {
-            "Absolute": 0,
-            "Relative": 988.2408
-          },
           "winningSideStat": 0
         }
       ]
@@ -1184,8 +1182,64 @@
           "PlayOnStart": false,
           "ReflectionOverride": false,
           "Reflections": false,
-          "Repeat": true,
+          "Repeat": false,
           "SoundEvent": "sounds/music/puntost.sound",
+          "SoundOverride": true,
+          "StopOnNew": false,
+          "TargetMixer": {
+            "Name": "ui",
+            "Id": "1b004eb1-2458-44cd-ae65-823e82f8d4e2"
+          },
+          "Volume": 0.2
+        }
+      ]
+    },
+    {
+      "__guid": "d17bef9a-2efc-468b-ae2d-addd60b1617e",
+      "Flags": 0,
+      "Name": "Crowd",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SoundPointComponent",
+          "__guid": "977ae898-3b18-4458-8dcc-b58d6d02f182",
+          "Distance": 512,
+          "DistanceAttenuation": false,
+          "DistanceAttenuationOverride": false,
+          "Falloff": [
+            {
+              "x": 0,
+              "y": 1,
+              "in": 3.1415927,
+              "out": -3.1415927,
+              "mode": "Mirrored"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            }
+          ],
+          "Force2d": false,
+          "MaxRepeatTime": 1,
+          "MinRepeatTime": 1,
+          "Occlusion": false,
+          "OcclusionOverride": false,
+          "OcclusionRadius": 32,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Pitch": 1,
+          "PlayOnStart": true,
+          "ReflectionOverride": false,
+          "Reflections": false,
+          "Repeat": true,
+          "SoundEvent": "sounds/crowdambience.sound",
           "SoundOverride": true,
           "StopOnNew": false,
           "TargetMixer": {

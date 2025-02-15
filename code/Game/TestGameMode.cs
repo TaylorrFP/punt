@@ -26,6 +26,8 @@ public sealed class TestGameMode : Component
 	[Property] public string queueIndent = "none";
 
 
+	[Property] public SoundEvent OrganCountdownSound { get; set; }
+	[Property] public SoundEvent OrganStartSound { get; set; }
 
 	[Group( "Debug" )][Property, Sync(SyncFlags.FromHost)] public Boolean DebugServer { get; set; }
 	[Group( "Player List" )][Property, Sync( SyncFlags.FromHost )] public List<PuntPlayerController> PlayerList { get; set; } = new List<PuntPlayerController>();
@@ -112,20 +114,14 @@ public sealed class TestGameMode : Component
 			//State = GameState.KickingOff;
 			//SetupGame(kickingOffSide);
 		}
+
 	}
+
+
 	protected override void OnUpdate()
 	{
 		UpdateTimeLeft();
 
-		//don't do this here for now 
-		////if we're doing a countdown and the timer is over 3 then start playing.
-		//if ( State == GameState.Countdown & TimeSinceCountdown >3.0f)
-		//{
-		//	State = GameState.KickingOff;
-		//	SetupGame( kickingOffSide );
-		//}
-
-		// Get the current whole number part of the timer
 		int currentTimerValue = MathX.CeilToInt( RoundStartTimer );
 
 		if ( currentTimerValue != lastTimerValue )
@@ -134,11 +130,13 @@ public sealed class TestGameMode : Component
 
 			if ( currentTimerValue == 3 || currentTimerValue == 2 || currentTimerValue == 1 )
 			{
-				Log.Info( "Play game countdown sound" );
+				Sound.Play( OrganCountdownSound );
 			}
 			else if ( currentTimerValue == 0 )
 			{
-				Log.Info( "Play game start sound" );
+				Sound.Play( OrganStartSound );
+				State = GameState.Playing;
+				StartMusic();
 			}
 		}
 
@@ -148,13 +146,21 @@ public sealed class TestGameMode : Component
 			ResetBall();
 			ResetTeamPieces(kickingOffSide); //not handling team who scored for now
 			State = GameState.KickingOff;
-
+			
 		}
 
 		CalculateTimescale();
 		// Decrease the timer
 
 
+	}
+
+	private void StartMusic()
+	{
+		Log.Info( "Start Music" );
+		musicSoundPoint.StartSound();
+		musicSoundPoint.Repeat = true;
+		musicSoundPoint.SoundOverride = true;
 	}
 
 	private void PlayCountdownBeep()
@@ -404,9 +410,7 @@ public sealed class TestGameMode : Component
 	[Rpc.Broadcast]
 	public void StartGame()
 	{
-		musicSoundPoint.StartSound();
-		musicSoundPoint.Repeat = true;
-		musicSoundPoint.SoundOverride = true;
+
 
 
 		if ( !IsProxy )//fixes the bug where it starts playing by itself, I guess the client was Rpc.Broadcasting it a second later and then the server was setting it?

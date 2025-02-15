@@ -63,7 +63,7 @@
     </div>
 
     <!-- Countdown Panel -->
-    @if (TestGameMode.Instance.State == GameState.Countdown)
+    @if (TestGameMode.Instance.RoundStartTimer >-1)
     {
         if(TestGameMode.Instance.RoundStartTimer > 3){
 
