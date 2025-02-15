@@ -19,7 +19,7 @@ public static class LobbySystem
 	/// <summary>
 	/// How frequently can we queue?
 	/// </summary>
-	static float QueueInterval => 15f;
+	static float QueueInterval => 5f;
 
 	/// <summary>
 	/// Query for lobbies
