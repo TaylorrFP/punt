@@ -4,7 +4,7 @@ Layer0
 {
 	shader "prefabs/pack/holopackshader.shader"
 
-	Albedo "[0.733333 0.733333 0.733333 1.000000]"
+	Albedo "prefabs/pack/materials/puntpack_albedo.png"
 	AmbientOcclusion "prefabs/pack/materials/puntpack_ao.png"
 	g_flDistortion "0.320"
 	g_flFrequency "10.000"

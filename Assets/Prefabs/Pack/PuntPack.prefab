@@ -1,0 +1,50 @@
+{
+  "RootObject": {
+    "__guid": "7682c34e-ad94-41bc-9ab3-84ef6e9356d8",
+    "Flags": 0,
+    "Name": "PuntPack",
+    "Position": "402.025,-92.90951,-33.48226",
+    "Rotation": "-0.00000001490116,-0.000000000000005329071,0.9999998,0.0000001947072",
+    "Enabled": true,
+    "Children": [
+      {
+        "__guid": "78c9de7d-940b-4350-9bc1-528dec567aee",
+        "Flags": 0,
+        "Name": "puntpack",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "06717b7d-51a1-4776-8418-7f33d9c1b400",
+            "BodyGroups": 18446744073709551615,
+            "CreateAttachments": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "prefabs/pack/puntpack.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}
