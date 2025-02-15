@@ -135,6 +135,7 @@ public sealed class TestGameMode : Component
 			else if ( currentTimerValue == 0 )
 			{
 				Sound.Play( OrganStartSound );
+				Sound.Play( "sounds/ball/whistle.sound" );
 				State = GameState.Playing;
 				StartMusic();
 			}

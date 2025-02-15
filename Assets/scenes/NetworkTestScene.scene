@@ -275,16 +275,16 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -1810.6642,
-            "Passed": 1810.6642,
+            "Relative": -2150.4636,
+            "Passed": 2150.4636,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
           "RoundLength": 180,
           "RoundStartTimer": {
             "Absolute": 0,
-            "Relative": -1810.6642,
-            "Passed": 1810.6642,
+            "Relative": -2150.4636,
+            "Passed": 2150.4636,
             "Fraction": 1
           },
           "RoundTimeLeft": 0,
