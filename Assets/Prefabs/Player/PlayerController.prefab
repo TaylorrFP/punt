@@ -75,6 +75,7 @@
         "flickStrength": 3,
         "flickVector": "0,0,0",
         "hoveredPiece": null,
+        "isDebug": true,
         "mouseOffset": "0,0",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,

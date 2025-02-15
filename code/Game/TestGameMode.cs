@@ -111,8 +111,6 @@ public sealed class TestGameMode : Component
 		if ( DebugServer )
 		{
 			InitialiseGame();
-			//State = GameState.KickingOff;
-			//SetupGame(kickingOffSide);
 		}
 
 	}
@@ -138,6 +136,15 @@ public sealed class TestGameMode : Component
 				Sound.Play( "sounds/ball/whistle.sound" );
 				State = GameState.Playing;
 				StartMusic();
+
+
+				for ( int i = 0; i < BluePieceList.Count; i++ )
+				{
+					BluePieceList[i].IsDormant = false;
+					RedPieceList[i].IsDormant = false;
+
+				}
+
 			}
 		}
 
@@ -198,20 +205,31 @@ public sealed class TestGameMode : Component
 
 	private void CalculateTimescale()
 	{
-
-		for ( int i = 0; i < PlayerList.Count; i++ )
+		if( State == GameState.Countdown )
 		{
 
-			if ( PlayerList[i].selectedPiece != null )
+			Scene.TimeScale = 1;
+
+		}
+		else
+		{
+			for ( int i = 0; i < PlayerList.Count; i++ )
 			{
-				Scene.TimeScale = timescaleMult;
-				break;
-			}
+
+				if ( PlayerList[i].selectedPiece != null )
+				{
+					Scene.TimeScale = timescaleMult;
+					break;
+				}
 
 				Scene.TimeScale = 1.0f;
 
 
+			}
+
 		}
+
+
 
 
 
@@ -423,18 +441,8 @@ public sealed class TestGameMode : Component
 
 		for ( int i = 0; i < BluePieceList.Count; i++ )
 		{
-			if( BluePieceList[i].pieceState == PieceState.Frozen )
-			{
-				BluePieceList[i].pieceState = PieceState.Ready;
-
-			}
-
-			if ( RedPieceList[i].pieceState == PieceState.Frozen )
-			{
-				RedPieceList[i].pieceState = PieceState.Ready;
-
-			}
-
+			BluePieceList[i].pieceState = PieceState.Ready;
+			RedPieceList[i].pieceState = PieceState.Ready;
 		}
 
 	}
@@ -550,27 +558,9 @@ public sealed class TestGameMode : Component
 		{
 			for ( int i = 0; i < currentRedSpawns.Count; i++ )//Reset positions/rotations/velocities
 			{
-				//account for the strikers who need to be unfrozen on kickoff - clean this up later it's dumb
-				if ( kickoffSide == TeamSide.Red && i == 2 )
-
-				{
 					ResetPiece( RedPieceList[i], currentRedSpawns[i], false );
-					ResetPiece( BluePieceList[i], currentBlueSpawns[i], true );
-				}
-				else if ( kickoffSide == TeamSide.Blue && i == 2 )
-				{
-					ResetPiece( RedPieceList[i], currentRedSpawns[i], true );
-					ResetPiece( BluePieceList[i], currentBlueSpawns[i],false );
-				}
-				else
-				{
-					ResetPiece( RedPieceList[i], currentRedSpawns[i], true );
-					ResetPiece( BluePieceList[i], currentBlueSpawns[i], true );
-				}
+					ResetPiece( BluePieceList[i], currentBlueSpawns[i], false );
 			}
-
-
-
 		}
 		else
 		{
@@ -580,11 +570,7 @@ public sealed class TestGameMode : Component
 				var spawnedPiece = PiecePrefab.Clone( currentRedSpawns[i].WorldPosition, currentRedSpawns[i].WorldRotation );
 				spawnedPiece.NetworkSpawn();
 				RedPieceList.Add( spawnedPiece.Components.Get<PuntPiece>() );
-
-				if(i == 2 && kickoffSide == TeamSide.Red ) { RedPieceList[i].Initialize( i, TeamSide.Red, false ); } else
-				{
-					RedPieceList[i].Initialize( i, TeamSide.Red, true );
-				}
+				RedPieceList[i].Initialize( i, TeamSide.Red, false );
 
 			}
 
@@ -594,12 +580,7 @@ public sealed class TestGameMode : Component
 				var spawnedPiece = PiecePrefab.Clone( currentBlueSpawns[i].WorldPosition, currentBlueSpawns[i].WorldRotation );
 				spawnedPiece.NetworkSpawn();
 				BluePieceList.Add( spawnedPiece.Components.Get<PuntPiece>() );
-
-				if ( i == 2 && kickoffSide == TeamSide.Blue ) { BluePieceList[i].Initialize( i, TeamSide.Blue, false ); }
-				else
-				{
-					BluePieceList[i].Initialize( i, TeamSide.Blue, true );
-				}
+				BluePieceList[i].Initialize( i, TeamSide.Blue, false );
 
 			}
 
