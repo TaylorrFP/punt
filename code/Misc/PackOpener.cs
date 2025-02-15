@@ -1,8 +1,11 @@
 using Sandbox;
 using System;
+using System.Net.Http.Headers;
 
 public sealed class PackOpener : Component
 {
+	[Property] public SkinnedModelRenderer SkinnedModelRenderer { get; set; }
+	[Property] public float OpenAmount { get; set; }
 	[Property] public GameObject TargetObjectY { get; set; }  // Rotates around Y-axis (Left/Right)
 	[Property] public GameObject TargetObjectX { get; set; }  // Rotates around X-axis (Up/Down)
 
@@ -22,6 +25,11 @@ public sealed class PackOpener : Component
 	[Property] public float MaxPitchAngle { get; set; } = 45f;  // Max pitch angle
 	[Property] public bool isDragging { get; set; }
 	[Property] public bool isSelected { get; set; }
+	[Property] public bool isOpening { get; set; }
+	[Property] public bool isOpened { get; set; } = false;
+
+	[Property] public float mouseX { get; set; }
+	[Property] public float mouseY { get; set; }
 
 	private bool wasDragging = false; // Track if dragging occurred
 
@@ -31,20 +39,94 @@ public sealed class PackOpener : Component
 	[Property] public float VelocityThreshold { get; set; } = 1f; // Threshold before resetting
 
 	// Smoothing variables for rotation & position
-	private float rotationVelocityY = 0f;
-	private float rotationVelocityX = 0f;
+
 	private Vector3 positionVelocity = Vector3.Zero;
+
+	[Property] public LineRenderer LineRenderer { get; set; }
+
+	[Property] public Vector3 LineRendererStartPoint { get; set; }
 
 	protected override void OnAwake()
 	{
 		// Store initial rotation values
 		TargetAnglesY = TargetObjectY.LocalRotation.Angles().yaw;
 		TargetAnglesX = TargetObjectX.LocalRotation.Angles().pitch;
+
+		SkinnedModelRenderer.Sequence.Name = "puntpack_opening";
+
 	}
 
 	protected override void OnUpdate()
 	{
+		
+
 		PackTrace();
+
+
+		if ( isSelected )
+		{
+			PackOpenerTrace(); // Run new trace logic only when pack is selected
+		}
+		if ( Input.Released( "attack1") & isOpening)
+		{
+			isOpening = false;
+
+		}
+
+		if ( isOpening )
+		{
+			LineRenderer.Enabled = true;
+			SkinnedModelRenderer.Sequence.PlaybackRate = Mouse.Delta.x*0.3f;
+			mouseX += Mouse.Delta.x * 0.3f;
+			mouseY += Mouse.Delta.y * 0.3f;
+
+			LineRenderer.VectorPoints[0] = LineRendererStartPoint;
+
+
+			LineRenderer.VectorPoints[1] = LineRendererStartPoint + new Vector3( 0, mouseX * 0.6f, -mouseY*0.5f );
+
+
+			if(mouseX > 80f )
+			{
+				isOpening = false;
+				isOpened = true;
+
+			}
+		}
+		else
+		{
+			SkinnedModelRenderer.Sequence.PlaybackRate = 0;
+		}
+
+		if ( isOpened )
+		{
+
+			
+			SkinnedModelRenderer.Sequence.PlaybackRate = 1;
+
+			LineRenderer.VectorPoints[1] = LineRendererStartPoint + new Vector3( 0, 600f, 0);
+			LineRenderer.Width = 0.5f;
+
+			if ( SkinnedModelRenderer.Sequence.TimeNormalized > 0.25f )
+			{
+				LineRenderer.Enabled = false;
+
+			}
+
+			if ( SkinnedModelRenderer.Sequence.TimeNormalized > 0.99 )
+			{
+				SkinnedModelRenderer.Sequence.PlaybackRate = 0;
+
+			}
+
+			//if( SkinnedModelRenderer.Sequence.IsFinished){
+
+			//	SkinnedModelRenderer.Sequence.PlaybackRate = 0;
+
+			//}
+
+		}
+
 
 		if ( isDragging )
 		{
@@ -85,6 +167,23 @@ public sealed class PackOpener : Component
 		}
 	}
 
+	private void PackOpenerTrace()
+	{
+		var mousePosition = Mouse.Position;
+		var camera = Scene.Camera;
+		var ray = camera.ScreenPixelToRay( mousePosition );
+		var tr = Scene.Trace.Ray( ray, 10000f ).WithAllTags( "packopener" ).Run();
+
+
+		if ( tr.Hit & Input.Pressed( "attack1" ) )
+		{
+			isOpening = true;
+			LineRendererStartPoint = tr.HitPosition;
+		}
+
+
+	}
+
 	private void PackTrace()
 	{
 		var mousePosition = Mouse.Position;
@@ -95,11 +194,12 @@ public sealed class PackOpener : Component
 		if ( tr.Hit )
 		{
 			Mouse.CursorType = "hovering";
+
 			if ( Input.Pressed( "attack1" ) )
 			{
-				Log.Info( "Click Start" );
+				//Log.Info( "Click Start" );
 				isDragging = true;
-				wasDragging = false;
+				wasDragging = false; // Reset dragging flag
 				LerpSpeed = ActiveLerpSpeed;
 			}
 		}
@@ -108,19 +208,28 @@ public sealed class PackOpener : Component
 			Mouse.CursorType = "pointer";
 		}
 
+		// Track dragging while the mouse is held down
+		if ( isDragging && Mouse.Delta.Length > 0.5f )
+		{
+			wasDragging = true;
+		}
+
 		if ( Input.Released( "attack1" ) )
 		{
-			if ( !wasDragging )
+			if ( !wasDragging ) // Ensure it's a true single click
 			{
 				if ( isSelected )
 				{
-					Log.Info( "Deselecting Object!" );
-					isSelected = false;
-					TargetPosition = Vector3.Zero;
+					if ( tr.Hit ) // Only deselect if clicking directly on the pack
+					{
+						//Log.Info( "Deselecting Object!" );
+						isSelected = false;
+						TargetPosition = Vector3.Zero;
+					}
 				}
 				else
 				{
-					Log.Info( "Single Click Detected!" );
+					//Log.Info( "Single Click Detected!" );
 					isSelected = true;
 					TargetPosition = SelectedPosition;
 					TargetAnglesY = 0;
@@ -128,13 +237,19 @@ public sealed class PackOpener : Component
 			}
 
 			isDragging = false;
+			wasDragging = false; // Reset dragging flag
 			LerpSpeed = PassiveLerpSpeed;
 			TargetAnglesX = 0; // Reset pitch immediately when mouse is released
 		}
 	}
 
+
+
 	private void RotatePack()
 	{
+		if ( isSelected )
+			return;  // Disable rotation when the card is selected
+
 		var mouseDelta = Mouse.Delta;
 
 		if ( mouseDelta.Length > 0.5f )
@@ -152,6 +267,7 @@ public sealed class PackOpener : Component
 		// Clamp X rotation
 		TargetAnglesX = TargetAnglesX.Clamp( -MaxPitchAngle, MaxPitchAngle );
 	}
+
 
 	private void ResetRotation()
 	{
