@@ -197,8 +197,11 @@
           "BlueTeamAverageScore": 0,
           "BlueTeamPendingLoss": 0,
           "BlueTeamPendingWin": 0,
+          "CountdownTimerDuration": 3,
           "DebugServer": false,
+          "IsOvertime": false,
           "kickingOffSide": "Blue",
+          "KickoffSideDisplayDuration": 3,
           "losingSideStat": 0,
           "musicSoundPoint": {
             "_type": "component",
@@ -213,6 +216,8 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
+          "OrganCountdownSound": "sounds/organcountdown.sound",
+          "OrganStartSound": "sounds/organstart.sound",
           "PiecePrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/pieces/playerpiece.prefab"
@@ -271,12 +276,18 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -2136.4265,
-            "Passed": 2136.4265,
+            "Relative": -6397.495,
+            "Passed": 6397.495,
             "Fraction": 1
           },
           "ResetTimerLength": 4,
           "RoundLength": 180,
+          "RoundStartTimer": {
+            "Absolute": 0,
+            "Relative": -6397.495,
+            "Passed": 6397.495,
+            "Fraction": 1
+          },
           "RoundTimeLeft": 0,
           "State": "Waiting",
           "timescaleMult": 0.3,
@@ -325,7 +336,6 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "refreshUI": false,
           "ScoreChange": 0
         }
       ]
@@ -556,7 +566,6 @@
           "__guid": "7f193962-ac93-4e17-9cf5-48f696026fcc",
           "Flags": 0,
           "Name": "SpawnPoints",
-          "Enabled": true,
           "Children": [
             {
               "__guid": "7d27f4d8-0af1-41c2-9f5f-bfb022795d1d",
@@ -574,12 +583,35 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "83479210-1a3e-4539-b6d1-e561f725e2ea",
+                      "__guid": "bf5ef8fa-70af-4abd-a5ae-05deb90fed6a",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "82dd5efe-0648-4608-82d6-0db5ccba6c97",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -593,12 +625,35 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "96d0fc8b-955c-407f-a9f3-a9bb6afbfc38",
+                      "__guid": "ef7ecb04-5a4d-4b45-b414-74f8ba2c1465",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "67d102a5-9347-4b3e-939f-1bc657283b20",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -611,13 +666,35 @@
                   "Tags": "spawnpoint",
                   "Children": [
                     {
-                      "__guid": "46bc75af-7418-4f89-aa19-f8d0920469f8",
+                      "__guid": "c2b96d6f-5ee3-480e-a75a-4996a7c36af2",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
+                      "Name": "puntbase",
                       "Enabled": true,
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "3f6792dc-5cf9-412f-b961-378f3ab03f16",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -631,12 +708,35 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "26bf76e6-efdc-4fb9-84df-d3142a5a6b15",
+                      "__guid": "acee00d3-1baa-4ad7-b796-c10d841ae70f",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "d9d76101-4a0a-4668-baaf-d31017debb09",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -649,13 +749,36 @@
                   "Tags": "spawnpoint",
                   "Children": [
                     {
-                      "__guid": "be341a78-f89c-4e9c-adc0-db5e0f59edcf",
+                      "__guid": "046b0e9a-dcad-40f7-86a1-d7eb154c9526",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
+                      "Name": "puntbase",
+                      "Rotation": "0,0,-0.8819911,0.4712664",
                       "Enabled": true,
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "e0dfb286-8256-4510-bb84-b7c55eb4a047",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -669,12 +792,35 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "18034256-44fd-49bc-8ac1-cce6966e0fa8",
+                      "__guid": "22f739b9-4e5f-4755-be94-68356832fc85",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "7b8fac3f-7ed0-4344-92eb-2928a00ced63",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -688,12 +834,35 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "2bf325a1-e1a3-464c-8340-09a9e138df84",
+                      "__guid": "f196463c-4b87-4056-9195-9bf21f8dcf19",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "dab94234-d16c-47dd-a5e9-76f5271561f9",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -707,12 +876,35 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "a795f36c-13fe-496c-8900-e626b7c7ab71",
+                      "__guid": "1c79edcf-aca9-48d6-a387-a135b43b1f63",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "e2c64188-4d7b-492c-9b75-8eb5988c8ba1",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -726,12 +918,35 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "e9361bf1-73f9-4e9d-8c9a-d867df542d5a",
+                      "__guid": "414a01da-fb98-461a-a08a-7c36ba880630",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "bb3c162f-4ecf-41b9-b3c1-6ad477e07035",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -754,12 +969,36 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "258468db-7a2f-46b7-b2c3-c5f584c7f00a",
+                      "__guid": "c9f5338d-c6d1-44bb-8e03-dc7c8c4a283b",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "9e81c44b-9dd7-4ac3-a4ac-0412e3912895",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -773,12 +1012,36 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "c780c9aa-ee98-4458-968c-27090dfec143",
+                      "__guid": "c6bedf5a-a669-4002-b0d8-9c91579b3b3c",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "da68a2b8-5dd5-486e-b42f-94f4ef95da26",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -792,12 +1055,36 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "0b96d606-cbff-43c0-a474-6248f2cd749b",
+                      "__guid": "0dddface-a57b-44e1-81e8-c739db1b7f9d",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "81565dc4-4839-420e-8009-e7544163fb34",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -811,12 +1098,36 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "ac981ee5-e4f5-49c6-b301-78e221eb2013",
+                      "__guid": "cfe4669a-decd-4678-b231-1109c2a13d3c",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "7311a039-c610-4885-a2de-8a98af86fe01",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -830,12 +1141,36 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "a0ee8045-7ce1-4d7e-b861-31ab1cf18504",
+                      "__guid": "b18f79b7-86b8-4275-a8e3-103ae9de187b",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Rotation": "0,0,-0.4712665,-0.8819911",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "8ed1b672-e203-4cb5-b785-6b66a75336b9",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -849,12 +1184,36 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "98d55c6d-a9ea-448d-b237-19b485d2d6ab",
+                      "__guid": "8e59e093-fe5e-40aa-b7a4-63621f362e6e",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "f2ef9126-a708-42da-8287-f2ed13bb46be",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -868,12 +1227,36 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "0785f6f8-9cdf-4a65-bd39-b0ebf32815f3",
+                      "__guid": "8e11d69d-2e3f-4282-8c2d-de694492f03d",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "a3d98eea-0653-4bdb-a729-2adbcf39f63e",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -887,12 +1270,36 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "062233ed-debe-4f62-b65e-6ed51112af5c",
+                      "__guid": "381dd8d2-1e29-46d4-99be-572addfca903",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "6325ce4f-be3a-407a-b417-8883acd64193",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -906,12 +1313,36 @@
                   "Enabled": true,
                   "Children": [
                     {
-                      "__guid": "bd0ccbc5-a08d-441a-a803-9d6177158681",
+                      "__guid": "c4449515-8754-4c76-b10c-5221abd575ed",
                       "Flags": 0,
-                      "Name": "playerpiece (1)",
-                      "Tags": "piece",
-                      "__Prefab": "prefabs/pieces/playerpiece.prefab",
-                      "__PrefabVariables": {}
+                      "Name": "puntbase",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Enabled": true,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "0ab595e6-468b-4979-96e9-4ec970cbc52f",
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1172,8 +1603,64 @@
           "PlayOnStart": false,
           "ReflectionOverride": false,
           "Reflections": false,
-          "Repeat": true,
+          "Repeat": false,
           "SoundEvent": "sounds/music/puntost.sound",
+          "SoundOverride": true,
+          "StopOnNew": false,
+          "TargetMixer": {
+            "Name": "ui",
+            "Id": "1b004eb1-2458-44cd-ae65-823e82f8d4e2"
+          },
+          "Volume": 0.2
+        }
+      ]
+    },
+    {
+      "__guid": "d17bef9a-2efc-468b-ae2d-addd60b1617e",
+      "Flags": 0,
+      "Name": "Crowd",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SoundPointComponent",
+          "__guid": "977ae898-3b18-4458-8dcc-b58d6d02f182",
+          "Distance": 512,
+          "DistanceAttenuation": false,
+          "DistanceAttenuationOverride": false,
+          "Falloff": [
+            {
+              "x": 0,
+              "y": 1,
+              "in": 3.1415927,
+              "out": -3.1415927,
+              "mode": "Mirrored"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            }
+          ],
+          "Force2d": false,
+          "MaxRepeatTime": 1,
+          "MinRepeatTime": 1,
+          "Occlusion": false,
+          "OcclusionOverride": false,
+          "OcclusionRadius": 32,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Pitch": 1,
+          "PlayOnStart": true,
+          "ReflectionOverride": false,
+          "Reflections": false,
+          "Repeat": true,
+          "SoundEvent": "sounds/crowdambience.sound",
           "SoundOverride": true,
           "StopOnNew": false,
           "TargetMixer": {

@@ -1,11 +1,11 @@
 {
   "UI": true,
-  "Volume": "0.2",
+  "Volume": "1",
   "Pitch": "1",
   "Decibels": 70,
   "SelectionMode": "Random",
   "Sounds": [
-    "sounds/whistle.vsnd"
+    "sounds/crowdambience.vsnd"
   ],
   "Occlusion": true,
   "AirAbsorption": true,

@@ -109,9 +109,9 @@
 /* Countdown Panel Styling */
 .countdown-panel {
 	position: absolute;
-	top: 50%;
+	top: 150px;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, 0%);
 	padding: 20px 40px;
 	backdrop-filter: blur(10px);
 	background-color: #000000d2;

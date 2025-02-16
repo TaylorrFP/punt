@@ -72,7 +72,7 @@
         "cooldownDuration": 2,
         "cooldownTimeSince": {
           "Absolute": 0,
-          "Relative": 12938.707
+          "Relative": 4268.9316
         },
         "emitter": {
           "_type": "component",
@@ -149,6 +149,7 @@
           "InsideObscuredColor": "0,0,0,0",
           "Width": 0.2
         },
+        "IsDormant": true,
         "isHovered": false,
         "isOnCooldown": true,
         "isSelected": false,
@@ -563,7 +564,7 @@
                 "squashDuration": 0.5,
                 "squashTimeSince": {
                   "Absolute": 0,
-                  "Relative": 97520580
+                  "Relative": 98661340
                 }
               }
             ],

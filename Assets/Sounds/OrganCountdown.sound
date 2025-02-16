@@ -5,7 +5,7 @@
   "Decibels": 70,
   "SelectionMode": "Random",
   "Sounds": [
-    "sounds/whistle.vsnd"
+    "sounds/organcountdowntone.vsnd"
   ],
   "Occlusion": true,
   "AirAbsorption": true,

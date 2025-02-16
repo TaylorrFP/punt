@@ -26,6 +26,8 @@ public sealed class TestGameMode : Component
 	[Property] public string queueIndent = "none";
 
 
+	[Property] public SoundEvent OrganCountdownSound { get; set; }
+	[Property] public SoundEvent OrganStartSound { get; set; }
 
 	[Group( "Debug" )][Property, Sync(SyncFlags.FromHost)] public Boolean DebugServer { get; set; }
 	[Group( "Player List" )][Property, Sync( SyncFlags.FromHost )] public List<PuntPlayerController> PlayerList { get; set; } = new List<PuntPlayerController>();
@@ -53,6 +55,12 @@ public sealed class TestGameMode : Component
 
 	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public TimeUntil ResetTimer { get; set; }
 
+	[Group( "Game State" )][Property, Sync( SyncFlags.FromHost )] public TimeUntil RoundStartTimer { get; set; }//delete this later
+	private int lastTimerValue = -1;
+
+	[Group( "Game State" )][Property] public float KickoffSideDisplayDuration { get; set; }
+	[Group( "Game State" )][Property] public float CountdownTimerDuration { get; set; }
+
 	[Group( "Game State" )][Property, Sync(SyncFlags.FromHost)] public TeamSide kickingOffSide { get; set; }
 
 
@@ -76,6 +84,8 @@ public sealed class TestGameMode : Component
 	[Group( "Spawn Points" )][Property] public List<GameObject> BlueSpawnsKickoff { get; set; } = new List<GameObject>();
 
 
+	[Group( "Game State" )][Property, Sync( SyncFlags.FromHost )] public bool IsOvertime { get; set; }
+
 	//Music
 	[Group( "Music" )][Property] public SoundPointComponent musicSoundPoint { get; set; }
 
@@ -83,7 +93,6 @@ public sealed class TestGameMode : Component
 	//GameState
 	[Group( "Timescale" )][Property, Sync(SyncFlags.FromHost)] public float timescaleMult { get; set; } = 0.1f;
 
-	[Sync( SyncFlags.FromHost )] public TimeSince TimeSinceCountdown { get; set; }
 
 
 
@@ -102,49 +111,117 @@ public sealed class TestGameMode : Component
 
 		if ( DebugServer )
 		{
-
-			State = GameState.KickingOff;
-			SetupGame(kickingOffSide);
+			InitialiseGame();
 		}
+
 	}
+
+
 	protected override void OnUpdate()
 	{
 		UpdateTimeLeft();
 
-		//if we're doing a countdown and the timer is over 3 then start playing.
-		if ( State == GameState.Countdown & TimeSinceCountdown >3.0f)
+		//do this another way in the future
+		int currentTimerValue = MathX.CeilToInt( RoundStartTimer );
+
+		if ( currentTimerValue != lastTimerValue )
 		{
-			State = GameState.KickingOff;
-			SetupGame( kickingOffSide );
+			lastTimerValue = currentTimerValue;
+
+			if ( currentTimerValue == 3 || currentTimerValue == 2 || currentTimerValue == 1 )
+			{
+				Sound.Play( OrganCountdownSound );
+			}
+			else if ( currentTimerValue == 0 )
+			{
+				Sound.Play( OrganStartSound );
+				Sound.Play( "sounds/ball/whistle.sound" );
+				State = GameState.Playing;
+				StartMusic();
+
+
+				for ( int i = 0; i < BluePieceList.Count; i++ )
+				{
+					BluePieceList[i].IsDormant = false;
+					RedPieceList[i].IsDormant = false;
+
+				}
+
+			}
 		}
 
-		if( State == GameState.Resetting & ResetTimer < 0f)
+
+		if ( State == GameState.Resetting & ResetTimer < 0f)
 		{
 			ResetBall();
 			ResetTeamPieces(kickingOffSide); //not handling team who scored for now
-			State = GameState.KickingOff;
+			State = GameState.Countdown;
+			RoundStartTimer = KickoffSideDisplayDuration + CountdownTimerDuration;
 
 		}
 
 		CalculateTimescale();
+		// Decrease the timer
+
+
+	}
+
+	private void StartMusic()
+	{
+		Log.Info( "Start Music" );
+		musicSoundPoint.StartSound();
+		musicSoundPoint.Repeat = true;
+		musicSoundPoint.SoundOverride = true;
+	}
+
+
+	[Rpc.Broadcast]
+	private void InitialiseGame()//everyone's connected so we can start the game
+	{
+		//get player scores
+		if (!DebugServer ) //don't do this on the debug server for now
+		{
+			_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
+		}
+		
+
+		SetupGame( kickingOffSide );
+
+		if ( !IsProxy )
+		{
+			State = GameState.Countdown;
+			RoundStartTimer = KickoffSideDisplayDuration + CountdownTimerDuration;
+		}
+
 	}
 
 	private void CalculateTimescale()
 	{
-
-		for ( int i = 0; i < PlayerList.Count; i++ )
+		if( State == GameState.Countdown )
 		{
 
-			if ( PlayerList[i].selectedPiece != null )
+			Scene.TimeScale = 1;
+
+		}
+		else
+		{
+			for ( int i = 0; i < PlayerList.Count; i++ )
 			{
-				Scene.TimeScale = timescaleMult;
-				break;
-			}
+
+				if ( PlayerList[i].selectedPiece != null )
+				{
+					Scene.TimeScale = timescaleMult;
+					break;
+				}
 
 				Scene.TimeScale = 1.0f;
 
 
+			}
+
 		}
+
+
 
 
 
@@ -156,18 +233,18 @@ public sealed class TestGameMode : Component
 		//probably need to do this by timescale in the future
 		if ( State == GameState.Playing )
 		{
-			RoundTimeLeft = MathX.Clamp( RoundTimeLeft - Time.Delta,0,RoundLength);
+			//RoundTimeLeft = MathX.Clamp( RoundTimeLeft - Time.Delta,0,RoundLength);
 
-
+			RoundTimeLeft -= Time.Delta;
 			//check scores again if there's not much time left 
-			if( RoundTimeLeft < 5 )
+			if( RoundTimeLeft < 5 & !DebugServer)
 			{
 				_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
 
 			}
 
 
-			if ( RoundTimeLeft == 0 )
+			if ( RoundTimeLeft <= 0 & !IsOvertime)
 			{
 				TryFinishRound();
 			}
@@ -179,10 +256,16 @@ public sealed class TestGameMode : Component
 		if ( RedScore == BlueScore )
 		{
 			//if it's a draw
-			State = GameState.Overtime;
+	
 			PlayOvertimeSound();
-			ResetTeamPieces( kickingOffSide );
+
 			ResetBall();
+			ResetTeamPieces( kickingOffSide ); //not handling team who scored for now
+			State = GameState.Countdown;
+			RoundStartTimer = KickoffSideDisplayDuration + CountdownTimerDuration;
+			IsOvertime = true;
+
+
 		}
 		else
 		{
@@ -193,7 +276,7 @@ public sealed class TestGameMode : Component
 	[Rpc.Broadcast]
 	private void PlayOvertimeSound()
 	{
-		Sound.Play( "sounds/kenney/ui/ui.navigate.deny.sound" );
+		Sound.Play( "sounds/overtimesound.sound" );
 		musicSoundPoint.Pitch = 1.125f;
 	}
 
@@ -344,9 +427,7 @@ public sealed class TestGameMode : Component
 	[Rpc.Broadcast]
 	public void StartGame()
 	{
-		musicSoundPoint.StartSound();
-		musicSoundPoint.Repeat = true;
-		musicSoundPoint.SoundOverride = true;
+
 
 
 		if ( !IsProxy )//fixes the bug where it starts playing by itself, I guess the client was Rpc.Broadcasting it a second later and then the server was setting it?
@@ -358,18 +439,8 @@ public sealed class TestGameMode : Component
 
 		for ( int i = 0; i < BluePieceList.Count; i++ )
 		{
-			if( BluePieceList[i].pieceState == PieceState.Frozen )
-			{
-				BluePieceList[i].pieceState = PieceState.Ready;
-
-			}
-
-			if ( RedPieceList[i].pieceState == PieceState.Frozen )
-			{
-				RedPieceList[i].pieceState = PieceState.Ready;
-
-			}
-
+			BluePieceList[i].pieceState = PieceState.Ready;
+			RedPieceList[i].pieceState = PieceState.Ready;
 		}
 
 	}
@@ -397,7 +468,7 @@ public sealed class TestGameMode : Component
 		}
 
 
-		if ( State != GameState.Playing && State != GameState.Overtime )
+		if ( State != GameState.Playing && !IsOvertime )
 		{
 			return;
 		}
@@ -416,21 +487,18 @@ public sealed class TestGameMode : Component
 
 		}
 
-		switch( State )
+		if ( IsOvertime )
 		{
-			case GameState.Playing:
-				{
-					
-					State = GameState.Resetting;
-					ResetTimer = ResetTimerLength;
-					return;
-				}
-			case GameState.Overtime:
-				{
-					Log.Info( "Finish game" );
-					FinishGame();
-					return;
-				}
+			Log.Info( "Finish game" );
+			FinishGame();
+			return;
+
+		}
+		else
+		{
+			State = GameState.Resetting;
+			ResetTimer = ResetTimerLength;
+			return;
 
 		}
 
@@ -485,27 +553,12 @@ public sealed class TestGameMode : Component
 		{
 			for ( int i = 0; i < currentRedSpawns.Count; i++ )//Reset positions/rotations/velocities
 			{
-				//account for the strikers who need to be unfrozen on kickoff - clean this up later it's dumb
-				if ( kickoffSide == TeamSide.Red && i == 2 )
-
-				{
-					ResetPiece( RedPieceList[i], currentRedSpawns[i], false );
-					ResetPiece( BluePieceList[i], currentBlueSpawns[i], true );
-				}
-				else if ( kickoffSide == TeamSide.Blue && i == 2 )
-				{
-					ResetPiece( RedPieceList[i], currentRedSpawns[i], true );
-					ResetPiece( BluePieceList[i], currentBlueSpawns[i],false );
-				}
-				else
-				{
-					ResetPiece( RedPieceList[i], currentRedSpawns[i], true );
-					ResetPiece( BluePieceList[i], currentBlueSpawns[i], true );
-				}
+				ResetPiece( RedPieceList[i], currentRedSpawns[i], false );
+				ResetPiece( BluePieceList[i], currentBlueSpawns[i], false );
+				//set them as dormant here for now
+				RedPieceList[i].IsDormant = true;
+				BluePieceList[i].IsDormant = true;
 			}
-
-
-
 		}
 		else
 		{
@@ -515,11 +568,7 @@ public sealed class TestGameMode : Component
 				var spawnedPiece = PiecePrefab.Clone( currentRedSpawns[i].WorldPosition, currentRedSpawns[i].WorldRotation );
 				spawnedPiece.NetworkSpawn();
 				RedPieceList.Add( spawnedPiece.Components.Get<PuntPiece>() );
-
-				if(i == 2 && kickoffSide == TeamSide.Red ) { RedPieceList[i].Initialize( i, TeamSide.Red, false ); } else
-				{
-					RedPieceList[i].Initialize( i, TeamSide.Red, true );
-				}
+				RedPieceList[i].Initialize( i, TeamSide.Red, false );
 
 			}
 
@@ -529,12 +578,7 @@ public sealed class TestGameMode : Component
 				var spawnedPiece = PiecePrefab.Clone( currentBlueSpawns[i].WorldPosition, currentBlueSpawns[i].WorldRotation );
 				spawnedPiece.NetworkSpawn();
 				BluePieceList.Add( spawnedPiece.Components.Get<PuntPiece>() );
-
-				if ( i == 2 && kickoffSide == TeamSide.Blue ) { BluePieceList[i].Initialize( i, TeamSide.Blue, false ); }
-				else
-				{
-					BluePieceList[i].Initialize( i, TeamSide.Blue, true );
-				}
+				BluePieceList[i].Initialize( i, TeamSide.Blue, false );
 
 			}
 
@@ -585,21 +629,7 @@ public sealed class TestGameMode : Component
 		//_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
 	}
 
-	[Rpc.Broadcast]
-	private void InitialiseGame()//everyone's connected so we can start the game
-	{
-		//get player scores
 
-		_ = GetPlayerScores(QueueManager.Instance.SelectedQueueType);
-
-
-		if ( !IsProxy )
-		{
-			State = GameState.Countdown;
-			TimeSinceCountdown = 0f;
-		}
-
-	}
 
 	public async Task GetPlayerScores(QueueType queueType)
 	{

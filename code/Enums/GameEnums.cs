@@ -17,6 +17,7 @@ public enum QueueType
 
 public enum PieceState
 {
+
 	Ready,
 	Hovered,
 	Grabbed,

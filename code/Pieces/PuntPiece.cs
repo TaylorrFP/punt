@@ -74,6 +74,9 @@ public sealed class PuntPiece : Component
 
 	[Property] public Color TertiaryColour { get; set; }
 
+
+	[Property, Sync( SyncFlags.FromHost )] public bool IsDormant { get; set; } = true;
+
 	private PieceState _pieceState;
 
 	//if we just sync the variables, only the server can change these values
@@ -101,10 +104,10 @@ public sealed class PuntPiece : Component
 	{
 		switch ( newState )
 		{
+
 			case PieceState.Ready:
 				HandleReadyState();
 				break;
-
 			case PieceState.Frozen:
 				HandleFrozenState();
 				break;
@@ -114,7 +117,6 @@ public sealed class PuntPiece : Component
 			case PieceState.Hovered:
 				HandleHoveredState();
 				break;
-
 			case PieceState.Cooldown:
 				HandleCooldownState();
 				break;
