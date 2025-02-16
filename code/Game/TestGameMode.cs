@@ -84,7 +84,7 @@ public sealed class TestGameMode : Component
 	[Group( "Spawn Points" )][Property] public List<GameObject> BlueSpawnsKickoff { get; set; } = new List<GameObject>();
 
 
-	[Group( "Game State" )][Property] public bool IsOvertime { get; set; }
+	[Group( "Game State" )][Property, Sync( SyncFlags.FromHost )] public bool IsOvertime { get; set; }
 
 	//Music
 	[Group( "Music" )][Property] public SoundPointComponent musicSoundPoint { get; set; }

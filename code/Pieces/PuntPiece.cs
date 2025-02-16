@@ -75,7 +75,7 @@ public sealed class PuntPiece : Component
 	[Property] public Color TertiaryColour { get; set; }
 
 
-	[Property] public bool IsDormant { get; set; } = true;
+	[Property, Sync( SyncFlags.FromHost )] public bool IsDormant { get; set; } = true;
 
 	private PieceState _pieceState;
 
