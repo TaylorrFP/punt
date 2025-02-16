@@ -27,7 +27,13 @@ public sealed class PuntGoal : Component, Component.ITriggerListener
 
 		if ( other.Tags.Has ("ball" ) )
 		{
-			TestGameMode.Instance.GoalScored( GoalTeamSide );
+			if(TestGameMode.Instance.State == GameState.Playing )
+			{
+
+				TestGameMode.Instance.GoalScored( GoalTeamSide );
+			}
+
+			
 
 		}
 	}

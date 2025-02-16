@@ -65,19 +65,19 @@
     <!-- Countdown Panel -->
     @if (TestGameMode.Instance.RoundStartTimer >-1)
     {
+       
+
         if(TestGameMode.Instance.RoundStartTimer > 3){
 
             <div class="countdown-panel">
-                <div class="countdown-text">Blue side kicking off</div>
+                <div class="countdown-text">@TestGameMode.Instance.kickingOffSide.ToString() side kicking off</div>
             </div>
 
         }else
         {
             <div class="countdown-panel">
-                <div class="countdown-number">@GetCountdownTimeString()</div> <!--- this currently doesn't work properly  ---->
+                <div class="countdown-number">@GetCountdownTimeString()</div>
             </div>
-
-
         }
 
     }
@@ -107,14 +107,13 @@
 
 @code
 {
-    [Property] public bool refreshUI { get; set; }
 
     [Property] public int ScoreChange { get; set; }
 
     string GetRoundTimerString()
     {
 
-        if (TestGameMode.Instance.State == GameState.Overtime)
+        if (TestGameMode.Instance.IsOvertime)
         {
             return "OVERTIME";
 
@@ -140,19 +139,24 @@
     string GetCountdownTimeString()
     {
 
+        if (TestGameMode.Instance.RoundStartTimer < -1)
+        {
+            //this is just here to update the UI
+            return $"null";
+        }
+
         if(TestGameMode.Instance.RoundStartTimer < 0){
 
             return $"GO";
         }
 
 
+
+
        var time = TestGameMode.Instance.RoundStartTimer + 1;
        var seconds = (int)time % 60;
        return $"{seconds:0}";
         
-
-
-
     }
 
 
@@ -257,12 +261,13 @@
         int hash = System.HashCode.Combine(
 
             TestGameMode.Instance.PlayerList?.Count ?? 0,
-            refreshUI,//This is just for debug, to force the UI to refresh
             TestGameMode.Instance.State,
             GetCountdownTimeString(),
             GetRoundTimerString(),
             TestGameMode.Instance.BlueScore,
             TestGameMode.Instance.RedScore
+            //Time.Delta //so this is just an update issue
+
     );
 
         // Add the isReady states to the hash

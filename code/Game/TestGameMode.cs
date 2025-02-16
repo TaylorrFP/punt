@@ -84,6 +84,8 @@ public sealed class TestGameMode : Component
 	[Group( "Spawn Points" )][Property] public List<GameObject> BlueSpawnsKickoff { get; set; } = new List<GameObject>();
 
 
+	[Group( "Game State" )][Property] public bool IsOvertime { get; set; }
+
 	//Music
 	[Group( "Music" )][Property] public SoundPointComponent musicSoundPoint { get; set; }
 
@@ -91,7 +93,6 @@ public sealed class TestGameMode : Component
 	//GameState
 	[Group( "Timescale" )][Property, Sync(SyncFlags.FromHost)] public float timescaleMult { get; set; } = 0.1f;
 
-	
 
 
 
@@ -120,6 +121,7 @@ public sealed class TestGameMode : Component
 	{
 		UpdateTimeLeft();
 
+		//do this another way in the future
 		int currentTimerValue = MathX.CeilToInt( RoundStartTimer );
 
 		if ( currentTimerValue != lastTimerValue )
@@ -153,8 +155,9 @@ public sealed class TestGameMode : Component
 		{
 			ResetBall();
 			ResetTeamPieces(kickingOffSide); //not handling team who scored for now
-			State = GameState.KickingOff;
-			
+			State = GameState.Countdown;
+			RoundStartTimer = KickoffSideDisplayDuration + CountdownTimerDuration;
+
 		}
 
 		CalculateTimescale();
@@ -170,17 +173,6 @@ public sealed class TestGameMode : Component
 		musicSoundPoint.Repeat = true;
 		musicSoundPoint.SoundOverride = true;
 	}
-
-	private void PlayCountdownBeep()
-	{
-		Sound.Play( "countdown_beep" ); // Replace with your actual sound event
-	}
-
-	private void PlayStartSound()
-	{
-		Sound.Play( "start_game_sound" ); // Replace with your actual sound event
-	}
-
 
 
 	[Rpc.Broadcast]
@@ -241,18 +233,18 @@ public sealed class TestGameMode : Component
 		//probably need to do this by timescale in the future
 		if ( State == GameState.Playing )
 		{
-			RoundTimeLeft = MathX.Clamp( RoundTimeLeft - Time.Delta,0,RoundLength);
+			//RoundTimeLeft = MathX.Clamp( RoundTimeLeft - Time.Delta,0,RoundLength);
 
-
+			RoundTimeLeft -= Time.Delta;
 			//check scores again if there's not much time left 
-			if( RoundTimeLeft < 5 )
+			if( RoundTimeLeft < 5 & !DebugServer)
 			{
 				_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
 
 			}
 
 
-			if ( RoundTimeLeft == 0 )
+			if ( RoundTimeLeft <= 0 & !IsOvertime)
 			{
 				TryFinishRound();
 			}
@@ -264,10 +256,16 @@ public sealed class TestGameMode : Component
 		if ( RedScore == BlueScore )
 		{
 			//if it's a draw
-			State = GameState.Overtime;
+	
 			PlayOvertimeSound();
-			ResetTeamPieces( kickingOffSide );
+
 			ResetBall();
+			ResetTeamPieces( kickingOffSide ); //not handling team who scored for now
+			State = GameState.Countdown;
+			RoundStartTimer = KickoffSideDisplayDuration + CountdownTimerDuration;
+			IsOvertime = true;
+
+
 		}
 		else
 		{
@@ -278,7 +276,7 @@ public sealed class TestGameMode : Component
 	[Rpc.Broadcast]
 	private void PlayOvertimeSound()
 	{
-		Sound.Play( "sounds/kenney/ui/ui.navigate.deny.sound" );
+		Sound.Play( "sounds/overtimesound.sound" );
 		musicSoundPoint.Pitch = 1.125f;
 	}
 
@@ -470,7 +468,7 @@ public sealed class TestGameMode : Component
 		}
 
 
-		if ( State != GameState.Playing && State != GameState.Overtime )
+		if ( State != GameState.Playing && !IsOvertime )
 		{
 			return;
 		}
@@ -489,21 +487,18 @@ public sealed class TestGameMode : Component
 
 		}
 
-		switch( State )
+		if ( IsOvertime )
 		{
-			case GameState.Playing:
-				{
-					
-					State = GameState.Resetting;
-					ResetTimer = ResetTimerLength;
-					return;
-				}
-			case GameState.Overtime:
-				{
-					Log.Info( "Finish game" );
-					FinishGame();
-					return;
-				}
+			Log.Info( "Finish game" );
+			FinishGame();
+			return;
+
+		}
+		else
+		{
+			State = GameState.Resetting;
+			ResetTimer = ResetTimerLength;
+			return;
 
 		}
 
@@ -558,8 +553,11 @@ public sealed class TestGameMode : Component
 		{
 			for ( int i = 0; i < currentRedSpawns.Count; i++ )//Reset positions/rotations/velocities
 			{
-					ResetPiece( RedPieceList[i], currentRedSpawns[i], false );
-					ResetPiece( BluePieceList[i], currentBlueSpawns[i], false );
+				ResetPiece( RedPieceList[i], currentRedSpawns[i], false );
+				ResetPiece( BluePieceList[i], currentBlueSpawns[i], false );
+				//set them as dormant here for now
+				RedPieceList[i].IsDormant = true;
+				BluePieceList[i].IsDormant = true;
 			}
 		}
 		else
