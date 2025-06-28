@@ -12,7 +12,7 @@ FEATURES
 MODES
 {
 	Forward();
-	Depth();
+	Depth( S_MODE_DEPTH );
 	ToolsShadingComplexity( "tools_shading_complexity.shader" );
 }
 
@@ -72,6 +72,9 @@ PS
 {
 	#include "common/pixel.hlsl"
 	
+	DynamicCombo( D_RENDER_BACKFACES, 0..1, Sys( ALL ) );
+	RenderState( CullMode, D_RENDER_BACKFACES ? NONE : BACK );
+		
 	SamplerState g_sSampler0 < Filter( ANISO ); AddressU( WRAP ); AddressV( WRAP ); >;
 	CreateInputTexture2D( ShirtMask, Srgb, 8, "None", "_mask", ",0/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );
 	CreateInputTexture2D( Text_PlayerName, Srgb, 8, "None", "_mask", ",0/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );

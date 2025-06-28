@@ -1,6 +1,12 @@
 {
+  "IsSubgraph": false,
+  "Path": "shaders/shirtshader.shdrgrph",
   "Model": "prefabs/pieces/puntguy/puntguy.vmdl",
+  "Title": null,
   "Description": "",
+  "Category": null,
+  "Icon": null,
+  "AddToNodeLibrary": false,
   "BlendMode": "Opaque",
   "ShadingModel": "Lit",
   "Domain": "Surface",

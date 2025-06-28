@@ -95,6 +95,8 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 	protected override void OnAwake()
 	{
+
+
 		GameObject.Flags |= GameObjectFlags.DontDestroyOnLoad; // keep this around so I can see the match type
 		Instance = this;
 	}
@@ -284,6 +286,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 		
 			if ( Connection.All.Count == MaxPlayers & SelectedQueueType != QueueType.Custom )
 			{
+
 				// start game
 				gameFound = true;
 				await Task.Delay( 3000 ); // Delays for a little bit to allow the incoming player to load?
@@ -304,8 +307,7 @@ public sealed class QueueManager : Component, Component.INetworkListener
 
 		// this is triggering when a player leaves a game properly
 
-		if ( SelectedQueueType == QueueType.Custom )
-			return;
+		Log.Info( "Game Disconnected" );
 
 		if ( gameJoined & Connection.All.Count <= MaxPlayers ) // if a game is in progress and someone leaves
 		{
@@ -313,6 +315,10 @@ public sealed class QueueManager : Component, Component.INetworkListener
 			Scene.LoadFromFile( "scenes/mainmenu.scene" );
 			QueueManager.Instance.StopSearching( true );
 		}
+
+		if ( SelectedQueueType == QueueType.Custom )
+			return;
+
 
 		if ( !channel.IsHost & !gameJoined & Connection.All.Count <= 2 ) // if we haven't started the game, someone disconnects and it's just us left (2 because this is called just before the player disconnects)
 		{

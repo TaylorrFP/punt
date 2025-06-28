@@ -1,7 +1,21 @@
 {
+  "IsSubgraph": false,
+  "Path": "shaders/radialprogress.shdrgrph",
   "Model": null,
+  "Title": null,
   "Description": "",
+  "Category": null,
+  "Icon": null,
+  "AddToNodeLibrary": false,
   "BlendMode": "Translucent",
+  "ShadingModel": "Lit",
+  "Domain": "Surface",
+  "PreviewSettings": {
+    "EnableShadows": true,
+    "ShowSkybox": true,
+    "BackgroundColor": "0,0,0,1",
+    "Tint": "1,1,1,1"
+  },
   "nodes": [
     {
       "_class": "Result",
@@ -10,7 +24,8 @@
       "DefaultMetalness": 0,
       "DefaultAmbientOcclusion": 1,
       "Identifier": "0",
-      "Position": "1168,-240",
+      "Position": "1164,-240",
+      "HandleOffsets": {},
       "Albedo": {
         "Identifier": "24",
         "Output": "Result"
@@ -26,12 +41,14 @@
       "DefaultOffset": "-0.5,-0.5",
       "WrapTo01": false,
       "Identifier": "1",
-      "Position": "-1680,-128"
+      "Position": "-1680,-132",
+      "HandleOffsets": {}
     },
     {
       "_class": "Length",
       "Identifier": "2",
       "Position": "-1392,-144",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "1",
         "Output": "Result"
@@ -46,14 +63,16 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "3",
-      "Position": "-1424,-48"
+      "Position": "-1428,-48",
+      "HandleOffsets": {}
     },
     {
       "_class": "Subtract",
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "4",
-      "Position": "-1184,-128",
+      "Position": "-1188,-132",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "2",
         "Output": "Result"
@@ -66,7 +85,8 @@
     {
       "_class": "Abs",
       "Identifier": "5",
-      "Position": "-800,-368",
+      "Position": "-804,-372",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "4",
         "Output": "Result"
@@ -81,14 +101,16 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "6",
-      "Position": "-832,-256"
+      "Position": "-828,-252",
+      "HandleOffsets": {}
     },
     {
       "_class": "Subtract",
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "7",
-      "Position": "-608,-352",
+      "Position": "-612,-348",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "5",
         "Output": "Result"
@@ -103,7 +125,8 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "8",
-      "Position": "-432,-208",
+      "Position": "-432,-204",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "7",
         "Output": "Result"
@@ -116,7 +139,8 @@
     {
       "_class": "DDXY",
       "Identifier": "9",
-      "Position": "-832,-96",
+      "Position": "-828,-96",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "4",
         "Output": "Result"
@@ -127,7 +151,8 @@
       "DefaultA": 1,
       "DefaultB": 1,
       "Identifier": "10",
-      "Position": "-256,-288",
+      "Position": "-252,-288",
+      "HandleOffsets": {},
       "B": {
         "Identifier": "8",
         "Output": "Result"
@@ -143,6 +168,7 @@
       "Clamp": true,
       "Identifier": "11",
       "Position": "-96,-288",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "10",
         "Output": "Result"
@@ -151,7 +177,8 @@
     {
       "_class": "SplitVector",
       "Identifier": "12",
-      "Position": "-1408,64",
+      "Position": "-1404,60",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "1",
         "Output": "Result"
@@ -162,7 +189,8 @@
       "DefaultY": 0,
       "DefaultX": 1,
       "Identifier": "13",
-      "Position": "-1152,64",
+      "Position": "-1152,60",
+      "HandleOffsets": {},
       "Y": {
         "Identifier": "12",
         "Output": "X"
@@ -177,7 +205,8 @@
       "DefaultA": 0,
       "DefaultB": 3.141,
       "Identifier": "14",
-      "Position": "-656,64",
+      "Position": "-660,60",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "13",
         "Output": "Result"
@@ -188,7 +217,8 @@
       "DefaultA": 0,
       "DefaultB": 6.283,
       "Identifier": "15",
-      "Position": "-656,208",
+      "Position": "-660,204",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "17",
         "Output": "Result"
@@ -203,14 +233,16 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "16",
-      "Position": "-1104,240"
+      "Position": "-1104,240",
+      "HandleOffsets": {}
     },
     {
       "_class": "Subtract",
       "DefaultA": 1,
       "DefaultB": 1,
       "Identifier": "17",
-      "Position": "-864,176",
+      "Position": "-864,180",
+      "HandleOffsets": {},
       "B": {
         "Identifier": "16",
         "Output": "Result"
@@ -221,7 +253,8 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "18",
-      "Position": "-384,128",
+      "Position": "-384,132",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "15",
         "Output": "Result"
@@ -234,7 +267,8 @@
     {
       "_class": "DDXY",
       "Identifier": "19",
-      "Position": "-128,256",
+      "Position": "-132,252",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "18",
         "Output": "Result"
@@ -245,7 +279,8 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "20",
-      "Position": "80,128",
+      "Position": "84,132",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "18",
         "Output": "Result"
@@ -264,7 +299,8 @@
       "OutMax": 1,
       "Clamp": true,
       "Identifier": "21",
-      "Position": "224,128",
+      "Position": "228,132",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "20",
         "Output": "Result"
@@ -275,7 +311,8 @@
       "DefaultA": 0,
       "DefaultB": 1,
       "Identifier": "22",
-      "Position": "480,-112",
+      "Position": "480,-108",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "11",
         "Output": "Result"
@@ -294,7 +331,8 @@
       "OutMax": 1,
       "Clamp": true,
       "Identifier": "23",
-      "Position": "656,-112",
+      "Position": "660,-108",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "22",
         "Output": "Result"
@@ -309,7 +347,8 @@
         "Type": "Color"
       },
       "Identifier": "24",
-      "Position": "688,-400"
+      "Position": "684,-396",
+      "HandleOffsets": {}
     }
   ]
 }

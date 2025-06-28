@@ -8,7 +8,8 @@
   "Resources": "UI/cursors/*",
   "PackageReferences": [],
   "EditorReferences": null,
-  "IsWhitelistDisabled": false,
+  "Mounts": null,
+  "IsStandaloneOnly": false,
   "Metadata": {
     "MaxPlayers": 4,
     "MinPlayers": 1,

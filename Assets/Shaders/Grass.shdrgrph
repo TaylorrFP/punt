@@ -1,7 +1,21 @@
 {
+  "IsSubgraph": false,
+  "Path": "shaders/grass.shdrgrph",
   "Model": null,
+  "Title": null,
   "Description": null,
+  "Category": null,
+  "Icon": null,
+  "AddToNodeLibrary": false,
   "BlendMode": "Masked",
+  "ShadingModel": "Lit",
+  "Domain": "Surface",
+  "PreviewSettings": {
+    "EnableShadows": true,
+    "ShowSkybox": true,
+    "BackgroundColor": "0,0,0,1",
+    "Tint": "1,1,1,1"
+  },
   "nodes": [
     {
       "_class": "Result",
@@ -11,6 +25,7 @@
       "DefaultAmbientOcclusion": 1,
       "Identifier": "0",
       "Position": "2100,-528",
+      "HandleOffsets": {},
       "Albedo": {
         "Identifier": "25",
         "Output": "Result"
@@ -36,6 +51,7 @@
       "_class": "RGBtoHSV",
       "Identifier": "1",
       "Position": "768,-1692",
+      "HandleOffsets": {},
       "In": {
         "Identifier": "26",
         "Output": "Result"
@@ -50,7 +66,8 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "2",
-      "Position": "480,204"
+      "Position": "480,204",
+      "HandleOffsets": {}
     },
     {
       "_class": "TileAndOffset",
@@ -59,6 +76,7 @@
       "WrapTo01": false,
       "Identifier": "3",
       "Position": "-1476,-1104",
+      "HandleOffsets": {},
       "Tile": {
         "Identifier": "11",
         "Output": "Result"
@@ -68,6 +86,7 @@
       "_class": "SplitVector",
       "Identifier": "4",
       "Position": "1044,-1692",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "1",
         "Output": "Out"
@@ -77,6 +96,7 @@
       "_class": "HSVtoRGB",
       "Identifier": "5",
       "Position": "1740,-1716",
+      "HandleOffsets": {},
       "In": {
         "Identifier": "21",
         "Output": "XYZW"
@@ -97,6 +117,7 @@
       },
       "Identifier": "6",
       "Position": "132,-1428",
+      "HandleOffsets": {},
       "Coords": {
         "Identifier": "42",
         "Output": "Result"
@@ -105,7 +126,8 @@
     {
       "_class": "VertexColor",
       "Identifier": "7",
-      "Position": "-768,-156"
+      "Position": "-768,-156",
+      "HandleOffsets": {}
     },
     {
       "_class": "TextureSampler",
@@ -119,6 +141,7 @@
       },
       "Identifier": "8",
       "Position": "-1200,-1008",
+      "HandleOffsets": {},
       "Coords": {
         "Identifier": "3",
         "Output": "Result"
@@ -126,9 +149,12 @@
     },
     {
       "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
       "Fraction": 0.5,
       "Identifier": "9",
       "Position": "420,-1836",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "16",
         "Output": "Result"
@@ -146,6 +172,7 @@
       "_class": "SplitVector",
       "Identifier": "10",
       "Position": "-540,-156",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "7",
         "Output": "RGB"
@@ -160,7 +187,8 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "11",
-      "Position": "-1680,-1068"
+      "Position": "-1680,-1068",
+      "HandleOffsets": {}
     },
     {
       "_class": "Float",
@@ -171,7 +199,8 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "12",
-      "Position": "480,132"
+      "Position": "480,132",
+      "HandleOffsets": {}
     },
     {
       "_class": "Power",
@@ -179,6 +208,7 @@
       "DefaultB": 1,
       "Identifier": "13",
       "Position": "-288,-60",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "10",
         "Output": "X"
@@ -197,13 +227,15 @@
         "Type": "Color"
       },
       "Identifier": "14",
-      "Position": "48,-1824"
+      "Position": "48,-1824",
+      "HandleOffsets": {}
     },
     {
       "_class": "Reroute",
       "Comment": null,
       "Identifier": "15",
       "Position": "-36,-684",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "31",
         "Output": "Result"
@@ -218,13 +250,17 @@
         "Type": "Color"
       },
       "Identifier": "16",
-      "Position": "48,-2028"
+      "Position": "48,-2028",
+      "HandleOffsets": {}
     },
     {
       "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
       "Fraction": 1,
       "Identifier": "17",
       "Position": "780,84",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "12",
         "Output": "Result"
@@ -247,7 +283,8 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "18",
-      "Position": "-708,60"
+      "Position": "-708,60",
+      "HandleOffsets": {}
     },
     {
       "_class": "Divide",
@@ -255,6 +292,7 @@
       "DefaultB": 1,
       "Identifier": "19",
       "Position": "-468,36",
+      "HandleOffsets": {},
       "B": {
         "Identifier": "18",
         "Output": "Result"
@@ -266,6 +304,7 @@
       "DefaultB": 2,
       "Identifier": "20",
       "Position": "1344,-1548",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "4",
         "Output": "Y"
@@ -283,6 +322,7 @@
       "DefaultW": 0,
       "Identifier": "21",
       "Position": "1524,-1716",
+      "HandleOffsets": {},
       "X": {
         "Identifier": "4",
         "Output": "X"
@@ -305,7 +345,8 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "22",
-      "Position": "1092,-1476"
+      "Position": "1092,-1476",
+      "HandleOffsets": {}
     },
     {
       "_class": "Multiply",
@@ -313,6 +354,7 @@
       "DefaultB": 2,
       "Identifier": "23",
       "Position": "1344,-1392",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "4",
         "Output": "Z"
@@ -331,13 +373,17 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "24",
-      "Position": "1092,-1344"
+      "Position": "1092,-1344",
+      "HandleOffsets": {}
     },
     {
       "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
       "Fraction": 0.5,
       "Identifier": "25",
       "Position": "1776,-876",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "5",
         "Output": "Out"
@@ -353,9 +399,12 @@
     },
     {
       "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
       "Fraction": 0.5,
       "Identifier": "26",
       "Position": "732,-1404",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "9",
         "Output": "Result"
@@ -378,7 +427,8 @@
         "Type": "Color"
       },
       "Identifier": "27",
-      "Position": "444,-1500"
+      "Position": "444,-1500",
+      "HandleOffsets": {}
     },
     {
       "_class": "Float",
@@ -389,7 +439,8 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "28",
-      "Position": "-900,-1104"
+      "Position": "-900,-1104",
+      "HandleOffsets": {}
     },
     {
       "_class": "Float",
@@ -400,7 +451,8 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "29",
-      "Position": "1044,-288"
+      "Position": "1044,-288",
+      "HandleOffsets": {}
     },
     {
       "_class": "Float",
@@ -411,13 +463,15 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "30",
-      "Position": "1488,-672"
+      "Position": "1488,-672",
+      "HandleOffsets": {}
     },
     {
       "_class": "Reroute",
       "Comment": null,
       "Identifier": "31",
       "Position": "-732,-924",
+      "HandleOffsets": {},
       "Input": {
         "Identifier": "8",
         "Output": "R"
@@ -429,6 +483,7 @@
       "DefaultB": 1,
       "Identifier": "32",
       "Position": "468,-660",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "34",
         "Output": "Result"
@@ -444,6 +499,7 @@
       "DefaultB": 0.5,
       "Identifier": "33",
       "Position": "612,-660",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "32",
         "Output": "Result"
@@ -459,6 +515,7 @@
       "Clamp": true,
       "Identifier": "34",
       "Position": "192,-732",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "15",
         "Output": "Result"
@@ -477,7 +534,8 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "35",
-      "Position": "0,-612"
+      "Position": "0,-612",
+      "HandleOffsets": {}
     },
     {
       "_class": "TextureSampler",
@@ -493,6 +551,7 @@
       },
       "Identifier": "36",
       "Position": "-1200,-1260",
+      "HandleOffsets": {},
       "Coords": {
         "Identifier": "3",
         "Output": "Result"
@@ -504,6 +563,7 @@
       "DefaultB": 1,
       "Identifier": "37",
       "Position": "-612,-1236",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "41",
         "Output": "Output"
@@ -519,6 +579,7 @@
       "DefaultB": 0.5,
       "Identifier": "38",
       "Position": "-444,-1104",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "28",
         "Output": "Result"
@@ -529,7 +590,8 @@
       "UseSecondaryCoord": false,
       "Tiling": "1,1",
       "Identifier": "39",
-      "Position": "-636,-1620"
+      "Position": "-636,-1620",
+      "HandleOffsets": {}
     },
     {
       "_class": "Add",
@@ -537,6 +599,7 @@
       "DefaultB": 1,
       "Identifier": "40",
       "Position": "-288,-1452",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "39",
         "Output": "Result"
@@ -550,6 +613,7 @@
       "_class": "AppendVector",
       "Identifier": "41",
       "Position": "-900,-1236",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "36",
         "Output": "R"
@@ -565,6 +629,7 @@
       "DefaultB": 1,
       "Identifier": "42",
       "Position": "-96,-1284",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "40",
         "Output": "Result"
@@ -583,13 +648,17 @@
       "IsAttribute": false,
       "UI": {},
       "Identifier": "43",
-      "Position": "1476,-756"
+      "Position": "1476,-756",
+      "HandleOffsets": {}
     },
     {
       "_class": "Lerp",
+      "DefaultA": 0,
+      "DefaultB": 1,
       "Fraction": 0.5,
       "Identifier": "44",
       "Position": "1740,-672",
+      "HandleOffsets": {},
       "A": {
         "Identifier": "30",
         "Output": "Result"
@@ -611,7 +680,8 @@
       "Description": "",
       "Layer": 1,
       "Identifier": "45",
-      "Position": "-816,-276"
+      "Position": "-816,-276",
+      "HandleOffsets": {}
     }
   ]
 }
