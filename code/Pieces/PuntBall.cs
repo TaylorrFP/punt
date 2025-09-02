@@ -23,9 +23,9 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 	[Property] public Vector3 preCollisionVelocity { get; set; }
 
-	private Vector3 entryNormal;
-	private Vector3 exitVelocity;
-	private Vector3 newExitVelocity;
+	//private Vector3 entryNormal;
+	//private Vector3 exitVelocity;
+	//private Vector3 newExitVelocity;
 
 	[Property] public Vector3 collisionNormal { get; set; }
 
@@ -37,7 +37,7 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 	[Property] public Vector3 collisionPosition { get; set; }
 
-	
+
 
 	protected override void OnAwake()
 	{
@@ -53,42 +53,42 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 
 		//this is all really shit, replace it or get rid maybe - it is quite nice though
 
-		if ( collision.Other.GameObject.Tags.HasAny( "wall" ) && cornerRollBias )
-		{
-			entryNormal = preCollisionVelocity.Normal;//store the velocity of the frame before the collision
+		//if ( collision.Other.GameObject.Tags.HasAny( "wall" ) && cornerRollBias )
+		//{
+		//	entryNormal = preCollisionVelocity.Normal;//store the velocity of the frame before the collision
 
-			exitVelocity = ballRB.Velocity;//the exit velocity
-			collisionPosition = collision.Contact.Point;//the collision point
-			collisionNormal = -collision.Contact.Normal;//collision normal
-
-
-
-			//remove the z components of exit and entryvelocity, we don't want to change behaviour in the z axis
-			entryNormal = new Vector3( entryNormal.x, entryNormal.y, 0 );
-			exitZVelocity = exitVelocity.z;//save this for later
-			exitVelocity = new Vector3( exitVelocity.x, exitVelocity.y, 0 );
-
-			//work out how acute the angle is.
-			angleAcuteness = Vector3.GetAngle( -entryNormal, collisionNormal );
-			angleAcuteness = angleAcuteness.Remap( 0f, 90f );
-			angleAcuteness = ballCornerRollBias.Evaluate( angleAcuteness );//once we've worked it out, use the curve to customise it.
-
-			float dotProduct = Vector3.Dot( entryNormal, collisionNormal );
-			Vector3 perpendicularComponent = dotProduct * collisionNormal;
-			Vector3 slidingNormal = entryNormal - perpendicularComponent;
-
-			newExitVelocity = Vector3.Lerp( exitVelocity.Normal, slidingNormal, angleAcuteness );
-			newExitVelocity = newExitVelocity.Normal * exitVelocity.Length;//get the 2D speed of the original exit velocity
+		//	exitVelocity = ballRB.Velocity;//the exit velocity
+		//	collisionPosition = collision.Contact.Point;//the collision point
+		//	collisionNormal = -collision.Contact.Normal;//collision normal
 
 
-			newExitVelocity = new Vector3( newExitVelocity.x, newExitVelocity.y, exitZVelocity );//add back in the z component 
-			ballRB.Velocity = newExitVelocity;
+
+		//	//remove the z components of exit and entryvelocity, we don't want to change behaviour in the z axis
+		//	entryNormal = new Vector3( entryNormal.x, entryNormal.y, 0 );
+		//	exitZVelocity = exitVelocity.z;//save this for later
+		//	exitVelocity = new Vector3( exitVelocity.x, exitVelocity.y, 0 );
+
+		//	//work out how acute the angle is.
+		//	angleAcuteness = Vector3.GetAngle( -entryNormal, collisionNormal );
+		//	angleAcuteness = angleAcuteness.Remap( 0f, 90f );
+		//	angleAcuteness = ballCornerRollBias.Evaluate( angleAcuteness );//once we've worked it out, use the curve to customise it.
+
+		//	float dotProduct = Vector3.Dot( entryNormal, collisionNormal );
+		//	Vector3 perpendicularComponent = dotProduct * collisionNormal;
+		//	Vector3 slidingNormal = entryNormal - perpendicularComponent;
+
+		//	newExitVelocity = Vector3.Lerp( exitVelocity.Normal, slidingNormal, angleAcuteness );
+		//	newExitVelocity = newExitVelocity.Normal * exitVelocity.Length;//get the 2D speed of the original exit velocity
 
 
-			exitVelocity = new Vector3( exitVelocity.x, exitVelocity.y, exitZVelocity );//re-add the z to this
+		//	newExitVelocity = new Vector3( newExitVelocity.x, newExitVelocity.y, exitZVelocity );//add back in the z component 
+		//	ballRB.Velocity = newExitVelocity;
 
 
-		}
+		//	exitVelocity = new Vector3( exitVelocity.x, exitVelocity.y, exitZVelocity );//re-add the z to this
+
+
+		//}
 
 		if ( collision.Other.GameObject.Tags.HasAny( "Net" ))
 		{

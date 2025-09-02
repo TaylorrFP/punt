@@ -30,6 +30,9 @@ public sealed class TestGameMode : Component
 	[Property] public SoundEvent OrganStartSound { get; set; }
 
 	[Group( "Debug" )][Property, Sync(SyncFlags.FromHost)] public Boolean DebugServer { get; set; }
+
+	[Group( "Debug" )][Property, Sync( SyncFlags.FromHost )] public Boolean useBot { get; set; }
+
 	[Group( "Player List" )][Property, Sync( SyncFlags.FromHost )] public List<PuntPlayerController> PlayerList { get; set; } = new List<PuntPlayerController>();
 	
 
@@ -112,12 +115,27 @@ public sealed class TestGameMode : Component
 		if ( DebugServer )
 		{
 			InitialiseGame();
+
+			if ( useBot )
+			{
+				//add a bot here
+
+				AddBotPlayer();
+
+			}
+
 		}
 
 	}
 
+    private void AddBotPlayer()
+    {
+		Log.Info( "add bot player" );
 
-	protected override void OnUpdate()
+        
+    }
+
+    protected override void OnUpdate()
 	{
 		UpdateTimeLeft();
 
@@ -626,7 +644,6 @@ public sealed class TestGameMode : Component
 				InitialiseGame();
 			}
 		}
-		//_ = GetPlayerScores( QueueManager.Instance.SelectedQueueType );
 	}
 
 

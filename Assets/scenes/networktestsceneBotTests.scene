@@ -1,0 +1,3242 @@
+{
+  "__guid": "86fb33e9-11cc-4255-a418-312dfd3f71bb",
+  "GameObjects": [
+    {
+      "__guid": "95d20f75-bbd2-4a57-885d-f8558f1b1f26",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Scene Information",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.SceneInformation",
+          "__guid": "ab48c7c7-f8bd-4277-83b0-96530be57997",
+          "__enabled": true,
+          "Author": null,
+          "Changes": "",
+          "Description": "",
+          "Group": null,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SceneTags": "",
+          "Title": "networktestscene",
+          "Version": null
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "550bdf2a-cc82-4002-93ae-203c70112f80",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Sun",
+      "Position": "0,0,0",
+      "Rotation": "0.2074881,0.9074875,-0.1535157,0.3314336",
+      "Scale": "1,1,1",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.DirectionalLight",
+          "__guid": "f0275471-970e-49b4-b68f-c30ea39bef12",
+          "__enabled": true,
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.94419,0.97767,1,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Shadows": true,
+          "SkyColor": "0.2532,0.32006,0.35349,1"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "b904ab45-7ad4-4885-b62a-44d1a0d21a4f",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "2D Skybox",
+      "Position": "-385.0942,-864.5977,-871.3605",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "skybox",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.SkyBox2D",
+          "__guid": "c26e2e94-7cda-4155-a78f-1891498806d5",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SkyIndirectLighting": true,
+          "SkyMaterial": "materials/skybox/skybox_overcast_01.vmat",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.EnvmapProbe",
+          "__guid": "b6a7cba7-7f9d-4075-8468-c0f453f9a2f6",
+          "__enabled": true,
+          "Bounds": {
+            "Mins": "-512,-512,-512",
+            "Maxs": "512,512,512"
+          },
+          "DelayBetweenUpdates": 0.1,
+          "Feathering": 0,
+          "FrameInterval": 5,
+          "MaxDistance": 512,
+          "MultiBounce": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Projection": "Sphere",
+          "RenderDynamically": true,
+          "Resolution": "Small",
+          "Texture": null,
+          "TintColor": "1,1,1,1",
+          "UpdateStrategy": "OnEnabled",
+          "ZFar": 4096,
+          "ZNear": 16
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "10f70e73-4219-480d-b790-07699176c7a7",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "NetworkManager",
+      "Position": "-170.7771,-186.1668,453.3876",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 1,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.NetworkManager",
+          "__guid": "1a87a0f8-cbb2-407f-a814-e5478a752797",
+          "__enabled": true,
+          "ArrowPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player/playerarrow.prefab"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player/playercontroller.prefab"
+          },
+          "StartServer": true
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "a1cba878-3eae-4223-a533-7208f7e1e1a7",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "TestGameMode",
+      "Position": "-170.7771,-186.1668,453.3876",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 1,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "TestGameMode",
+          "__guid": "49a325ce-8634-4fcb-8517-513f7f63fcf5",
+          "__enabled": true,
+          "Ball": null,
+          "BallPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/ball/ball.prefab"
+          },
+          "BluePieceList": [],
+          "BlueScore": 0,
+          "BlueSpawns": [
+            {
+              "_type": "gameobject",
+              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b"
+            },
+            {
+              "_type": "gameobject",
+              "go": "2cc0bca1-a376-4dba-bae2-578b9e48c658"
+            },
+            {
+              "_type": "gameobject",
+              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f"
+            },
+            {
+              "_type": "gameobject",
+              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
+            }
+          ],
+          "BlueSpawnsKickoff": [
+            {
+              "_type": "gameobject",
+              "go": "2ab70c95-3217-4b95-b9db-188345ecb29b"
+            },
+            {
+              "_type": "gameobject",
+              "go": "2cc0bca1-a376-4dba-bae2-578b9e48c658"
+            },
+            {
+              "_type": "gameobject",
+              "go": "c5de7628-ffb7-45a1-9e4b-55d13afe060f"
+            },
+            {
+              "_type": "gameobject",
+              "go": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95"
+            }
+          ],
+          "BlueTeam": [],
+          "BlueTeamAverageScore": 0,
+          "BlueTeamPendingLoss": 0,
+          "BlueTeamPendingWin": 0,
+          "CountdownTimerDuration": 3,
+          "DebugServer": false,
+          "IsOvertime": false,
+          "kickingOffSide": "Blue",
+          "KickoffSideDisplayDuration": 3,
+          "losingSideStat": 0,
+          "musicSoundPoint": {
+            "_type": "component",
+            "component_id": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
+            "go": "ab541497-7e01-4c6b-9fb6-1bf2c23f6686",
+            "component_type": "SoundPointComponent"
+          },
+          "mySide": "None",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OrganCountdownSound": "sounds/organcountdown.sound",
+          "OrganStartSound": "sounds/organstart.sound",
+          "PiecePrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/pieces/playerpiece.prefab"
+          },
+          "PlayerList": [],
+          "queueIndent": "none",
+          "RedPieceList": [],
+          "RedScore": 0,
+          "RedSpawns": [
+            {
+              "_type": "gameobject",
+              "go": "db016a8c-a3a9-4c8d-9437-1da8347bad07"
+            },
+            {
+              "_type": "gameobject",
+              "go": "d10a40e6-d41f-4354-8303-335b061e1533"
+            },
+            {
+              "_type": "gameobject",
+              "go": "10830ba6-2389-42b4-9f09-fefb3a22c310"
+            },
+            {
+              "_type": "gameobject",
+              "go": "9dcb2654-ddff-4a27-8d66-7e5688c218e3"
+            }
+          ],
+          "RedSpawnsKickoff": [
+            {
+              "_type": "gameobject",
+              "go": "db016a8c-a3a9-4c8d-9437-1da8347bad07"
+            },
+            {
+              "_type": "gameobject",
+              "go": "d10a40e6-d41f-4354-8303-335b061e1533"
+            },
+            {
+              "_type": "gameobject",
+              "go": "10830ba6-2389-42b4-9f09-fefb3a22c310"
+            },
+            {
+              "_type": "gameobject",
+              "go": "9dcb2654-ddff-4a27-8d66-7e5688c218e3"
+            }
+          ],
+          "RedTeam": [],
+          "RedTeamAverageScore": 0,
+          "RedTeamPendingLoss": 0,
+          "RedTeamPendingWin": 0,
+          "ResetTimer": {
+            "Absolute": 0,
+            "Relative": -10841.878,
+            "Passed": 10841.878,
+            "Fraction": 1
+          },
+          "ResetTimerLength": 2,
+          "RoundLength": 180,
+          "RoundStartTimer": {
+            "Absolute": 0,
+            "Relative": -10841.878,
+            "Passed": 10841.878,
+            "Fraction": 1
+          },
+          "RoundTimeLeft": 0,
+          "State": "Waiting",
+          "timescaleMult": 0.3,
+          "useBot": true,
+          "winningSideStat": 0
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "134c7b58-49bf-416c-a33c-4072ffd58904",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "HUD",
+      "Position": "-306.7854,-280.8864,394.4401",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "c8ed4c32-e34a-450c-bf5c-9ab92e3dfc3d",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 100
+        },
+        {
+          "__type": "CursorPassthroughComponent",
+          "__guid": "39fcaadc-4f4f-4444-ac6e-c102e0c2e3c6",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Sandbox.TestHUD",
+          "__guid": "ce87ced8-6b63-4957-84b9-874889cc3cad",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "ScoreChange": 0
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "b74e012f-d5b4-4bcc-a0d1-9f7fd571304d",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Pitch",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "e9475e78-cdce-4e6d-b7b0-40fc19756b89",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "PitchGrass_Red",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "0.58,0.58,0.58",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "38ee44a0-6d7b-4f92-9495-8936317c9c31",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "LodOverride": null,
+              "MaterialGroup": null,
+              "MaterialOverride": "prefabs/pitch/materials/pitchgrass_fp.vmat",
+              "Materials": null,
+              "Model": "prefabs/pitch/models/pitchgrass.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "Off",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "be5cf64d-bb0f-41f9-8af1-5f9576ff1886",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "PitchGrass_Blue",
+          "Position": "0,0,0",
+          "Rotation": "0,0,1,0.0000001947072",
+          "Scale": "0.58,0.58,0.58",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "b180f9c8-8c78-4ecf-9617-c7876191f12d",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "LodOverride": null,
+              "MaterialGroup": null,
+              "MaterialOverride": "prefabs/pitch/materials/pitchgrass_sbox.vmat",
+              "Materials": null,
+              "Model": "prefabs/pitch/models/pitchgrass.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "Off",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "0759f6f2-295d-4f64-8e6c-745e76fb022c",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "PitchSides",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "0.58,0.58,0.58",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "2882fcc2-2b08-4de0-a140-20bda1796079",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "LodOverride": null,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "prefabs/pitch/models/pitchsides.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "0b92a5ff-9f30-4aed-9214-98b26c126459",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Pitch_Collider",
+          "Position": "0,0,-1",
+          "Rotation": "0,0,0,1",
+          "Scale": "100,100,1",
+          "Tags": "pitch",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "e0fcc1f2-2d6d-43f0-a7d8-000b79fd11f4",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "LodOverride": null,
+              "MaterialGroup": null,
+              "MaterialOverride": "materials/default.vmat",
+              "Materials": null,
+              "Model": "models/dev/plane.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "0.19264,0.45581,0.17385,1"
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "1de69319-5330-488f-ae4f-dee52bb4b745",
+              "__enabled": true,
+              "Center": "0,0,-20",
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Scale": "100,100,40",
+              "Static": false,
+              "Surface": "physicssurfaces/floorsurface.surface",
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "d4a47070-398b-496f-afca-3e7b3019e285",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Goals",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [],
+          "Children": [
+            {
+              "__guid": "e70deb20-e196-4bd6-a216-8c09b440f847",
+              "__version": 1,
+              "__Prefab": "prefabs/pitch/goal.prefab",
+              "__PrefabInstancePatch": {
+                "AddedObjects": [],
+                "RemovedObjects": [],
+                "PropertyOverrides": [
+                  {
+                    "Target": {
+                      "Type": "GameObject",
+                      "IdValue": "5777b156-872f-4feb-ae1d-eebce85ca832"
+                    },
+                    "Property": "Name",
+                    "Value": "goal_red"
+                  },
+                  {
+                    "Target": {
+                      "Type": "GameObject",
+                      "IdValue": "5777b156-872f-4feb-ae1d-eebce85ca832"
+                    },
+                    "Property": "Position",
+                    "Value": "700,0,0"
+                  },
+                  {
+                    "Target": {
+                      "Type": "GameObject",
+                      "IdValue": "5777b156-872f-4feb-ae1d-eebce85ca832"
+                    },
+                    "Property": "NetworkInterpolation",
+                    "Value": false
+                  }
+                ],
+                "MovedObjects": []
+              },
+              "__PrefabIdToInstanceId": {
+                "5777b156-872f-4feb-ae1d-eebce85ca832": "e70deb20-e196-4bd6-a216-8c09b440f847",
+                "2dbd6d97-df94-4cc4-89d4-bb8770446ca1": "dd08be56-c891-4de3-857b-5d9ae597bf26",
+                "e423d69d-efb4-480f-b233-c0fe57f8fad2": "4ab3ac84-6ef5-442e-823e-ceaf298e35a8",
+                "e22fe621-9095-43db-ba2e-1c232be26216": "60f5cdee-608e-4632-b754-0c50381c8926",
+                "0e03c73f-d313-4f48-a633-7db1d3a16ed9": "4f2eb5af-7230-4706-9410-08391a32832a",
+                "f953f3dd-cbe1-437b-a4dc-2acec077a082": "25c4c9f4-7ed0-4e84-850b-691b3478726d",
+                "36c46c28-4706-4326-bcdb-4d1d93cff520": "ed880dcd-fc1c-491e-b2cf-3182f6856222",
+                "b3247be7-9d71-4650-9932-6742910cc3c1": "16f77d76-5e0b-47e4-9c8d-b37d8ed95f84",
+                "6b6e215d-e680-46d6-8f4e-f4cde161788d": "920d59b7-7161-44b7-8b0d-431863ffa15e",
+                "aaca0256-622e-4694-9e72-ad3e1a177235": "9d68ded3-7f15-47ea-b392-3cab542c31e8",
+                "a760b78f-61c1-4a85-82ae-f4e668c6b600": "8ee3cfe3-9847-4eac-ba0f-348a7033e914",
+                "67e215b4-0bd7-4b23-b703-56817bf288d3": "358045be-06c9-41b5-8c74-224ae800ecef",
+                "c94206b2-10bf-4a01-b4d6-0333749163a0": "1c897d9c-3ac4-4a53-8caf-e8509acdc2a3",
+                "8e592dba-6892-4f4f-a8c5-b4feabf52d07": "7e40dc2e-a11d-419c-a103-428208fd454f",
+                "7c42db6c-9561-4f4d-8413-aa77a62aea65": "ef663430-5c50-48d2-86aa-0be553beda09"
+              }
+            },
+            {
+              "__guid": "2c321bb5-e4ea-40c7-bfc3-e1203e71e9c6",
+              "__version": 1,
+              "__Prefab": "prefabs/pitch/goal.prefab",
+              "__PrefabInstancePatch": {
+                "AddedObjects": [],
+                "RemovedObjects": [],
+                "PropertyOverrides": [
+                  {
+                    "Target": {
+                      "Type": "GameObject",
+                      "IdValue": "5777b156-872f-4feb-ae1d-eebce85ca832"
+                    },
+                    "Property": "Name",
+                    "Value": "goal_blue"
+                  },
+                  {
+                    "Target": {
+                      "Type": "GameObject",
+                      "IdValue": "5777b156-872f-4feb-ae1d-eebce85ca832"
+                    },
+                    "Property": "Position",
+                    "Value": "-700,0,0"
+                  },
+                  {
+                    "Target": {
+                      "Type": "GameObject",
+                      "IdValue": "5777b156-872f-4feb-ae1d-eebce85ca832"
+                    },
+                    "Property": "Rotation",
+                    "Value": "-0,0,-1,-0.00000004371139"
+                  },
+                  {
+                    "Target": {
+                      "Type": "GameObject",
+                      "IdValue": "5777b156-872f-4feb-ae1d-eebce85ca832"
+                    },
+                    "Property": "NetworkInterpolation",
+                    "Value": false
+                  },
+                  {
+                    "Target": {
+                      "Type": "Component",
+                      "IdValue": "e22fe621-9095-43db-ba2e-1c232be26216"
+                    },
+                    "Property": "GoalTeamSide",
+                    "Value": "Blue"
+                  }
+                ],
+                "MovedObjects": []
+              },
+              "__PrefabIdToInstanceId": {
+                "5777b156-872f-4feb-ae1d-eebce85ca832": "2c321bb5-e4ea-40c7-bfc3-e1203e71e9c6",
+                "2dbd6d97-df94-4cc4-89d4-bb8770446ca1": "6219fc1b-f9d1-46be-964a-052c7def10c4",
+                "e423d69d-efb4-480f-b233-c0fe57f8fad2": "c9a467cd-74d0-4062-8b50-4b2a152ebe4e",
+                "e22fe621-9095-43db-ba2e-1c232be26216": "8e1f1206-b01f-4ebd-babc-3882cf0fda45",
+                "0e03c73f-d313-4f48-a633-7db1d3a16ed9": "7c9fbe41-9ccf-475a-b9e5-d978a63b54de",
+                "f953f3dd-cbe1-437b-a4dc-2acec077a082": "50164a22-c42d-4baa-b9dc-baa0f6553eba",
+                "36c46c28-4706-4326-bcdb-4d1d93cff520": "d969501a-eb07-46aa-8249-a0a4201c8e50",
+                "b3247be7-9d71-4650-9932-6742910cc3c1": "2f83953c-de25-438a-aada-e8ba105166b4",
+                "6b6e215d-e680-46d6-8f4e-f4cde161788d": "831f2cf5-e0e3-49e3-8a31-af7c759b7af6",
+                "aaca0256-622e-4694-9e72-ad3e1a177235": "4788fdbd-ae3a-45e5-81d4-8c7fd1c90329",
+                "a760b78f-61c1-4a85-82ae-f4e668c6b600": "43cd6902-405b-424e-9ed8-fe834f48c135",
+                "67e215b4-0bd7-4b23-b703-56817bf288d3": "ed90ea59-e986-472f-af69-9873cb23c63b",
+                "c94206b2-10bf-4a01-b4d6-0333749163a0": "da18a315-b4fb-42b2-b7ab-7f161aff46d1",
+                "8e592dba-6892-4f4f-a8c5-b4feabf52d07": "2e910324-4e5f-418e-b1e6-980d1e368c7d",
+                "7c42db6c-9561-4f4d-8413-aa77a62aea65": "c01201e2-a2b7-41ed-a5c1-3289b37eabb9"
+              }
+            }
+          ]
+        },
+        {
+          "__guid": "3ade498f-d659-4aa9-9bb4-16725f37c71f",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "PitchGenerator",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "PitchGenerator",
+              "__guid": "99a3561b-0262-451f-8de4-cf2b4a09e79e",
+              "__enabled": true,
+              "cornerAngle": 0,
+              "cornerRadius": 275,
+              "cornerResolution": 16,
+              "cornerSegmentWidth": 0,
+              "gameMode": null,
+              "goalBackSurface": "physicssurfaces/goalbacksurface.surface",
+              "goalHeight": 177.5,
+              "goalWidth": 330,
+              "height": 500,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "pitchX": 1400,
+              "pitchY": 1050,
+              "thickness": 100,
+              "wallSurface": "physicssurfaces/wallsurface.surface"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "7f193962-ac93-4e17-9cf5-48f696026fcc",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "SpawnPoints",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": false,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [],
+          "Children": [
+            {
+              "__guid": "7d27f4d8-0af1-41c2-9f5f-bfb022795d1d",
+              "__version": 1,
+              "Flags": 0,
+              "Name": "Red_5x5",
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Enabled": false,
+              "NetworkMode": 2,
+              "NetworkInterpolation": true,
+              "NetworkOrphaned": 0,
+              "OwnerTransfer": 1,
+              "Components": [],
+              "Children": [
+                {
+                  "__guid": "ca4e8edb-ab11-46c0-a9ab-f2735aee9542",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Goalkeeper",
+                  "Position": "675,-0.000008826082,0.9999999",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "bf5ef8fa-70af-4abd-a5ae-05deb90fed6a",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "82dd5efe-0648-4608-82d6-0db5ccba6c97",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "1b200075-73e0-4218-9421-a91a8037e7b1",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Attacker_L",
+                  "Position": "115,-250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "ef7ecb04-5a4d-4b45-b414-74f8ba2c1465",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "67d102a5-9347-4b3e-939f-1bc657283b20",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "15e5e32c-87f4-4e24-8fb2-bfa3d89aae28",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Attacker_L_Kickoff",
+                  "Position": "155.6404,-0.000003552899,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": false,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "c2b96d6f-5ee3-480e-a75a-4996a7c36af2",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "3f6792dc-5cf9-412f-b961-378f3ab03f16",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "a196c05e-f4ae-460c-a64e-8fc03e7aff0e",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Attacker_R",
+                  "Position": "115,250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "acee00d3-1baa-4ad7-b796-c10d841ae70f",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "d9d76101-4a0a-4668-baaf-d31017debb09",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "de4ff50c-c9c1-4550-994b-49ef77752fbd",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Attacker_R_Kickoff",
+                  "Position": "-89.88309,74.82692,1.000027",
+                  "Rotation": "0,0,-0.4712663,0.8819908",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": false,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "046b0e9a-dcad-40f7-86a1-d7eb154c9526",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-0.8819911,0.4712664",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "e0dfb286-8256-4510-bb84-b7c55eb4a047",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "863d25c5-71dd-4583-8cba-9491616243c9",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_L",
+                  "Position": "375,-250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "22f739b9-4e5f-4755-be94-68356832fc85",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "7b8fac3f-7ed0-4344-92eb-2928a00ced63",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "8089e6c5-e8ca-446b-8e8a-59e6750b19b3",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_R",
+                  "Position": "375,250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "f196463c-4b87-4056-9195-9bf21f8dcf19",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "dab94234-d16c-47dd-a5e9-76f5271561f9",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "5f2330ec-80b8-4d9c-a49b-ba893640c4ec",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_M",
+                  "Position": "285,0,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "1c79edcf-aca9-48d6-a387-a135b43b1f63",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "e2c64188-4d7b-492c-9b75-8eb5988c8ba1",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "ef520dca-2361-4414-9f20-21b87165f2ae",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_M",
+                  "Position": "375,-0.00001170463,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "414a01da-fb98-461a-a08a-7c36ba880630",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "bb3c162f-4ecf-41b9-b3c1-6ad477e07035",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__guid": "a1e3755f-f3d1-4f59-a69b-15866d4ebab7",
+              "__version": 1,
+              "Flags": 0,
+              "Name": "Red_4x4",
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkInterpolation": true,
+              "NetworkOrphaned": 0,
+              "OwnerTransfer": 1,
+              "Components": [],
+              "Children": [
+                {
+                  "__guid": "db016a8c-a3a9-4c8d-9437-1da8347bad07",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Goalkeeper",
+                  "Position": "675,-0.000008826082,0.9999999",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "b5d2a4e2-22a1-460e-9b1a-901f219add18",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "4ed1feae-d1aa-4058-8478-5cdf12f76aef",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "d10a40e6-d41f-4354-8303-335b061e1533",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Attacker",
+                  "Position": "250,0,1.000074",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "a7f62e26-4418-4bbd-8594-9d7fd7e7581b",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "2cda7766-5047-41c0-b456-da82e93aace1",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "10830ba6-2389-42b4-9f09-fefb3a22c310",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_L",
+                  "Position": "389.7444,-250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "f7b6f230-8b9b-4192-ac42-ee37de92c99f",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "5bbb05d4-4a8f-4a30-96c5-d844fe9d633f",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "9dcb2654-ddff-4a27-8d66-7e5688c218e3",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_R",
+                  "Position": "389.7444,250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "99078cc4-4648-4fce-9ab9-d7772cfed344",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,0,1",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "9ce3a2c1-8271-40d1-822c-275411b957df",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourred.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__guid": "7c91a43c-6854-4668-9699-1692096dcc28",
+              "__version": 1,
+              "Flags": 0,
+              "Name": "Blue_4x4",
+              "Position": "0,0,0",
+              "Rotation": "0,0,1,-0.00000004371139",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkInterpolation": true,
+              "NetworkOrphaned": 0,
+              "OwnerTransfer": 1,
+              "Components": [],
+              "Children": [
+                {
+                  "__guid": "2ab70c95-3217-4b95-b9db-188345ecb29b",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Goalkeeper",
+                  "Position": "675,-0.000009179254,0.9999999",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "c9f5338d-c6d1-44bb-8e03-dc7c8c4a283b",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "9e81c44b-9dd7-4ac3-a4ac-0412e3912895",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "2cc0bca1-a376-4dba-bae2-578b9e48c658",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Attacker",
+                  "Position": "250,-0.00001290468,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "c6bedf5a-a669-4002-b0d8-9c91579b3b3c",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "da68a2b8-5dd5-486e-b42f-94f4ef95da26",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "c5de7628-ffb7-45a1-9e4b-55d13afe060f",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_L",
+                  "Position": "375,-250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "8e59e093-fe5e-40aa-b7a4-63621f362e6e",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "f2ef9126-a708-42da-8287-f2ed13bb46be",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "07810c2b-9596-4b71-a6a5-7ed99e7dcc95",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_R",
+                  "Position": "375,250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "8e11d69d-2e3f-4282-8c2d-de694492f03d",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "a3d98eea-0653-4bdb-a729-2adbcf39f63e",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__guid": "0dcfd20f-e519-4e0c-ac85-68f73bf6bda0",
+              "__version": 1,
+              "Flags": 0,
+              "Name": "Blue_5x5",
+              "Position": "0,0,0",
+              "Rotation": "0,0,1,-0.00000004371139",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Enabled": false,
+              "NetworkMode": 2,
+              "NetworkInterpolation": true,
+              "NetworkOrphaned": 0,
+              "OwnerTransfer": 1,
+              "Components": [],
+              "Children": [
+                {
+                  "__guid": "d42bd7c1-b6ac-4fed-8852-11a51b96ea52",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Goalkeeper",
+                  "Position": "675,-0.000009179254,0.9999999",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "1ffe489f-4c3b-4c10-97c0-c8131aad613b",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "1cfbb23d-4497-4190-abd3-ee2985e72762",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "f692eccf-85c9-4c2e-908e-e3a50a7902d3",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Attacker_L",
+                  "Position": "115,-250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "db0a520b-f9e2-44ec-9337-729bcc2efebd",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "c5f343a7-33f8-4b9c-b55f-5645ca931d6e",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "12dcc537-0084-4baf-b8e0-e99fbdf4048e",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Attacker_L_Kickoff",
+                  "Position": "155.6404,-0.000003552899,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "2a7282dd-4797-4cab-bf3e-7c72bb0c1c60",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "fa9cee36-0009-4395-9d41-b84b4f52af8a",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "4f0f271f-662b-453c-8f7c-eca5d62b8fde",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Attacker_R",
+                  "Position": "115,250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "9412d030-622e-4083-97e2-54ba3ddf33db",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "3ef0cc62-c198-47da-8305-71189c3a91ce",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "625301a8-e713-49fe-940c-db524506754a",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Attacker_R_Kickoff",
+                  "Position": "-89.88309,74.82692,1.000027",
+                  "Rotation": "0,0,-0.4712663,0.8819908",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "2bae18b9-2eed-44b0-92d1-cb1e61d88a0a",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-0.4712665,-0.8819911",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "84789f25-0976-483a-a06d-ff7367bd9612",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "43503934-c93a-410a-b76b-3f2b789a97fe",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_L",
+                  "Position": "375,-250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "ccbe0e8b-9896-4edf-8935-4cf3fb2ff48f",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "dc280e4c-90c4-4ca9-8427-1fb4a9e4f615",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "b8dd90bf-5722-48b2-a5fb-aff7d99f1b3c",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_R",
+                  "Position": "375,250,1.000026",
+                  "Rotation": "-0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "39131c81-f855-4a48-912f-19f97e32c364",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "cca88d67-f131-44e8-b43a-1085494ec36e",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "bfe7b890-4321-4808-8253-cc3154593252",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_M",
+                  "Position": "285,0,1.000026",
+                  "Rotation": "0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "40dac93c-3ed9-491b-ae7c-8c95046459a7",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "5a140593-0d0b-4f31-90bc-32630826349d",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "__guid": "7aa11dc1-3685-4cf4-b557-270345db47d8",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "Defender_M",
+                  "Position": "375,-0.000007752995,1.000026",
+                  "Rotation": "0,0,-1,-0.00000004371139",
+                  "Scale": "1,1,1",
+                  "Tags": "spawnpoint",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [],
+                  "Children": [
+                    {
+                      "__guid": "277a68aa-3e4a-459b-9bca-983a00dad067",
+                      "__version": 1,
+                      "Flags": 0,
+                      "Name": "puntbase",
+                      "Position": "0,0,0",
+                      "Rotation": "0,0,-1,0.00000002980232",
+                      "Scale": "1,1,1",
+                      "Tags": "",
+                      "Enabled": true,
+                      "NetworkMode": 2,
+                      "NetworkInterpolation": true,
+                      "NetworkOrphaned": 0,
+                      "OwnerTransfer": 1,
+                      "Components": [
+                        {
+                          "__type": "Sandbox.ModelRenderer",
+                          "__guid": "15ca8a37-5f71-4e90-941e-a6e18853269b",
+                          "__enabled": true,
+                          "BodyGroups": 18446744073709551615,
+                          "CreateAttachments": false,
+                          "LodOverride": null,
+                          "MaterialGroup": null,
+                          "MaterialOverride": "prefabs/pieces/materials/socceteobasecolourblue.vmat",
+                          "Materials": null,
+                          "Model": "prefabs/pieces/puntbase.vmdl",
+                          "OnComponentDestroy": null,
+                          "OnComponentDisabled": null,
+                          "OnComponentEnabled": null,
+                          "OnComponentFixedUpdate": null,
+                          "OnComponentStart": null,
+                          "OnComponentUpdate": null,
+                          "RenderOptions": {
+                            "GameLayer": true,
+                            "OverlayLayer": false,
+                            "BloomLayer": false,
+                            "AfterUILayer": false
+                          },
+                          "RenderType": "On",
+                          "Tint": "1,1,1,1"
+                        }
+                      ],
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "adbb2eab-d687-4528-9998-7b38a6df22e3",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "CameraHolder",
+      "Position": "0,16.61024,0",
+      "Rotation": "-0.2418446,0.2418448,0.6644629,0.6644632",
+      "Scale": "1,-0.4241381,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "1be91d04-469f-48f5-9333-18f5e5d6ca8c",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Camera",
+          "Position": "-2731.614,0.001151232,-16.4299",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.CameraComponent",
+              "__guid": "c0c53c19-8684-412f-895e-3efa87fa5cd7",
+              "__enabled": true,
+              "BackgroundColor": "0.33333,0.46275,0.52157,1",
+              "ClearFlags": "All",
+              "FieldOfView": 32.39,
+              "FovAxis": "Horizontal",
+              "IsMainCamera": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Orthographic": false,
+              "OrthographicHeight": 1204,
+              "Priority": 1,
+              "RenderExcludeTags": "",
+              "RenderTags": "",
+              "TargetEye": "None",
+              "Viewport": "0,0,1,1",
+              "ZFar": 10000,
+              "ZNear": 10
+            },
+            {
+              "__type": "Sandbox.Bloom",
+              "__guid": "0cd27493-ff1b-43f8-9af9-bba1a15c3af7",
+              "__enabled": true,
+              "__version": 1,
+              "Gamma": 2.2,
+              "Mode": "Additive",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Strength": 0.5,
+              "Threshold": 1.25,
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.Tonemapping",
+              "__guid": "b0b26d37-6969-4b5e-984d-b704b596e06e",
+              "__enabled": true,
+              "__version": 3,
+              "AutoExposureEnabled": false,
+              "ExposureCompensation": 0,
+              "ExposureMethod": "RGB",
+              "MaximumExposure": 2,
+              "MinimumExposure": 1,
+              "Mode": "ACES",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Rate": 1
+            },
+            {
+              "__type": "Sandbox.Sharpen",
+              "__guid": "e96eb26a-a8df-4d7e-8538-2b12788ec3f6",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Scale": 0.2
+            },
+            {
+              "__type": "Sandbox.ChromaticAberration",
+              "__guid": "5cd48e3b-2093-4cdd-96b3-a43e65324a93",
+              "__enabled": true,
+              "Offset": "4,6,0",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Scale": 0.03
+            },
+            {
+              "__type": "Sandbox.ColorAdjustments",
+              "__guid": "406aff36-9647-42ae-a991-3e97d8c644a9",
+              "__enabled": true,
+              "Brightness": 1.79,
+              "Contrast": 1,
+              "HueRotate": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Saturation": 1.06
+            },
+            {
+              "__type": "Sandbox.Highlight",
+              "__guid": "1e58aece-d3a1-4f8c-8b1d-478ee2068904",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.AmbientOcclusion",
+              "__guid": "9e77a1fa-1fdc-4631-a69b-060f81fa6464",
+              "__enabled": true,
+              "__version": 1,
+              "DenoiseMode": "Temporal",
+              "FalloffRange": 0.01,
+              "Intensity": 0.2,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Quality": "High",
+              "Radius": 100,
+              "ThinCompensation": 0
+            },
+            {
+              "__type": "Sandbox.DepthOfField",
+              "__guid": "a94c4f1c-2d4a-4098-acc5-ead28587fdde",
+              "__enabled": false,
+              "BackBlur": true,
+              "BlurSize": 20,
+              "FocalDistance": 2700,
+              "FocusRange": 1000,
+              "FrontBlur": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "QualityLevel": "High"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "57bdf56e-78a7-4750-9e0d-a75c96cbf222",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Listener",
+          "Position": "-144.6685,11.9163,22.78352",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.AudioListener",
+              "__guid": "cd30dc65-bc12-44d1-b8f4-6eb0be6a2bc3",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "UseCameraDirection": true
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "ab541497-7e01-4c6b-9fb6-1bf2c23f6686",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Music",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": false,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.SoundPointComponent",
+          "__guid": "e53fac91-8dd7-4cb3-ae46-4ada52dc7bfa",
+          "__enabled": true,
+          "Distance": 512,
+          "DistanceAttenuation": false,
+          "DistanceAttenuationOverride": false,
+          "Falloff": [
+            {
+              "x": 0,
+              "y": 1,
+              "in": 3.1415927,
+              "out": -3.1415927,
+              "mode": "Mirrored"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            }
+          ],
+          "Force2d": false,
+          "MaxRepeatTime": 1,
+          "MinRepeatTime": 1,
+          "Occlusion": false,
+          "OcclusionOverride": false,
+          "OcclusionRadius": 32,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Pitch": 1,
+          "PlayOnStart": false,
+          "ReflectionOverride": false,
+          "Reflections": false,
+          "Repeat": false,
+          "SoundEvent": "sounds/music/puntost.sound",
+          "SoundOverride": true,
+          "StopOnNew": false,
+          "TargetMixer": {
+            "Name": "ui",
+            "Id": "1b004eb1-2458-44cd-ae65-823e82f8d4e2"
+          },
+          "Volume": 0.2
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "d17bef9a-2efc-468b-ae2d-addd60b1617e",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Crowd",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": false,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.SoundPointComponent",
+          "__guid": "977ae898-3b18-4458-8dcc-b58d6d02f182",
+          "__enabled": true,
+          "Distance": 512,
+          "DistanceAttenuation": false,
+          "DistanceAttenuationOverride": false,
+          "Falloff": [
+            {
+              "x": 0,
+              "y": 1,
+              "in": 3.1415927,
+              "out": -3.1415927,
+              "mode": "Mirrored"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            }
+          ],
+          "Force2d": false,
+          "MaxRepeatTime": 1,
+          "MinRepeatTime": 1,
+          "Occlusion": false,
+          "OcclusionOverride": false,
+          "OcclusionRadius": 32,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Pitch": 1,
+          "PlayOnStart": true,
+          "ReflectionOverride": false,
+          "Reflections": false,
+          "Repeat": true,
+          "SoundEvent": "sounds/crowdambience.sound",
+          "SoundOverride": true,
+          "StopOnNew": false,
+          "TargetMixer": {
+            "Name": "ui",
+            "Id": "1b004eb1-2458-44cd-ae65-823e82f8d4e2"
+          },
+          "Volume": 0.2
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "bbbab2cd-800e-45aa-adde-1030a89d403f",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "DebugHud",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": false,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "af25647e-4b8c-4bcb-9565-842ec0aa0f6c",
+          "__enabled": false,
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Sandbox.DebugHUD",
+          "__guid": "6179daad-ed51-462d-be42-6ec74dbafc50",
+          "__enabled": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "efb58c04-6ade-4686-9048-6621cb9a465c",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "pitch",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1.12,1.12,1.12",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "3e42ace2-abed-41ad-9a0f-422e93112b92",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "LodOverride": null,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Materials": null,
+          "Model": "prefabs/pitch/models/pitch.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "a0a741f9-f581-4063-bde1-143176247ebd",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Bot",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "PuntBot",
+          "__guid": "c77be1ca-3503-47c3-95f7-e22af46cd9ea",
+          "__enabled": true,
+          "BallRadius": 30,
+          "BotPiece": null,
+          "BounceFriction": 0,
+          "Bounciness": 0.75,
+          "DebugDrawIntercept": false,
+          "DebugDrawPrediction": false,
+          "DistToBall": 0,
+          "FlickFrequency": 1.5,
+          "FlickOnSelect": true,
+          "GravityOverride": "0,0,0",
+          "LastShotDist": 0,
+          "LastShotTarget": "0,0,0",
+          "LinearDamping": 0.1,
+          "MaxBouncesPerStep": 3,
+          "MaxFlickSpeed": 900,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PieceLinearDamping": 0.13,
+          "PieceSelectPeriod": 2,
+          "PredictionSteps": 120,
+          "PredictionTime": 2,
+          "SkinWidth": 0.2,
+          "SleepSpeed": 10,
+          "UseGravity": true
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "1631633d-2d51-4212-85ef-37ae42fb99de",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Bot (1)",
+      "Position": "300.4315,323.492,-0.001185969",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": false,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "PuntBot",
+          "__guid": "a6ef885a-f5db-4b90-843e-8fb394e2ef18",
+          "__enabled": true,
+          "BallRadius": 30,
+          "BotPiece": null,
+          "BounceFriction": 0,
+          "Bounciness": 0.75,
+          "DebugDrawIntercept": true,
+          "DebugDrawPrediction": true,
+          "DistToBall": 0,
+          "FlickFrequency": 3,
+          "FlickOnSelect": true,
+          "GravityOverride": "0,0,0",
+          "LastShotDist": 0,
+          "LastShotTarget": "0,0,0",
+          "LinearDamping": 0.1,
+          "MaxBouncesPerStep": 3,
+          "MaxFlickSpeed": 650,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PieceLinearDamping": 0.1,
+          "PieceSelectPeriod": 2,
+          "PredictionSteps": 120,
+          "PredictionTime": 2,
+          "SkinWidth": 0.2,
+          "SleepSpeed": 10,
+          "UseGravity": true
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "c7d825a3-d055-41a7-967f-fed64dd47916",
+          "__version": 1,
+          "__Prefab": "prefabs/pieces/playerpiece.prefab",
+          "__PrefabInstancePatch": {
+            "AddedObjects": [],
+            "RemovedObjects": [],
+            "PropertyOverrides": [
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "cb2901cd-7385-48b3-9c35-210aaf6c5b8c"
+                },
+                "Property": "Position",
+                "Value": "-73.95296,-298.5265,-0.4909839"
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "a4e5bbe3-f335-455a-a51e-01336be25b2b"
+                },
+                "Property": "cooldownTimeSince",
+                "Value": {
+                  "Absolute": 0,
+                  "Relative": 10841.878
+                }
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "d5cb658a-3a3d-4d88-9383-accfe05bb483"
+                },
+                "Property": "squashTimeSince",
+                "Value": {
+                  "Absolute": 0,
+                  "Relative": 115822140
+                }
+              }
+            ],
+            "MovedObjects": []
+          },
+          "__PrefabIdToInstanceId": {
+            "cb2901cd-7385-48b3-9c35-210aaf6c5b8c": "c7d825a3-d055-41a7-967f-fed64dd47916",
+            "a4e5bbe3-f335-455a-a51e-01336be25b2b": "7774df8d-7c76-4c7e-8450-fd40350a5b30",
+            "68aab748-7131-4148-995a-a088f9804da7": "4d0532ae-f03a-4e5a-845b-88ed03a8c307",
+            "b2e8c182-1fee-4861-99b3-58983ed2ef9c": "e4d09cd1-ea37-4b99-bbb2-c0b8ab09812e",
+            "17b985bc-1106-4697-82ae-7041b77a16f1": "4a034cf9-fc3b-484c-8f03-ccb4cc663cca",
+            "36079f2e-9620-450a-aaa5-36a7930a9997": "5a8fac50-67cf-4137-b3c3-c7cc85791131",
+            "d1871549-e33b-4069-ad30-5e876dc2c85d": "9bfebed7-18a4-4809-9051-0bac01257c9c",
+            "c67a5325-24e2-4cb5-908e-4dec26bb09fb": "933e47bc-1de5-4e0b-9abc-aaa075d0a11d",
+            "d72fd439-05ac-4afa-b5a0-e93154264c83": "7d815023-8dad-4b48-9cbb-394e3e49d394",
+            "da381471-801c-4f5f-982e-196e76af22f8": "ae1a60a4-ea61-45aa-b100-ed360238bee6",
+            "d5cb658a-3a3d-4d88-9383-accfe05bb483": "9372ec2a-44f2-481c-8f8d-50cc48d42f1a",
+            "b8ebd53a-a82d-4d10-854f-f1791cac22c5": "35b45279-17aa-4434-b2d7-7fc9b48f5fc1",
+            "81dbc13d-5d3c-444a-940a-325d81d63ca1": "fee63dfb-5bb8-4d02-80cc-56aff8c03437",
+            "91f1ab5c-966d-4ff0-ad12-11f627911c75": "b12050f8-857d-4873-918c-02b1f0f82acd",
+            "dfff27cc-7c1f-496b-9364-29a934258ed1": "fceafa5c-7fa8-4686-8976-23e55bc0fb86",
+            "057a4de3-acd2-4127-b7eb-a82ed82e5aea": "351164f5-fd65-406b-98e7-7d67b2233407",
+            "044d8e2e-a3ff-4d0d-914e-d7abe6a23104": "46e8fed5-099c-4bf8-a722-bc9040b16303",
+            "82af1cab-a5b5-486c-8d58-54a1e1dcd004": "353bc2ef-ba0b-43d6-b09f-4a435228c209",
+            "1d913748-e93f-4609-a6f8-8aeb13f864b5": "fa380744-b5de-43ab-a705-d21840b98216",
+            "5ef49142-c450-4f1c-9f78-0e3e7635b1c4": "44a68bd3-b0b2-43a1-bce0-83db6d80e04a",
+            "6802cad6-251f-4ba3-bec0-94682010c273": "2253f3f8-7cf5-4148-8068-24e4273f4443",
+            "537fbd28-957c-4ae6-97b5-109b2ab37b3c": "7cfc8478-06eb-4212-b4aa-7a4d60c181da",
+            "fc8366aa-858c-4572-8a1c-700b80bdf4ca": "5ea14507-e60b-4e8d-bdfc-cc6ea5b26d41"
+          }
+        }
+      ]
+    },
+    {
+      "__guid": "bea47a0d-e626-47a2-a89d-eb56f28cc7e6",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Bot (2)",
+      "Position": "31.73056,590.7411,-0.001043558",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": false,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "PuntBot",
+          "__guid": "c8b3fa89-92ed-44cb-b301-bbe2d0e7667f",
+          "__enabled": true,
+          "BallRadius": 30,
+          "BotPiece": null,
+          "BounceFriction": 0,
+          "Bounciness": 0.75,
+          "DebugDrawIntercept": true,
+          "DebugDrawPrediction": true,
+          "DistToBall": 0,
+          "FlickFrequency": 5,
+          "FlickOnSelect": true,
+          "GravityOverride": "0,0,0",
+          "LastShotDist": 0,
+          "LastShotTarget": "0,0,0",
+          "LinearDamping": 0.1,
+          "MaxBouncesPerStep": 3,
+          "MaxFlickSpeed": 650,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PieceLinearDamping": 0.1,
+          "PieceSelectPeriod": 2,
+          "PredictionSteps": 120,
+          "PredictionTime": 2,
+          "SkinWidth": 0.2,
+          "SleepSpeed": 10,
+          "UseGravity": true
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "535ce7a2-09da-4e6b-91a1-6d0ad32db9be",
+          "__version": 1,
+          "__Prefab": "prefabs/pieces/playerpiece.prefab",
+          "__PrefabInstancePatch": {
+            "AddedObjects": [],
+            "RemovedObjects": [],
+            "PropertyOverrides": [
+              {
+                "Target": {
+                  "Type": "GameObject",
+                  "IdValue": "cb2901cd-7385-48b3-9c35-210aaf6c5b8c"
+                },
+                "Property": "Position",
+                "Value": "-73.95296,-298.5265,-0.4909839"
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "a4e5bbe3-f335-455a-a51e-01336be25b2b"
+                },
+                "Property": "cooldownTimeSince",
+                "Value": {
+                  "Absolute": 0,
+                  "Relative": 10841.878
+                }
+              },
+              {
+                "Target": {
+                  "Type": "Component",
+                  "IdValue": "d5cb658a-3a3d-4d88-9383-accfe05bb483"
+                },
+                "Property": "squashTimeSince",
+                "Value": {
+                  "Absolute": 0,
+                  "Relative": 115822140
+                }
+              }
+            ],
+            "MovedObjects": []
+          },
+          "__PrefabIdToInstanceId": {
+            "cb2901cd-7385-48b3-9c35-210aaf6c5b8c": "535ce7a2-09da-4e6b-91a1-6d0ad32db9be",
+            "a4e5bbe3-f335-455a-a51e-01336be25b2b": "0e24f8bd-96e3-418b-99c1-1a698dff28c0",
+            "68aab748-7131-4148-995a-a088f9804da7": "fd671a10-0b47-443a-b897-525122bd215b",
+            "b2e8c182-1fee-4861-99b3-58983ed2ef9c": "048ae6c0-0a23-48e1-ab9e-d02475f9fcc3",
+            "17b985bc-1106-4697-82ae-7041b77a16f1": "c63a38f6-28fc-4d75-a8e0-7d28cc8acfc3",
+            "36079f2e-9620-450a-aaa5-36a7930a9997": "4b7c7c90-c1c4-4c4c-abc6-971ad1e54f7a",
+            "d1871549-e33b-4069-ad30-5e876dc2c85d": "242a5221-7859-463d-82cb-1ab736b7eefc",
+            "c67a5325-24e2-4cb5-908e-4dec26bb09fb": "62147a42-ce62-4f1d-9ed6-da39bed70e07",
+            "d72fd439-05ac-4afa-b5a0-e93154264c83": "3aaa0162-71a0-4e9a-afb2-be877f9df90d",
+            "da381471-801c-4f5f-982e-196e76af22f8": "2e3b5edc-296c-4017-a4b7-58fc6b882c82",
+            "d5cb658a-3a3d-4d88-9383-accfe05bb483": "ca5f3a22-f621-4db4-ae44-2791af2b3655",
+            "b8ebd53a-a82d-4d10-854f-f1791cac22c5": "36b78687-be8d-4ba0-8786-df43c4e64482",
+            "81dbc13d-5d3c-444a-940a-325d81d63ca1": "e9bc8bfa-d343-47f7-bc4b-c60e9c1b6d47",
+            "91f1ab5c-966d-4ff0-ad12-11f627911c75": "79dd428e-6260-4ef5-a594-150fae765062",
+            "dfff27cc-7c1f-496b-9364-29a934258ed1": "31830b25-2aea-4c0a-b2ae-42b37a89dc7d",
+            "057a4de3-acd2-4127-b7eb-a82ed82e5aea": "6e5ba11b-1640-436b-9d72-a6f2a4078f9f",
+            "044d8e2e-a3ff-4d0d-914e-d7abe6a23104": "f18d6e25-b04f-4464-92da-6464091e9f8f",
+            "82af1cab-a5b5-486c-8d58-54a1e1dcd004": "90f21745-6142-4bc8-aff8-26d3b31381ea",
+            "1d913748-e93f-4609-a6f8-8aeb13f864b5": "b7d1b9de-7f14-4b04-bf7b-7af578e16f1e",
+            "5ef49142-c450-4f1c-9f78-0e3e7635b1c4": "368c7517-89db-4c55-8537-2ea187df0bfd",
+            "6802cad6-251f-4ba3-bec0-94682010c273": "7e13a28f-782d-417c-bc93-f5012c2ddb8e",
+            "537fbd28-957c-4ae6-97b5-109b2ab37b3c": "1b648987-067a-41e9-9724-4ef8fda3013f",
+            "fc8366aa-858c-4572-8a1c-700b80bdf4ca": "71fbff47-7a89-4e04-8a48-04f62ebd79d5"
+          }
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "NetworkInterpolation": true,
+    "TimeScale": 1,
+    "WantsSystemScene": true,
+    "Metadata": {
+      "Title": "networktestscene"
+    },
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "ResourceVersion": 3,
+  "Title": "networktestscene",
+  "Description": null,
+  "__references": [],
+  "__version": 3
+}

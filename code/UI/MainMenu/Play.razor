@@ -11,6 +11,13 @@
     <title>Punt!</title>
 
     <div class="options">
+
+
+
+        <div class="button">
+            <button class="button" onclick=@(() => DebugPlay())>Singleplayer</button>  <!-- Create lobby isn't being called here when I href' -->
+        </div>
+
         <div class="button" onclick=@( async () => await QueueManager.Instance.StartSearching( QueueType.Solo ) )>
             Solos
 
@@ -43,9 +50,9 @@
 
 @code
 {
-    private void DebugPlay()
+    void DebugPlay()
     {
-        Scene.LoadFromFile( "scenes/networktestscene.scene" );
+        Scene.LoadFromFile( "scenes/networktestscenebottests.scene" );
     }
 
     /// <summary>

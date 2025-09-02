@@ -76,6 +76,28 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 			TestGameMode.Instance.AddPlayer( controller );
 		}
 
+		if ( TestGameMode.Instance.useBot )
+		{
+			QueueManager.Instance.MaxPlayers = 2;
+			var player = PlayerPrefab.Clone();
+			player.Name = $"Bot";
+			player.NetworkSpawn( channel );
+			PuntPlayerController controller = player.Components.Get<PuntPlayerController>();
+			// Add player in gamemode
+
+			var playerArrow = ArrowPrefab.Clone();
+			playerArrow.Name = $"Arrow - {channel.DisplayName}";
+			playerArrow.NetworkSpawn( channel );
+			controller.InitArrow( playerArrow );
+
+			Log.Info( "arrow spawned" );
+
+
+			//spawn the arrow here too????
+			TestGameMode.Instance.AddPlayer( controller );
+
+		}
+
 		if ( !channel.IsHost )
 		{
 			Log.Info( $"Player '{channel.DisplayName}' has joined the game as a client" );
