@@ -135,7 +135,7 @@
               "cooldownDuration": 0,
               "cooldownTimeSince": {
                 "Absolute": 0,
-                "Relative": 30044.682
+                "Relative": 477.1192
               },
               "emitter": {
                 "_type": "component",
@@ -461,7 +461,7 @@
                       "squashDuration": 0.5,
                       "squashTimeSince": {
                         "Absolute": 0,
-                        "Relative": 115841340
+                        "Relative": 115844040
                       }
                     }
                   ],
@@ -1344,10 +1344,10 @@
           "PlayOnStart": true,
           "ReflectionOverride": false,
           "Reflections": false,
-          "Repeat": true,
+          "Repeat": false,
           "SoundEvent": "sounds/music/puntmainmenu.sound",
           "SoundOverride": true,
-          "StopOnNew": false,
+          "StopOnNew": true,
           "TargetMixer": {
             "Name": "music",
             "Id": "4d43c5c3-7454-40c2-a0d1-822cd3ca98a9"

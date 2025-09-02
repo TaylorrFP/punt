@@ -163,8 +163,8 @@ public sealed class TestGameMode : Component
 	{
 		Log.Info( "Start Music" );
 		musicSoundPoint.StartSound();
-		musicSoundPoint.Repeat = true;
-		musicSoundPoint.SoundOverride = true;
+		//musicSoundPoint.Repeat = true;
+		//musicSoundPoint.SoundOverride = true;
 	}
 
 
