@@ -8,6 +8,7 @@
   "Thickness": -1,
   "RollingResistance": 0,
   "BounceThreshold": 0.01,
+  "Dampening": 0,
   "ImpactEffects": {
     "Regular": [],
     "Bullet": [],
@@ -19,12 +20,39 @@
   },
   "ScrapeEffects": {
     "RoughnessFactor": 0.25,
-    "RoughThreshold": 0.5
+    "RoughThreshold": 0.5,
+    "SmoothParticles": null,
+    "RoughParticles": null,
+    "SmoothDecal": null,
+    "RoughDecal": null
   },
   "Sounds": {
-    "ImpactHard": "sounds/ball/ball.sound"
+    "FootLeft": null,
+    "FootRight": null,
+    "FootLaunch": null,
+    "FootLand": null,
+    "Bullet": null,
+    "ImpactHard": "sounds/ball/ball.sound",
+    "ImpactSoft": null,
+    "ScrapeRough": null,
+    "ScrapeSmooth": null
   },
-  "Breakables": {},
+  "PrefabCollection": {
+    "BulletImpact": null,
+    "BluntImpact": null
+  },
+  "SoundCollection": {
+    "FootLeft": null,
+    "FootRight": null,
+    "FootLaunch": null,
+    "FootLand": null,
+    "Bullet": null,
+    "ImpactHard": "sounds/ball/ball.sound",
+    "ImpactSoft": "sounds/ball/ball.sound",
+    "ScrapeRough": null,
+    "ScrapeSmooth": null,
+    "Break": null
+  },
   "Tags": null,
   "__references": [],
   "__version": 0

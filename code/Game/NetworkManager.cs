@@ -83,6 +83,8 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 			player.Name = $"Bot";
 			player.NetworkSpawn( channel );
 			PuntPlayerController controller = player.Components.Get<PuntPlayerController>();
+			controller.isBot = true;
+			controller.PlayerName = "Bot";
 			// Add player in gamemode
 
 			var playerArrow = ArrowPrefab.Clone();
@@ -92,8 +94,6 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 
 			Log.Info( "arrow spawned" );
 
-
-			//spawn the arrow here too????
 			TestGameMode.Instance.AddPlayer( controller );
 
 		}
@@ -118,6 +118,7 @@ public sealed class NetworkManager : Component, Component.INetworkListener
 			player.Name = $"Player - {channel.DisplayName}";
 			player.NetworkSpawn( channel );
 			var controller = player.Components.Get<PuntPlayerController>();
+			controller.PlayerName = channel.DisplayName;
 
 			var playerArrow = ArrowPrefab.Clone();
 			playerArrow.Name = $"Arrow - {channel.DisplayName}";

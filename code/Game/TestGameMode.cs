@@ -102,38 +102,13 @@ public sealed class TestGameMode : Component
 
 	protected override void OnAwake()
 	{
-		//Sandbox.Services.Stats.SetValue( "solo_q_points", (0) ); //reset stats
-
 		QueueManager.Instance.gameJoined = true; //this is just a hack so the clients don't start searching after someone left at the end of the game
-
 
 		Instance = this;
 		State = GameState.Waiting;
 		base.OnAwake();
-
-
-		if ( DebugServer )
-		{
-			InitialiseGame();
-
-			if ( useBot )
-			{
-				//add a bot here
-
-				AddBotPlayer();
-
-			}
-
-		}
-
 	}
 
-    private void AddBotPlayer()
-    {
-		Log.Info( "add bot player" );
-
-        
-    }
 
     protected override void OnUpdate()
 	{
@@ -322,6 +297,20 @@ public sealed class TestGameMode : Component
 		}
 
 		//you can only do your local score so...
+
+
+		if ( useBot )
+		{
+			if ( mySide == winningTeam )
+			{
+				Sandbox.Services.Achievements.Unlock( "defeat_easy_bot" );
+				Log.Info( "Defeated Easy Bot" );
+				return;
+			}
+
+		}
+		
+
 
 		_ = RefreshScoresAtFinish();
 

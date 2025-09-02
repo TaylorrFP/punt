@@ -68,7 +68,7 @@ public sealed class PuntBot : Component
 		// Rotate controlled piece every PieceSelectPeriod seconds
 		if ( _pieceSelectCountdown <= 0f )
 		{
-			SelectRandomPieceFromRedTeam();
+			SelectRandomPieceFromBlueTeam();
 			if ( FlickOnSelect ) _flickCountdown = 0f; // allow immediate flick after selecting
 			_pieceSelectCountdown = PieceSelectPeriod;
 		}
@@ -147,9 +147,9 @@ public sealed class PuntBot : Component
 	}
 
 	// -------------------- Utility: select a random controllable piece --------------------
-	private void SelectRandomPieceFromRedTeam()
+	private void SelectRandomPieceFromBlueTeam()
 	{
-		var list = TestGameMode.Instance?.RedPieceList;
+		var list = TestGameMode.Instance?.BluePieceList;
 		if ( list == null || list.Count == 0 )
 		{
 			BotPiece = null;

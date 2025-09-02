@@ -306,16 +306,16 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -10841.878,
-            "Passed": 10841.878,
+            "Relative": -157.3002,
+            "Passed": 157.3002,
             "Fraction": 1
           },
           "ResetTimerLength": 2,
           "RoundLength": 180,
           "RoundStartTimer": {
             "Absolute": 0,
-            "Relative": -10841.878,
-            "Passed": 10841.878,
+            "Relative": -157.3002,
+            "Passed": 157.3002,
             "Fraction": 1
           },
           "RoundTimeLeft": 0,
@@ -2776,7 +2776,7 @@
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
-      "Enabled": false,
+      "Enabled": true,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
@@ -2843,7 +2843,7 @@
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
-      "Enabled": false,
+      "Enabled": true,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
@@ -3049,7 +3049,7 @@
                 "Property": "cooldownTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 10841.878
+                  "Relative": 157.3002
                 }
               },
               {
@@ -3060,7 +3060,7 @@
                 "Property": "squashTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 115822140
+                  "Relative": 115843016
                 }
               }
             ],
@@ -3168,7 +3168,7 @@
                 "Property": "cooldownTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 10841.878
+                  "Relative": 157.3002
                 }
               },
               {
@@ -3179,7 +3179,7 @@
                 "Property": "squashTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 115822140
+                  "Relative": 115843016
                 }
               }
             ],

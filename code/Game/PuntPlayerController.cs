@@ -52,12 +52,16 @@ public sealed class PuntPlayerController : Component
 
 	[Property] public bool isDebug { get; set; } = true;
 
+	[Property] public bool isBot { get; set; } = false;
+
+	[Property] public string PlayerName { get; set; } = "blaster";
+
 
 	protected override void OnStart()
 	{
 		base.OnStart();
 
-		if ( !IsProxy ) //if we control this - set tell the game mode our local side.
+		if ( !IsProxy & !isBot ) //if we control this - set tell the game mode our local side.
 		{
 			TestGameMode.Instance.mySide = teamSide;
 		}
@@ -79,7 +83,7 @@ public sealed class PuntPlayerController : Component
 	}
 	protected override void OnUpdate()
 	{
-		if ( !IsProxy )// if you own this controller
+		if ( !IsProxy & !isBot )// if you own this controller
 		{
 
 			PitchTrace();
