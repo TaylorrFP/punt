@@ -306,16 +306,16 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -475.75345,
-            "Passed": 475.75345,
+            "Relative": -6422.74,
+            "Passed": 6422.74,
             "Fraction": 1
           },
           "ResetTimerLength": 2,
           "RoundLength": 180,
           "RoundStartTimer": {
             "Absolute": 0,
-            "Relative": -475.75345,
-            "Passed": 475.75345,
+            "Relative": -6422.74,
+            "Passed": 6422.74,
             "Fraction": 1
           },
           "RoundTimeLeft": 0,
@@ -2944,14 +2944,32 @@
           "__guid": "c77be1ca-3503-47c3-95f7-e22af46cd9ea",
           "__enabled": true,
           "BallRadius": 30,
+          "BlueGoalAnchor": {
+            "_type": "gameobject",
+            "go": "2c321bb5-e4ea-40c7-bfc3-e1203e71e9c6"
+          },
+          "BlueGoalCollider": {
+            "_type": "component",
+            "component_id": "c9a467cd-74d0-4062-8b50-4b2a152ebe4e",
+            "go": "2c321bb5-e4ea-40c7-bfc3-e1203e71e9c6",
+            "component_type": "BoxCollider"
+          },
           "BotPiece": null,
           "BounceFriction": 0,
           "Bounciness": 0.75,
+          "CurrentGoalie": null,
           "DebugDrawIntercept": false,
           "DebugDrawPrediction": false,
           "DistToBall": 0,
+          "ExcludeGoalieFromRotation": true,
           "FlickFrequency": 1.5,
           "FlickOnSelect": true,
+          "GoalieFlickFrequency": 3,
+          "GoalieInterceptEarlyMargin": 0.1,
+          "GoalieMaxFlickTime": 0.9,
+          "GoalieMinFlickDistance": 40,
+          "GoalieMinFlickTime": 0.25,
+          "GoalieReassignPeriod": 0.6,
           "GravityOverride": "0,0,0",
           "LastShotDist": 0,
           "LastShotTarget": "0,0,0",
@@ -2968,6 +2986,7 @@
           "PieceSelectPeriod": 2,
           "PredictionSteps": 120,
           "PredictionTime": 2,
+          "SaveAheadBias": 0,
           "SkinWidth": 0.2,
           "SleepSpeed": 10,
           "UseGravity": true
@@ -2995,14 +3014,24 @@
           "__guid": "a6ef885a-f5db-4b90-843e-8fb394e2ef18",
           "__enabled": true,
           "BallRadius": 30,
+          "BlueGoalAnchor": null,
+          "BlueGoalCollider": null,
           "BotPiece": null,
           "BounceFriction": 0,
           "Bounciness": 0.75,
+          "CurrentGoalie": null,
           "DebugDrawIntercept": true,
           "DebugDrawPrediction": true,
           "DistToBall": 0,
+          "ExcludeGoalieFromRotation": true,
           "FlickFrequency": 3,
           "FlickOnSelect": true,
+          "GoalieFlickFrequency": 0.6,
+          "GoalieInterceptEarlyMargin": 0.1,
+          "GoalieMaxFlickTime": 0.9,
+          "GoalieMinFlickDistance": 40,
+          "GoalieMinFlickTime": 0.25,
+          "GoalieReassignPeriod": 0.6,
           "GravityOverride": "0,0,0",
           "LastShotDist": 0,
           "LastShotTarget": "0,0,0",
@@ -3019,6 +3048,7 @@
           "PieceSelectPeriod": 2,
           "PredictionSteps": 120,
           "PredictionTime": 2,
+          "SaveAheadBias": 0,
           "SkinWidth": 0.2,
           "SleepSpeed": 10,
           "UseGravity": true
@@ -3049,7 +3079,7 @@
                 "Property": "cooldownTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 475.75345
+                  "Relative": 6422.74
                 }
               },
               {
@@ -3060,7 +3090,7 @@
                 "Property": "squashTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 115844030
+                  "Relative": 115852410
                 }
               }
             ],
@@ -3114,14 +3144,24 @@
           "__guid": "c8b3fa89-92ed-44cb-b301-bbe2d0e7667f",
           "__enabled": true,
           "BallRadius": 30,
+          "BlueGoalAnchor": null,
+          "BlueGoalCollider": null,
           "BotPiece": null,
           "BounceFriction": 0,
           "Bounciness": 0.75,
+          "CurrentGoalie": null,
           "DebugDrawIntercept": true,
           "DebugDrawPrediction": true,
           "DistToBall": 0,
+          "ExcludeGoalieFromRotation": true,
           "FlickFrequency": 5,
           "FlickOnSelect": true,
+          "GoalieFlickFrequency": 0.6,
+          "GoalieInterceptEarlyMargin": 0.1,
+          "GoalieMaxFlickTime": 0.9,
+          "GoalieMinFlickDistance": 40,
+          "GoalieMinFlickTime": 0.25,
+          "GoalieReassignPeriod": 0.6,
           "GravityOverride": "0,0,0",
           "LastShotDist": 0,
           "LastShotTarget": "0,0,0",
@@ -3138,6 +3178,7 @@
           "PieceSelectPeriod": 2,
           "PredictionSteps": 120,
           "PredictionTime": 2,
+          "SaveAheadBias": 0,
           "SkinWidth": 0.2,
           "SleepSpeed": 10,
           "UseGravity": true
@@ -3168,7 +3209,7 @@
                 "Property": "cooldownTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 475.75345
+                  "Relative": 6422.74
                 }
               },
               {
@@ -3179,7 +3220,7 @@
                 "Property": "squashTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 115844030
+                  "Relative": 115852410
                 }
               }
             ],

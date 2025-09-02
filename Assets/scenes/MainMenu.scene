@@ -135,7 +135,7 @@
               "cooldownDuration": 0,
               "cooldownTimeSince": {
                 "Absolute": 0,
-                "Relative": 477.1192
+                "Relative": 6424.36
               },
               "emitter": {
                 "_type": "component",
@@ -461,7 +461,7 @@
                       "squashDuration": 0.5,
                       "squashTimeSince": {
                         "Absolute": 0,
-                        "Relative": 115844040
+                        "Relative": 115852410
                       }
                     }
                   ],

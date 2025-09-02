@@ -307,6 +307,14 @@ public sealed class TestGameMode : Component
 				Log.Info( "Defeated Easy Bot" );
 				return;
 			}
+			else
+			{
+
+				Sandbox.Services.Achievements.Unlock( "loseto_easy_bot" );
+				Log.Info( "Defeated by Easy Bot" );
+				return;
+
+			}
 
 		}
 		

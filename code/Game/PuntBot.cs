@@ -21,7 +21,7 @@ public sealed class PuntBot : Component
 	[Property] public float MaxFlickSpeed { get; set; } = 650f;
 	[Property] public float FlickFrequency { get; set; } = 2f;
 
-	// Optional: rotate which piece we control
+	// Optional: rotate which outfield piece we control
 	[Property] public float PieceSelectPeriod { get; set; } = 2f; // seconds
 	[Property] public bool FlickOnSelect { get; set; } = true;
 
@@ -42,9 +42,30 @@ public sealed class PuntBot : Component
 		LastShotDist = dist;
 	}
 
+	// -------------------- Simple Goalkeeping (exposed) --------------------
+	[Property, Group( "Goalkeeping" )] public GameObject BlueGoalAnchor { get; set; } // pivot at goal center
+	[Property, Group( "Goalkeeping" )] public BoxCollider BlueGoalCollider { get; set; } // goal volume (uses LocalBounds)
+	[Property, Group( "Goalkeeping" )] public float GoalieReassignPeriod { get; set; } = 0.6f; // seconds between role checks
+	[Property, Group( "Goalkeeping" )] public bool ExcludeGoalieFromRotation { get; set; } = true;
+
+	// Goalie flick tuning
+	[Property, Group( "Goalkeeping" )] public float GoalieFlickFrequency { get; set; } = 2f; // seconds between flicks
+	[Property, Group( "Goalkeeping" )] public float GoalieMinFlickDistance { get; set; } = 40f; // avoid micro-flicks
+	[Property, Group( "Goalkeeping" )] public float GoalieMinFlickTime { get; set; } = 0.25f;  // min time horizon used for v0 solve
+	[Property, Group( "Goalkeeping" )] public float GoalieMaxFlickTime { get; set; } = 0.9f;   // max time horizon
+
+	// How much earlier (seconds) the goalie should meet the ball before it reaches goal volume
+	[Property, Group( "Goalkeeping" )] public float GoalieInterceptEarlyMargin { get; set; } = 0.10f;
+
+	[Property] public PuntPiece CurrentGoalie { get; private set; }
+
 	// -------------------- Internals --------------------
 	private TimeUntil _flickCountdown;
 	private TimeUntil _pieceSelectCountdown;
+
+	private TimeUntil _goalieReassignTimer;
+	private TimeUntil _goalieFlickCooldown;
+
 	private readonly Random _rng = new();
 
 	private readonly List<TrajectoryNode> _cache = new();
@@ -60,12 +81,15 @@ public sealed class PuntBot : Component
 		_flickCountdown = FlickFrequency;
 		_pieceSelectCountdown = 0f; // pick immediately
 
+		_goalieReassignTimer = 0f;   // assign goalie immediately
+		_goalieFlickCooldown = 0f;   // allow first goalie flick immediately
+
 		SetState( new InterceptState() );
 	}
 
 	protected override void OnUpdate()
 	{
-		// Rotate controlled piece every PieceSelectPeriod seconds
+		// Rotate controlled outfield piece every PieceSelectPeriod seconds
 		if ( _pieceSelectCountdown <= 0f )
 		{
 			SelectRandomPieceFromBlueTeam();
@@ -73,40 +97,50 @@ public sealed class PuntBot : Component
 			_pieceSelectCountdown = PieceSelectPeriod;
 		}
 
+		// Predict the ball even if BotPiece is null, so the goalie can use it
 		var ball = TestGameMode.Instance?.Ball;
-		if ( ball is null || ball.ballRB is null || BotPiece is null ) return;
-
-		// 1) Predict once & cache
-		var cfg = new TrajectoryConfig
+		if ( ball is not null && ball.ballRB is not null )
 		{
-			Scene = Scene,
-			BallGo = ball.GameObject,
-			StartPos = ball.WorldPosition,
-			StartVel = ball.ballRB.Velocity,
-			TotalTime = PredictionTime,
-			Steps = PredictionSteps,
-			LinearDamping = LinearDamping,
-			UseGravity = UseGravity,
-			Gravity = GravityOverride,
-			BallRadius = BallRadius,
-			Bounciness = Bounciness,
-			BounceFriction = BounceFriction,
-			MaxBouncesPerStep = MaxBouncesPerStep,
-			SkinWidth = SkinWidth,
-			SleepSpeed = SleepSpeed
-		};
-		_predictor.Predict( ref cfg, _cache );
+			var cfg = new TrajectoryConfig
+			{
+				Scene = Scene,
+				BallGo = ball.GameObject,
+				StartPos = ball.WorldPosition,
+				StartVel = ball.ballRB.Velocity,
+				TotalTime = PredictionTime,
+				Steps = PredictionSteps,
+				LinearDamping = LinearDamping,
+				UseGravity = UseGravity,
+				Gravity = GravityOverride,
+				BallRadius = BallRadius,
+				Bounciness = Bounciness,
+				BounceFriction = BounceFriction,
+				MaxBouncesPerStep = MaxBouncesPerStep,
+				SkinWidth = SkinWidth,
+				SleepSpeed = SleepSpeed
+			};
+			_predictor.Predict( ref cfg, _cache );
 
-		// 2) Debug draw
-		if ( DebugDrawPrediction )
-			DrawTrajectory( _cache, BallRadius );
+			if ( DebugDrawPrediction )
+				DrawTrajectory( _cache, BallRadius );
 
-		// 3) Perception data (2D ground distance)
-		DistToBall = (_cache.Count > 0 ? _cache[0].Pos : ball.WorldPosition)
-					 .WithZ( 0 )
-					 .Distance( BotPiece.WorldPosition.WithZ( 0 ) );
+			if ( BotPiece is not null )
+			{
+				DistToBall = (_cache.Count > 0 ? _cache[0].Pos : ball.WorldPosition)
+							 .WithZ( 0 )
+							 .Distance( BotPiece.WorldPosition.WithZ( 0 ) );
+			}
+		}
+		else
+		{
+			_cache.Clear();
+		}
 
-		// 4) Run state
+		// Goalkeeper (uses current _cache if available)
+		SimpleGoalkeepingTick();
+
+		// Outfield state (intercept) — only if we have a BotPiece
+		if ( BotPiece is null ) return;
 		_state?.Tick( this );
 	}
 
@@ -146,7 +180,7 @@ public sealed class PuntBot : Component
 			BotPiece.rigidBody.PhysicsBody.Velocity = v; // keep if your setup needs it
 	}
 
-	// -------------------- Utility: select a random controllable piece --------------------
+	// -------------------- Utility: select a random controllable outfield piece --------------------
 	private void SelectRandomPieceFromBlueTeam()
 	{
 		var list = TestGameMode.Instance?.BluePieceList;
@@ -160,18 +194,22 @@ public sealed class PuntBot : Component
 		{
 			int idx = _rng.Next( list.Count );
 			var candidate = list[idx];
-			if ( candidate != null && candidate.rigidBody != null && candidate.rigidBody.PhysicsBody != null )
-			{
-				BotPiece = candidate;
+			if ( candidate == null || candidate.rigidBody == null || candidate.rigidBody.PhysicsBody == null )
+				continue;
 
-				// Optional: highlight the chosen piece
-				if ( DebugDrawPrediction )
-				{
-					Gizmo.Draw.Color = Color.Yellow;
-					Gizmo.Draw.LineSphere( BotPiece.WorldPosition, 35f );
-				}
-				return;
+			// Skip the current goalie if configured
+			if ( ExcludeGoalieFromRotation && candidate == CurrentGoalie )
+				continue;
+
+			BotPiece = candidate;
+
+			// Optional: highlight the chosen piece
+			if ( DebugDrawPrediction )
+			{
+				Gizmo.Draw.Color = Color.Yellow;
+				Gizmo.Draw.LineSphere( BotPiece.WorldPosition, 35f );
 			}
+			return;
 		}
 
 		BotPiece = null;
@@ -201,6 +239,165 @@ public sealed class PuntBot : Component
 		Gizmo.Draw.Color = Color.Green;
 		Gizmo.Draw.LineSphere( pos, radius * 1.05f );
 		Gizmo.Draw.Text( $"{t:0.00}s", new Transform( pos + Vector3.Up * 70f ), "Poppins", 24 );
+	}
+
+	// -------------------- Goal entry time detection (LocalBounds via world->local) --------------------
+	private bool TryGetBallEntryTimeIntoBlueGoal( List<TrajectoryNode> nodes, out float enterTime )
+	{
+		enterTime = 0f;
+		if ( BlueGoalCollider == null || nodes == null || nodes.Count == 0 ) return false;
+
+		var localBounds = BlueGoalCollider.LocalBounds;
+		var toLocal = BlueGoalCollider.Transform.World.PointToLocal;
+		bool ContainsWorld( Vector3 worldPos ) => localBounds.Contains( toLocal( worldPos ) );
+
+		for ( int i = 0; i < nodes.Count; i++ )
+		{
+			if ( ContainsWorld( nodes[i].Pos ) )
+			{
+				if ( i > 0 )
+				{
+					var a = nodes[i - 1];
+					var b = nodes[i];
+
+					float lo = 0f, hi = 1f;
+					for ( int r = 0; r < 6; r++ )
+					{
+						float mid = 0.5f * (lo + hi);
+						var p = Vector3.Lerp( a.Pos, b.Pos, mid );
+						if ( ContainsWorld( p ) ) hi = mid; else lo = mid;
+					}
+
+					enterTime = a.Time + (b.Time - a.Time) * hi;
+					return true;
+				}
+
+				enterTime = nodes[i].Time;
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	// -------------------- Goalie: attack-only (intercept) or reposition --------------------
+	private void SimpleGoalkeepingTick()
+	{
+		var gm = TestGameMode.Instance;
+		if ( gm == null || BlueGoalAnchor == null ) return;
+
+		var team = gm.BluePieceList;
+		if ( team == null || team.Count == 0 ) { CurrentGoalie = null; return; }
+
+		// Goal anchor (flatten to ground)
+		var goalPos = BlueGoalAnchor.WorldPosition.WithZ( 0f );
+
+		// Assign or reassign the goalie to whoever is closest to the anchor periodically
+		if ( !IsValidGoalie( CurrentGoalie, team ) || _goalieReassignTimer <= 0f )
+		{
+			CurrentGoalie = FindClosestPiece( team, goalPos );
+			_goalieReassignTimer = GoalieReassignPeriod;
+		}
+
+		if ( CurrentGoalie == null ) return;
+
+		// Draw anchor target
+		if ( DebugDrawIntercept )
+		{
+			Gizmo.Draw.Color = Color.Orange;
+			Gizmo.Draw.LineSphere( goalPos, 22f );
+			Gizmo.Draw.Line( CurrentGoalie.WorldPosition.WithZ( 0f ), goalPos );
+		}
+
+		// Only act during play
+		if ( gm.State != GameState.Playing ) return;
+
+		var piecePos = CurrentGoalie.WorldPosition.WithZ( 0f );
+
+		// If the predicted path enters the goal volume, try to ATTACK with an intercept before entry.
+		if ( TryGetBallEntryTimeIntoBlueGoal( _cache, out var tEnter ) )
+		{
+			float deadline = MathF.Max( 0f, tEnter - GoalieInterceptEarlyMargin );
+
+			if ( _goalieFlickCooldown <= 0f && TryGetGoalieInterceptBefore( deadline, out var tHit, out var hitPos, out var aimVel ) )
+			{
+				FlickPieceXY( CurrentGoalie, aimVel );
+				_goalieFlickCooldown = GoalieFlickFrequency;
+
+				if ( DebugDrawIntercept )
+					DebugDrawInterceptMark( hitPos, tHit, BallRadius );
+			}
+
+			// No fallback save; either we attacked (if cooldown allowed) or we do nothing this frame.
+			return;
+		}
+
+		// No shot incoming — regular reposition flick toward the anchor
+		var toAnchor = goalPos - piecePos;
+		float dist = toAnchor.Length;
+
+		if ( dist > GoalieMinFlickDistance && _goalieFlickCooldown <= 0f )
+		{
+			var dir2D = dist > 1e-4f ? (toAnchor / dist) : Vector3.Zero;
+
+			// s(T) = (v0/k) * (1 - e^{-kT})  =>  v0 = s*k / (1 - e^{-kT})
+			float Tguess = dist / (0.8f * MaxFlickSpeed);
+			float T = Tguess.Clamp( GoalieMinFlickTime, GoalieMaxFlickTime );
+
+			float k = PieceLinearDamping;
+			float v0 = (k <= 1e-6f) ? (dist / T) : (dist * k / (1f - MathF.Exp( -k * T )));
+			float speed = MathF.Min( MaxFlickSpeed, v0 );
+
+			var v2D = dir2D * speed;
+
+			FlickPieceXY( CurrentGoalie, v2D );   // single impulse
+			_goalieFlickCooldown = GoalieFlickFrequency;
+		}
+	}
+
+	private bool TryGetGoalieInterceptBefore( float deadline, out float tHit, out Vector3 hitPos, out Vector3 aimVel )
+	{
+		tHit = 0f; hitPos = default; aimVel = default;
+		if ( CurrentGoalie == null ) return false;
+
+		if ( !_intercept.TryComputeEarliest( _cache, CurrentGoalie.WorldPosition, MaxFlickSpeed, PieceLinearDamping, out tHit, out hitPos, out aimVel ) )
+			return false;
+
+		return tHit <= deadline;
+	}
+
+	private static bool IsValidGoalie( PuntPiece p, List<PuntPiece> team )
+	{
+		if ( p == null || p.rigidBody == null || p.rigidBody.PhysicsBody == null ) return false;
+		return team.Contains( p );
+	}
+
+	private PuntPiece FindClosestPiece( List<PuntPiece> team, Vector3 target, PuntPiece exclude = null )
+	{
+		PuntPiece best = null;
+		float bestDist = float.MaxValue;
+
+		foreach ( var p in team )
+		{
+			if ( p == null || p == exclude || p.rigidBody == null || p.rigidBody.PhysicsBody == null )
+				continue;
+
+			float d = p.WorldPosition.WithZ( 0f ).Distance( target );
+			if ( d < bestDist ) { best = p; bestDist = d; }
+		}
+		return best;
+	}
+
+	private static void FlickPieceXY( PuntPiece piece, Vector3 vXY )
+	{
+		if ( piece?.rigidBody == null ) return;
+
+		// Impulse-like: set the velocity once; physics + damping does the rest.
+		var v = new Vector3( vXY.x, vXY.y, piece.rigidBody.Velocity.z ); // keep Z component
+		piece.rigidBody.Velocity = v;
+
+		if ( piece.rigidBody.PhysicsBody != null )
+			piece.rigidBody.PhysicsBody.Velocity = v;
 	}
 }
 
@@ -335,7 +532,6 @@ public sealed class TrajectoryPredictor
 		if ( targetTime <= 0f ) return nodes[0].Pos;
 		if ( targetTime >= nodes[^1].Time ) return nodes[^1].Pos;
 
-		// Binary search for bracket
 		int lo = 0, hi = nodes.Count - 1;
 		while ( hi - lo > 1 )
 		{
@@ -381,14 +577,14 @@ public sealed class InterceptSolver
 	/// Returns aim velocity (XY) to apply as the *initial* flick velocity.
 	/// </summary>
 	public bool TryComputeEarliest(
-	List<TrajectoryNode> path,
-	Vector3 botPosWorld,
-	float maxInitialSpeed,
-	float pieceLinearDamping,
-	out float interceptTime,
-	out Vector3 interceptPos,
-	out Vector3 aimVelocityXY
-)
+		List<TrajectoryNode> path,
+		Vector3 botPosWorld,
+		float maxInitialSpeed,
+		float pieceLinearDamping,
+		out float interceptTime,
+		out Vector3 interceptPos,
+		out Vector3 aimVelocityXY
+	)
 	{
 		interceptTime = 0f; interceptPos = default; aimVelocityXY = default;
 		if ( path == null || path.Count == 0 ) return false;
@@ -416,7 +612,6 @@ public sealed class InterceptSolver
 			var p = Flat( path[0].Pos );
 			float dist = (p - bot2D).Length;
 
-			// Time needed with damping
 			float t = (k <= 1e-6f) ? dist / vmax
 					 : (-MathF.Log( MathF.Max( 1e-5f, 1f - (dist * k / vmax) ) ) / k);
 			if ( float.IsNaN( t ) || t < 0f ) return false;
