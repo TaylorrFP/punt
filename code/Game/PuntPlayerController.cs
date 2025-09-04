@@ -480,7 +480,7 @@ public sealed class PuntPlayerController : Component
 
 
 
-	[Rpc.Broadcast]
+	[Rpc.Broadcast] //do this in the punt piece in the future?
 	public void FlickPiece(PuntPiece piece, Vector3 flickVector)
 	{
 

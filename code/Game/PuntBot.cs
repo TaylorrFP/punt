@@ -44,7 +44,7 @@ public sealed class PuntBot : Component
 
 	// -------------------- Simple Goalkeeping (exposed) --------------------
 	[Property, Group( "Goalkeeping" )] public GameObject BlueGoalAnchor { get; set; } // pivot at goal center
-	[Property, Group( "Goalkeeping" )] public BoxCollider BlueGoalCollider { get; set; } // goal volume (uses LocalBounds)
+	[Property, Group( "Goalkeeping" )] public BoxCollider BlueGoalCollider { get; set; } // goal volume (LocalBounds)
 	[Property, Group( "Goalkeeping" )] public float GoalieReassignPeriod { get; set; } = 0.6f; // seconds between role checks
 	[Property, Group( "Goalkeeping" )] public bool ExcludeGoalieFromRotation { get; set; } = true;
 
@@ -164,21 +164,9 @@ public sealed class PuntBot : Component
 		);
 	}
 
-	public void TryFlick( Vector3 aimVelocity2D )
-	{
-		// Only flick during Playing
-		if ( _flickCountdown > 0f || TestGameMode.Instance?.State != GameState.Playing ) return;
-
-		_flickCountdown = FlickFrequency;
-
-		// XY only
-		var v = new Vector3( aimVelocity2D.x, aimVelocity2D.y, 0f );
-		if ( BotPiece?.rigidBody is not null )
-			BotPiece.rigidBody.Velocity = v;
-
-		if ( BotPiece?.rigidBody?.PhysicsBody is not null )
-			BotPiece.rigidBody.PhysicsBody.Velocity = v; // keep if your setup needs it
-	}
+	// Public wrapper for outfield usage (FSM calls this)
+	public bool TryFlickOutfield( Vector3 aimVelocity2D )
+		=> TryFlickPieceXY( BotPiece, aimVelocity2D, isGoalie: false );
 
 	// -------------------- Utility: select a random controllable outfield piece --------------------
 	private void SelectRandomPieceFromBlueTeam()
@@ -319,16 +307,16 @@ public sealed class PuntBot : Component
 		{
 			float deadline = MathF.Max( 0f, tEnter - GoalieInterceptEarlyMargin );
 
-			if ( _goalieFlickCooldown <= 0f && TryGetGoalieInterceptBefore( deadline, out var tHit, out var hitPos, out var aimVel ) )
+			if ( TryGetGoalieInterceptBefore( deadline, out var tHit, out var hitPos, out var aimVel ) )
 			{
-				FlickPieceXY( CurrentGoalie, aimVel );
-				_goalieFlickCooldown = GoalieFlickFrequency;
-
-				if ( DebugDrawIntercept )
-					DebugDrawInterceptMark( hitPos, tHit, BallRadius );
+				if ( TryFlickPieceXY( CurrentGoalie, aimVel, isGoalie: true ) )
+				{
+					if ( DebugDrawIntercept )
+						DebugDrawInterceptMark( hitPos, tHit, BallRadius );
+				}
 			}
 
-			// No fallback save; either we attacked (if cooldown allowed) or we do nothing this frame.
+			// Attack-only: no fallback save; if we can't attack now, we do nothing this frame.
 			return;
 		}
 
@@ -336,7 +324,7 @@ public sealed class PuntBot : Component
 		var toAnchor = goalPos - piecePos;
 		float dist = toAnchor.Length;
 
-		if ( dist > GoalieMinFlickDistance && _goalieFlickCooldown <= 0f )
+		if ( dist > GoalieMinFlickDistance )
 		{
 			var dir2D = dist > 1e-4f ? (toAnchor / dist) : Vector3.Zero;
 
@@ -350,8 +338,7 @@ public sealed class PuntBot : Component
 
 			var v2D = dir2D * speed;
 
-			FlickPieceXY( CurrentGoalie, v2D );   // single impulse
-			_goalieFlickCooldown = GoalieFlickFrequency;
+			TryFlickPieceXY( CurrentGoalie, v2D, isGoalie: true );   // single impulse (will gate on cooldown + Ready)
 		}
 	}
 
@@ -366,10 +353,54 @@ public sealed class PuntBot : Component
 		return tHit <= deadline;
 	}
 
+	// -------------------- Shared flicker (single place for all rules) --------------------
+	private bool TryFlickPieceXY( PuntPiece piece, Vector3 aimVelocity2D, bool isGoalie )
+	{
+		var gm = TestGameMode.Instance;
+		if ( piece == null || piece.rigidBody == null || gm?.State != GameState.Playing )
+			return false;
+
+		// Respect the piece's own cooldown/state
+		if ( !IsPieceReady( piece ) ) return false;
+
+		// Respect our role-specific cooldown
+		if ( isGoalie )
+		{
+			if ( _goalieFlickCooldown > 0f ) return false;
+		}
+		else
+		{
+			if ( _flickCountdown > 0f ) return false;
+		}
+
+		// XY impulse (preserve Z)
+
+		var v = new Vector3( aimVelocity2D.x, aimVelocity2D.y, piece.rigidBody.Velocity.z );
+		piece.rigidBody.Velocity = v;
+
+		if ( piece.rigidBody.PhysicsBody != null )
+			piece.rigidBody.PhysicsBody.Velocity = v;
+
+		// Start cooldown
+		if ( isGoalie ) _goalieFlickCooldown = GoalieFlickFrequency;
+		else _flickCountdown = FlickFrequency;
+
+		piece.PieceFlicked();
+		piece.StartCooldown();
+		piece.pieceState = PieceState.Cooldown;
+
+		return true;
+	}
+
 	private static bool IsValidGoalie( PuntPiece p, List<PuntPiece> team )
 	{
 		if ( p == null || p.rigidBody == null || p.rigidBody.PhysicsBody == null ) return false;
 		return team.Contains( p );
+	}
+
+	private static bool IsPieceReady( PuntPiece p )
+	{
+		return p != null && p.pieceState == PieceState.Ready;
 	}
 
 	private PuntPiece FindClosestPiece( List<PuntPiece> team, Vector3 target, PuntPiece exclude = null )
@@ -386,18 +417,6 @@ public sealed class PuntBot : Component
 			if ( d < bestDist ) { best = p; bestDist = d; }
 		}
 		return best;
-	}
-
-	private static void FlickPieceXY( PuntPiece piece, Vector3 vXY )
-	{
-		if ( piece?.rigidBody == null ) return;
-
-		// Impulse-like: set the velocity once; physics + damping does the rest.
-		var v = new Vector3( vXY.x, vXY.y, piece.rigidBody.Velocity.z ); // keep Z component
-		piece.rigidBody.Velocity = v;
-
-		if ( piece.rigidBody.PhysicsBody != null )
-			piece.rigidBody.PhysicsBody.Velocity = v;
 	}
 }
 
@@ -682,7 +701,7 @@ public sealed class InterceptState : IBotState
 		if ( bot.TryGetIntercept( out var tHit, out var hitPos, out var aimVel ) )
 		{
 			bot.DebugDrawInterceptMark( hitPos, tHit, bot.BallRadius );
-			bot.TryFlick( aimVel ); // only fires during GameState.Playing
+			bot.TryFlickOutfield( aimVel ); // single unified flick path (cooldowns + Ready)
 			bot.RecordShot( hitPos, (hitPos - bot.BotPiece.WorldPosition).WithZ( 0 ).Length );
 		}
 		else
