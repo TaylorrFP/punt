@@ -306,16 +306,16 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -95.01969,
-            "Passed": 95.01969,
+            "Relative": -82307.25,
+            "Passed": 82307.25,
             "Fraction": 1
           },
           "ResetTimerLength": 2,
           "RoundLength": 180,
           "RoundStartTimer": {
             "Absolute": 0,
-            "Relative": -95.01969,
-            "Passed": 95.01969,
+            "Relative": -82307.25,
+            "Passed": 82307.25,
             "Fraction": 1
           },
           "RoundTimeLeft": 0,
@@ -498,7 +498,7 @@
           "Rotation": "0,0,0,1",
           "Scale": "0.58,0.58,0.58",
           "Tags": "",
-          "Enabled": true,
+          "Enabled": false,
           "NetworkMode": 2,
           "NetworkInterpolation": true,
           "NetworkOrphaned": 0,
@@ -760,15 +760,14 @@
               "__type": "PitchGenerator",
               "__guid": "99a3561b-0262-451f-8de4-cf2b4a09e79e",
               "__enabled": true,
-              "cornerAngle": 0,
-              "cornerRadius": 275,
-              "cornerResolution": 16,
-              "cornerSegmentWidth": 0,
+              "arcDeltaDegrees": 0,
+              "autoRebuild": true,
+              "endRadius": 0,
+              "endResolution": 30,
               "gameMode": null,
-              "goalBackSurface": "physicssurfaces/goalbacksurface.surface",
               "goalHeight": 177.5,
-              "goalWidth": 330,
-              "height": 500,
+              "goalWidth": 300,
+              "height": 600,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -776,9 +775,14 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "pitchX": 1400,
-              "pitchY": 1050,
+              "pitchY": 1040,
+              "previewEnabled": true,
+              "previewHeight": 50,
+              "previewMaterial": "materials/dev/gray_grid_8.vmat",
+              "seamBuffer": 15,
+              "segmentChordLength": 0,
               "thickness": 100,
-              "wallSurface": "physicssurfaces/wallsurface.surface"
+              "uvTileMeters": 16
             }
           ],
           "Children": []
@@ -2653,8 +2657,8 @@
               "__guid": "a94c4f1c-2d4a-4098-acc5-ead28587fdde",
               "__enabled": false,
               "BackBlur": true,
-              "BlurSize": 20,
-              "FocalDistance": 2700,
+              "BlurSize": 7.305936,
+              "FocalDistance": 2900,
               "FocusRange": 1000,
               "FrontBlur": false,
               "OnComponentDestroy": null,
@@ -2889,7 +2893,7 @@
       "Rotation": "0,0,0,1",
       "Scale": "1.12,1.12,1.12",
       "Tags": "",
-      "Enabled": true,
+      "Enabled": false,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
@@ -2933,7 +2937,7 @@
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
-      "Enabled": true,
+      "Enabled": false,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
@@ -3077,7 +3081,7 @@
                 "Property": "cooldownTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 95.01969
+                  "Relative": 82307.25
                 }
               },
               {
@@ -3088,7 +3092,7 @@
                 "Property": "squashTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 116019620
+                  "Relative": 116191100
                 }
               }
             ],
@@ -3206,7 +3210,7 @@
                 "Property": "cooldownTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 95.01969
+                  "Relative": 82307.25
                 }
               },
               {
@@ -3217,7 +3221,7 @@
                 "Property": "squashTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 116019620
+                  "Relative": 116191100
                 }
               }
             ],
