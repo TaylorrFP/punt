@@ -1,16 +1,24 @@
 {
   "RootObject": {
     "__guid": "760f2ed7-7378-43bf-a993-370e83a60977",
+    "__version": 1,
     "Flags": 0,
     "Name": "ball",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
     "Tags": "ball",
     "Enabled": true,
     "NetworkMode": 1,
+    "NetworkInterpolation": true,
     "NetworkOrphaned": 1,
+    "OwnerTransfer": 1,
     "Components": [
       {
         "__type": "PuntBall",
         "__guid": "d50c1373-0c8c-4760-881d-b3b1c86c5dee",
+        "__enabled": true,
+        "AlignLerpSpeed": 12,
         "ballGuide": {
           "_type": "component",
           "component_id": "fea40044-3a8f-4c17-a766-d20d65fe74f7",
@@ -21,37 +29,51 @@
           "_type": "gameobject",
           "go": "540cbab2-07c3-48e6-88ef-452c7cbdc011"
         },
-        "angleAcuteness": 0,
-        "ballCornerRollBias": [
-          {
-            "x": 0,
-            "y": 0,
-            "in": -0.38596484,
-            "out": 0.38596484,
-            "mode": "Mirrored"
-          },
-          {
-            "x": 1,
-            "y": 1,
-            "in": -2.1666667,
-            "out": 2.1666667,
-            "mode": "Mirrored"
-          }
-        ],
         "ballRB": {
           "_type": "component",
           "component_id": "ce1ad518-cf33-46d2-8ae7-f82dc0f266dd",
           "go": "760f2ed7-7378-43bf-a993-370e83a60977",
           "component_type": "Rigidbody"
         },
-        "bounceReflection": "0,0,0",
-        "collisionNormal": "0,0,0",
-        "collisionPosition": "0,0,0",
-        "cornerRollBias": true,
-        "cornerRollBiasDebug": false,
-        "exitZVelocity": 0,
+        "DeformMesh": {
+          "_type": "gameobject",
+          "go": "540cbab2-07c3-48e6-88ef-452c7cbdc011"
+        },
+        "DeformSpace": {
+          "_type": "gameobject",
+          "go": "faf0e47e-2cd8-4c4e-883a-abe699e83600"
+        },
+        "gameMode": null,
         "goalWallDampning": 0.9,
-        "preCollisionVelocity": "0,0,0"
+        "ImpactDecayPerSecond": 6,
+        "ImpactSensitivity": 0.9,
+        "MaxSpeedForStretch": 1600,
+        "MaxStretchScale": 1.25,
+        "MinSquashScale": 0.72,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "ScaleLerpSpeed": 12,
+        "StretchBySpeed": [
+          {
+            "x": 0,
+            "y": 0,
+            "in": -3.1415927,
+            "out": 3.1415927,
+            "mode": "Mirrored"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "in": 0,
+            "out": 0,
+            "mode": "Mirrored"
+          }
+        ],
+        "UpdateWhenSpeedAbove": 10
       },
       {
         "__type": "Sandbox.HighlightOutline",
@@ -60,15 +82,38 @@
         "Color": "1,1,1,1",
         "InsideColor": "0,0,0,0",
         "InsideObscuredColor": "1,1,1,0.33",
+        "Material": null,
         "ObscuredColor": "0,0,0,0.4",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OverrideTargets": false,
+        "Targets": null,
         "Width": 0.25
       },
       {
         "__type": "Sandbox.SphereCollider",
         "__guid": "6a1ef6cd-c3ed-4296-aa88-9456a93abf5b",
+        "__enabled": true,
         "Center": "0,0,0",
+        "Elasticity": null,
+        "Friction": null,
         "IsTrigger": false,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnObjectTriggerEnter": null,
+        "OnObjectTriggerExit": null,
+        "OnTriggerEnter": null,
+        "OnTriggerExit": null,
         "Radius": 30,
+        "RollingResistance": null,
         "Static": false,
         "Surface": "physicssurfaces/ballsurface.surface",
         "SurfaceVelocity": "0,0,0"
@@ -76,6 +121,7 @@
       {
         "__type": "Sandbox.Rigidbody",
         "__guid": "ce1ad518-cf33-46d2-8ae7-f82dc0f266dd",
+        "__enabled": true,
         "AngularDamping": 1,
         "Gravity": true,
         "LinearDamping": 0.2,
@@ -90,6 +136,12 @@
         "MassCenterOverride": "0,0,0",
         "MassOverride": 0,
         "MotionEnabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "OverrideMassCenter": false,
         "RigidbodyFlags": 0,
         "StartAsleep": false
@@ -97,6 +149,7 @@
       {
         "__type": "Sandbox.TrailRenderer",
         "__guid": "23141c7d-fad2-4443-bee6-6cd9685943c2",
+        "__enabled": true,
         "BlendMode": "Normal",
         "CastShadows": false,
         "Color": {
@@ -117,6 +170,12 @@
         "Face": "Camera",
         "LifeTime": 2,
         "MaxPoints": 64,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Opaque": false,
         "PointDistance": 2,
         "RenderOptions": {
@@ -127,11 +186,13 @@
         },
         "Texturing": {
           "Texture": "prefabs/ball/materials/trailtest.vtex",
+          "Material": null,
           "WorldSpace": true,
           "UnitsPerTexture": 10,
           "Scale": 1,
           "Offset": 0,
-          "Scroll": 0
+          "Scroll": 0,
+          "Clamp": false
         },
         "Width": {
           "rangey": "0,15",
@@ -157,6 +218,7 @@
       {
         "__type": "Sandbox.SoundPointComponent",
         "__guid": "4e40d234-cc51-4ac7-b2f3-dcba88ee1b6d",
+        "__enabled": true,
         "Distance": 512,
         "DistanceAttenuation": false,
         "DistanceAttenuationOverride": false,
@@ -182,6 +244,12 @@
         "Occlusion": false,
         "OcclusionOverride": false,
         "OcclusionRadius": 32,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Pitch": 1,
         "PlayOnStart": false,
         "ReflectionOverride": false,
@@ -200,17 +268,29 @@
     "Children": [
       {
         "__guid": "bb9974fe-e208-42b6-94ec-4bfdca61d446",
+        "__version": 1,
         "Flags": 0,
         "Name": "Decal",
+        "Position": "0,0,0",
         "Rotation": "0,0.7071067,0,0.7071068",
+        "Scale": "1,1,1",
+        "Tags": "",
+        "Enabled": false,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
         "Components": [
           {
             "__type": "Sandbox.DecalRenderer",
             "__guid": "8e3414c1-29a3-4784-a206-0caab088ba2d",
-            "CutoffAngle": 60,
-            "CutoffAngleSoftness": 5,
-            "Material": "materials/decals/default.vmat",
-            "Mod2XBlending": false,
+            "__enabled": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,
@@ -221,21 +301,37 @@
             "TintColor": "1,1,1,1",
             "TriPlanar": false
           }
-        ]
+        ],
+        "Children": []
       },
       {
         "__guid": "7b555b9f-5180-4292-9f27-30bb71481193",
+        "__version": 1,
         "Flags": 0,
         "Name": "BallCircle",
+        "Position": "0,0,0",
         "Rotation": "0,-0.7071068,0,0.7071068",
+        "Scale": "1,1,1",
+        "Tags": "",
         "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
         "Components": [
           {
             "__type": "Sandbox.WorldPanel",
             "__guid": "fea40044-3a8f-4c17-a766-d20d65fe74f7",
+            "__enabled": true,
             "HorizontalAlign": "Center",
             "InteractionRange": 1000,
             "LookAtCamera": false,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
             "PanelSize": "1500,1500",
             "RenderOptions": {
               "GameLayer": true,
@@ -248,44 +344,86 @@
           },
           {
             "__type": "BallGuide",
-            "__guid": "d3e10fe9-7fb4-4e13-8b69-e455a7f2ac1e"
+            "__guid": "d3e10fe9-7fb4-4e13-8b69-e455a7f2ac1e",
+            "__enabled": true,
+            "ball": null,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null
           }
-        ]
+        ],
+        "Children": []
       },
       {
-        "__guid": "540cbab2-07c3-48e6-88ef-452c7cbdc011",
+        "__guid": "faf0e47e-2cd8-4c4e-883a-abe699e83600",
+        "__version": 1,
         "Flags": 0,
-        "Name": "BallModel",
+        "Name": "Object",
+        "Position": "0,0,0",
+        "Rotation": "0,0,0,1",
+        "Scale": "1,1,1",
+        "Tags": "",
         "Enabled": true,
-        "Components": [
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
+        "Components": [],
+        "Children": [
           {
-            "__type": "Sandbox.ModelRenderer",
-            "__guid": "718f57a4-13c3-488c-8ba7-8df472bdd137",
-            "BodyGroups": 18446744073709551615,
-            "CreateAttachments": false,
-            "Model": "prefabs/ball/socceteoball.vmdl",
-            "RenderOptions": {
-              "GameLayer": true,
-              "OverlayLayer": false,
-              "BloomLayer": false,
-              "AfterUILayer": false
-            },
-            "RenderType": "On",
-            "Tint": "1,1,1,1"
+            "__guid": "540cbab2-07c3-48e6-88ef-452c7cbdc011",
+            "__version": 1,
+            "Flags": 0,
+            "Name": "BallModel",
+            "Position": "0,0,0",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true,
+            "NetworkOrphaned": 0,
+            "OwnerTransfer": 1,
+            "Components": [
+              {
+                "__type": "Sandbox.ModelRenderer",
+                "__guid": "718f57a4-13c3-488c-8ba7-8df472bdd137",
+                "__enabled": true,
+                "BodyGroups": 18446744073709551615,
+                "CreateAttachments": false,
+                "LodOverride": null,
+                "MaterialGroup": null,
+                "MaterialOverride": null,
+                "Materials": null,
+                "Model": "prefabs/ball/socceteoball.vmdl",
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "RenderOptions": {
+                  "GameLayer": true,
+                  "OverlayLayer": false,
+                  "BloomLayer": false,
+                  "AfterUILayer": false
+                },
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              }
+            ],
+            "Children": []
           }
         ]
       }
     ],
-    "__variables": [],
     "__properties": {
-      "FixedUpdateFrequency": 50,
-      "MaxFixedUpdates": 5,
-      "NetworkFrequency": 30,
       "NetworkInterpolation": true,
-      "PhysicsSubSteps": 1,
-      "ThreadedAnimation": true,
       "TimeScale": 1,
-      "UseFixedUpdate": true,
+      "WantsSystemScene": true,
       "Metadata": {},
       "NavMesh": {
         "Enabled": false,
@@ -299,13 +437,14 @@
         "ExcludedBodies": "",
         "IncludedBodies": ""
       }
-    }
+    },
+    "__variables": []
   },
+  "ResourceVersion": 2,
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "ResourceVersion": 1,
   "__references": [],
-  "__version": 1
+  "__version": 2
 }

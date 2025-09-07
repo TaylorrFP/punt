@@ -306,16 +306,16 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -82307.25,
-            "Passed": 82307.25,
+            "Relative": -596.9024,
+            "Passed": 596.9024,
             "Fraction": 1
           },
           "ResetTimerLength": 2,
           "RoundLength": 180,
           "RoundStartTimer": {
             "Absolute": 0,
-            "Relative": -82307.25,
-            "Passed": 82307.25,
+            "Relative": -596.9024,
+            "Passed": 596.9024,
             "Fraction": 1
           },
           "RoundTimeLeft": 0,
@@ -775,7 +775,7 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "pitchX": 1400,
-              "pitchY": 1040,
+              "pitchY": 1100,
               "previewEnabled": true,
               "previewHeight": 50,
               "previewMaterial": "materials/dev/gray_grid_8.vmat",
@@ -2512,7 +2512,7 @@
           "__version": 1,
           "Flags": 0,
           "Name": "Camera",
-          "Position": "-2731.614,0.001151232,-16.4299",
+          "Position": "-2710.934,0.001151232,0.9229126",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "",
@@ -2937,7 +2937,7 @@
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
-      "Enabled": false,
+      "Enabled": true,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
@@ -3081,7 +3081,7 @@
                 "Property": "cooldownTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 82307.25
+                  "Relative": 596.9024
                 }
               },
               {
@@ -3092,7 +3092,7 @@
                 "Property": "squashTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 116191100
+                  "Relative": 116243160
                 }
               }
             ],
@@ -3210,7 +3210,7 @@
                 "Property": "cooldownTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 82307.25
+                  "Relative": 596.9024
                 }
               },
               {
@@ -3221,7 +3221,7 @@
                 "Property": "squashTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 116191100
+                  "Relative": 116243160
                 }
               }
             ],

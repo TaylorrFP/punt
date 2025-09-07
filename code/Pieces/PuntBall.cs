@@ -1,114 +1,107 @@
-using Sandbox;
+﻿using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Internal;
 using System;
-using System.Runtime.CompilerServices;
 
 public sealed class PuntBall : Component, Component.ICollisionListener
 {
 	[Property] public WorldPanel ballGuide;
 
-	[Property] public GameObject ballModel;
-	[Property] public Rigidbody ballRB { get; set; }
-
+	// Visual + physics
+	[Property] public GameObject ballModel;               // your visible mesh (ideally no collider here)
+	[Property] public Rigidbody ballRB { get; set; }      // physics on the parent/this
 	[Property] public GameMode gameMode { get; set; }
 
-	[Property] public bool cornerRollBias { get; set; } = true;
-
+	// Back-of-net damping (kept as your original name)
 	[Property] public float goalWallDampning { get; set; } = 0.9f;
-	[Property] public bool cornerRollBiasDebug { get; set; } = false;
-	[Property] public Curve ballCornerRollBias { get; set; }
 
+	// --- Squash & Stretch (keep visible rotation unchanged) -------------------
+	// Hierarchy: Ball(this) -> DeformSpace(aims to velocity & gets scaled)
+	//                           -> DeformMesh(=your model, counter-rotated so it looks unrotated)
+	[Group( "Squash & Stretch" )][Property] public GameObject DeformSpace { get; set; }
+	[Group( "Squash & Stretch" )][Property] public GameObject DeformMesh { get; set; }
 
+	// Speed → stretch
+	[Group( "Squash & Stretch" )][Property] public float MaxSpeedForStretch { get; set; } = 1600f;
+	[Group( "Squash & Stretch" )][Property] public float MaxStretchScale { get; set; } = 1.25f; // along velocity at max speed
+	[Group( "Squash & Stretch" )][Property] public float MinSquashScale { get; set; } = 0.72f; // along velocity on impact
+	[Group( "Squash & Stretch" )][Property] public Curve StretchBySpeed { get; set; } = Curve.EaseOut;
 
-	[Property] public Vector3 preCollisionVelocity { get; set; }
+	// Smoothing
+	[Group( "Squash & Stretch" )][Property] public float AlignLerpSpeed { get; set; } = 12f; // DeformSpace world-aim speed
+	[Group( "Squash & Stretch" )][Property] public float ScaleLerpSpeed { get; set; } = 12f; // scale ease speed
+	[Group( "Squash & Stretch" )][Property] public float UpdateWhenSpeedAbove { get; set; } = 10f; // ignore noise at tiny speeds
 
-	//private Vector3 entryNormal;
-	//private Vector3 exitVelocity;
-	//private Vector3 newExitVelocity;
+	// Bounce pulse from sharp Δv & direction change
+	[Group( "Squash & Stretch" )][Property] public float ImpactSensitivity { get; set; } = 0.9f;
+	[Group( "Squash & Stretch" )][Property] public float ImpactDecayPerSecond { get; set; } = 6f;
 
-	[Property] public Vector3 collisionNormal { get; set; }
+	private Rotation _meshBaseLocalRot = Rotation.Identity; // used to counter-rotate mesh
+	private Vector3 _prevVel;
+	private float _impactPulse; // 0..1
+	private bool _rigReady;
 
-	[Property] public Vector3 bounceReflection { get; set; }
-
-	[Property] public float angleAcuteness { get; set; }
-
-	[Property] public float exitZVelocity { get; set; }
-
-	[Property] public Vector3 collisionPosition { get; set; }
-
-
+	// --------------------------------------------------------------------------
 
 	protected override void OnAwake()
 	{
+		SetupDeformRig();
 	}
-	public void OnCollisionStart( Collision collision )
+
+	private void SetupDeformRig()
 	{
-
-		if(collision.Other.GameObject.Tags.Has("piece") )
+		// Choose the visual mesh to deform
+		if ( DeformMesh == null ) DeformMesh = ballModel;
+		if ( DeformMesh == null )
 		{
-
+			Log.Warning( "[PuntBall] No DeformMesh/ballModel assigned; squash&stretch disabled." );
+			_rigReady = false;
+			return;
 		}
 
-
-		//this is all really shit, replace it or get rid maybe - it is quite nice though
-
-		//if ( collision.Other.GameObject.Tags.HasAny( "wall" ) && cornerRollBias )
-		//{
-		//	entryNormal = preCollisionVelocity.Normal;//store the velocity of the frame before the collision
-
-		//	exitVelocity = ballRB.Velocity;//the exit velocity
-		//	collisionPosition = collision.Contact.Point;//the collision point
-		//	collisionNormal = -collision.Contact.Normal;//collision normal
-
-
-
-		//	//remove the z components of exit and entryvelocity, we don't want to change behaviour in the z axis
-		//	entryNormal = new Vector3( entryNormal.x, entryNormal.y, 0 );
-		//	exitZVelocity = exitVelocity.z;//save this for later
-		//	exitVelocity = new Vector3( exitVelocity.x, exitVelocity.y, 0 );
-
-		//	//work out how acute the angle is.
-		//	angleAcuteness = Vector3.GetAngle( -entryNormal, collisionNormal );
-		//	angleAcuteness = angleAcuteness.Remap( 0f, 90f );
-		//	angleAcuteness = ballCornerRollBias.Evaluate( angleAcuteness );//once we've worked it out, use the curve to customise it.
-
-		//	float dotProduct = Vector3.Dot( entryNormal, collisionNormal );
-		//	Vector3 perpendicularComponent = dotProduct * collisionNormal;
-		//	Vector3 slidingNormal = entryNormal - perpendicularComponent;
-
-		//	newExitVelocity = Vector3.Lerp( exitVelocity.Normal, slidingNormal, angleAcuteness );
-		//	newExitVelocity = newExitVelocity.Normal * exitVelocity.Length;//get the 2D speed of the original exit velocity
-
-
-		//	newExitVelocity = new Vector3( newExitVelocity.x, newExitVelocity.y, exitZVelocity );//add back in the z component 
-		//	ballRB.Velocity = newExitVelocity;
-
-
-		//	exitVelocity = new Vector3( exitVelocity.x, exitVelocity.y, exitZVelocity );//re-add the z to this
-
-
-		//}
-
-		if ( collision.Other.GameObject.Tags.HasAny( "Net" ))
+		// Ensure a DeformSpace exists (child of the ball)
+		if ( DeformSpace == null )
 		{
-			//dampen ball impact when it's the back of the net
-			ballRB.Velocity = ballRB.Velocity * MathX.Clamp(1f-goalWallDampning,0,1f);
+			DeformSpace = new GameObject( "DeformSpace" )
+			{
+				Parent = GameObject
+			};
+			DeformSpace.LocalPosition = Vector3.Zero;
+			DeformSpace.LocalRotation = Rotation.Identity;
+			DeformSpace.LocalScale = Vector3.One;
+		}
+
+		// Reparent the mesh under DeformSpace, preserving world transform
+		var meshWT = DeformMesh.WorldTransform;
+		DeformMesh.Parent = DeformSpace;
+		DeformMesh.WorldTransform = meshWT;
+
+		// Record mesh's local rotation so we can counter-rotate later
+		_meshBaseLocalRot = DeformMesh.LocalRotation;
+
+		_rigReady = true;
+	}
+
+	// ------------------- Collisions ------------------------------------------
+
+	public void OnCollisionStart( Collision collision )
+	{
+		if ( collision.Other.GameObject.Tags.Has( "piece" ) )
+		{
+			// hook for future piece-specific logic
+		}
+
+		if ( collision.Other.GameObject.Tags.HasAny( "Net" ) )
+		{
+			// dampen ball impact when it's the back of the net
+			ballRB.Velocity = ballRB.Velocity * MathX.Clamp( 1f - goalWallDampning, 0f, 1f );
 		}
 
 		if ( collision.Other.GameObject.Tags.HasAny( "GoalPost" ) )
 		{
-			//dampen ball impact when it's the back of the net
 			if ( !IsProxy )
-			{
 				HitPost();
-
-			}
-			
 		}
-
-
-
 	}
 
 	[Rpc.Broadcast]
@@ -116,70 +109,82 @@ public sealed class PuntBall : Component, Component.ICollisionListener
 	{
 		Sound.Play( "sounds/ball/post.sound" );
 
-
 		Random random = new Random();
-		int chance = random.Next( 1, 5 ); // Generates a number between 1 and 4 inclusive.
-
-		if ( chance == 1 ) // 1 in 4 chance
-		{
+		if ( random.Next( 1, 5 ) == 1 ) // 1-in-4
 			Sound.Play( "sounds/ball/crowdgasp.sound" );
-		}
-
-
 	}
-	protected override void OnFixedUpdate()
-	{
-		preCollisionVelocity = ballRB.Velocity;//keep this every fixed update so we know before the collision
-	}
+
+	public void OnCollisionUpdate( Collision collision ) { }
+	public void OnCollisionStop( CollisionStop collision ) { }
+
+	// ------------------- Tick -------------------------------------------------
+
 	protected override void OnUpdate()
 	{
-		//take exit velocity, store Z component, but set to 0
-		//calculate acuteness of the angle
-		//if it's almost perpendicular
-		//lerp in some of the original velocity
-		//add the z component back in
-
-
-
-		
-		//newExitVelocity = newExitVelocity * exitVelocity.Length;
-		//newExitVelocity = new Vector3( newExitVelocity.x, newExitVelocity.y, exitZVelocity );
-
-
-		//Gizmo.Draw.Arrow( collisionPosition + collisionNormal * 100f, collisionPosition, 0f,0f );//bounce normal
-		//Gizmo.Draw.Arrow(collisionPosition + -entryNormal.Normal * 200f, collisionPosition, 10f, 10f ); //entry velocity
-
-		//Gizmo.Draw.Arrow( collisionPosition, collisionPosition + newExitVelocity.Normal * 110f, 10f, 10f );//newexit normal
-
-		//Gizmo.Draw.Arrow( collisionPosition, collisionPosition + exitVelocity.Normal * 100f, 10f, 10f );//exit normal
-
-
-
-
-
-		//Gizmo.Draw.Arrow( collisionPosition, collisionPosition + slidingVelocity.Normal * 100f, 10f, 10f );//exit normal
-
 		CalculateBallGuide();
+		UpdateSquashStretch();
 	}
 
+	protected override void OnFixedUpdate()
+	{
+		// physics step not needed for this feature
+	}
 
 	private void CalculateBallGuide()
 	{
-		ballGuide.WorldPosition = new Vector3( this.WorldPosition.x, this.WorldPosition.y, 10f );
-		ballGuide.WorldRotation = Rotation.From(new Angles(-90f,0,0));
+		if ( ballGuide == null ) return;
+		ballGuide.WorldPosition = new Vector3( WorldPosition.x, WorldPosition.y, 10f );
+		ballGuide.WorldRotation = Rotation.From( new Angles( -90f, 0, 0 ) );
 	}
 
-	
+	// ------------------- Squash & Stretch Core -------------------------------
 
-
-	public void OnCollisionUpdate( Collision collision )
+	private void UpdateSquashStretch()
 	{
+		if ( !_rigReady || ballRB == null ) return;
+
+		Vector3 vel = ballRB.Velocity;
+		float speed = vel.Length;
+
+		// Aim DeformSpace in *world* space so its +X axis aligns to velocity globally
+		if ( speed > UpdateWhenSpeedAbove )
+		{
+			var dir = vel.Normal;
+			var aimWorld = Rotation.LookAt( dir, Vector3.Up );
+			float t = 1f - MathF.Exp( -AlignLerpSpeed * Time.Delta ); // framerate-independent
+			DeformSpace.WorldRotation = Rotation.Slerp( DeformSpace.WorldRotation, aimWorld, t );
+		}
+
+		// Base stretch from speed via curve
+		float speed01 = MathX.Clamp( speed / MathF.Max( 1f, MaxSpeedForStretch ), 0f, 1f );
+		float curve01 = StretchBySpeed.Evaluate( speed01 ); // 0..1
+		float baseAlong = 1f + (MaxStretchScale - 1f) * curve01; // along velocity
+
+		// Impact pulse from sharp Δv & direction changes (bounces, hard touches)
+		if ( _prevVel.Length > 1f && speed > 1f )
+		{
+			float angleDeg = Vector3.GetAngle( _prevVel.Normal, vel.Normal ); // 0..180
+			float dvNorm = (vel - _prevVel).Length / MathF.Max( 1f, MaxSpeedForStretch );
+			float impulse = dvNorm * (angleDeg / 180f) * ImpactSensitivity;
+			if ( impulse > _impactPulse ) _impactPulse = impulse;
+		}
+		_prevVel = vel;
+
+		// Decay pulse
+		_impactPulse = MathX.Clamp( _impactPulse - ImpactDecayPerSecond * Time.Delta, 0f, 1f );
+
+		// Combine base stretch with impact squash along the velocity axis
+		float along = MathX.Lerp( baseAlong, MinSquashScale, _impactPulse ).Clamp( 0.001f, 5f );
+
+		// Preserve volume-ish: along * perp^2 ≈ 1  => perp = sqrt(1/along)
+		float perp = 1f / MathF.Sqrt( along );
+		Vector3 targetScale = new Vector3( along, perp, perp );
+
+		// Smooth scale on DeformSpace (mesh keeps its own base scale)
+		float s = 1f - MathF.Exp( -ScaleLerpSpeed * Time.Delta );
+		DeformSpace.LocalScale = Vector3.Lerp( DeformSpace.LocalScale, targetScale, s );
+
+		// Counter-rotate the visible mesh so its *world* orientation stays unchanged
+		DeformMesh.LocalRotation = DeformSpace.LocalRotation.Inverse * _meshBaseLocalRot;
 	}
-
-
-	public void OnCollisionStop( CollisionStop collision )
-	{
-	}
-
-
 }
