@@ -5,15 +5,16 @@
 @implements INavigatorPage
 @namespace Facepunch.UI
 
-<root class="mainmenu">
+<root class="main-menu">
 
-    <title> Punt!</title>
 
-    <div class="options">
+    <menu-header> Punt!</menu-header>
 
-        <a class="button" href="/play"> Play</a>
+    <div class="menu-options">
 
-        <a class="button" href="/leaderboard"> Leaderboard</a>
+        <a class="menu-button" href="/play"> Play</a>
+
+        <a class="menu-button" href="/leaderboard"> Leaderboard</a>
 
         <a class="button wip-button" href="myteam"> How to play</a>
 
@@ -21,7 +22,7 @@
 
         <a class="button wip-button" href="myteam"> Team</a>
 
-        <div class="button standard" onclick=@(()=>Quit())>
+        <div class="menu-button" onclick=@(()=>Quit())>
 
             Quit
         </div>

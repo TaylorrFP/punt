@@ -7,44 +7,44 @@
 @implements INavigatorPage
 @namespace Facepunch.UI
 
-<root class="mainmenu">
-    <title>Punt!</title>
+<root class="main-menu">
+    <menu-header>Punt!</menu-header>
 
-    <div class="options">
+    <div class="menu-options">
 
 
 
-        <div class="button">
-            <button class="button" onclick=@(() => DebugPlay())>Singleplayer</button>  <!-- Create lobby isn't being called here when I href' -->
+        <div class="menu-button">
+            <button class="button" onclick=@(() => DebugPlay())>Singleplayer</button>
         </div>
 
-        <div class="button" onclick=@( async () => await QueueManager.Instance.StartSearching( QueueType.Solo ) )>
+        <div class="menu-button" onclick=@( async () => await QueueManager.Instance.StartSearching( QueueType.Solo ) )>
             Solos
 
-            <div class="players">
+            <div>
                 <i>person</i>
                 @SoloCount
             </div>
         </div>
 
-        <div class="button" onclick=@( async () => await QueueManager.Instance.StartSearching( QueueType.Duo ) )>
+        <div class="menu-button" onclick=@( async () => await QueueManager.Instance.StartSearching( QueueType.Duo ) )>
             Duos
 
-            <div class="players">
+            <div>
                 <i>person</i>
                 @DuosCount
             </div>
         </div>
 
-        <a class="button" href="gamebrowser">
+        <a class="menu-button" href="gamebrowser">
             Custom Games
 
-            <div class="players">
+            <div>
                 <i>person</i>
                 @CustomCount
             </div>
         </a>
-        <a class="button" href="">Back</a>
+        <a class="menu-button" href="">Back</a>
     </div>
 </root>
 
