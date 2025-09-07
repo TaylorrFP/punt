@@ -135,7 +135,7 @@
               "cooldownDuration": 0,
               "cooldownTimeSince": {
                 "Absolute": 0,
-                "Relative": 581.3052
+                "Relative": 22052.514
               },
               "emitter": {
                 "_type": "component",
@@ -461,7 +461,7 @@
                       "squashDuration": 0.5,
                       "squashTimeSince": {
                         "Absolute": 0,
-                        "Relative": 116243144
+                        "Relative": 116264616
                       }
                     }
                   ],
@@ -1299,7 +1299,7 @@
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
-      "Enabled": true,
+      "Enabled": false,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,

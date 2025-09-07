@@ -306,16 +306,16 @@
           "RedTeamPendingWin": 0,
           "ResetTimer": {
             "Absolute": 0,
-            "Relative": -596.9024,
-            "Passed": 596.9024,
+            "Relative": -22053.578,
+            "Passed": 22053.578,
             "Fraction": 1
           },
           "ResetTimerLength": 2,
           "RoundLength": 180,
           "RoundStartTimer": {
             "Absolute": 0,
-            "Relative": -596.9024,
-            "Passed": 596.9024,
+            "Relative": -22053.578,
+            "Passed": 22053.578,
             "Fraction": 1
           },
           "RoundTimeLeft": 0,
@@ -2937,7 +2937,7 @@
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
-      "Enabled": true,
+      "Enabled": false,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
@@ -3081,7 +3081,7 @@
                 "Property": "cooldownTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 596.9024
+                  "Relative": 22053.578
                 }
               },
               {
@@ -3092,7 +3092,7 @@
                 "Property": "squashTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 116243160
+                  "Relative": 116264616
                 }
               }
             ],
@@ -3210,7 +3210,7 @@
                 "Property": "cooldownTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 596.9024
+                  "Relative": 22053.578
                 }
               },
               {
@@ -3221,7 +3221,7 @@
                 "Property": "squashTimeSince",
                 "Value": {
                   "Absolute": 0,
-                  "Relative": 116243160
+                  "Relative": 116264616
                 }
               }
             ],

@@ -56,6 +56,10 @@ public sealed class PuntPlayerController : Component
 
 	[Property] public string PlayerName { get; set; } = "blaster";
 
+	[Property] public PuntPiece closestPiece { get; set; }
+
+	[Property] public float MaxSelectDistance = 00f;
+
 
 	protected override void OnStart()
 	{
@@ -88,8 +92,9 @@ public sealed class PuntPlayerController : Component
 
 			PitchTrace();
 
-			PieceTrace();
-
+			//PieceTrace();
+			FindNearestTeamPieceToCursor();
+			PieceTrace2();
 
 			CalculateFlick();
 			RotatePiece();
@@ -119,6 +124,287 @@ public sealed class PuntPlayerController : Component
 
 
 
+	}
+
+	private void PieceTrace2()
+	{
+
+
+
+
+
+
+		if ( TestGameMode.Instance.State == GameState.Resetting )
+		{
+
+
+			if ( selectedPiece != null )
+			{
+
+				switch ( controllerState )
+				{
+
+					case ControllerState.Grabbing:
+
+
+						selectedPiece.playerModelHolder.Network.DropOwnership();//drop ownership of the model rotation
+						selectedPiece.ToggleSelection();
+						FlickPiece( selectedPiece, flickVector );
+						controllerState = ControllerState.Idle;
+
+
+						Mouse.CursorType = "pointer";
+						break;
+
+
+
+				}
+
+
+			}
+
+			if ( hoveredPiece != null )
+			{
+				controllerState = ControllerState.Idle;
+				Log.Info( "hovered pice is valid" );
+				hoveredPiece.ToggleHover();
+				hoveredPiece = null;
+				Mouse.CursorType = "pointer";
+			}
+		}
+		else
+		{
+
+
+
+
+
+			if ( controllerState != ControllerState.Grabbing )//only do this stuff if we're not grabbing anything
+			{
+				// Trace and find a piece that is under the cursor.
+				var mousePosition = Mouse.Position;
+				//var camera = Scene.Camera;
+				//var ray = camera.ScreenPixelToRay( mousePosition );
+				//var tr = Scene.Trace.Ray( ray, 10000f )
+				//	.WithAllTags( "piece" )
+				//	.Run();
+
+				if ( closestPiece!=null )// if we hit a piece
+				{
+
+
+
+					var puntPiece = closestPiece;
+
+					switch ( puntPiece.pieceState )
+					{
+
+						case PieceState.Ready:
+
+							controllerState = ControllerState.Hovering;
+							puntPiece.pieceState = PieceState.Hovered;
+
+							if(hoveredPiece!=null && hoveredPiece != puntPiece )
+							{
+
+								hoveredPiece.ToggleHover();
+							}
+
+
+							hoveredPiece = puntPiece;
+							Mouse.CursorType = "hovering";
+							Sound.Play( "sounds/piecehover.sound" );
+
+							break;
+
+						case PieceState.Hovered: //if the piece is already hovered
+
+
+							controllerState = ControllerState.Hovering;
+							puntPiece.pieceState = PieceState.Hovered;
+							hoveredPiece = puntPiece;
+							Mouse.CursorType = "hovering";
+
+							break;
+
+						case PieceState.Grabbed: //if the piece is already grabbed
+
+							controllerState = ControllerState.Disabled;
+							hoveredPiece = null;
+							Mouse.CursorType = "disabled";
+
+							break;
+
+						case PieceState.Cooldown:
+
+							controllerState = ControllerState.Busy;
+							hoveredPiece = null;
+							Mouse.CursorType = "cooldown";
+
+							break;
+
+						case PieceState.Frozen:
+
+							controllerState = ControllerState.Disabled;
+							hoveredPiece = null;
+							Mouse.CursorType = "disabled";
+
+							//don't do anything here, we can't unfreeze
+							//just set the controllerstate to disabled
+
+							break;
+
+					}
+
+					
+				}
+				else
+				{
+					if ( hoveredPiece != null )
+					{
+						controllerState = ControllerState.Idle;
+						Log.Info( "hovered pice is valid" );
+						hoveredPiece.ToggleHover();
+						hoveredPiece = null;
+						Mouse.CursorType = "pointer";
+
+					}
+
+					controllerState = ControllerState.Idle;
+					Mouse.CursorType = "pointer";
+				}
+
+
+			}//we've done all the initial traces, we can check our inputs to see if we want to select, or deselect anything
+
+			if ( Input.Pressed( "attack1" ) )
+			{
+
+
+				switch ( controllerState )
+				{
+					case ControllerState.Hovering:
+						hoveredPiece.ToggleHover();
+						selectedPiece = hoveredPiece;
+						selectedPiece.ToggleSelection();
+						hoveredPiece = null;
+
+						selectedPiece.playerModelHolder.Network.TakeOwnership();//so the rotate is networked
+
+						selectedPiece.pieceState = PieceState.Grabbed;
+
+						Mouse.CursorType = "grabbing";
+						controllerState = ControllerState.Grabbing;
+						break;
+
+					case ControllerState.HoveringEnemy:
+						Sound.Play( "sounds/piecedud.sound" );
+						break;
+
+					case ControllerState.Busy:
+						Sound.Play( "sounds/piecedud.sound" );
+						break;
+
+					case ControllerState.Disabled:
+						Sound.Play( "sounds/piecedud.sound" );
+						break;
+
+				}
+
+
+
+			}
+
+			if ( Input.Released( "attack1" ) )
+			{
+				switch ( controllerState )
+				{
+
+					case ControllerState.Grabbing:
+
+
+						selectedPiece.playerModelHolder.Network.DropOwnership();//drop ownership of the model rotation
+						selectedPiece.ToggleSelection();
+
+
+
+
+						controllerState = ControllerState.Idle;
+						Mouse.CursorType = "pointer";
+
+						if ( selectedPiece.IsDormant )
+						{
+							Sound.Play( "sounds/piecedud.sound" );
+							selectedPiece.pieceState = PieceState.Cooldown;
+							selectedPiece = null;
+
+						}
+						else
+						{
+							FlickPiece( selectedPiece, flickVector );
+
+						}
+
+						break;
+				}
+
+			}
+		}
+
+
+
+	}
+
+	private void FindNearestTeamPieceToCursor()
+	{
+		// Grab the team's list directly (avoid copying into a new list)
+		List<PuntPiece> teamPieces = teamSide switch
+		{
+			TeamSide.Red => TestGameMode.Instance?.RedPieceList,
+			TeamSide.Blue => TestGameMode.Instance?.BluePieceList,
+			_ => null
+		};
+
+		if ( teamPieces == null || teamPieces.Count == 0 )
+		{
+			closestPiece = null;
+			return;
+		}
+
+		// Work in squared distances (no sqrt) for simplicity + speed
+		float maxDistSq = MaxSelectDistance * MaxSelectDistance;
+		float bestDistSq = float.MaxValue;
+		PuntPiece best = null;
+
+		for ( int i = 0; i < teamPieces.Count; i++ )
+		{
+			var piece = teamPieces[i];
+			if ( piece == null ) continue;
+
+			// If you only want ready pieces, uncomment the next line:
+			// if (piece.pieceState != PieceState.Ready) continue;
+
+			var delta = SceneCursorPosition - piece.WorldPosition;
+			float d2 = delta.LengthSquared;
+
+			if ( d2 < bestDistSq )
+			{
+				bestDistSq = d2;
+				best = piece;
+			}
+		}
+
+		// Only select if within the allowed radius
+		if ( best != null && bestDistSq <= maxDistSq )
+		{
+			closestPiece = best;
+			// Visualize selection if you like
+			//Gizmo.Draw.SolidSphere( closestPiece.WorldPosition, 100f );
+		}
+		else
+		{
+			closestPiece = null;
+		}
 	}
 
 	[Rpc.Broadcast]
