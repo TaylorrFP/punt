@@ -14,6 +14,7 @@
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
@@ -60,6 +61,7 @@
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
@@ -79,6 +81,7 @@
           "__guid": "efff49d1-7ec3-4a01-81c8-643f7818de66",
           "__enabled": true,
           "Center": "0,0,0",
+          "ColliderFlags": 0,
           "Elasticity": null,
           "Friction": null,
           "IsTrigger": false,
@@ -113,6 +116,7 @@
           "NetworkMode": 2,
           "NetworkInterpolation": true,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 0,
           "Components": [
             {
@@ -135,7 +139,7 @@
               "cooldownDuration": 0,
               "cooldownTimeSince": {
                 "Absolute": 0,
-                "Relative": 22052.514
+                "Relative": 97.0486
               },
               "emitter": {
                 "_type": "component",
@@ -235,6 +239,7 @@
               "__type": "Sandbox.ModelCollider",
               "__guid": "4786286e-807b-4b33-8882-80612f1e5613",
               "__enabled": true,
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -259,7 +264,10 @@
               "__guid": "3a1d15ac-7a5a-42dd-ab58-1c3ddbb118df",
               "__enabled": true,
               "AngularDamping": 0,
+              "EnableImpactDamage": true,
               "Gravity": true,
+              "GravityScale": 1,
+              "ImpactDamage": 0,
               "LinearDamping": 0,
               "Locking": {
                 "X": false,
@@ -271,6 +279,7 @@
               },
               "MassCenterOverride": "0,0,-5",
               "MassOverride": 0,
+              "MinImpactDamageSpeed": 500,
               "MotionEnabled": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -286,6 +295,7 @@
               "__type": "Sandbox.CapsuleCollider",
               "__guid": "0efa3287-65e6-4e12-b2cc-a4aaedfe5fa1",
               "__enabled": true,
+              "ColliderFlags": 0,
               "Elasticity": null,
               "End": "0,0,94.79977",
               "Friction": null,
@@ -322,6 +332,7 @@
               "NetworkMode": 2,
               "NetworkInterpolation": true,
               "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
               "OwnerTransfer": 1,
               "Components": [
                 {
@@ -366,6 +377,7 @@
               "NetworkMode": 1,
               "NetworkInterpolation": true,
               "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
               "OwnerTransfer": 0,
               "Components": [],
               "Children": [
@@ -382,6 +394,7 @@
                   "NetworkMode": 2,
                   "NetworkInterpolation": true,
                   "NetworkOrphaned": 0,
+                  "NetworkTransmit": true,
                   "OwnerTransfer": 1,
                   "Components": [
                     {
@@ -461,7 +474,7 @@
                       "squashDuration": 0.5,
                       "squashTimeSince": {
                         "Absolute": 0,
-                        "Relative": 116264616
+                        "Relative": 125502100
                       }
                     }
                   ],
@@ -479,6 +492,7 @@
                       "NetworkMode": 2,
                       "NetworkInterpolation": true,
                       "NetworkOrphaned": 0,
+                      "NetworkTransmit": true,
                       "OwnerTransfer": 1,
                       "Components": [
                         {
@@ -512,6 +526,7 @@
                           "NetworkMode": 2,
                           "NetworkInterpolation": true,
                           "NetworkOrphaned": 0,
+                          "NetworkTransmit": true,
                           "OwnerTransfer": 1,
                           "Components": [
                             {
@@ -556,6 +571,7 @@
                           "NetworkMode": 2,
                           "NetworkInterpolation": true,
                           "NetworkOrphaned": 0,
+                          "NetworkTransmit": true,
                           "OwnerTransfer": 1,
                           "Components": [
                             {
@@ -606,6 +622,7 @@
               "NetworkMode": 2,
               "NetworkInterpolation": true,
               "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
               "OwnerTransfer": 1,
               "Components": [
                 {
@@ -848,6 +865,7 @@
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
@@ -908,6 +926,7 @@
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [],
       "Children": [
@@ -924,6 +943,7 @@
           "NetworkMode": 2,
           "NetworkInterpolation": true,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
@@ -964,6 +984,7 @@
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
@@ -998,6 +1019,7 @@
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [],
       "Children": [
@@ -1014,6 +1036,7 @@
           "NetworkMode": 2,
           "NetworkInterpolation": true,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
@@ -1022,6 +1045,7 @@
               "__enabled": true,
               "BackgroundColor": "0,0.85882,0.84314,1",
               "ClearFlags": "All",
+              "EnablePostProcessing": true,
               "FieldOfView": 60,
               "FovAxis": "Horizontal",
               "IsMainCamera": true,
@@ -1033,9 +1057,11 @@
               "OnComponentUpdate": null,
               "Orthographic": false,
               "OrthographicHeight": 1204,
+              "PostProcessAnchor": null,
               "Priority": 1,
               "RenderExcludeTags": "",
               "RenderTags": "",
+              "RenderTexture": null,
               "TargetEye": "None",
               "Viewport": "0,0,1,1",
               "ZFar": 10000,
@@ -1044,8 +1070,9 @@
             {
               "__type": "Sandbox.Bloom",
               "__guid": "0b6565d8-5dea-4e39-85e4-25a6acc48c74",
-              "__enabled": true,
+              "__enabled": false,
               "__version": 1,
+              "Filter": "Bilinear",
               "Gamma": 2.2,
               "Mode": "Additive",
               "OnComponentDestroy": null,
@@ -1087,7 +1114,8 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
-              "Scale": 0.2
+              "Scale": 0.2,
+              "TexelSize": 1
             },
             {
               "__type": "Sandbox.ChromaticAberration",
@@ -1106,6 +1134,7 @@
               "__type": "Sandbox.ColorAdjustments",
               "__guid": "0a736412-f762-43f2-bdf2-a1820d72415d",
               "__enabled": true,
+              "Blend": 1,
               "Brightness": 1.79,
               "Contrast": 1,
               "HueRotate": 0,
@@ -1142,7 +1171,6 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
-              "Quality": "High",
               "Radius": 18,
               "ThinCompensation": 0
             },
@@ -1152,7 +1180,7 @@
               "__enabled": true,
               "Center": "0.75,0.5",
               "Color": "0,0.06969,0.14419,1",
-              "Intensity": 0.050724637,
+              "Intensity": 0.02,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -1180,6 +1208,7 @@
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
@@ -1217,6 +1246,7 @@
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
@@ -1303,6 +1333,7 @@
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {

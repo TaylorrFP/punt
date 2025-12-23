@@ -1,14 +1,11 @@
-﻿@inherits Panel
+﻿@using Sandbox.Menu
+@using Sandbox.UI;
+@using Sandbox.UI.Navigation;
+@using System;
+@using System.Threading.Tasks;
+
+@inherits NavigationHost
 @namespace Facepunch.UI
-
-@using System
-@using System.Threading.Tasks
-@using System.Collections.Generic
-@using Sandbox.Network
-@using Sandbox
-@using Sandbox.UI
-
-@implements INavigatorPage
 
 <root class="mainmenu">
     <title>Punt!</title>

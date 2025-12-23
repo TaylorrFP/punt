@@ -413,9 +413,9 @@ public sealed class PuntPlayerController : Component
 
 		//As soon as we spawn in the arrow, initialise the values here
 		//they can't be set in the prefab for some reason
-		arrow = arrowGO.GetComponent<WorldPanel>();
-		var arrowComponent = arrowGO.GetComponent<AimArrow>();
-		arrowComponent.playerController = this;
+		//arrow = arrowGO.GetComponent<WorldPanel>();
+		//var arrowComponent = arrowGO.GetComponent<AimArrow>();
+		//arrowComponent.playerController = this;
 
 	}
 
